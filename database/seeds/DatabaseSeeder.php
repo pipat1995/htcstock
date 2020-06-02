@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UserSeeder::class);
         
-        App\Accessories::created(
+        App\Accessories::insert(
             array('id' => '1','name' => 'PC-170600901142','unit' => 'Set','created_at' => '2019-11-06 09:23:20','updated_at' => NULL),
             array('id' => '2','name' => 'สาย UTP CAT 6(300M) Outdoor','unit' => 'Box','created_at' => '2019-12-06 01:59:57','updated_at' => NULL),
             array('id' => '3','name' => 'RJ45 Cat6MODULAR PLUG(10PCS/PKG)','unit' => 'PKG','created_at' => '2020-04-09 03:13:44','updated_at' => NULL),
