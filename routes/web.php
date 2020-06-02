@@ -29,7 +29,10 @@ Route::put('/accessories/{accessories}', 'AccessoriesController@update')->name('
 Route::delete('/accessories/{accessories}', 'AccessoriesController@destroy')->name('accessories.destroy');
 
 
-Route::get('/history/take','HistoryController@take')->name('history.take');
-Route::post('/history/take','HistoryController@storeTake')->name('history.take.store');
+Route::get('/histories/take','HistoriesController@take')->name('histories.take');
+Route::get('/histories/take/{histories}','HistoriesController@showTake')->name('histories.take.show');
+Route::get('/histories/take/{histories}/edit','HistoriesController@editTake')->name('histories.take.edit');
+Route::post('/histories/take','HistoriesController@storeTake')->name('histories.take.store');
+Route::put('/histories/take/{histories}','HistoriesController@updateTake')->name('histories.take.update');
 
-Route::get('/history/lend','HistoryController@lend')->name('history.lend');
+Route::get('/histories/lend','HistoriesController@lend')->name('histories.lend');

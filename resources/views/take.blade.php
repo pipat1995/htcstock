@@ -76,8 +76,9 @@
                     <thead>
                         <tr>
                             <th width="150px">action</th>
-                            <th>Name</th>
-                            <th>Unit</th>
+                            <th>อุปกรณ์</th>
+                            <th>จำนวน</th>
+                            <th>คนเบิก</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,19 +108,23 @@
                     searchable: false
                 },
                 {
-                    data: 'name',
-                    name: 'name'
+                    data: 'accessories',
+                    name: 'accessories'
                 },
                 {
-                    data: 'unit',
-                    name: 'unit'
+                    data: 'qty',
+                    name: 'qty'
+                },
+                {
+                    data: 'user_take',
+                    name: 'user_take'
                 },
             ]
         }); // END DATATABLE
     };
     window.addEventListener('load', function () {
         //CALL AJAX
-        axios.get('/api/history/take').then(rendertable)
+        axios.get('/api/histories/take').then(rendertable)
         $(".toast").toast('show');
     });
 </script>

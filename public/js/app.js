@@ -52766,10 +52766,15 @@ function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&t
 /*!******************************!*\
   !*** ./resources/js/take.js ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // Fetch all the forms we want to apply custom Bootstrap validation styles to
+
 var forms = document.getElementsByClassName('take-validation'); // Loop over them and prevent submission
 
 Array.prototype.filter.call(forms, function (form) {
@@ -52785,6 +52790,30 @@ Array.prototype.filter.call(forms, function (form) {
 
     form.classList.add('was-validated');
   }, false);
+});
+$('#takeModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var param = button.data('param');
+  var modal = $(this); // /accessories/{id}
+
+  if (param) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/histories/take/" + param + "/edit").then(function (res) {
+      modal.find('.modal-body form')[0].action = "/histories/take/" + res.data.id;
+      modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
+      modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
+      modal.find('#validationAccess').val(res.data.access_id);
+      modal.find('#validationQty').val(res.data.qty);
+      modal.find('#validationTakeName').val(res.data.user_take);
+      modal.find('#remark').val(res.data.remark);
+      modal.find('#created_at').val(res.data.created_at.substr(0, 10));
+    });
+  } else {
+    modal.find('.modal-body form')[0].reset();
+    modal.find('.modal-title').text('อุปกรณ์');
+    modal.find('.modal-body form')[0].action = "/accessories";
+    modal.find('#methodPut').remove();
+  }
 });
 
 /***/ }),
@@ -52807,8 +52836,8 @@ Array.prototype.filter.call(forms, function (form) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\stock\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\stock\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -44,7 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
             $response = Http::get('http://190.7.10.27/_sqlsrvConnection/apiStock/userinfo.php');
             $newRes = array();
             foreach ($response->json() as $key => $value) {
-                
                 \array_push($newRes,(object)$value);
             }
             return $newRes;

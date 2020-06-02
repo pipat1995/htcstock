@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="app-sidebar__heading">UI Components</li>
-                <li class="{{ request()->routeIs('history.*') ? 'mm-active' : ''}}">
+                <li class="{{ request()->routeIs('histories.*') ? 'mm-active' : ''}}">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Elements
@@ -49,15 +49,15 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('history.take')}}"
-                                class="{{ request()->routeIs('history.take') ? 'mm-active' : ''}}">
+                            <a href="{{route('histories.take')}}"
+                                class="{{ request()->routeIs('histories.take') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon"></i>
                                 เบิก อุปกรณ์
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('history.lend')}}"
-                                class="{{ request()->routeIs('history.lend') ? 'mm-active' : ''}}">
+                            <a href="{{route('histories.lend')}}"
+                                class="{{ request()->routeIs('histories.lend') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon">
                                 </i>ยืม อุปกรณ์
                             </a>

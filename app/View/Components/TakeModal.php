@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Accessories;
+use App\Histories;
 use App\User;
 use Illuminate\View\Component;
 

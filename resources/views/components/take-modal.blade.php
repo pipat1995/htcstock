@@ -10,13 +10,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="take-validation" id="formTake" action="{{route('history.take.store')}}" method="POST"
+                <form class="take-validation" id="formTake" action="{{route('histories.take.store')}}" method="POST"
                     novalidate>
                     @csrf
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
                             <label for="validationAccess">อุปกรณ์</label>
-                            <select class="form-control" name="validationAccess" required>
+                            <select class="form-control" name="validationAccess" id="validationAccess" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($accessories as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="validationQty">จำนวน</label>
-                            <input class="form-control" type="number"  id="validationQty" value=""
-                                name="validationQty" required>
+                            <input class="form-control" type="number" id="validationQty" value="" name="validationQty"
+                                required>
                             <div class="valid-tooltip">
                                 ทำดีแล้ว
                             </div>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <label for="validationTakeName">ชื่อผู้เบิก</label>
-                            <select class="form-control" name="validationTakeName" required>
+                            <select class="form-control" name="validationTakeName" id="validationTakeName" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
