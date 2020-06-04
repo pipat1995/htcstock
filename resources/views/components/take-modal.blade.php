@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="take-validation" id="formTake" action="{{route('histories.take.store')}}" method="POST"
+                <form class="take-validation" id="formTake" action="/histories/take" method="POST"
                     novalidate>
                     @csrf
                     <div class="form-row">

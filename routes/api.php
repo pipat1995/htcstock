@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::get('/accessories','API\AccessoriesController@index');
-Route::get('/histories/take','API\HistoriesController@take');
+// Route::get('/histories/take','API\HistoriesController@take');
 Route::get('/histories/lend','API\HistoriesController@lend');

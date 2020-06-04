@@ -13,8 +13,25 @@ class Histories extends Model
      * @var array
      */
     protected $fillable = [
-        'access_id', 'qty', 'user_take', 'create_by',
+        'access_id', 'qty', 'user_take', 'create_by','status'
     ];
+
+    /**
+     * format for dataTable Frontend
+     *
+     * @var array
+     */
+    public function format()
+    {
+        return [
+            'action'=> '<botton class="edit btn btn-primary btn-sm" data-toggle="modal" data-target="#takeModal" data-param="' . $this->id . '">ข้อมูล</botton>',
+            'id' => $this->id,
+            'accessories' => $this->accessories,
+            'qty' => $this->qty,
+            'user_take' => $this->user_take,
+            'updated' => $this->updated_at
+        ];
+    }
 
     public static function takeList()
     {

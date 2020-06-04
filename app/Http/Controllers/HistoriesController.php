@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Histories;
+use App\Repositories\Interfaces\HistoriesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 
 class HistoriesController extends Controller
 {
-    public function __construct()
+    private $historiesRepository;
+    public function __construct(HistoriesRepositoryInterface $historiesRepository)
     {
+        $this->historiesRepository = $historiesRepository;
         $this->middleware(['auth', 'verified']);
     }
-    public function take()
+    public function allTake()
     {
-        return \view('take');
+        try {
+            $histories = $this->historiesRepository->allTake();
+            // \dd($histories);
+            return \view('take',\compact('histories'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function storeTake(Request $request)
     {
@@ -25,16 +34,8 @@ class HistoriesController extends Controller
                 'validationQty' => 'required|integer',
                 'validationTakeName' => 'required'
             ]);
-            $data = Histories::firstOrNew([
-                'access_id' => $request->validationAccess,
-                'qty' => $request->validationQty,
-                'user_take' => $request->validationTakeName,
-                'status' => \config('enums.histories_types.TAKE'),
-                // Auth::user()->id  คือ ID table users ที่ใช้งานอยู่
-                'create_by' => (int) Auth::user()->id
-            ]);
-            $data->save();
-            if (!$data->exists) {
+                $histories = $this->historiesRepository->storeTake($request);
+            if (!$histories->exists) {
                 $errors = new MessageBag();
                 $errors->add('your_custom_error', 'Your custom error message!');
                 return \redirect('histories/take')->withErrors($errors);

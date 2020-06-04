@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Accessories;
+use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AccessoriesRepository implements AccessoriesRepositoryInterface
@@ -24,8 +25,17 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
             throw $th;
         }
     }
-
-    public function update($var , $id)
+    public function store($var)
+    {
+        try {
+            $accessories = Accessories::firstOrNew(['name' => $var->name, 'unit' => $var->unit]);
+            $accessories->save();
+            return $accessories;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function update($var, $id)
     {
         try {
             $accessories = Accessories::where('id', $id)->firstOrFail();

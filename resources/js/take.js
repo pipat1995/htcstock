@@ -20,24 +20,4 @@ $('#takeModal').on('show.bs.modal', function (event) {
     var param = button.data('param')
     var modal = $(this)
 
-    // /accessories/{id}
-    if (param) {
-        axios.get("/histories/take/" + param + "/edit")
-            .then((res) => {
-                modal.find('.modal-body form')[0].action = "/histories/take/" + res.data.id
-                modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
-
-                modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
-                modal.find('#validationAccess').val(res.data.access_id)
-                modal.find('#validationQty').val(res.data.qty)
-                modal.find('#validationTakeName').val(res.data.user_take)
-                modal.find('#remark').val(res.data.remark)
-                modal.find('#created_at').val(res.data.created_at.substr(0, 10))
-            })
-    } else {
-        modal.find('.modal-body form')[0].reset()
-        modal.find('.modal-title').text('อุปกรณ์')
-        modal.find('.modal-body form')[0].action = "/accessories"
-        modal.find('#methodPut').remove()
-    }
 })

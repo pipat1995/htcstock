@@ -1,5 +1,5 @@
 require('./bootstrap');
 require('./accessories/index.js');
-require('./take.js');
+require('./histories/index.js');
 require('./main.js');
 

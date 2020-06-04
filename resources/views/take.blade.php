@@ -44,17 +44,9 @@
                 <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
                 </i>
             </div>
-            <div>เบิก อุปกรณ์
-                {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
-                        applications.
-                    </div> --}}
-            </div>
+            <div>เบิก อุปกรณ์</div>
         </div>
         <div class="page-title-actions">
-            {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-dark">
-                <i class="fa fa-star"></i>
-            </button> --}}
             <div class="d-inline-block">
                 <button type="button" data-toggle="modal" data-target="#takeModal" class="btn-shadow  btn btn-info"
                     data-param="">
@@ -75,7 +67,7 @@
                 <table class="mb-0 table table-hover" id="table-take">
                     <thead>
                         <tr>
-                            <th width="150px">action</th>
+                            {{-- <th width="150px">action</th> --}}
                             <th>อุปกรณ์</th>
                             <th>จำนวน</th>
                             <th>คนเบิก</th>
@@ -89,9 +81,10 @@
     </div>
 </div>
 <script>
-    var rendertable = (result) => {
+    window.addEventListener('load', function () {
+        const histories = {!! $histories !!}
         $('#table-take').DataTable({
-            data: result.data.data,
+            data: histories,
             deferRender: true,
             buttons: {
                 buttons: ['copy', 'csv', 'excel']
@@ -101,15 +94,15 @@
             },
             columns: [
                 // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                // {
+                //     data: 'action',
+                //     name: 'action',
+                //     orderable: false,
+                //     searchable: false
+                // },
                 {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-                {
-                    data: 'accessories',
-                    name: 'accessories'
+                    data: 'access_id',
+                    name: 'access_id'
                 },
                 {
                     data: 'qty',
@@ -120,11 +113,11 @@
                     name: 'user_take'
                 },
             ]
-        }); // END DATATABLE
-    };
-    window.addEventListener('load', function () {
+        }); 
+        // END DATATABLE
+
         //CALL AJAX
-        axios.get('/api/histories/take').then(rendertable)
+        // axios.get('/api/histories/take').then(rendertable)
         $(".toast").toast('show');
     });
 </script>

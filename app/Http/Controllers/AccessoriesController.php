@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Accessories;
-use App\Repositories\AccessoriesRepositoryInterface;
+use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
@@ -24,8 +24,8 @@ class AccessoriesController extends Controller
     public function index(Request $request)
     {
         try {
-            $accessories = $this->accessoriesRepository->all(); 
-            return view('accessories',\compact('accessories'));
+            $accessories = $this->accessoriesRepository->all();
+            return view('accessories', \compact('accessories'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -54,9 +54,8 @@ class AccessoriesController extends Controller
                 'name' => 'required|max:255',
                 'unit' => 'required',
             ]);
-            $data = Accessories::firstOrNew(['name' => $request->name, 'unit' => $request->unit]);
-            $data->save();
-            if (!$data->exists) {
+            $accessories = $this->accessoriesRepository->store($request);
+            if (!$accessories->exists) {
                 $errors = new MessageBag();
                 $errors->add('your_custom_error', 'Your custom error message!');
                 // \dd($errors->isEmpty(),$errors->all());
@@ -102,7 +101,7 @@ class AccessoriesController extends Controller
     public function update(Request $request, $accessoriesID)
     {
         try {
-            $accessories = $this->accessoriesRepository->update($request,$accessoriesID);
+            $accessories = $this->accessoriesRepository->update($request, $accessoriesID);
             return \redirect('accessories');
         } catch (\Throwable $th) {
             throw $th;

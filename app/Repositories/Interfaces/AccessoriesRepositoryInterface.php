@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Interfaces;
 
 interface AccessoriesRepositoryInterface
 {
@@ -8,6 +8,8 @@ interface AccessoriesRepositoryInterface
 
     public function findById($id);
 
+    public function store($var);
+    
     public function update($var, $id);
 
     public function delete($id);
