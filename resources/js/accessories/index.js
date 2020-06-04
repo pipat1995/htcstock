@@ -1,6 +1,14 @@
-import axios from "axios";
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+import { getId } from "./accessoriesapi.js";
 
+const clearModal = modal => {
+    modal.find('.modal-body form')[0].reset()
+    modal.find('.modal-title').text('อุปกรณ์')
+    modal.find('.modal-body form')[0].action = "/accessories"
+    modal.find('#methodPut').remove()
+}
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.getElementsByClassName('accessories-validation');
 // Loop over them and prevent submission
@@ -15,14 +23,13 @@ Array.prototype.filter.call(forms,  (form) => {
 });
 
 
-$('#exampleModal').on('show.bs.modal', function (event) {
+$('#accessoriesModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var param = button.data('param')
     var modal = $(this)
-
     // /accessories/{id}
     if (param) {
-        axios.get("/accessories/" + param + "/edit")
+        getId(param)
             .then((res) => {
                 modal.find('.modal-body form')[0].action = "/accessories/" + res.data.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
@@ -32,9 +39,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                 modal.find('#validationUnit').val(res.data.unit)
             })
     } else {
-        modal.find('.modal-body form')[0].reset()
-        modal.find('.modal-title').text('อุปกรณ์')
-        modal.find('.modal-body form')[0].action = "/accessories"
-        modal.find('#methodPut').remove()
+        clearModal(modal)
     }
 })
+
+$('#accessoriesModal').on('hidden.bs.modal', function (event) {
+    var modal = $(this)
+    clearModal(modal)
+})
+
+

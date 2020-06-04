@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Accessories;
+use App\Repositories\AccessoriesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
 class AccessoriesController extends Controller
 {
-    public function __construct()
+    private $accessoriesRepository;
+
+    public function __construct(AccessoriesRepositoryInterface $accessoriesRepository)
     {
+        $this->accessoriesRepository = $accessoriesRepository;
         $this->middleware(['auth', 'verified']);
     }
     /**
@@ -19,8 +23,12 @@ class AccessoriesController extends Controller
      */
     public function index(Request $request)
     {
-        // session()->set('success','Item created successfully.');
-        return view('accessories');
+        try {
+            $accessories = $this->accessoriesRepository->all(); 
+            return view('accessories',\compact('accessories'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -66,8 +74,9 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function show(Accessories $accessories)
+    public function show($accessoriesID)
     {
+        $accessories = $this->accessoriesRepository->findById($accessoriesID);
         return $accessories;
     }
 
@@ -77,8 +86,9 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function edit(Accessories $accessories)
+    public function edit($accessoriesID)
     {
+        $accessories = $this->accessoriesRepository->findById($accessoriesID);
         return $accessories;
     }
 
@@ -89,10 +99,14 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Accessories $accessories)
+    public function update(Request $request, $accessoriesID)
     {
-        \dd($request->all(),$accessories);
-        //
+        try {
+            $accessories = $this->accessoriesRepository->update($request,$accessoriesID);
+            return \redirect('accessories');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -101,9 +115,13 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Accessories $accessories)
+    public function destroy($accessoriesID)
     {
-        $accessories->destroy($accessories);
-        return \redirect('accessories');
+        try {
+            $accessories = $this->accessoriesRepository->delete($accessoriesID);
+            return \redirect('accessories');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

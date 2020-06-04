@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/accessories', 'AccessoriesController@index')->name('accessories');
 Route::get('/accessories/{accessories}', 'AccessoriesController@show')->name('accessories.show');
-Route::post('/accessories', 'AccessoriesController@store')->name('accessories.store');
 Route::get('/accessories/{accessories}/edit', 'AccessoriesController@edit')->name('accessories.edit');
+Route::post('/accessories', 'AccessoriesController@store')->name('accessories.store');
 Route::put('/accessories/{accessories}', 'AccessoriesController@update')->name('accessories.update');
 Route::delete('/accessories/{accessories}', 'AccessoriesController@destroy')->name('accessories.destroy');
 

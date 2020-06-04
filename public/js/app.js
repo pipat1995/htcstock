@@ -52563,19 +52563,44 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/accessories.js":
-/*!*************************************!*\
-  !*** ./resources/js/accessories.js ***!
-  \*************************************/
+/***/ "./resources/js/accessories/accessoriesapi.js":
+/*!****************************************************!*\
+  !*** ./resources/js/accessories/accessoriesapi.js ***!
+  \****************************************************/
+/*! exports provided: getId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getId", function() { return getId; });
+var getId = function getId(id) {
+  return axios.get("/accessories/" + id + "/edit");
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/accessories/index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/accessories/index.js ***!
+  \*******************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- // Example starter JavaScript for disabling form submissions if there are invalid fields
+/* harmony import */ var _accessoriesapi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accessoriesapi.js */ "./resources/js/accessories/accessoriesapi.js");
+
+
+var clearModal = function clearModal(modal) {
+  modal.find('.modal-body form')[0].reset();
+  modal.find('.modal-title').text('อุปกรณ์');
+  modal.find('.modal-body form')[0].action = "/accessories";
+  modal.find('#methodPut').remove();
+}; // Example starter JavaScript for disabling form submissions if there are invalid fields
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
+
 
 var forms = document.getElementsByClassName('accessories-validation'); // Loop over them and prevent submission
 
@@ -52589,14 +52614,14 @@ Array.prototype.filter.call(forms, function (form) {
     form.classList.add('was-validated');
   }, false);
 });
-$('#exampleModal').on('show.bs.modal', function (event) {
+$('#accessoriesModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
   var param = button.data('param');
   var modal = $(this); // /accessories/{id}
 
   if (param) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/accessories/" + param + "/edit").then(function (res) {
+    Object(_accessoriesapi_js__WEBPACK_IMPORTED_MODULE_0__["getId"])(param).then(function (res) {
       modal.find('.modal-body form')[0].action = "/accessories/" + res.data.id;
       modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
       modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
@@ -52604,11 +52629,12 @@ $('#exampleModal').on('show.bs.modal', function (event) {
       modal.find('#validationUnit').val(res.data.unit);
     });
   } else {
-    modal.find('.modal-body form')[0].reset();
-    modal.find('.modal-title').text('อุปกรณ์');
-    modal.find('.modal-body form')[0].action = "/accessories";
-    modal.find('#methodPut').remove();
+    clearModal(modal);
   }
+});
+$('#accessoriesModal').on('hidden.bs.modal', function (event) {
+  var modal = $(this);
+  clearModal(modal);
 });
 
 /***/ }),
@@ -52622,7 +52648,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./accessories.js */ "./resources/js/accessories.js");
+__webpack_require__(/*! ./accessories/index.js */ "./resources/js/accessories/index.js");
 
 __webpack_require__(/*! ./take.js */ "./resources/js/take.js");
 

@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('noti')
 @if ($errors->any())
 @foreach ($errors->all() as $error)
@@ -56,7 +54,7 @@
                 <i class="fa fa-star"></i>
             </button> --}}
             <div class="d-inline-block">
-                <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn-shadow  btn btn-info"
+                <button type="button" data-toggle="modal" data-target="#accessoriesModal" class="btn-shadow  btn btn-info"
                     data-param="">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
@@ -88,9 +86,10 @@
     </div>
 </div>
 <script>
-    var rendertable = (result) => {
+    window.addEventListener('load', function () {
+        var accessories = {!! $accessories !!}
         $('#table-access').DataTable({
-            data: result.data.data,
+            data: accessories,
             deferRender: true,
             buttons: {
                 buttons: ['copy', 'csv', 'excel']
@@ -115,13 +114,10 @@
                     name: 'unit'
                 },
             ]
-        }); // END DATATABLE
-    };
-    window.addEventListener('load', function () {
-        //CALL AJAX
-        axios.get('/api/accessories').then(rendertable)
+        });
         $(".toast").toast('show');
     });
+
 </script>
 @endsection
 
