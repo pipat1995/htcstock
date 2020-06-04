@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Accessories::class, function (Faker $faker) {
     return [
         'name'=> $faker->name,
-        'unit'=> $faker->name
+        'unit'=> $faker->unit
     ];
 });
