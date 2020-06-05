@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accessories extends Model
 {
-    
+    protected $table = 'accessories';
     /**
      * The attributes that are mass assignable.
      *
@@ -31,5 +31,10 @@ class Accessories extends Model
             'created' => $this->created_at,
             'updated' => $this->updated_at
         ];
+    }
+
+    public function historie()
+    {
+        return $this->hasMany(\App\Histories::class,'access_id');
     }
 }

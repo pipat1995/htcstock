@@ -14,22 +14,7 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     {
         try {
             $enums = (object) \config('enums.histories_types');
-            $sql = 'SELECT h.id,a.name as accessories,h.qty,h.user_take,u.name,h.status as users FROM `histories` h LEFT JOIN `users` u ON h.create_by = u.id LEFT JOIN `accessories` a ON h.access_id = a.id WHERE h.status IN ("' . $enums->TAKE . '")';
-            // \dd($sql);
-            $users = User::userinfo();
-            $histories = new Histories(DB::select($sql));
-            
-            // $histories = DB::select($sql);
-            foreach ($histories->all() as $key => $value) {
-                array_filter($users, function ($var) use ($value) {
-                    if (($var->id == $value->user_take)) {
-                        return $value->user_take = $var->name;
-                    }
-                });
-            }
-            // \dd($histories->first());
-            
-            return $histories->all();
+            return Histories::where('status',$enums->TAKE)->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -38,18 +23,7 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     {
         try {
             $enums = (object) \config('enums.histories_types');
-            $sql = 'SELECT h.id,a.name as accessories,h.qty,h.user_take,u.name,h.status as users FROM `histories` h LEFT JOIN `users` u ON h.create_by = u.id LEFT JOIN `accessories` a ON h.access_id = a.id WHERE h.status IN ("' . $enums->LEND . '")';
-            // \dd($sql);
-            $users = User::userinfo();
-            $histories = DB::select($sql);
-            foreach ($histories as $key => $value) {
-                array_filter($users, function ($var) use ($value) {
-                    if (($var->id == $value->user_take)) {
-                        return $value->user_take = $var->name;
-                    }
-                });
-            }
-            return $histories;
+            return Histories::where('status',$enums->LEND)->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -57,7 +31,8 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     public function findById($id)
     {
         try {
-            return Histories::where('id', $id)->firstOrFail();
+            $histories = Histories::where('id', $id)->firstOrFail();
+            return $histories;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -71,7 +46,6 @@ class HistoriesRepository implements HistoriesRepositoryInterface
                 'user_take' => $var->validationTakeName,
                 'create_by' => (int) Auth::user()->id,
                 'status' => \config('enums.histories_types.TAKE')
-                
             ]);
             $histories->save();
             return $histories;
@@ -88,7 +62,6 @@ class HistoriesRepository implements HistoriesRepositoryInterface
                 'user_take' => $var->validationTakeName,
                 'create_by' => (int) Auth::user()->id,
                 'status' => \config('enums.histories_types.LEND')
-                
             ]);
             $histories->save();
             return $histories;

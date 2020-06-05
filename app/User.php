@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -38,17 +38,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public static function userinfo()
+    public function historie()
     {
-        try {
-            $response = Http::get('http://190.7.10.27/_sqlsrvConnection/apiStock/userinfo.php');
-            $newRes = array();
-            foreach ($response->json() as $key => $value) {
-                \array_push($newRes,(object)$value);
-            }
-            return $newRes;
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return $this->hasMany(\App\Histories::class,'create_by');
     }
 }

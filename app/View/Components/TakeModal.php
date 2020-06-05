@@ -2,21 +2,23 @@
 
 namespace App\View\Components;
 
-use App\Accessories;
-use App\Histories;
-use App\User;
+use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\View\Component;
 
 class TakeModal extends Component
 {
+    protected $userRepository;
+    protected $accessoriesRepository;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface,UserRepositoryInterface $userRepositoryInterface)
     {
-        //
+        $this->accessoriesRepository = $accessoriesRepositoryInterface;
+        $this->userRepository = $userRepositoryInterface;
     }
 
     /**
@@ -26,8 +28,8 @@ class TakeModal extends Component
      */
     public function render()
     {
-        $accessories = Accessories::all();
-        $users = User::userinfo();
+        $accessories = $this->accessoriesRepository->all();
+        $users = $this->userRepository->allNgacUserinfo();
         return view('components.take-modal',\compact('accessories','users'));
     }
 }

@@ -2,16 +2,31 @@
 
 namespace App\Repositories;
 
-use App\Accessories;
-use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class AccessoriesRepository implements AccessoriesRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
     public function all()
     {
         try {
-            return Accessories::all();
+            return User::all();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function allNgacUserinfo()
+    {
+        try {
+            $response = Http::get('http://190.7.10.27/_sqlsrvConnection/apiStock/userinfo.php');
+            $newRes = array();
+            foreach ($response->json() as $key => $value) {
+                \array_push($newRes, (object) $value);
+            }
+            return $newRes;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -20,7 +35,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function findById($id)
     {
         try {
-            return Accessories::where('id', $id)->firstOrFail();
+            return User::where('id', $id)->firstOrFail();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -28,7 +43,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function store($var)
     {
         try {
-            $accessories = Accessories::firstOrNew(['name' => $var->name, 'unit' => $var->unit]);
+            $accessories = User::firstOrNew(['name' => $var->name, 'unit' => $var->unit]);
             $accessories->save();
             return $accessories;
         } catch (\Throwable $th) {
@@ -38,7 +53,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function update($var, $id)
     {
         try {
-            $accessories = Accessories::where('id', $id)->firstOrFail();
+            $accessories = User::where('id', $id)->firstOrFail();
             $accessories->name = $var->name;
             $accessories->unit = $var->unit;
             $accessories->save();
@@ -50,7 +65,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function delete($id)
     {
         try {
-            $accessories = Accessories::where('id', $id)->firstOrFail();
+            $accessories = User::where('id', $id)->firstOrFail();
             $accessories->delete();
         } catch (\Throwable $th) {
             throw $th;

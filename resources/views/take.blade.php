@@ -83,6 +83,8 @@
 <script>
     window.addEventListener('load', function () {
         const histories = {!! $histories !!}
+        console.log(histories);
+        
         $('#table-take').DataTable({
             data: histories,
             deferRender: true,

@@ -6,6 +6,8 @@ use App\Repositories\AccessoriesRepository;
 use App\Repositories\HistoriesRepository;
 use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
 use App\Repositories\Interfaces\HistoriesRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,5 +31,6 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(AccessoriesRepositoryInterface::class, AccessoriesRepository::class);
         $this->app->bind(HistoriesRepositoryInterface::class, HistoriesRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 }

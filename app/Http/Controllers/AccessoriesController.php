@@ -24,7 +24,7 @@ class AccessoriesController extends Controller
     public function index(Request $request)
     {
         try {
-            $accessories = $this->accessoriesRepository->all();
+            $accessories = $this->accessoriesRepository->all()->map->format();
             return view('accessories', \compact('accessories'));
         } catch (\Throwable $th) {
             throw $th;
