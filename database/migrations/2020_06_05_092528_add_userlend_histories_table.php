@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUsertakeHistoriesTable extends Migration
+class AddUserlendHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddUsertakeHistoriesTable extends Migration
     public function up()
     {
         Schema::table('histories', function (Blueprint $table) {
-            $table->string('user_take')->nullable()->after('qty');
+            $table->string('user_lend')->nullable()->after('user_take');
         });
     }
 

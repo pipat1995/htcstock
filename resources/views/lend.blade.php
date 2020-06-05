@@ -44,18 +44,11 @@
                 </i>
             </div>
             <div>ยืม อุปกรณ์
-                {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
-                        applications.
-                    </div> --}}
             </div>
         </div>
         <div class="page-title-actions">
-            {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-dark">
-                <i class="fa fa-star"></i>
-            </button> --}}
             <div class="d-inline-block">
-                <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn-shadow  btn btn-info"
+                <button type="button" data-toggle="modal" data-target="#lendModal" class="btn-shadow  btn btn-info"
                     data-param="">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
@@ -70,13 +63,14 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">รายการเบิก</h5>
+                <h5 class="card-title">รายการยืม</h5>
                 <table class="mb-0 table table-hover" id="table-lend">
                     <thead>
                         <tr>
-                            <th width="150px">action</th>
-                            <th>Name</th>
-                            <th>Unit</th>
+                            {{-- <th width="150px">action</th> --}}
+                            <th>อุปกรณ์</th>
+                            <th>จำนวน</th>
+                            <th>คนยืม</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,8 +80,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.addEventListener('load', function () {
+        const histories = {!! $histories !!}
+        $('#table-lend').DataTable({
+            data: histories,
+            deferRender: true,
+            buttons: {
+                buttons: ['copy', 'csv', 'excel']
+            },
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+            },
+            columns: [
+                // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                // {
+                //     data: 'action',
+                //     name: 'action',
+                //     orderable: false,
+                //     searchable: false
+                // },
+                {
+                    data: 'access_id',
+                    name: 'access_id'
+                },
+                {
+                    data: 'qty',
+                    name: 'qty'
+                },
+                {
+                    data: 'user_lend',
+                    name: 'user_lend'
+                },
+            ]
+        }); 
+        // END DATATABLE
+
+        //CALL AJAX
+        // axios.get('/api/histories/take').then(rendertable)
+        $(".toast").toast('show');
+    });
+</script>
 @endsection
 
 @section('modal')
-{{-- <x-access-modal /> --}}
+<x-lend-modal />
 @endsection

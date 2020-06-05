@@ -52707,14 +52707,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!************************************************!*\
   !*** ./resources/js/histories/historiesapi.js ***!
   \************************************************/
-/*! exports provided: getId */
+/*! exports provided: getTakeId, getLendId, clearModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getId", function() { return getId; });
-var getId = function getId(id) {
-  return axios.get("/historeis/" + id + "/edit");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTakeId", function() { return getTakeId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLendId", function() { return getLendId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearModal", function() { return clearModal; });
+var getTakeId = function getTakeId(id) {
+  return axios.get("/historeis/take/" + id);
+};
+
+var getLendId = function getLendId(id) {
+  return axios.get("/historeis/lend/" + id);
+};
+
+var clearModal = function clearModal(modal) {
+  modal.find('.modal-body form')[0].reset();
+  modal.find('.modal-title').text('');
+  modal.find('.modal-body form')[0].action = window.location.pathname;
+  modal.find('#methodPut').remove();
 };
 
 
@@ -52731,15 +52744,7 @@ var getId = function getId(id) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _historiesapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./historiesapi */ "./resources/js/histories/historiesapi.js");
-
-
-var clearModal = function clearModal(modal) {
-  modal.find('.modal-body form')[0].reset();
-  modal.find('.modal-title').text('อุปกรณ์');
-  modal.find('.modal-body form')[0].action = "/histories/take";
-  modal.find('#methodPut').remove();
-}; // Fetch all the forms we want to apply custom Bootstrap validation styles to
-
+ // Fetch all the forms we want to apply custom Bootstrap validation styles to
 
 var forms = document.getElementsByClassName('take-validation'); // Loop over them and prevent submission
 
@@ -52764,8 +52769,8 @@ $('#takeModal').on('show.bs.modal', function (event) {
   var modal = $(this);
 
   if (param) {
-    getId(param).then(function (res) {
-      modal.find('.modal-body form')[0].action = "/histories/take/" + res.data.id;
+    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["getTakeId"])(param).then(function (res) {
+      modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id;
       modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
       modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
       modal.find('#validationAccess').val(res.data.name);
@@ -52775,12 +52780,37 @@ $('#takeModal').on('show.bs.modal', function (event) {
       modal.find('#created_at').val(res.data.created_at);
     });
   } else {
-    clearModal(modal);
+    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
+  }
+});
+$('#lendModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var param = button.data('param');
+  var modal = $(this);
+
+  if (param) {
+    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["getLendId"])(param).then(function (res) {
+      modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id;
+      modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
+      modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
+      modal.find('#validationAccess').val(res.data.name);
+      modal.find('#validationQty').val(res.data.unit);
+      modal.find('#validationTakeName').val(res.data.unit);
+      modal.find('#remark').val(res.data.remark);
+      modal.find('#created_at').val(res.data.created_at);
+    });
+  } else {
+    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
   }
 });
 $('#takeModal').on('hidden.bs.modal', function (event) {
   var modal = $(this);
-  clearModal(modal);
+  Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
+});
+$('#lendModal').on('hidden.bs.modal', function (event) {
+  var modal = $(this);
+  Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
 });
 
 /***/ }),

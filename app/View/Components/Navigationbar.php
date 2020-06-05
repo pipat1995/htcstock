@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Navigationbar extends Component
@@ -23,6 +24,7 @@ class Navigationbar extends Component
      */
     public function render()
     {
-        return view('components.navigationbar');
+        $user = Auth::user();
+        return view('components.navigationbar',\compact('user'));
     }
 }

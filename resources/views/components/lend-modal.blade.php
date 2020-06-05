@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="takeModal" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-lg" id="lendModal" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="take-validation" id="formTake" action="/histories/take" method="POST"
+                <form class="lend-validation" id="formLend" action="/histories/lend" method="POST"
                     novalidate>
                     @csrf
                     <div class="form-row">
@@ -41,8 +41,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 mb-3">
-                            <label for="validationTakeName">ชื่อผู้เบิก</label>
-                            <select class="form-control" name="validationTakeName" id="validationTakeName" required>
+                            <label for="validationLendName">ชื่อผู้เบิก</label>
+                            <select class="form-control" name="validationLendName" id="validationLendName" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>

@@ -32,7 +32,7 @@
     </div>
     <div class="app-header__content">
         <div class="app-header-left">
-            <div class="search-wrapper">
+            {{-- <div class="search-wrapper">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="Type to search">
                     <button class="search-icon"><span></span></button>
@@ -58,7 +58,7 @@
                         Settings
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">
@@ -66,8 +66,7 @@
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
                             <div class="btn-group">
-                                <a data-toggle="usermanu" aria-haspopup="true" aria-expanded="false"
-                                    class="p-0 btn">
+                                <a data-toggle="usermanu" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle" src="../images/avatars/2.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
@@ -92,10 +91,10 @@
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
+                                {{$user->name}}
                             </div>
                             <div class="widget-subheading">
-                                VP People Manager
+                                {{$user->email}}
                             </div>
                         </div>
                         <div class="widget-content-right header-user-info ml-3">

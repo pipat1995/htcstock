@@ -10,9 +10,7 @@ interface HistoriesRepositoryInterface
 
     public function findById($id);
 
-    public function storeTake($var);
-
-    public function storeLend($var);
+    public function store($var);
 
     public function update($var, $id);
 

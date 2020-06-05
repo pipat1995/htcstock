@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class UserRepository implements UserRepositoryInterface
@@ -40,16 +39,7 @@ class UserRepository implements UserRepositoryInterface
             throw $th;
         }
     }
-    public function store($var)
-    {
-        try {
-            $accessories = User::firstOrNew(['name' => $var->name, 'unit' => $var->unit]);
-            $accessories->save();
-            return $accessories;
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
+    
     public function update($var, $id)
     {
         try {

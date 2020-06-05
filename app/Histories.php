@@ -14,7 +14,7 @@ class Histories extends Model
      * @var array
      */
     protected $fillable = [
-        'access_id', 'qty', 'user_take', 'create_by','status'
+        'access_id', 'qty', 'user_take','user_lend', 'create_by','status'
     ];
 
     /**

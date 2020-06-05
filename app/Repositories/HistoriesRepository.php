@@ -4,9 +4,7 @@ namespace App\Repositories;
 
 use App\Histories;
 use App\Repositories\Interfaces\HistoriesRepositoryInterface;
-use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class HistoriesRepository implements HistoriesRepositoryInterface
 {
@@ -14,7 +12,7 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     {
         try {
             $enums = (object) \config('enums.histories_types');
-            return Histories::where('status',$enums->TAKE)->get();
+            return Histories::where('status', $enums->TAKE)->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -23,7 +21,7 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     {
         try {
             $enums = (object) \config('enums.histories_types');
-            return Histories::where('status',$enums->LEND)->get();
+            return Histories::where('status', $enums->LEND)->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -37,31 +35,16 @@ class HistoriesRepository implements HistoriesRepositoryInterface
             throw $th;
         }
     }
-    public function storeTake($var)
+    public function store($var)
     {
         try {
             $histories = Histories::firstOrNew([
                 'access_id' => $var->validationAccess,
                 'qty' => $var->validationQty,
                 'user_take' => $var->validationTakeName,
+                'user_lend' => $var->validationLendName,
                 'create_by' => (int) Auth::user()->id,
-                'status' => \config('enums.histories_types.TAKE')
-            ]);
-            $histories->save();
-            return $histories;
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-    public function storeLend($var)
-    {
-        try {
-            $histories = Histories::firstOrNew([
-                'access_id' => $var->validationAccess,
-                'qty' => $var->validationQty,
-                'user_take' => $var->validationTakeName,
-                'create_by' => (int) Auth::user()->id,
-                'status' => \config('enums.histories_types.LEND')
+                'status' => $var->status
             ]);
             $histories->save();
             return $histories;
@@ -73,8 +56,10 @@ class HistoriesRepository implements HistoriesRepositoryInterface
     {
         try {
             $histories = Histories::where('id', $id)->firstOrFail();
-            $histories->name = $var->name;
-            $histories->unit = $var->unit;
+            $histories->access_id = $var->validationAccess;
+            $histories->qty = $var->validationQty;
+            $histories->user_take = $var->validationTakeName;
+            $histories->status = $var->status;
             $histories->save();
         } catch (\Throwable $th) {
             throw $th;

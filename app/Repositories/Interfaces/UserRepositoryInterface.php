@@ -9,8 +9,6 @@ interface UserRepositoryInterface
     public function allNgacUserinfo();
 
     public function findById($id);
-
-    public function store($var);
     
     public function update($var, $id);
 

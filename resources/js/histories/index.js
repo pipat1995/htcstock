@@ -1,10 +1,5 @@
-import {  } from "./historiesapi";
-const clearModal = modal => {
-    modal.find('.modal-body form')[0].reset()
-    modal.find('.modal-title').text('อุปกรณ์')
-    modal.find('.modal-body form')[0].action = "/histories/take"
-    modal.find('#methodPut').remove()
-}
+import { getTakeId,getLendId,clearModal } from "./historiesapi";
+
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.getElementsByClassName('take-validation');
 // Loop over them and prevent submission
@@ -25,10 +20,36 @@ $('#takeModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var param = button.data('param')
     var modal = $(this)
+    
     if (param) {
-        getId(param)
+        getTakeId(param)
             .then((res) => {
-                modal.find('.modal-body form')[0].action = "/histories/take/" + res.data.id
+                modal.find('.modal-body form')[0].action = window.location.pathname+ "/" + res.data.id
+                modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
+
+                modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
+                modal.find('#validationAccess').val(res.data.name)
+                modal.find('#validationQty').val(res.data.unit)
+                modal.find('#validationTakeName').val(res.data.unit)
+                modal.find('#remark').val(res.data.remark)
+                modal.find('#created_at').val(res.data.created_at)
+                
+            })
+    } else {
+        clearModal(modal)
+    }
+
+})
+
+$('#lendModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var param = button.data('param')
+    var modal = $(this)
+    
+    if (param) {
+        getLendId(param)
+            .then((res) => {
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
 
                 modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
@@ -46,6 +67,12 @@ $('#takeModal').on('show.bs.modal', function (event) {
 })
 
 $('#takeModal').on('hidden.bs.modal', function (event) {
+    var modal = $(this)
+    
+    clearModal(modal)
+})
+
+$('#lendModal').on('hidden.bs.modal', function (event) {
     var modal = $(this)
     
     clearModal(modal)

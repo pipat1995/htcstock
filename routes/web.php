@@ -35,4 +35,8 @@ Route::get('/histories/take/{histories}/edit','HistoriesController@editTake')->n
 Route::post('/histories/take','HistoriesController@storeTake')->name('histories.take.store');
 Route::put('/histories/take/{histories}','HistoriesController@updateTake')->name('histories.take.update');
 
-Route::get('/histories/lend','HistoriesController@lend')->name('histories.lend');
+Route::get('/histories/lend','HistoriesController@allLend')->name('histories.lend');
+Route::get('/histories/lend/{histories}','HistoriesController@showLend')->name('histories.lend.show');
+Route::get('/histories/lend/{histories}/edit','HistoriesController@editLend')->name('histories.lend.edit');
+Route::post('/histories/lend','HistoriesController@storeLend')->name('histories.lend.store');
+Route::put('/histories/lend/{histories}','HistoriesController@updateLend')->name('histories.lend.update');
