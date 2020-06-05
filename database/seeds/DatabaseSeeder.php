@@ -137,6 +137,7 @@ class DatabaseSeeder extends Seeder
             array('name' => 'สาย HDMI 20 เมตร','unit' => 'เส้น','created_at' => '2020-04-09 03:05:39','updated_at' => NULL)
         );
         foreach ($datas as $key => $value) {
+            info($key,$value);
             App\Accessories::create($value);
         }
 
