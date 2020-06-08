@@ -80,50 +80,16 @@
         </div>
     </div>
 </div>
-
-<script>
-    window.addEventListener('load', function () {
-        const histories = {!! $histories !!}
-        $('#table-lend').DataTable({
-            data: histories,
-            deferRender: true,
-            buttons: {
-                buttons: ['copy', 'csv', 'excel']
-            },
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-            },
-            columns: [
-                // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                // {
-                //     data: 'action',
-                //     name: 'action',
-                //     orderable: false,
-                //     searchable: false
-                // },
-                {
-                    data: 'access_id',
-                    name: 'access_id'
-                },
-                {
-                    data: 'qty',
-                    name: 'qty'
-                },
-                {
-                    data: 'user_lend',
-                    name: 'user_lend'
-                },
-            ]
-        }); 
-        // END DATATABLE
-
-        //CALL AJAX
-        // axios.get('/api/histories/take').then(rendertable)
-        $(".toast").toast('show');
-    });
-</script>
 @endsection
 
 @section('modal')
 <x-lend-modal />
+@endsection
+
+@section('script')
+<script src="{{ asset('js/api/index.js') }}" defer></script>
+<script>
+    const histories = {!! $histories !!}
+</script>
+<script src="{{ asset('js/histories/index.js') }}" defer></script>
 @endsection

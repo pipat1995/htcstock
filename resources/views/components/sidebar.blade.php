@@ -35,7 +35,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="{{route('home')}}" class="{{ request()->routeIs('home') ? 'mm-active' : ''}}">
+                    <a href="{{route('dasborad')}}" class="{{ request()->routeIs('dasborad') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard Report
                     </a>

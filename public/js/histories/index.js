@@ -1,5 +1,3 @@
-import { getTakeId,getLendId,clearModal } from "./historiesapi";
-
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.getElementsByClassName('take-validation');
 // Loop over them and prevent submission
@@ -77,3 +75,84 @@ $('#lendModal').on('hidden.bs.modal', function (event) {
     
     clearModal(modal)
 })
+
+
+window.addEventListener('load', function () {
+    $('#table-lend').DataTable({
+        data: histories,
+        deferRender: true,
+        buttons: {
+            buttons: ['copy', 'csv', 'excel']
+        },
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+        },
+        columns: [
+            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            // {
+            //     data: 'action',
+            //     name: 'action',
+            //     orderable: false,
+            //     searchable: false
+            // },
+            {
+                data: 'access_id',
+                name: 'access_id'
+            },
+            {
+                data: 'qty',
+                name: 'qty'
+            },
+            {
+                data: 'user_lend',
+                name: 'user_lend'
+            },
+        ]
+    }); 
+    // END DATATABLE
+
+    //CALL AJAX
+    // axios.get('/api/histories/take').then(rendertable)
+    $(".toast").toast('show');
+});
+
+window.addEventListener('load', function () {
+    
+    
+    $('#table-take').DataTable({
+        data: histories,
+        deferRender: true,
+        buttons: {
+            buttons: ['copy', 'csv', 'excel']
+        },
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+        },
+        columns: [
+            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            // {
+            //     data: 'action',
+            //     name: 'action',
+            //     orderable: false,
+            //     searchable: false
+            // },
+            {
+                data: 'access_id',
+                name: 'access_id'
+            },
+            {
+                data: 'qty',
+                name: 'qty'
+            },
+            {
+                data: 'user_take',
+                name: 'user_take'
+            },
+        ]
+    }); 
+    // END DATATABLE
+
+    //CALL AJAX
+    // axios.get('/api/histories/take').then(rendertable)
+    $(".toast").toast('show');
+});

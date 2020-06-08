@@ -54,8 +54,8 @@
                 <i class="fa fa-star"></i>
             </button> --}}
             <div class="d-inline-block">
-                <button type="button" data-toggle="modal" data-target="#accessoriesModal" class="btn-shadow  btn btn-info"
-                    data-param="">
+                <button type="button" data-toggle="modal" data-target="#accessoriesModal"
+                    class="btn-shadow  btn btn-info" data-param="">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -85,42 +85,16 @@
         </div>
     </div>
 </div>
-<script>
-    window.addEventListener('load', function () {
-        var accessories = {!! $accessories !!}
-        $('#table-access').DataTable({
-            data: accessories,
-            deferRender: true,
-            buttons: {
-                buttons: ['copy', 'csv', 'excel']
-            },
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-            },
-            columns: [
-                // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'unit',
-                    name: 'unit'
-                },
-            ]
-        });
-        $(".toast").toast('show');
-    });
-
-</script>
 @endsection
 
 @section('modal')
 <x-access-modal />
+@endsection
+
+@section('script')
+<script src="{{ asset('js/api/index.js') }}" defer></script>
+<script>
+    const accessories = {!! $accessories !!}
+</script>
+<script src="{{ asset('js/accessories/index.js') }}" defer></script>
 @endsection

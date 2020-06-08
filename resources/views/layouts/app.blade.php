@@ -11,11 +11,12 @@
     {{-- @yield('script') --}}
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    {{-- <script src="{{ asset('js/main.js') }}" defer></script> --}}
     <!-- Fonts -->
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/main.css') }}" rel="stylesheet"> --}}
 
 </head>
 
@@ -41,6 +42,7 @@
     </div>
 
     @yield('modal')
+    @yield('script')
 </body>
 
 </html>

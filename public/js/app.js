@@ -52563,82 +52563,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/accessories/accessoriesapi.js":
-/*!****************************************************!*\
-  !*** ./resources/js/accessories/accessoriesapi.js ***!
-  \****************************************************/
-/*! exports provided: getId */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getId", function() { return getId; });
-var getId = function getId(id) {
-  return axios.get("/accessories/" + id + "/edit");
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/accessories/index.js":
-/*!*******************************************!*\
-  !*** ./resources/js/accessories/index.js ***!
-  \*******************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _accessoriesapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accessoriesapi */ "./resources/js/accessories/accessoriesapi.js");
-
-
-var clearModal = function clearModal(modal) {
-  modal.find('.modal-body form')[0].reset();
-  modal.find('.modal-title').text('อุปกรณ์');
-  modal.find('.modal-body form')[0].action = "/accessories";
-  modal.find('#methodPut').remove();
-}; // Example starter JavaScript for disabling form submissions if there are invalid fields
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
-
-
-var forms = document.getElementsByClassName('accessories-validation'); // Loop over them and prevent submission
-
-Array.prototype.filter.call(forms, function (form) {
-  form.addEventListener('submit', function (event) {
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    form.classList.add('was-validated');
-  }, false);
-});
-$('#accessoriesModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
-
-  var param = button.data('param');
-  var modal = $(this); // /accessories/{id}
-
-  if (param) {
-    Object(_accessoriesapi__WEBPACK_IMPORTED_MODULE_0__["getId"])(param).then(function (res) {
-      modal.find('.modal-body form')[0].action = "/accessories/" + res.data.id;
-      modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
-      modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
-      modal.find('#validationName').val(res.data.name);
-      modal.find('#validationUnit').val(res.data.unit);
-    });
-  } else {
-    clearModal(modal);
-  }
-});
-$('#accessoriesModal').on('hidden.bs.modal', function (event) {
-  var modal = $(this);
-  clearModal(modal);
-});
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -52647,10 +52571,6 @@ $('#accessoriesModal').on('hidden.bs.modal', function (event) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-__webpack_require__(/*! ./accessories/index.js */ "./resources/js/accessories/index.js");
-
-__webpack_require__(/*! ./histories/index.js */ "./resources/js/histories/index.js");
 
 __webpack_require__(/*! ./main.js */ "./resources/js/main.js");
 
@@ -52700,118 +52620,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/histories/historiesapi.js":
-/*!************************************************!*\
-  !*** ./resources/js/histories/historiesapi.js ***!
-  \************************************************/
-/*! exports provided: getTakeId, getLendId, clearModal */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTakeId", function() { return getTakeId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLendId", function() { return getLendId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearModal", function() { return clearModal; });
-var getTakeId = function getTakeId(id) {
-  return axios.get("/historeis/take/" + id);
-};
-
-var getLendId = function getLendId(id) {
-  return axios.get("/historeis/lend/" + id);
-};
-
-var clearModal = function clearModal(modal) {
-  modal.find('.modal-body form')[0].reset();
-  modal.find('.modal-title').text('');
-  modal.find('.modal-body form')[0].action = window.location.pathname;
-  modal.find('#methodPut').remove();
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/histories/index.js":
-/*!*****************************************!*\
-  !*** ./resources/js/histories/index.js ***!
-  \*****************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _historiesapi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./historiesapi */ "./resources/js/histories/historiesapi.js");
- // Fetch all the forms we want to apply custom Bootstrap validation styles to
-
-var forms = document.getElementsByClassName('take-validation'); // Loop over them and prevent submission
-
-Array.prototype.filter.call(forms, function (form) {
-  form.addEventListener('submit', function (event) {
-    if (parseInt(document.getElementById('validationQty').value) == 0) {
-      document.getElementById('validationQty').value = "";
-    }
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    form.classList.add('was-validated');
-  }, false);
-});
-$('#takeModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
-
-  var param = button.data('param');
-  var modal = $(this);
-
-  if (param) {
-    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["getTakeId"])(param).then(function (res) {
-      modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id;
-      modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
-      modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
-      modal.find('#validationAccess').val(res.data.name);
-      modal.find('#validationQty').val(res.data.unit);
-      modal.find('#validationTakeName').val(res.data.unit);
-      modal.find('#remark').val(res.data.remark);
-      modal.find('#created_at').val(res.data.created_at);
-    });
-  } else {
-    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
-  }
-});
-$('#lendModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
-
-  var param = button.data('param');
-  var modal = $(this);
-
-  if (param) {
-    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["getLendId"])(param).then(function (res) {
-      modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id;
-      modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">');
-      modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id);
-      modal.find('#validationAccess').val(res.data.name);
-      modal.find('#validationQty').val(res.data.unit);
-      modal.find('#validationTakeName').val(res.data.unit);
-      modal.find('#remark').val(res.data.remark);
-      modal.find('#created_at').val(res.data.created_at);
-    });
-  } else {
-    Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
-  }
-});
-$('#takeModal').on('hidden.bs.modal', function (event) {
-  var modal = $(this);
-  Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
-});
-$('#lendModal').on('hidden.bs.modal', function (event) {
-  var modal = $(this);
-  Object(_historiesapi__WEBPACK_IMPORTED_MODULE_0__["clearModal"])(modal);
-});
 
 /***/ }),
 
@@ -52918,8 +52726,8 @@ function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&t
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Laravel\stock\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Laravel\stock\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
