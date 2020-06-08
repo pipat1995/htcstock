@@ -74,6 +74,7 @@
                                     class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">User
                                         Account</button>
+                                    <a href="{{ route('admin.users.index') }}" tabindex="0" class="dropdown-item">User Management</a>
                                     <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                     <button type="button" tabindex="0" class="dropdown-item">Actions</button>

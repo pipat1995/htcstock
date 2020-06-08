@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Http;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,5 +40,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function historie()
     {
         return $this->hasMany(\App\Histories::class,'create_by');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Role::class);
     }
 }

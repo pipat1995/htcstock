@@ -21,6 +21,12 @@ Auth::routes(['verify' => true]);
 
 Route::get('/dasborad', 'DasboradController@index')->name('dasborad');
 
+// Directory Admin 
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function ()
+{
+    Route::resource('/users','UsersController',['except' => ['show','create','store']]);
+});
+
 Route::get('/accessories', 'AccessoriesController@index')->name('accessories');
 Route::get('/accessories/{accessories}', 'AccessoriesController@show')->name('accessories.show');
 Route::get('/accessories/{accessories}/edit', 'AccessoriesController@edit')->name('accessories.edit');
