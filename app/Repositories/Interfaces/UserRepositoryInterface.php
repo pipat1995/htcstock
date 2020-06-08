@@ -2,15 +2,18 @@
 
 namespace App\Repositories\Interfaces;
 
+use App\User;
+use Illuminate\Http\Request;
+
 interface UserRepositoryInterface
 {
     public function all();
 
     public function allNgacUserinfo();
 
-    public function findById($id);
+    public function edit(User $user);
     
-    public function update($var, $id);
+    public function update(Request $request,User $user);
 
-    public function delete($id);
+    public function delete(User $user);
 }

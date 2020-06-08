@@ -72,22 +72,39 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Users</h5>
-                <table class="mb-0 table table-hover" id="table-access">
+                <table class="mb-0 table table-hover" id="table-users">
                     <thead>
                         <tr>
                             <th width="150px">action</th>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>Roles</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $item)
+                        @foreach ($users as $user)
                         <tr>
-                            <td></td>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->username}}</td>
-                            <td>{{$item->email}}</td>
+                            <td>
+                                {{-- @can('edit-users') เรียกใช้จาก AuthServiceProvider --}}
+                                @can('edit-users')
+                                <a href="{{route('admin.users.edit',$user->id)}}"><button type="button"
+                                        class="btn btn-primary float-left">Edit</button></a>
+                                @endcan
+                                @can('delete-users')
+                                <form action="{{route('admin.users.destroy',$user)}}" method="post" class="float-left">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-warning">Delete</button>
+                                </form>
+                                @endcan
+
+
+                            </td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->username}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
                         </tr>
                         @endforeach
                     </tbody>

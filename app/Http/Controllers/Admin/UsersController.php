@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class UsersController extends Controller
 {
     private $userRepository;
@@ -40,7 +41,18 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        try {
+            // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
+            if (Gate::denies('edit-users')) {
+                return \redirect()->route('admin.users.index');
+            }
+            return \view('admin.users.edit')->with([
+                'user' => $this->userRepository->edit($user),
+                'roles' => Role::all()
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -52,7 +64,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            $this->userRepository->update($request,$user);
+            return \redirect()->route('admin.users.index');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -63,6 +80,15 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            // ตรวจสอบ Role Gate::denies('delete-users') จาก AuthServiceProvider
+            if (Gate::denies('delete-users')) {
+                return \redirect()->route('admin.users.index');
+            }
+            $this->userRepository->delete($user);
+            return \redirect()->route('admin.users.index');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

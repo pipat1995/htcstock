@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         $authorRole = Role::where('name', 'author')->first();
         $userRole = Role::where('name', 'user ')->first();
         $admin = User::create([
-            'name' => 'Pipat Paonoy',
+            'name' => 'Admin Pipat',
             'username' => '70037539',
             'email' => 'pipat.p@haier.co.th',
             'email_verified_at' => now(),
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $author = User::create([
-            'name' => 'Pipat Paonoy',
+            'name' => 'Author Pipat',
             'username' => 'pipat',
             'email' => 'tao.pipat1995@gmail.com',
             'email_verified_at' => now(),
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user = User::create([
-            'name' => 'Pipat Paonoy',
+            'name' => 'User Pipat',
             'username' => 'test',
             'email' => 'test@haier.co.th',
             'email_verified_at' => now(),

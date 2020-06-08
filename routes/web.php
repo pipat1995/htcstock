@@ -21,8 +21,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/dasborad', 'DasboradController@index')->name('dasborad');
 
-// Directory Admin 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function ()
+// Directory Admin   middleware('can:manage-users') เรียกมาจาก AuthServiceProvider manage-users
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function ()
 {
     Route::resource('/users','UsersController',['except' => ['show','create','store']]);
 });

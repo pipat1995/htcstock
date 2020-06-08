@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class UserRepository implements UserRepositoryInterface
@@ -31,32 +32,29 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function findById($id)
+    public function edit(User $user)
     {
         try {
-            return User::where('id', $id)->firstOrFail();
+            return $user;
         } catch (\Throwable $th) {
             throw $th;
         }
     }
     
-    public function update($var, $id)
+    public function update( Request $request,User $user)
     {
         try {
-            $accessories = User::where('id', $id)->firstOrFail();
-            $accessories->name = $var->name;
-            $accessories->unit = $var->unit;
-            $accessories->save();
+            return $user->roles()->sync($request->roles);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function delete($id)
+    public function delete(User $user)
     {
         try {
-            $accessories = User::where('id', $id)->firstOrFail();
-            $accessories->delete();
+            $user->roles()->detach();
+            return $user->delete();
         } catch (\Throwable $th) {
             throw $th;
         }
