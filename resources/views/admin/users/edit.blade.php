@@ -36,14 +36,14 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="main-card mb-3 card">
+        <div class="main-card mb-12 card">
             <div class="card-body">
-                <h5 class="card-title">Edit user {{$user->name}}</h5>
+                <h5 class="card-title">Edit {{$user->name}}</h5>
                 <form action="{{route('admin.users.update',$user)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <label for="name" class="col-md-3 col-form-label text-md-right">{{ __('Name') }}</label>
                         <div class="col-md-6">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
@@ -58,7 +58,7 @@
 
                     <div class="form-group row">
                         <label for="email"
-                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            class="col-md-3 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -73,23 +73,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="username" type="username"
-                                class="form-control @error('username') is-invalid @enderror" name="username"
-                                value="{{ $user->username }}" required autocomplete="username">
-
-                            @error('username')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="roles" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
+                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Roles') }}</label>
                         <div class="col-md-6">
                             <div class="row">
                                 @foreach ($roles as $role)
@@ -100,8 +84,6 @@
                                 </div>
                                 @endforeach
                             </div>
-      
-
                             @error('roles')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

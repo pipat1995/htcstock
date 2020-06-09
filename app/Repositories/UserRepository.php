@@ -44,7 +44,11 @@ class UserRepository implements UserRepositoryInterface
     public function update( Request $request,User $user)
     {
         try {
-            return $user->roles()->sync($request->roles);
+            $user->roles()->sync($request->roles);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+            return $user;
         } catch (\Throwable $th) {
             throw $th;
         }

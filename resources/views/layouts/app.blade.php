@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    @yield('noti')
+    
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 
         <x-navigationbar />
@@ -29,9 +29,9 @@
 
             <x-sidebar />
             <div class="app-main__outer">
-
+                @include('partials.alerts')
                 <div class="app-main__inner">
-
+                    
                     @yield('content')
 
                     {{-- @extends('components.accessmodal') --}}

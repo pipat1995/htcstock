@@ -122,7 +122,6 @@
 @section('script')
 {{-- <script src="{{ asset('js/api/index.js') }}" defer></script> --}}
 <script>
-
 </script>
 {{-- <script src="{{ asset('js/accessories/index.js') }}" defer></script> --}}
 @endsection

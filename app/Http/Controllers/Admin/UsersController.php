@@ -8,6 +8,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+
 class UsersController extends Controller
 {
     private $userRepository;
@@ -16,12 +17,13 @@ class UsersController extends Controller
         $this->middleware(['auth', 'verified']);
         $this->userRepository = $userRepositoryInterface;
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
             $users = $this->userRepository->all();
@@ -30,8 +32,6 @@ class UsersController extends Controller
             throw $th;
         }
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -65,7 +65,12 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         try {
-            $this->userRepository->update($request,$user);
+            $result = $this->userRepository->update($request, $user);
+            if ($result->exists) {
+                $request->session()->flash('success', $result->name . 'has been update');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
+            }
             return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
             throw $th;
