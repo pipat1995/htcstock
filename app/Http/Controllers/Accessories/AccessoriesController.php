@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Accessories;
 
 use App\Accessories;
+use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\MessageBag;
 
 class AccessoriesController extends Controller
 {
@@ -21,24 +21,14 @@ class AccessoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $accessories = $this->accessoriesRepository->all()->map->format();
-            return view('accessories', \compact('accessories'));
+            $accessories = $this->accessoriesRepository->all();
+            return view('accessories.accessories', \compact('accessories'));
         } catch (\Throwable $th) {
             throw $th;
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -56,28 +46,14 @@ class AccessoriesController extends Controller
             ]);
             $accessories = $this->accessoriesRepository->store($request);
             if (!$accessories->exists) {
-                $errors = new MessageBag();
-                $errors->add('your_custom_error', 'Your custom error message!');
-                // \dd($errors->isEmpty(),$errors->all());
-                return \redirect('accessories')->withErrors($errors);
+
             }
-            return \redirect('accessories')->with('create', 'Success!');
+            return \redirect()->route('accessories.index');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Accessories  $accessories
-     * @return \Illuminate\Http\Response
-     */
-    public function show($accessoriesID)
-    {
-        $accessories = $this->accessoriesRepository->findById($accessoriesID);
-        return $accessories;
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -85,9 +61,9 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function edit($accessoriesID)
+    public function edit($id)
     {
-        $accessories = $this->accessoriesRepository->findById($accessoriesID);
+        $accessories = $this->accessoriesRepository->edit($id);
         return $accessories;
     }
 
@@ -98,11 +74,11 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $accessoriesID)
+    public function update(Request $request, $id)
     {
         try {
-            $accessories = $this->accessoriesRepository->update($request, $accessoriesID);
-            return \redirect('accessories');
+            $accessories = $this->accessoriesRepository->update($request, $id);
+            return \redirect()->route('accessories.index');;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -114,11 +90,11 @@ class AccessoriesController extends Controller
      * @param  \App\Accessories  $accessories
      * @return \Illuminate\Http\Response
      */
-    public function destroy($accessoriesID)
+    public function destroy($id)
     {
         try {
-            $accessories = $this->accessoriesRepository->delete($accessoriesID);
-            return \redirect('accessories');
+            $accessories = $this->accessoriesRepository->delete($id);
+            return \redirect()->route('accessories.index');
         } catch (\Throwable $th) {
             throw $th;
         }

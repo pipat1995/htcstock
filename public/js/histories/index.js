@@ -20,18 +20,17 @@ $('#takeModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     
     if (param) {
-        getTakeId(param)
+        getHistorieTakeId(param)
             .then((res) => {
                 modal.find('.modal-body form')[0].action = window.location.pathname+ "/" + res.data.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
 
                 modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
-                modal.find('#validationAccess').val(res.data.name)
-                modal.find('#validationQty').val(res.data.unit)
-                modal.find('#validationTakeName').val(res.data.unit)
+                modal.find('#validationAccess').val(res.data.access_id)
+                modal.find('#validationQty').val(res.data.qty)
+                modal.find('#validationTakeName').val(res.data.user_take)
                 modal.find('#remark').val(res.data.remark)
-                modal.find('#created_at').val(res.data.created_at)
-                
+                modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
             })
     } else {
         clearModal(modal)
@@ -45,17 +44,17 @@ $('#lendModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     
     if (param) {
-        getLendId(param)
+        getHistorieLendId(param)
             .then((res) => {
                 modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
 
                 modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
-                modal.find('#validationAccess').val(res.data.name)
-                modal.find('#validationQty').val(res.data.unit)
-                modal.find('#validationTakeName').val(res.data.unit)
+                modal.find('#validationAccess').val(res.data.access_id)
+                modal.find('#validationQty').val(res.data.qty)
+                modal.find('#validationLendName').val(res.data.user_lend)
                 modal.find('#remark').val(res.data.remark)
-                modal.find('#created_at').val(res.data.created_at)
+                modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
                 
             })
     } else {
@@ -77,82 +76,82 @@ $('#lendModal').on('hidden.bs.modal', function (event) {
 })
 
 
-window.addEventListener('load', function () {
-    $('#table-lend').DataTable({
-        data: histories,
-        deferRender: true,
-        buttons: {
-            buttons: ['copy', 'csv', 'excel']
-        },
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-        },
-        columns: [
-            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            // {
-            //     data: 'action',
-            //     name: 'action',
-            //     orderable: false,
-            //     searchable: false
-            // },
-            {
-                data: 'access_id',
-                name: 'access_id'
-            },
-            {
-                data: 'qty',
-                name: 'qty'
-            },
-            {
-                data: 'user_lend',
-                name: 'user_lend'
-            },
-        ]
-    }); 
-    // END DATATABLE
+// window.addEventListener('load', function () {
+//     $('#table-lend').DataTable({
+//         data: histories,
+//         deferRender: true,
+//         buttons: {
+//             buttons: ['copy', 'csv', 'excel']
+//         },
+//         language: {
+//             url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+//         },
+//         columns: [
+//             // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+//             // {
+//             //     data: 'action',
+//             //     name: 'action',
+//             //     orderable: false,
+//             //     searchable: false
+//             // },
+//             {
+//                 data: 'access_id',
+//                 name: 'access_id'
+//             },
+//             {
+//                 data: 'qty',
+//                 name: 'qty'
+//             },
+//             {
+//                 data: 'user_lend',
+//                 name: 'user_lend'
+//             },
+//         ]
+//     }); 
+//     // END DATATABLE
 
-    //CALL AJAX
-    // axios.get('/api/histories/take').then(rendertable)
-    $(".toast").toast('show');
-});
+//     //CALL AJAX
+//     // axios.get('/api/histories/take').then(rendertable)
+//     $(".toast").toast('show');
+// });
 
-window.addEventListener('load', function () {
+// window.addEventListener('load', function () {
     
     
-    $('#table-take').DataTable({
-        data: histories,
-        deferRender: true,
-        buttons: {
-            buttons: ['copy', 'csv', 'excel']
-        },
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-        },
-        columns: [
-            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            // {
-            //     data: 'action',
-            //     name: 'action',
-            //     orderable: false,
-            //     searchable: false
-            // },
-            {
-                data: 'access_id',
-                name: 'access_id'
-            },
-            {
-                data: 'qty',
-                name: 'qty'
-            },
-            {
-                data: 'user_take',
-                name: 'user_take'
-            },
-        ]
-    }); 
-    // END DATATABLE
+//     $('#table-take').DataTable({
+//         data: histories,
+//         deferRender: true,
+//         buttons: {
+//             buttons: ['copy', 'csv', 'excel']
+//         },
+//         language: {
+//             url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+//         },
+//         columns: [
+//             // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+//             // {
+//             //     data: 'action',
+//             //     name: 'action',
+//             //     orderable: false,
+//             //     searchable: false
+//             // },
+//             {
+//                 data: 'access_id',
+//                 name: 'access_id'
+//             },
+//             {
+//                 data: 'qty',
+//                 name: 'qty'
+//             },
+//             {
+//                 data: 'user_take',
+//                 name: 'user_take'
+//             },
+//         ]
+//     }); 
+//     // END DATATABLE
 
-    //CALL AJAX
-    // axios.get('/api/histories/take').then(rendertable)
-    $(".toast").toast('show');
-});
+//     //CALL AJAX
+//     // axios.get('/api/histories/take').then(rendertable)
+//     $(".toast").toast('show');
+// });

@@ -33,31 +33,31 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
+                <li class="app-sidebar__heading">รายงาน</li>
                 <li>
                     <a href="{{route('dasborad')}}" class="{{ request()->routeIs('dasborad') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard Report
                     </a>
                 </li>
-                <li class="app-sidebar__heading">UI Components</li>
-                <li class="{{ request()->routeIs('histories.*') ? 'mm-active' : ''}}">
+                <li class="app-sidebar__heading">การทำงาน</li>
+                <li class="{{ (request()->routeIs('take.index')||request()->routeIs('lend.index')) ? 'mm-active' : ''}}">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Elements
+                        (เบิก ยืม) อุปกรณ์
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('histories.take')}}"
-                                class="{{ request()->routeIs('histories.take') ? 'mm-active' : ''}}">
+                            <a href="{{route('take.index')}}"
+                                class="{{ request()->routeIs('take.index') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon"></i>
                                 เบิก อุปกรณ์
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('histories.lend')}}"
-                                class="{{ request()->routeIs('histories.lend') ? 'mm-active' : ''}}">
+                            <a href="{{route('lend.index')}}"
+                                class="{{ request()->routeIs('lend.index') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon">
                                 </i>ยืม อุปกรณ์
                             </a>
@@ -140,8 +140,8 @@
                     </ul>
                 </li> --}}
                 <li>
-                    <a href="{{route('accessories')}}"
-                        class="{{ request()->routeIs('accessories') ? 'mm-active' : ''}}">
+                    <a href="{{route('accessories.index')}}"
+                        class="{{ request()->routeIs('accessories.index') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         อุปกรณ์
                     </a>

@@ -31,13 +31,36 @@
                 <table class="mb-0 table table-hover" id="table-take">
                     <thead>
                         <tr>
-                            {{-- <th width="150px">action</th> --}}
+                            <th width="150px">#</th>
                             <th>อุปกรณ์</th>
                             <th>จำนวน</th>
                             <th>คนเบิก</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($histories as $item)
+                        <tr>
+                            <td>
+                                @can('edit-users')
+                                {{-- <a href="{{route('take.edit',$item->id)}}"><button type="button"
+                                        class="btn btn-primary btn-sm float-left">Edit</button></a> --}}
+                                        <button class="edit btn btn-primary btn-sm float-left" data-toggle="modal"
+                                        data-target="#takeModal" data-param="{{$item->id}}">ข้อมูล</button>
+                                @endcan
+                                @can('delete-users')
+                                <form action="{{route('take.destroy',$item->id)}}" method="post"
+                                    class="float-left">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-warning btn-sm">ลบ</button>
+                                </form>
+                                @endcan
+                            </td>
+                            <td>{{$item->accessorie->name}}</td>
+                            <td>{{$item->qty}}</td>
+                            <td>{{$item->user_take}}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -52,8 +75,5 @@
 
 @section('script')
 <script src="{{ asset('js/api/index.js') }}" defer></script>
-<script>
-    const histories = {!! $histories !!}
-</script>
 <script src="{{ asset('js/histories/index.js') }}" defer></script>
 @endsection

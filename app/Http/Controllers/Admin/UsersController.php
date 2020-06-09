@@ -7,6 +7,7 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
@@ -23,7 +24,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
             $users = $this->userRepository->all();
@@ -39,7 +40,7 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         try {
             // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
@@ -47,7 +48,7 @@ class UsersController extends Controller
                 return \redirect()->route('admin.users.index');
             }
             return \view('admin.users.edit')->with([
-                'user' => $this->userRepository->edit($user),
+                'user' => $this->userRepository->edit($id),
                 'roles' => Role::all()
             ]);
         } catch (\Throwable $th) {
@@ -62,10 +63,10 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         try {
-            $result = $this->userRepository->update($request, $user);
+            $result = $this->userRepository->update($request, $id);
             if ($result->exists) {
                 $request->session()->flash('success', $result->name . 'has been update');
             } else {
@@ -83,14 +84,14 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         try {
             // ตรวจสอบ Role Gate::denies('delete-users') จาก AuthServiceProvider
             if (Gate::denies('delete-users')) {
                 return \redirect()->route('admin.users.index');
             }
-            $this->userRepository->delete($user);
+            $this->userRepository->delete($id);
             return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
             throw $th;

@@ -32,18 +32,19 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
         try {
-            return $user;
+            return $id;
         } catch (\Throwable $th) {
             throw $th;
         }
     }
     
-    public function update( Request $request,User $user)
+    public function update( Request $request,$id)
     {
         try {
+            $user = User::find($id);
             $user->roles()->sync($request->roles);
             $user->name = $request->name;
             $user->email = $request->email;
@@ -54,9 +55,11 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function delete(User $user)
+    public function delete($id)
     {
         try {
+            $user = User::find($id);
+            \dd($user->name);
             $user->roles()->detach();
             return $user->delete();
         } catch (\Throwable $th) {

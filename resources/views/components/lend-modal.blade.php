@@ -4,19 +4,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">เบิก อุปกรณ์</h5>
+                <h5 class="modal-title">ยืม อุปกรณ์</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="lend-validation" id="formLend" action="/histories/lend" method="POST"
+                <form class="lend-validation" id="formLend" action="{{route('lend.store')}}" method="POST"
                     novalidate>
                     @csrf
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
                             <label for="validationAccess">อุปกรณ์</label>
-                            <select class="form-control" name="validationAccess" id="validationAccess" required>
+                            <select class="form-control" name="access_id" id="validationAccess" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($accessories as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="validationQty">จำนวน</label>
-                            <input class="form-control" type="number" id="validationQty" value="" name="validationQty"
+                            <input class="form-control" type="number" id="validationQty" value="" name="qty"
                                 required>
                             <div class="valid-tooltip">
                                 ทำดีแล้ว
@@ -41,8 +41,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 mb-3">
-                            <label for="validationLendName">ชื่อผู้เบิก</label>
-                            <select class="form-control" name="validationLendName" id="validationLendName" required>
+                            <label for="validationLendName">ชื่อผู้ยืม</label>
+                            <select class="form-control" name="user_lend" id="validationLendName" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -66,20 +66,20 @@
                             ทำดีแล้ว
                         </div>
                         <div class="invalid-tooltip">
-                            เลือก วันที่เบิก ด้วยจ้า
+                            เลือก วันที่ยืม ด้วยจ้า
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="created_at">วันที่เบิก</label>
-                            <input type="date" class="form-control" name="created_at" id="created_at"
+                            <label for="created_at">วันที่ยืม</label>
+                            <input type="datetime" class="form-control" name="created_at" id="created_at"
                                 value="{{date('Y-m-d')}}" disabled>
                         </div>
                         <div class="valid-tooltip">
                             ทำดีแล้ว
                         </div>
                         <div class="invalid-tooltip">
-                            เลือก วันที่เบิก ด้วยจ้า
+                            เลือก วันที่ยืม ด้วยจ้า
                         </div>
                     </div>
             </div>

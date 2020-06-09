@@ -46,6 +46,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($accessories as $item)
+                            <tr>
+                                <td>
+                                    @can('edit-users')
+                                    <button class="edit btn btn-primary btn-sm float-left" data-toggle="modal"
+                                        data-target="#accessoriesModal" data-param="{{$item->id}}">ข้อมูล</button>
+                                    @endcan
+                                    @can('delete-users')
+                                    <form action="{{route('accessories.destroy',$item->id)}}" method="post"
+                                        class="float-left">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning btn-sm">ลบ</button>
+                                    </form>
+                                    @endcan
+                                </td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->unit}}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -61,8 +81,5 @@
 
 @section('script')
 <script src="{{ asset('js/api/index.js') }}" defer></script>
-<script>
-    const accessories = {!! $accessories !!}
-</script>
 <script src="{{ asset('js/accessories/index.js') }}" defer></script>
 @endsection

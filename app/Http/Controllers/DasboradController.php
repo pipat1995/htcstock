@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
+use App\Repositories\Interfaces\LendRepositoryInterface;
+use App\Repositories\Interfaces\TakeRepositoryInterface;
 
 class DasboradController extends Controller
 {
+    private $accessoriesRepository;
+    private $takeRepository;
+    private $lendRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface, TakeRepositoryInterface $takeRepositoryInterface, LendRepositoryInterface $lendRepositoryInterface)
     {
-        $this->middleware(['auth','verified']);
+        $this->accessoriesRepository = $accessoriesRepositoryInterface;
+        $this->takeRepository = $takeRepositoryInterface;
+        $this->lendRepository = $lendRepositoryInterface;
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -23,6 +31,17 @@ class DasboradController extends Controller
      */
     public function index()
     {
-        return view('dasborad');
+        try {
+            $accessories = $this->accessoriesRepository->all()->count();
+            $take = $this->takeRepository->all()->count();
+            $lend = $this->lendRepository->all()->count();
+            return view('dasborad')->with([
+                'accessories' => $accessories,
+                'take' => $take,
+                'lend' => $lend
+                ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

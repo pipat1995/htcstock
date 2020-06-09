@@ -32,13 +32,33 @@
                 <table class="mb-0 table table-hover" id="table-lend">
                     <thead>
                         <tr>
-                            {{-- <th width="150px">action</th> --}}
+                            <th width="150px">#</th>
                             <th>อุปกรณ์</th>
                             <th>จำนวน</th>
                             <th>คนยืม</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($histories as $item)
+                        <tr>
+                            <td>
+                                @can('edit-users')
+                                <button class="edit btn btn-primary btn-sm float-left" data-toggle="modal"
+                                    data-target="#lendModal" data-param="{{$item->id}}">ข้อมูล</button>
+                                @endcan
+                                @can('delete-users')
+                                <form action="{{route('lend.destroy',$item->id)}}" method="post" class="float-left">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-warning btn-sm">ลบ</button>
+                                </form>
+                                @endcan
+                            </td>
+                            <td>{{$item->accessorie->name}}</td>
+                            <td>{{$item->qty}}</td>
+                            <td>{{$item->user_lend}}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -53,8 +73,5 @@
 
 @section('script')
 <script src="{{ asset('js/api/index.js') }}" defer></script>
-<script>
-    const histories = {!! $histories !!}
-</script>
 <script src="{{ asset('js/histories/index.js') }}" defer></script>
 @endsection

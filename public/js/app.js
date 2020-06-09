@@ -52726,8 +52726,8 @@ function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&t
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Laravel\stock\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Laravel\stock\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\works\LaravelLab\htcstock\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

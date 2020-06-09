@@ -14,12 +14,12 @@ class Histories extends Model
      * @var array
      */
     protected $fillable = [
-        'access_id', 'qty', 'user_take','user_lend', 'create_by','status'
+        'access_id', 'qty', 'user_take','user_lend', 'create_by','status','remark'
     ];
 
     public function accessorie()
     {
-        return $this->belongsTo(\App\Accessories::class,'id');
+        return $this->hasOne(\App\Accessories::class,'id');
     }
 
     public function user()

@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Sarabun');
 
 // Variables
 @import 'variables';
@@ -10,7 +10,8 @@
 @import '~datatables.net-dt';
 
 body {
-    font-size: 0.8rem;
+    font-family: 'Sarabun' !important;
+    font-size: 0.9rem;
 }
 .border-primary {
     border-color: #3f6ad8

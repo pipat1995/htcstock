@@ -16,11 +16,10 @@ $('#accessoriesModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var param = button.data('param')
     var modal = $(this)
-    // /accessories/{id}
     if (param) {
         getAccessoriesId(param)
             .then((res) => {
-                modal.find('.modal-body form')[0].action = "/accessories/" + res.data.id
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
 
                 modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
@@ -37,33 +36,33 @@ $('#accessoriesModal').on('hidden.bs.modal', function (event) {
     clearModal(modal)
 })
 
-window.addEventListener('load', function () {
-    $('#table-access').DataTable({
-        data: accessories,
-        deferRender: true,
-        buttons: {
-            buttons: ['copy', 'csv', 'excel']
-        },
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-        },
-        columns: [
-            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'unit',
-                name: 'unit'
-            },
-        ]
-    });
-    $(".toast").toast('show');
-});
+// window.addEventListener('load', function () {
+//     $('#table-access').DataTable({
+//         data: accessories,
+//         deferRender: true,
+//         buttons: {
+//             buttons: ['copy', 'csv', 'excel']
+//         },
+//         language: {
+//             url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
+//         },
+//         columns: [
+//             // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+//             {
+//                 data: 'action',
+//                 name: 'action',
+//                 orderable: false,
+//                 searchable: false
+//             },
+//             {
+//                 data: 'name',
+//                 name: 'name'
+//             },
+//             {
+//                 data: 'unit',
+//                 name: 'unit'
+//             },
+//         ]
+//     });
+//     $(".toast").toast('show');
+// });

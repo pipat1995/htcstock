@@ -4,15 +4,15 @@ namespace App\Repositories\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface UserRepositoryInterface
+interface TakeRepositoryInterface
 {
     public function all();
 
-    public function allNgacUserinfo();
-
     public function edit($id);
-    
-    public function update(Request $request,$id);
+
+    public function store(Request $var);
+
+    public function update(Request $var, $id);
 
     public function delete($id);
 }

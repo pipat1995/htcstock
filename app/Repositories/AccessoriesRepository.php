@@ -11,47 +11,49 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function all()
     {
         try {
-            return Accessories::all();
+            return Accessories::orderBy('created_at','desc')->get();
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function findById($id)
+    public function edit($id)
     {
         try {
-            return Accessories::where('id', $id)->firstOrFail();
+            $accessories = Accessories::find($id);
+            return $accessories;
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    public function store($var)
+    public function store(Request $request)
     {
         try {
-            $accessories = Accessories::firstOrNew(['name' => $var->name, 'unit' => $var->unit]);
+            $accessories = Accessories::firstOrNew(['name' => $request->name, 'unit' => $request->unit]);
             $accessories->save();
             return $accessories;
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    public function update($var, $id)
+    public function update(Request $request,  $id)
     {
         try {
-            $accessories = Accessories::where('id', $id)->firstOrFail();
-            $accessories->name = $var->name;
-            $accessories->unit = $var->unit;
+            $accessories = Accessories::find($id);
+            $accessories->name = $request->name;
+            $accessories->unit = $request->unit;
             $accessories->save();
+            return $accessories;
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function delete($id)
+    public function delete( $id)
     {
         try {
-            $accessories = Accessories::where('id', $id)->firstOrFail();
-            $accessories->delete();
+            $accessories = Accessories::find($id);
+            return $accessories->delete();
         } catch (\Throwable $th) {
             throw $th;
         }
