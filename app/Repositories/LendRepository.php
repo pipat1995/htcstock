@@ -51,11 +51,8 @@ class LendRepository implements LendRepositoryInterface
     {
         try {
             $histories = Histories::find($id);
-            $histories->access_id = $var->access_id;
-            $histories->qty = $var->qty;
             $histories->user_lend = $var->user_lend;
-            $histories->remark = $var->remark;
-            // $histories->status = $var->status;
+            $histories->status = \config('enums.histories_types.BACK');
             $histories->save();
             return $histories;
         } catch (\Throwable $th) {

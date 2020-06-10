@@ -10,8 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="lend-validation" id="formLend" action="{{route('lend.store')}}" method="POST"
-                    novalidate>
+                <form class="lend-validation" id="formLend" action="{{route('lend.store')}}" method="POST" novalidate>
                     @csrf
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
@@ -31,8 +30,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="validationQty">จำนวน</label>
-                            <input class="form-control" type="number" id="validationQty" value="" name="qty"
-                                required>
+                            <input class="form-control" type="number" id="validationQty" value="" name="qty" required>
                             <div class="valid-tooltip">
                                 ทำดีแล้ว
                             </div>
@@ -69,7 +67,7 @@
                             เลือก วันที่ยืม ด้วยจ้า
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" id="lendJS">
                         <div class="col-md-4 mb-3">
                             <label for="created_at">วันที่ยืม</label>
                             <input type="datetime" class="form-control" name="created_at" id="created_at"
@@ -81,13 +79,30 @@
                         <div class="invalid-tooltip">
                             เลือก วันที่ยืม ด้วยจ้า
                         </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="updated_at">วันที่คืน</label>
+                            <input type="datetime" class="form-control" name="updated_at" id="updated_at" value=""
+                                disabled>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationLendNameBack">ชื่อผู้คืน</label>
+                            <select class="form-control" name="user_back" id="validationLendNameBack">
+                                <option value="">---เลือก---</option>
+                                @foreach ($users as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                <button type="submit" class="btn btn-primary">บันทึก</button>
             </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    var users = {!! json_encode($users) !!}
+</script>

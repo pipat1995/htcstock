@@ -104,7 +104,9 @@ class LendController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $histories = $this->lendRepository->update($request, $id);
+            if (!empty($request->user_back)) {
+                $histories = $this->lendRepository->update($request, $id);
+            }
             return \redirect()->route('lend.index');
         } catch (\Throwable $th) {
             throw $th;

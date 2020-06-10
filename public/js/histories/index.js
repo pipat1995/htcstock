@@ -18,14 +18,15 @@ $('#takeModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var param = button.data('param')
     var modal = $(this)
-    
+
     if (param) {
         getHistorieTakeId(param)
             .then((res) => {
-                modal.find('.modal-body form')[0].action = window.location.pathname+ "/" + res.data.id
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
+                for (const _el of modal.find('.form-control')) {
+                    _el.disabled = true
+                }
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
-
-                modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
                 modal.find('#validationAccess').val(res.data.access_id)
                 modal.find('#validationQty').val(res.data.qty)
                 modal.find('#validationTakeName').val(res.data.user_take)
@@ -34,6 +35,7 @@ $('#takeModal').on('show.bs.modal', function (event) {
             })
     } else {
         clearModal(modal)
+        modal.find('#created_at').attr('disabled', true)
     }
 
 })
@@ -41,37 +43,43 @@ $('#takeModal').on('show.bs.modal', function (event) {
 $('#lendModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var param = button.data('param')
+    var lending = button.data('lend')
     var modal = $(this)
-    
     if (param) {
         getHistorieLendId(param)
             .then((res) => {
                 modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
+                for (const _el of modal.find('.form-control')) {
+                    _el.disabled = true
+                    if (_el.id === 'validationLendNameBack' && (lending)) {
+                        _el.disabled = false
+                    }
+                }
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
-
-                modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
                 modal.find('#validationAccess').val(res.data.access_id)
                 modal.find('#validationQty').val(res.data.qty)
                 modal.find('#validationLendName').val(res.data.user_lend)
                 modal.find('#remark').val(res.data.remark)
                 modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
-                
             })
     } else {
         clearModal(modal)
+        modal.find('#created_at').attr('disabled', true)
+        modal.find('#updated_at').attr('disabled', true)
+        modal.find('#validationLendNameBack').attr('disabled', true)
     }
 
 })
 
 $('#takeModal').on('hidden.bs.modal', function (event) {
     var modal = $(this)
-    
+
     clearModal(modal)
 })
 
 $('#lendModal').on('hidden.bs.modal', function (event) {
     var modal = $(this)
-    
+
     clearModal(modal)
 })
 
@@ -116,8 +124,8 @@ $('#lendModal').on('hidden.bs.modal', function (event) {
 // });
 
 // window.addEventListener('load', function () {
-    
-    
+
+
 //     $('#table-take').DataTable({
 //         data: histories,
 //         deferRender: true,

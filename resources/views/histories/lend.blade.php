@@ -43,6 +43,8 @@
                         <tr>
                             <td>
                                 @can('edit-users')
+                                <button class="edit btn btn-success btn-sm float-left" data-toggle="modal"
+                                    data-target="#lendModal" data-param="{{$item->id}}" data-lend="lend"> คืน </button>
                                 <button class="edit btn btn-primary btn-sm float-left" data-toggle="modal"
                                     data-target="#lendModal" data-param="{{$item->id}}">ข้อมูล</button>
                                 @endcan
