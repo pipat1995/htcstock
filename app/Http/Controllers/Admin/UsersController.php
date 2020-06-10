@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Role;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
@@ -68,7 +66,7 @@ class UsersController extends Controller
         try {
             $result = $this->userRepository->update($request, $id);
             if ($result->exists) {
-                $request->session()->flash('success', $result->name . 'has been update');
+                $request->session()->flash('success', $result->name . ' has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
@@ -91,7 +89,13 @@ class UsersController extends Controller
             if (Gate::denies('delete-users')) {
                 return \redirect()->route('admin.users.index');
             }
-            $this->userRepository->delete($id);
+            $result = $this->userRepository->delete($id);
+            $request = new Request();
+            if ($result->exists) {
+                $request->session()->flash('success', ' has been delete');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
+            }
             return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
             throw $th;

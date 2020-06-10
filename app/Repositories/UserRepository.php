@@ -35,7 +35,7 @@ class UserRepository implements UserRepositoryInterface
     public function edit($id)
     {
         try {
-            return $id;
+            return User::find($id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -59,7 +59,6 @@ class UserRepository implements UserRepositoryInterface
     {
         try {
             $user = User::find($id);
-            \dd($user->name);
             $user->roles()->detach();
             return $user->delete();
         } catch (\Throwable $th) {
