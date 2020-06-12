@@ -55,10 +55,13 @@ class TakeController extends Controller
             $request->validate([
                 'access_id' => 'required',
                 'qty' => 'required',
-                'user_take' => 'required'
+                'user_lending' => 'required'
             ]);
             $histories = $this->takeRepository->store($request);
-            if (!$histories->exists) {
+            if ($histories->exists) {
+                $request->session()->flash('success', $histories->name . ' has been create success!');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
             }
             return \redirect()->route('take.index');
         } catch (\Throwable $th) {

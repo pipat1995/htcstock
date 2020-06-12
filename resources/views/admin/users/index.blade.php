@@ -40,7 +40,8 @@
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
                                 @endcan
                                 @can('delete-users')
-                                <form action="{{route('admin.users.destroy',$user->id)}}" method="post" class="float-left">
+                                <form action="{{route('admin.users.destroy',$user->id)}}" method="post"
+                                    class="float-left">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-warning btn-sm">Delete</button>

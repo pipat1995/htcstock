@@ -42,8 +42,6 @@
                         <tr>
                             <td>
                                 @can('edit-users')
-                                {{-- <a href="{{route('take.edit',$item->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">Edit</button></a> --}}
                                         <button class="edit btn btn-primary btn-sm float-left" data-toggle="modal"
                                         data-target="#takeModal" data-param="{{$item->id}}">ข้อมูล</button>
                                 @endcan
@@ -58,7 +56,7 @@
                             </td>
                             <td>{{$item->accessorie->name}}</td>
                             <td>{{$item->qty}}</td>
-                            <td>{{$item->user_take}}</td>
+                            <td>{{$item->user_lending}}</td>
                         </tr>
                         @endforeach
                     </tbody>

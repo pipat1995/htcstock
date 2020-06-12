@@ -17,8 +17,9 @@ class CreateHistoriesTable extends Migration
             $table->increments('id');
             $table->integer('access_id');
             $table->integer('qty');
-            $table->string('user_take')->nullable();
-            $table->string('user_lend')->nullable();
+            $table->string('user_lending')->nullable();
+            $table->string('user_returned')->nullable();
+            $table->string('remark')->nullable();
             $table->integer('create_by');
             $table->enum('status',config('enums.histories_types'));
             $table->timestamps();

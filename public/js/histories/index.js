@@ -1,7 +1,22 @@
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-var forms = document.getElementsByClassName('take-validation');
+var formTake = document.getElementsByClassName('take-validation');
+var formLend = document.getElementsByClassName('lend-validation');
 // Loop over them and prevent submission
-Array.prototype.filter.call(forms, (form) => {
+
+Array.prototype.filter.call(formTake, (form) => {
+    form.addEventListener('submit', (event) => {
+        if (parseInt(document.getElementById('validationQty').value) == 0) {
+            document.getElementById('validationQty').value = ""
+        }
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    }, false);
+});
+
+Array.prototype.filter.call(formLend, (form) => {
     form.addEventListener('submit', (event) => {
         if (parseInt(document.getElementById('validationQty').value) == 0) {
             document.getElementById('validationQty').value = ""
@@ -29,7 +44,7 @@ $('#takeModal').on('show.bs.modal', function (event) {
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
                 modal.find('#validationAccess').val(res.data.access_id)
                 modal.find('#validationQty').val(res.data.qty)
-                modal.find('#validationTakeName').val(res.data.user_take)
+                modal.find('#validationTakeName').val(res.data.user_lending)
                 modal.find('#remark').val(res.data.remark)
                 modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
             })
@@ -37,7 +52,6 @@ $('#takeModal').on('show.bs.modal', function (event) {
         clearModal(modal)
         modal.find('#created_at').attr('disabled', true)
     }
-
 })
 
 $('#lendModal').on('show.bs.modal', function (event) {
@@ -58,7 +72,7 @@ $('#lendModal').on('show.bs.modal', function (event) {
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
                 modal.find('#validationAccess').val(res.data.access_id)
                 modal.find('#validationQty').val(res.data.qty)
-                modal.find('#validationLendName').val(res.data.user_lend)
+                modal.find('#validationLendName').val(res.data.user_lending)
                 modal.find('#remark').val(res.data.remark)
                 modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
             })

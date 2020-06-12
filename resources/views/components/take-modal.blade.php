@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <label for="validationTakeName">ชื่อผู้เบิก</label>
-                            <select class="form-control" name="user_take" id="validationTakeName" required>
+                            <select class="form-control" name="user_lending" id="validationTakeName" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>

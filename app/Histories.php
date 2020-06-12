@@ -14,7 +14,7 @@ class Histories extends Model
      * @var array
      */
     protected $fillable = [
-        'access_id', 'qty', 'user_take','user_lend', 'create_by','status','remark'
+        'access_id', 'qty', 'user_lending','user_returned', 'create_by','status','remark'
     ];
 
     public function accessorie()

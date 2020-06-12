@@ -58,7 +58,7 @@
                             </td>
                             <td>{{$item->accessorie->name}}</td>
                             <td>{{$item->qty}}</td>
-                            <td>{{$item->user_lend}}</td>
+                            <td>{{$item->user_lending}}</td>
                         </tr>
                         @endforeach
                     </tbody>

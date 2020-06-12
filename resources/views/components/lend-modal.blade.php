@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <label for="validationLendName">ชื่อผู้ยืม</label>
-                            <select class="form-control" name="user_lend" id="validationLendName" required>
+                            <select class="form-control" name="user_lending" id="validationLendName" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -50,7 +50,7 @@
                                 ทำดีแล้ว
                             </div>
                             <div class="invalid-tooltip">
-                                เลือก อุปกรณ์ ด้วยจ้า
+                                เลือก ผู้ยืม ด้วยจ้า
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationLendNameBack">ชื่อผู้คืน</label>
-                            <select class="form-control" name="user_back" id="validationLendNameBack">
+                            <select class="form-control" name="user_returned" id="validationLendNameBack" required>
                                 <option value="">---เลือก---</option>
                                 @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>

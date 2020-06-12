@@ -12,12 +12,12 @@ class LendRepository implements LendRepositoryInterface
     {
         try {
             $enums = (object) \config('enums.histories_types');
-            return Histories::where('status', $enums->LEND)->orderBy('created_at','desc')->get();
+            return Histories::where('status', $enums->LEND)->orderBy('created_at', 'desc')->get();
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    
+
     public function edit($id)
     {
         try {
@@ -35,10 +35,28 @@ class LendRepository implements LendRepositoryInterface
             $histories = Histories::firstOrNew([
                 'access_id' => $var->access_id,
                 'qty' => $var->qty,
-                'user_lend' => $var->user_lend,
+                'user_lending' => $var->user_lending,
                 'remark' => $var->remark,
                 'create_by' => (int) Auth::user()->id,
                 'status' => \config('enums.histories_types.LEND')
+            ]);
+            $histories->save();
+            return $histories;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function lendReturn($var)
+    {
+        try {
+            $histories = Histories::firstOrNew([
+                'access_id' => $var->access_id,
+                'qty' => $var->qty,
+                'user_lend' => $var->user_lend,
+                'remark' => $var->remark,
+                'create_by' => (int) Auth::user()->id,
+                'status' => \config('enums.histories_types.BACK')
             ]);
             $histories->save();
             return $histories;

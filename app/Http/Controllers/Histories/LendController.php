@@ -55,11 +55,14 @@ class LendController extends Controller
             $request->validate([
                 'access_id' => 'required',
                 'qty' => 'required',
-                'user_lend' => 'required'
+                'user_lending' => 'required'
             ]);
             
             $histories = $this->lendRepository->store($request);
-            if (!$histories->exists) {
+            if ($histories->exists) {
+                $request->session()->flash('success', $histories->name . ' has been create success!');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
             }
             return \redirect()->route('lend.index');
         } catch (\Throwable $th) {
@@ -104,10 +107,12 @@ class LendController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            if (!empty($request->user_back)) {
-                $histories = $this->lendRepository->update($request, $id);
+            \dd($request->all());
+            if (empty($request->user_back)) {
+                return \redirect()->route('lend.index');
+                // $histories = $this->lendRepository->update($request, $id);
             }
-            return \redirect()->route('lend.index');
+            
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -133,14 +138,10 @@ class LendController extends Controller
     {
         foreach ($histories as $value) {
             foreach ($users as $item) {
-                if ($item->id == $value->user_lend) {
-                    $value->user_lend = $item->name;
-                }
-                if ($item->id == $value->user_take) {
-                    $value->user_take = $item->name;
+                if ($item->id == $value->user_lending) {
+                    $value->user_lending = $item->name;
                 }
             }
-            // $value->access_id = $value->accessorie->name;
         }
         return $histories;
     }

@@ -34,7 +34,7 @@ class TakeRepository implements TakeRepositoryInterface
             $histories = Histories::firstOrNew([
                 'access_id' => $var->access_id,
                 'qty' => $var->qty,
-                'user_take' => $var->user_take,
+                'user_lending' => $var->user_take,
                 'remark' => $var->remark,
                 'create_by' => (int) Auth::user()->id,
                 'status' => \config('enums.histories_types.TAKE')

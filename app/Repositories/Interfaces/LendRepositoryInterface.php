@@ -12,6 +12,8 @@ interface LendRepositoryInterface
 
     public function store(Request $var);
 
+    public function lendReturn(Request $var);
+
     public function update(Request $var, $id);
 
     public function delete($id);
