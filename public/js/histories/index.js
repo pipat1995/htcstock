@@ -36,17 +36,19 @@ $('#takeModal').on('show.bs.modal', function (event) {
 
     if (param) {
         getHistorieTakeId(param)
-            .then((res) => {
-                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
+            .then((response) => {
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + response.id
                 for (const _el of modal.find('.form-control')) {
                     _el.disabled = true
                 }
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
-                modal.find('#validationAccess').val(res.data.access_id)
-                modal.find('#validationQty').val(res.data.qty)
-                modal.find('#validationTakeName').val(res.data.user_lending)
-                modal.find('#remark').val(res.data.remark)
-                modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
+                modal.find('#validationAccess').val(response.access_id)
+                modal.find('#validationQty').val(response.qty)
+                modal.find('#validationTakeName').val(response.user_lending)
+                modal.find('#remark').val(response.remark)
+                modal.find('#created_at').val(ISOtoLongDate(response.created_at))
+            }).catch(function (error) {
+                console.log('Request failed', error);
             })
     } else {
         clearModal(modal)
@@ -61,20 +63,24 @@ $('#lendModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     if (param) {
         getHistorieLendId(param)
-            .then((res) => {
-                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
+            .then((response) => {
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + response.id
+                modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
                 for (const _el of modal.find('.form-control')) {
                     _el.disabled = true
                     if (_el.id === 'validationLendNameBack' && (lending)) {
                         _el.disabled = false
                     }
                 }
-                modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
-                modal.find('#validationAccess').val(res.data.access_id)
-                modal.find('#validationQty').val(res.data.qty)
-                modal.find('#validationLendName').val(res.data.user_lending)
-                modal.find('#remark').val(res.data.remark)
-                modal.find('#created_at').val(ISOtoLongDate(res.data.created_at))
+                
+                modal.find('#validationAccess').val(response.access_id)
+                modal.find('#validationQty').val(response.qty)
+                modal.find('#validationLendName').val(response.user_lending)
+                modal.find('#remark').val(response.remark)
+                modal.find('#created_at').val(ISOtoLongDate(response.created_at))
+                modal.find('#updated_at').val(ISOtoLongDate(response.updated_at))
+            }).catch(function (error) {
+                console.log('Request failed', error);
             })
     } else {
         clearModal(modal)

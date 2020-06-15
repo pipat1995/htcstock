@@ -2,17 +2,18 @@
 
 namespace App\Repositories\Interfaces;
 
+use App\Histories;
 use Illuminate\Http\Request;
 
 interface TakeRepositoryInterface
 {
     public function all();
 
-    public function edit($id);
+    public function edit(String $id);
 
     public function store(Request $var);
 
-    public function update(Request $var, $id);
+    public function update(Histories $var, String $id);
 
-    public function delete($id);
+    public function delete(String $id);
 }

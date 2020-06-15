@@ -8,11 +8,11 @@ interface AccessoriesRepositoryInterface
 {
     public function all();
 
-    public function edit($id);
+    public function edit(String $id);
 
     public function store(Request $request);
     
-    public function update(Request $request,  $id);
+    public function update(Request $request, String $id);
 
-    public function delete( $id);
+    public function delete(String $id);
 }

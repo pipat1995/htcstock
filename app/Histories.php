@@ -19,11 +19,11 @@ class Histories extends Model
 
     public function accessorie()
     {
-        return $this->hasOne(\App\Accessories::class,'id');
+        return $this->hasOne(\App\Accessories::class,'id','access_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(\App\User::class,'id');
+        return $this->belongsTo(\App\User::class,'id','create_by');
     }
 }

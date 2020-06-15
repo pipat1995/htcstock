@@ -17,7 +17,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
         }
     }
 
-    public function edit($id)
+    public function edit(String $id)
     {
         try {
             $accessories = Accessories::find($id);
@@ -36,7 +36,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
             throw $th;
         }
     }
-    public function update(Request $request,  $id)
+    public function update(Accessories $request, String $id)
     {
         try {
             $accessories = Accessories::find($id);
@@ -49,7 +49,7 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
         }
     }
 
-    public function delete( $id)
+    public function delete(String $id)
     {
         try {
             $accessories = Accessories::find($id);

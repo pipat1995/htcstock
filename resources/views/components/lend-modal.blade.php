@@ -60,12 +60,6 @@
                             <label for="remark">Remark</label>
                             <textarea class="form-control" name="remark" id="remark" rows="5"></textarea>
                         </div>
-                        <div class="valid-tooltip">
-                            ทำดีแล้ว
-                        </div>
-                        <div class="invalid-tooltip">
-                            เลือก วันที่ยืม ด้วยจ้า
-                        </div>
                     </div>
                     <div class="form-row" id="lendJS">
                         <div class="col-md-4 mb-3">
@@ -103,6 +97,3 @@
         </div>
     </div>
 </div>
-<script>
-    var users = {!! json_encode($users) !!}
-</script>

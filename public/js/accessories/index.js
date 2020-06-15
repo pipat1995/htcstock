@@ -1,8 +1,8 @@
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.getElementsByClassName('accessories-validation');
 // Loop over them and prevent submission
-Array.prototype.filter.call(forms,  (form) => {
-    form.addEventListener('submit',  (event) => {
+Array.prototype.filter.call(forms, (form) => {
+    form.addEventListener('submit', (event) => {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -18,13 +18,16 @@ $('#accessoriesModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     if (param) {
         getAccessoriesId(param)
-            .then((res) => {
-                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + res.data.id
+            .then((response) => {
+
+                modal.find('.modal-body form')[0].action = window.location.pathname + "/" + response.id
                 modal.find('.modal-body form').append('<input type="hidden" name="_method" value="PUT" id="methodPut">')
 
-                modal.find('.modal-title').text('อุปกรณ์ ' + res.data.id)
-                modal.find('#validationName').val(res.data.name)
-                modal.find('#validationUnit').val(res.data.unit)
+                modal.find('.modal-title').text('อุปกรณ์ ' + response.id)
+                modal.find('#validationName').val(response.name)
+                modal.find('#validationUnit').val(response.unit)
+            }).catch(function (error) {
+                console.log('Request failed', error);
             })
     } else {
         clearModal(modal)

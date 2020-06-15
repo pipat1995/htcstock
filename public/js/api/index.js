@@ -1,7 +1,23 @@
-const getAccessoriesId = id => axios.get("/accessories/accessories/" + id + "/edit")
+function status(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response)
+    } else {
+        return Promise.reject(new Error(response.statusText))
+    }
+}
 
-const getHistorieTakeId = id => axios.get("/histories/take/" + id + "/edit")
-const getHistorieLendId = id => axios.get("/histories/lend/" + id + "/edit")
+function json(response) {
+    return response.json()
+}
+
+
+const getAccessoriesId = id => fetch("/accessories/accessories/" + id + "/edit").then(status).then(json)
+
+
+const getHistorieTakeId = id => fetch("/histories/take/" + id + "/edit").then(status).then(json)
+const getHistorieLendId = id => fetch("/histories/lend/" + id + "/edit").then(status).then(json)
+
+
 
 const clearModal = (modal) => {
     modal.find('.modal-body form')[0].reset()

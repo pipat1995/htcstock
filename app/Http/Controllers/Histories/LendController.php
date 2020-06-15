@@ -57,7 +57,7 @@ class LendController extends Controller
                 'qty' => 'required',
                 'user_lending' => 'required'
             ]);
-            
+
             $histories = $this->lendRepository->store($request);
             if ($histories->exists) {
                 $request->session()->flash('success', $histories->name . ' has been create success!');
@@ -107,12 +107,20 @@ class LendController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            \dd($request->all());
-            if (empty($request->user_back)) {
+            if (empty($request->user_returned)) {
+                $request->session()->flash('error', 'ใส่ ชื่อผู้คืน ด้วย!');
                 return \redirect()->route('lend.index');
-                // $histories = $this->lendRepository->update($request, $id);
             }
             
+            $histories = $this->lendRepository->edit($id);
+            
+            $result = $this->lendRepository->lendReturn($histories, $request->user_returned);
+            if ($result->exists) {
+                $request->session()->flash('success', $result->name . ' คืนอุปกรณ์แล้ว');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
+            }
+            return \redirect()->route('lend.index');
         } catch (\Throwable $th) {
             throw $th;
         }
