@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Histories;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\TakeRepositoryInterface;
+use App\Repositories\Interfaces\HistoriesRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TakeController extends Controller
 {
-    private $takeRepository;
+    private $historiesRepository;
     private $userRepository;
-    public function __construct(TakeRepositoryInterface $takeRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
+    public function __construct(HistoriesRepositoryInterface $historiesRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
     {
-        $this->takeRepository = $takeRepositoryInterface;
+        $this->historiesRepository = $historiesRepositoryInterface;
         $this->userRepository = $userRepositoryInterface;
         $this->middleware(['auth', 'verified']);
     }
@@ -26,7 +26,7 @@ class TakeController extends Controller
     {
         try {
             $users = $this->userRepository->allNgacUserinfo();
-            $histories = $this->convertHistoriesUserInfo($this->takeRepository->all(), $users);
+            $histories = $this->historiesRepository->convertHistoriesUserInfo($this->historiesRepository->takeAll(), $users);
             return \view('histories.take')->with(['histories' => $histories]);
         } catch (\Throwable $th) {
             throw $th;
@@ -57,9 +57,9 @@ class TakeController extends Controller
                 'qty' => 'required',
                 'user_lending' => 'required'
             ]);
-            $histories = $this->takeRepository->store($request);
+            $histories = $this->historiesRepository->takeStore($request);
             if ($histories->exists) {
-                $request->session()->flash('success', $histories->name . ' has been create success!');
+                $request->session()->flash('success', $histories->name . ' เบิกอุปกรณ์แล้ว!');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
@@ -69,16 +69,6 @@ class TakeController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -89,7 +79,7 @@ class TakeController extends Controller
     public function edit($id)
     {
         try {
-            $histories = $this->takeRepository->edit($id);
+            $histories = $this->historiesRepository->historieEdit($id);
             return $histories;
         } catch (\Throwable $th) {
             throw $th;
@@ -106,7 +96,8 @@ class TakeController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $histories = $this->takeRepository->update($request, $id);
+            $histories = $this->historiesRepository->historieEdit($id);
+            $result = $this->historiesRepository->takeUpdate($histories, $id);
             return \redirect()->route('take.index');
         } catch (\Throwable $th) {
             throw $th;
@@ -122,26 +113,10 @@ class TakeController extends Controller
     public function destroy($id)
     {
         try {
-            $histories = $this->takeRepository->delete($id);
+            $histories = $this->historiesRepository->delete($id);
             return \redirect()->route('take.index');
         } catch (\Throwable $th) {
             throw $th;
         }
-    }
-
-    private function convertHistoriesUserInfo($histories, $users)
-    {
-        foreach ($histories as $value) {
-            foreach ($users as $item) {
-                if ($item->id == $value->user_lend) {
-                    $value->user_lend = $item->name;
-                }
-                if ($item->id == $value->user_take) {
-                    $value->user_take = $item->name;
-                }
-            }
-            // $value->access_id = $value->accessorie->name;
-        }
-        return $histories;
     }
 }

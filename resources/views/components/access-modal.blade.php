@@ -14,7 +14,7 @@
                     method="POST" novalidate>
                     @csrf
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-4">
                             <label for="validationName">อุปกรณ์</label>
                             <input type="text" class="form-control" id="validationName" placeholder="ชื่ออุปกรณ์"
                                 value="" name="name" required>
@@ -25,7 +25,18 @@
                                 ใส่ ชื่ออุปกรณ์ ด้วยจ้า
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-3 mb-4">
+                            <label for="validationQty">จำนวน</label>
+                            <input type="number" class="form-control" id="validationQty" placeholder="จำนวน" value=""
+                                name="qty" required>
+                            <div class="valid-tooltip">
+                                ทำดีแล้ว
+                            </div>
+                            <div class="invalid-tooltip">
+                                ใส่ จำนวน ด้วยจ้า
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
                             <label for="validationUnit">หน่วย</label>
                             <input type="text" class="form-control" id="validationUnit" placeholder="หน่วย" value=""
                                 name="unit" required>

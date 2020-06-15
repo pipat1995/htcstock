@@ -10,8 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="take-validation" id="formTake" action="{{route('take.store')}}" method="POST"
-                    novalidate>
+                <form class="take-validation" id="formTake" action="{{route('take.store')}}" method="POST" novalidate>
                     @csrf
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
@@ -31,8 +30,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="validationQty">จำนวน</label>
-                            <input class="form-control" type="number" id="validationQty" value="" name="qty"
-                                required>
+                            <input class="form-control" type="number" id="validationQty" value="" name="qty" required>
                             <div class="valid-tooltip">
                                 ทำดีแล้ว
                             </div>
@@ -72,8 +70,8 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="created_at">วันที่เบิก</label>
-                            <input type="datetime" class="form-control" name="created_at" id="created_at"
-                                value="{{date('Y-m-d')}}" disabled>
+                            <input type="datetime" class="form-control" name="created_at" id="created_at" value=""
+                                disabled>
                         </div>
                         <div class="valid-tooltip">
                             ทำดีแล้ว

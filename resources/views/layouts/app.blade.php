@@ -26,15 +26,11 @@
 
         <x-navigationbar />
         <div class="app-main">
-
             <x-sidebar />
             <div class="app-main__outer">
                 @include('partials.alerts')
                 <div class="app-main__inner">
-
                     @yield('content')
-
-                    {{-- @extends('components.accessmodal') --}}
                 </div>
                 <x-footer />
             </div>

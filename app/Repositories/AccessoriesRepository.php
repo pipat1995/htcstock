@@ -11,7 +11,8 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
     public function all()
     {
         try {
-            return Accessories::orderBy('created_at','desc')->get();
+            $accessories = Accessories::orderBy('created_at','desc')->get();
+            return $accessories;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -36,10 +37,9 @@ class AccessoriesRepository implements AccessoriesRepositoryInterface
             throw $th;
         }
     }
-    public function update(Accessories $request, String $id)
+    public function update(Accessories $accessories, Request $request)
     {
         try {
-            $accessories = Accessories::find($id);
             $accessories->name = $request->name;
             $accessories->unit = $request->unit;
             $accessories->save();

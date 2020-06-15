@@ -10,7 +10,15 @@
 <div class="alert alert-danger fade show" role="alert">{{session('error')}} </div>
 @endif
 
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 {{-- @if (session('success'))
 <div class="toast btn-success" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000"
     style="position: absolute; top: 1rem; right: 1rem;">

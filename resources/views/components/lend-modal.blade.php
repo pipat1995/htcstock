@@ -64,8 +64,8 @@
                     <div class="form-row" id="lendJS">
                         <div class="col-md-4 mb-3">
                             <label for="created_at">วันที่ยืม</label>
-                            <input type="datetime" class="form-control" name="created_at" id="created_at"
-                                value="{{date('Y-m-d')}}" disabled>
+                            <input type="datetime" class="form-control" name="created_at" id="created_at" value=""
+                                disabled>
                         </div>
                         <div class="valid-tooltip">
                             ทำดีแล้ว

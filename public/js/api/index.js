@@ -13,7 +13,6 @@ function json(response) {
 
 const getAccessoriesId = id => fetch("/accessories/accessories/" + id + "/edit").then(status).then(json)
 
-
 const getHistorieTakeId = id => fetch("/histories/take/" + id + "/edit").then(status).then(json)
 const getHistorieLendId = id => fetch("/histories/lend/" + id + "/edit").then(status).then(json)
 
@@ -36,8 +35,7 @@ function ISOtoLongDate(isoString, locale = "en-US") {
         year: "numeric"
     };
     const date = new Date(isoString);
-    const longDate = new Intl.DateTimeFormat(locale, options).format(date);
-    return longDate;
+    return new Intl.DateTimeFormat(locale, options).format(date);
 }
 
 function ISOtoDate(isoString, locale = "en-US") {
@@ -47,6 +45,5 @@ function ISOtoDate(isoString, locale = "en-US") {
         year: "numeric"
     };
     const date = new Date(isoString);
-    const longDate = new Intl.DateTimeFormat(locale, options).format(date);
-    return longDate;
+    return new Intl.DateTimeFormat(locale, options).format(date);
 }

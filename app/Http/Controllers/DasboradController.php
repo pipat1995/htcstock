@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
+use App\Repositories\Interfaces\HistoriesRepositoryInterface;
 use App\Repositories\Interfaces\LendRepositoryInterface;
 use App\Repositories\Interfaces\TakeRepositoryInterface;
 
 class DasboradController extends Controller
 {
     private $accessoriesRepository;
-    private $takeRepository;
+    private $historiesRepository;
     private $lendRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface, TakeRepositoryInterface $takeRepositoryInterface, LendRepositoryInterface $lendRepositoryInterface)
+    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface,HistoriesRepositoryInterface $historiesRepositoryInterface)
     {
         $this->accessoriesRepository = $accessoriesRepositoryInterface;
-        $this->takeRepository = $takeRepositoryInterface;
-        $this->lendRepository = $lendRepositoryInterface;
-        $this->middleware(['auth', 'verified']);
+        $this->historiesRepository = $historiesRepositoryInterface;
+        $this->middleware(['auth']);
     }
 
     /**
@@ -33,8 +33,8 @@ class DasboradController extends Controller
     {
         try {
             $accessories = $this->accessoriesRepository->all()->count();
-            $take = $this->takeRepository->all()->count();
-            $lend = $this->lendRepository->all()->count();
+            $take = $this->historiesRepository->takeAll()->count();
+            $lend = $this->historiesRepository->lendAll()->count();
             return view('dasborad')->with([
                 'accessories' => $accessories,
                 'take' => $take,

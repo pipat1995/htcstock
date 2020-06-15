@@ -13,7 +13,7 @@ interface AccessoriesRepositoryInterface
 
     public function store(Request $request);
     
-    public function update(Accessories $request, String $id);
+    public function update(Accessories $accessories, Request $request);
 
     public function delete(String $id);
 }
