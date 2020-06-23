@@ -21,7 +21,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     public function buyAll()
     {
         try {
-            return Transactions::whereIn('trans_type', [0, 1])->get();
+            return Transactions::whereIn('trans_type', [0])->whereNull('ref_no')->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -29,7 +29,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     public function requisitionAll()
     {
         try {
-            return Transactions::whereIn('trans_type', [4, 5])->get();
+            return Transactions::whereIn('trans_type', [4])->whereNull('ref_no')->get();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -37,7 +37,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     public function lendingsAll()
     {
         try {
-            return Transactions::whereIn('trans_type', [2, 3])->get();
+            return Transactions::whereIn('trans_type', [2])->whereNull('ref_no')->get();
         } catch (\Throwable $th) {
             throw $th;
         }

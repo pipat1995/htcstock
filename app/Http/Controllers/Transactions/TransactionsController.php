@@ -77,10 +77,10 @@ class TransactionsController extends Controller
                     return \redirect()->route('transactions.buy.list');
                 }
                 $transaction->ref_no = $token;
-                $transaction->trans_type = 1;
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
+                    $transaction->trans_type = 1;
                     $transaction->qty = '-' . $transaction->qty;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
                         $request->session()->flash('error', 'error update!');
@@ -154,11 +154,12 @@ class TransactionsController extends Controller
                     return \redirect()->route('transactions.requisition.list');
                 }
                 $transaction->ref_no = $token;
-                $transaction->trans_type = 5;
+                
                 // $transaction->qty +
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
+                    $transaction->trans_type = 5;
                     $transaction->qty = substr($transaction->qty,1);
                     $transaction->created_by = Auth::user()->id;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
@@ -234,11 +235,12 @@ class TransactionsController extends Controller
                     return \redirect()->route('transactions.requisition.list');
                 }
                 $transaction->ref_no = $token;
-                $transaction->trans_type = 3;
+                
                 // $transaction->qty +
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
+                    $transaction->trans_type = 3;
                     $transaction->qty = substr($transaction->qty,1);
                     $transaction->created_by = Auth::user()->id;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
