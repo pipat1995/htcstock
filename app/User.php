@@ -6,17 +6,17 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username','password',
+        'name', 'email', 'username', 'password',
     ];
 
     /**
@@ -37,28 +37,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function historie()
-    {
-        return $this->hasMany(\App\Histories::class,'create_by');
-    }
-
     public function roles()
     {
-        return $this->belongsToMany(\App\Role::class);
+        return $this->belongsToMany(\App\Roles::class);
     }
 
     public function hasAnyRoles($roles)
     {
-        if ($this->roles()->whereIn('name',$roles)->first()) {
+        if ($this->roles()->whereIn('name', $roles)->first()) {
             return true;
         }
         return false;
     }
-    
+
     // check user role
     public function hasRole($role)
     {
-        if ($this->roles()->where('name',$role)->first()) {
+        if ($this->roles()->where('name', $role)->first()) {
             return true;
         }
         return false;

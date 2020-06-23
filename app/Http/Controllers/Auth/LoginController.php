@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -39,17 +39,34 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    /**
-     * redirectTo.
-     * check Role and redirectTo route
-     * 
-     */
-    public function redirectTo()
+
+    public function showLoginForm()
     {
-        if (Auth::user()->hasRole('admin')) {
-            $this->redirectTo = RouteServiceProvider::ADMIN;
-            return $this->redirectTo;
+        return view('auth.login');
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->route('dasborad');
         }
-        return $this->redirectTo;
     }
 }

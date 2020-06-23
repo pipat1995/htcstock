@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\AccessoriesRepository;
-use App\Repositories\HistoriesRepository;
-use App\Repositories\Interfaces\AccessoriesRepositoryInterface;
-use App\Repositories\Interfaces\HistoriesRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Repositories\UserRepository;
+use App\Repository\AccessoriesRepositoryInterface;
+use App\Repository\Eloquent\AccessoriesRepository;
+use App\Repository\Eloquent\TransactionsRepository;
+use App\Repository\Eloquent\UserInfoRepository;
+use App\Repository\Eloquent\UserRepository;
+use App\Repository\TransactionsRepositoryInterface;
+use App\Repository\UserInfoRepositoryInterface;
+use App\Repository\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -30,7 +32,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(AccessoriesRepositoryInterface::class, AccessoriesRepository::class);
-        $this->app->bind(HistoriesRepositoryInterface::class,HistoriesRepository::class);
+        $this->app->bind(TransactionsRepositoryInterface::class,TransactionsRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(UserInfoRepositoryInterface::class,UserInfoRepository::class);
     }
 }

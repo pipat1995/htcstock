@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Role;
+use App\Repository\UserRepositoryInterface;
+use App\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,7 +26,7 @@ class UsersController extends Controller
     {
         try {
             $users = $this->userRepository->all();
-            return \view('admin.users.index', \compact('users'));
+            return \view('pages.admin.users.index', \compact('users'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -43,11 +43,11 @@ class UsersController extends Controller
         try {
             // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
             if (Gate::denies('edit-users')) {
-                return \redirect()->route('admin.users.index');
+                return \redirect()->route('pages.admin.users.index');
             }
-            return \view('admin.users.edit')->with([
-                'user' => $this->userRepository->edit($id),
-                'roles' => Role::all()
+            return \view('pages.admin.users.edit')->with([
+                'user' => $this->userRepository->find($id),
+                'roles' => Roles::all()
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -64,9 +64,12 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $result = $this->userRepository->update($request, $id);
-            if ($result->exists) {
-                $request->session()->flash('success', $result->name . ' has been update');
+            $user = $this->userRepository->find($id);
+            $user->roles()->sync($request->roles);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($this->userRepository->update($user->attributesToArray(), $id)) {
+                $request->session()->flash('success', $user->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
@@ -87,7 +90,7 @@ class UsersController extends Controller
         try {
             // ตรวจสอบ Role Gate::denies('delete-users') จาก AuthServiceProvider
             if (Gate::denies('delete-users')) {
-                return \redirect()->route('admin.users.index');
+                return \redirect()->route('pages.admin.users.index');
             }
             $result = $this->userRepository->delete($id);
             $request = new Request();
@@ -96,7 +99,7 @@ class UsersController extends Controller
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \redirect()->route('admin.users.index');
+            return \redirect()->route('pages.admin.users.index');
         } catch (\Throwable $th) {
             throw $th;
         }

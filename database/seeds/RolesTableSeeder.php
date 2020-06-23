@@ -1,10 +1,7 @@
 <?php
 
-use App\Role;
-use App\User;
+use App\Roles;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class RolesTableSeeder extends Seeder
 {
@@ -15,9 +12,9 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::truncate();
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'author']);
-        Role::create(['name' => 'user']);
+        Roles::truncate();
+        Roles::create(['name' => 'admin']);
+        Roles::create(['name' => 'author']);
+        Roles::create(['name' => 'user']);
     }
 }

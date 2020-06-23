@@ -1,10 +1,11 @@
 <?php
 
-use App\Role;
+use App\Roles;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,11 +17,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
-        DB::table('role_user')->truncate();
+        DB::table('roles_user')->truncate();
 
-        $adminRole = Role::where('name', 'admin')->first();
-        $authorRole = Role::where('name', 'author')->first();
-        $userRole = Role::where('name', 'user ')->first();
+        $adminRole = Roles::where('name', 'admin')->first();
+        $authorRole = Roles::where('name', 'author')->first();
+        $userRole = Roles::where('name', 'user ')->first();
         $admin = User::create([
             'name' => 'Admin Pipat',
             'username' => '70037539',
@@ -47,9 +48,18 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make(12345678),
             'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
         ]);
-
         $admin->roles()->attach($adminRole);
         $author->roles()->attach($authorRole);
         $user->roles()->attach($userRole);
+
+        $response = Http::get(ENV('USERS_INFO'));
+        foreach ($response->json() as $key => $value) {
+            User::create([
+                'name' => $value['name'],
+                'username' => $value['id'],
+                'email' => $value['email'],
+                'password' => Hash::make(12345678),
+            ]);
+        }
     }
 }

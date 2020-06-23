@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accessories extends Model
 {
-    protected $table = 'accessories';
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +17,6 @@ class Accessories extends Model
 
     public function historie()
     {
-        return $this->belongsTo(\App\Histories::class,'access_id');
+        return $this->belongsTo(\App\Transactions::class, 'access_id','access_id');
     }
 }

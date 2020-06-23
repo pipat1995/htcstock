@@ -4,41 +4,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    {{-- @yield('script') --}}
+
     <!-- Scripts -->
-    <script src="{{ asset('js/template/main.js') }}" defer></script>
-    {{-- <script src="{{ asset('js/main.js') }}" defer></script> --}}
+    <script src="{{ asset('assets/js/template/app.js') }}" defer></script>
+
     <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/main.css') }}" rel="stylesheet"> --}}
-
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
-
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-
-        <x-navigationbar />
+    <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        @include('includes.navigationbar')
         <div class="app-main">
-            <x-sidebar />
+            @include('includes.sidebar')
             <div class="app-main__outer">
                 @include('partials.alerts')
                 <div class="app-main__inner">
                     @yield('content')
                 </div>
-                <x-footer />
+                @include('includes.footer')
             </div>
         </div>
     </div>
-
-    @yield('modal')
-    @yield('script')
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
