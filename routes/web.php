@@ -47,5 +47,5 @@ Route::namespace('Transactions')->prefix('transactions')->name('transactions.')-
 
 Route::namespace('Reports')->prefix('reports')->name('reports.')->group(function () {
     Route::get('/accessories','ReportController@reportAccessories')->name('accessories.list');
-    Route::get('/accessories/search','ReportController@searchReport')->name('accessories.search');
+    // Route::any('/accessories/search','ReportController@searchReport')->name('accessories.search');
 });

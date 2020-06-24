@@ -20,48 +20,78 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="#" class="btn-shadow btn btn-info">
+                {{-- <a href="#" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    ค้นหา</a>
+                    ค้นหา</a> --}}
             </div>
         </div>
     </div>
 </div>
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
-        <form action="{{route('reports.accessories.search')}}" method="get">
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationAccess_id" class="">อุปกรณ์</label>
-                    <select name="access_id" id="validationAccess_id" class="form-control" required>
-                        <option value="">--เลือก--</option>
-                        @foreach ($accessories as $item)
-                        <option value="{{$item->access_id}}">{{$item->access_name}}</option>
-                        @endforeach
-                    </select>
-                    <div class="valid-feedback">
-                        Looks good!
+        <div class="card-body">
+            <form action="{{route('reports.accessories.list')}}" method="GET">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <select name="access_id" id="validationAccess_id" class="form-control">
+                            <option value="">--เลือก--</option>
+                            @foreach ($accessories as $item)
+                            <option value="{{$item->access_id}}" {{$input->access_id == $item->access_id ? 'selected' : ''}}>
+                                {{$item->access_name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCreated_at">วันที่</label>
+                        <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at" value="{{$input->s_created_at}}"
+                            oninput="changeValue(this)">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCreated_at">ถึง วันที่</label>
+                        <input type="date" class="form-control" id="validationECreated_at" name="e_created_at" value="{{$input->e_created_at}}"
+                            readonly>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fa fa-business-time fa-w-20"></i>
+                            </span>
+                            ค้นหา</button>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationQty">จำนวน</label>
-                    <input type="number" class="form-control" id="validationQty" name="qty" value="" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationIrnumber">IR No.</label>
-                    <input type="text" class="form-control" id="validationIrnumber" name="ir_no" value=""
-                        placeholder="123456789" required>
-                    <div class="invalid-feedback">
-                        Please choose a IR No.
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+            <script>
+                (function () {
+                    'use strict';
+                    window.addEventListener('load', function () {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        if (document.getElementById("validationSCreated_at").value) {
+                            document.getElementById("validationECreated_at").readOnly = false;
+                        }
+                        
+                    }, false);
+                })();
+                function changeValue(e){
+                    if (e.value) {
+                        document.getElementById("validationECreated_at").readOnly = false;
+                    } else{
+                        document.getElementById("validationECreated_at").readOnly = true;
+                    }
+                }
+            </script>
+        </div>
     </div>
 </div>
 <div class="col-lg-12">
@@ -88,6 +118,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ $transactions->links() }}
         </div>
     </div>
 </div>

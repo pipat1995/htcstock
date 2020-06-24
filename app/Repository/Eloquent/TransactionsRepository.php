@@ -4,6 +4,7 @@ namespace App\Repository\Eloquent;
 
 use App\Repository\TransactionsRepositoryInterface;
 use App\Transactions;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class TransactionsRepository extends BaseRepository implements TransactionsRepositoryInterface
@@ -58,10 +59,11 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
             throw $th;
         }
     }
-    public function filterAccessories(String $access_id)
+    public function filter(): Builder
     {
         try {
-            return Transactions::where('access_id',$access_id);
+            return (new Transactions)->newQuery();
+            // Transactions::whereNotNull('id');
         } catch (\Throwable $th) {
             throw $th;
         }
