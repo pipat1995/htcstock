@@ -18,6 +18,14 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
         parent::__construct($model);
     }
 
+    public function all()
+    {
+        try {
+            return Transactions::all();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function buyAll()
     {
         try {
@@ -46,6 +54,14 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     {
         try {
             return Str::random(32);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function filterAccessories(String $access_id)
+    {
+        try {
+            return Transactions::where('access_id',$access_id);
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="app-sidebar__heading">การทำงาน</li>
-                <li class="">
+                <li class="{{ request()->routeIs('transactions.*') ? 'mm-active' : ''}}">
                     <a href="#" class="{{ request()->routeIs('transactions.*') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         อุปกรณ์
@@ -70,16 +70,14 @@
                             </a>
                         </li>
                     </ul>
-
-
                 </li>
-                {{-- <li>
-                    <a href="#">
+                <li>
+                    <a href="{{route('reports.accessories.list')}}" class="{{ request()->routeIs('reports.accessories.list') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-car"></i>
-                        Components
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        ตรวจสอบ
+                        {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                     </a>
-                    <ul>
+                    {{-- <ul>
                         <li>
                             <a href="components-tabs.html">
                                 <i class="metismenu-icon">
@@ -146,8 +144,8 @@
                                 </i>Maps
                             </a>
                         </li>
-                    </ul>
-                </li> --}}
+                    </ul> --}}
+                </li>
                 {{-- <li>
                     <a href="#"
                         class="">

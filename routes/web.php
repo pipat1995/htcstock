@@ -43,5 +43,9 @@ Route::namespace('Transactions')->prefix('transactions')->name('transactions.')-
     Route::post('/lendings/create','TransactionsController@lendingsStore')->name('lendings.store');
     Route::get('/lendings/edit/{id}','TransactionsController@lendingsEdit')->name('lendings.edit');
     Route::put('/lendings/update/{id}','TransactionsController@lendingsUpdate')->name('lendings.update');
+});
 
+Route::namespace('Reports')->prefix('reports')->name('reports.')->group(function () {
+    Route::get('/accessories','ReportController@reportAccessories')->name('accessories.list');
+    Route::get('/accessories/search','ReportController@searchReport')->name('accessories.search');
 });
