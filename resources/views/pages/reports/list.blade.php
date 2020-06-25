@@ -39,7 +39,7 @@
                         <select name="access_id" id="validationAccess_id" class="form-control">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
-                            <option value="{{$item->access_id}}" {{$input->access_id == $item->access_id ? 'selected' : ''}}>
+                            <option value="{{$item->access_id}}" {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
                                 {{$item->access_name}}</option>
                             @endforeach
                         </select>
@@ -49,19 +49,13 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCreated_at">วันที่</label>
-                        <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at" value="{{$input->s_created_at}}"
+                        <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at" value="{{$formSearch->s_created_at}}"
                             oninput="changeValue(this)">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCreated_at">ถึง วันที่</label>
-                        <input type="date" class="form-control" id="validationECreated_at" name="e_created_at" value="{{$input->e_created_at}}"
+                        <input type="date" class="form-control" id="validationECreated_at" name="e_created_at" value="{{$formSearch->e_created_at}}"
                             readonly>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
                     </div>
                     <div class="col-md-2 mb-2">
                         <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
@@ -104,7 +98,9 @@
                         <tr>
                             <th>#</th>
                             <th>อุปกรณ์</th>
-                            <th>จำนวณ</th>
+                            <th>จำนวน</th>
+                            <th>วันที่</th>
+                            <th>สร้างโดย</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,6 +109,8 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->accessorie->access_name}}</td>
                             <td>{{$item->qty}}</td>
+                            <td>{{$item->created_at}}</td>
+                            <td>{{$item->transactionCreated->name}}</td>
                         </tr>
                         @endforeach
                     </tbody>

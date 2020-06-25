@@ -25,7 +25,7 @@ class UsersController extends Controller
     public function index()
     {
         try {
-            $users = $this->userRepository->all();
+            $users = $this->userRepository->all()->get();
             return \view('pages.admin.users.index', \compact('users'));
         } catch (\Throwable $th) {
             throw $th;

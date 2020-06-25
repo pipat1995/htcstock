@@ -5,9 +5,7 @@ namespace App\Repository\Eloquent;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\UserRepositoryInterface;
 use App\User;
-use GuzzleHttp\TransferStats;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -21,10 +19,10 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         parent::__construct($model);
     }
 
-    public function all(): Collection
+    public function all(): Builder
     {
         try {
-            return User::all();
+            return User::select('id','name','username','email');
         } catch (\Throwable $th) {
             throw $th;
         }

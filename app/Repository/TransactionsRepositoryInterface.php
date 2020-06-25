@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 interface TransactionsRepositoryInterface
 {
-    public function all();
-    public function buyAll();
-    public function requisitionAll();
-    public function lendingsAll();
+    public function all(): Builder;
+    public function buyAll(): Builder;
+    public function requisitionAll(): Builder;
+    public function lendingsAll(): Builder;
     public function find(String $id): Model;
     public function create(array $attributes): Model;
     public function update(array $attributes,String $id): bool;
     public function makeRandomTokenKey(): String;
-    public function filter(): Builder;
+    public function stock(): Builder;
 }

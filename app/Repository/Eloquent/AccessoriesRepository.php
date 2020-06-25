@@ -5,6 +5,7 @@ namespace App\Repository\Eloquent;
 use App\Accessories;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\Eloquent\BaseRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,10 @@ class AccessoriesRepository extends BaseRepository implements AccessoriesReposit
         parent::__construct($model);
     }
 
-    public function all()
+    public function all(): Builder
     {
         try {
-            return Accessories::all();
+            return Accessories::select('access_id','access_name','unit');
         } catch (\Throwable $th) {
             throw $th;
         }

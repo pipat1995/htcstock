@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('access_id');
             $table->integer('qty');
             $table->integer('trans_type');
-            $table->string('trans_by');
+            $table->integer('trans_by');
             $table->string('trans_desc')->nullable();
             $table->string('ir_no')->nullable();
             $table->string('po_no')->nullable();

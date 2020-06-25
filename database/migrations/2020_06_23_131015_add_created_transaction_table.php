@@ -14,7 +14,7 @@ class AddCreatedTransactionTable extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->string('created_by');
+            $table->integer('created_by');
         });
     }
 

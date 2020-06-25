@@ -8,6 +8,9 @@
  =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
+ table th,td{
+    text-align: center;
+ }
 .border-primary {
     border-color: #3f6ad8
 }

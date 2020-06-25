@@ -15,8 +15,9 @@ class Accessories extends Model
         'name', 'unit'
     ];
 
-    public function historie()
+    public function transaction()
     {
         return $this->belongsTo(\App\Transactions::class, 'access_id','access_id');
     }
+
 }

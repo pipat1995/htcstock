@@ -17,11 +17,14 @@ class Transactions extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\User::class, 'id', 'trans_by');
+        return $this->hasOne(\App\User::class, 'id','trans_by');
     }
-
+    public function transactionCreated()
+    {
+        return $this->hasOne(\App\User::class, 'id','created_by');
+    }
     public function accessorie()
     {
-        return $this->hasOne(\App\Accessories::class, 'access_id','access_id','id');
+        return $this->hasOne(\App\Accessories::class, 'access_id','access_id');
     }
 }
