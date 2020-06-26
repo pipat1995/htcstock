@@ -32,7 +32,7 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form action="{{route('reports.accessories.list')}}" method="GET">
+            <form action="{{route('reports.transactions.list')}}" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>

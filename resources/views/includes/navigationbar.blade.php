@@ -74,15 +74,15 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User
-                                        Account</button>
+                                    <a href="{{ route('users.me.edit',Auth::user()->id) }}" tabindex="0" class="dropdown-item">User
+                                        Account</a>
                                     @can('manage-users')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0" class="dropdown-item">User
                                         Management</a>
                                     @endcan
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                    {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button>
+                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button> --}}
                                     <div tabindex="-1" class="dropdown-divider"></div>
 
                                     <button type="button" href="{{ route('logout') }}" tabindex="0"
@@ -104,9 +104,9 @@
                             </div>
                         </div>
                         <div class="widget-content-right header-user-info ml-3">
-                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                            {{-- <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                 <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                     @endauth

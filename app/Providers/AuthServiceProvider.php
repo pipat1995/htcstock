@@ -28,13 +28,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('manage-users', function ($user) {
             // Gate::denies('edit-users') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
-            // $user->hasRole('admin') เฉพาะ admin เท่านั้น
-            return $user->hasAnyRoles(['admin', 'author']);
+            // $user->hasRole('admin') เฉพาะ 'admin', 'author' เท่านั้น
+            return $user->hasAnyRoles([ 'admin','author']);
         });
 
         Gate::define('edit-users', function ($user) {
             // Gate::denies('edit-users') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
-            // $user->hasRole('admin') เฉพาะ admin เท่านั้น
+            // $user->hasRole('admin') เฉพาะ 'admin', 'author', 'user' เท่านั้น
             return $user->hasAnyRoles(['admin', 'author', 'user']);
         });
 

@@ -79,14 +79,15 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('reports.accessories.list')}}"
-                                class="{{ request()->routeIs('reports.accessories.list') ? 'mm-active' : ''}}">
+                            <a href="{{route('reports.transactions.list')}}"
+                                class="{{ request()->routeIs('reports.transactions.list') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon">
                                 </i>Transactions
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('reports.stocks.list')}}"
+                                class="{{ request()->routeIs('reports.stocks.list') ? 'mm-active' : ''}}">
                                 <i class="metismenu-icon">
                                 </i>Stocks
                             </a>

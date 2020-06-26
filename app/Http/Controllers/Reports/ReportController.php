@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
-use App\Http\FormSearches\ReportFormSearch;
+use App\Http\FormSearches\TransactionsFormSearch;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use DateInterval;
@@ -22,12 +22,11 @@ class ReportController extends Controller
         $this->accessories = $this->accessoriesRepository->all()->get();
     }
 
-    public function reportAccessories(Request $request)
+    public function reportTransactions(Request $request)
     {
         try {
-            $formSearch = new ReportFormSearch();
+            $formSearch = new TransactionsFormSearch();
             $transactions = $this->transactionsRepository->all();
-            // \dd($transactions->get());
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 $formSearch->s_created_at = $request->s_created_at;
@@ -49,7 +48,31 @@ class ReportController extends Controller
                 }
             }
             $transactions->orderBy('created_at', 'desc');
-            return \view('pages.reports.list', \compact('formSearch'))->with('transactions', $transactions->paginate(10)->appends((array) $formSearch))->with('accessories', $this->accessories);
+            return \view('pages.reports.transactions', \compact('formSearch'))->with([
+                'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
+                'accessories' => $this->accessories
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function reportStocks(Request $request)
+    {
+        try {
+            $formSearch = new TransactionsFormSearch();
+            $transactions = $this->transactionsRepository->stock();
+            if ($request->all()) {
+                $formSearch->access_id = $request->access_id;
+                if (isset($request->access_id)) {
+                    $transactions->where('access_id', $request->access_id);
+                }
+            }
+            $transactions->orderBy('quantity', 'desc');
+            return \view('pages.reports.stocks', \compact('formSearch'))->with([
+                'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
+                'accessories' => $this->accessories
+            ]);
         } catch (\Throwable $th) {
             throw $th;
         }

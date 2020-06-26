@@ -64,7 +64,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     public function stock(): Builder
     {
         try {
-            return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id');
+            return Transactions::select('access_id' ,DB::raw('sum(qty) as quantity'))->groupBy('access_id');
         } catch (\Throwable $th) {
             throw $th;
         }

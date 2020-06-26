@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepositoryInterface;
@@ -15,7 +15,6 @@ class UsersController extends Controller
     {
         $this->userRepository = $userRepositoryInterface;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,18 +22,45 @@ class UsersController extends Controller
      */
     public function index()
     {
-        try {
-            $users = $this->userRepository->all()->get();
-            return \view('pages.admin.users.index', \compact('users'));
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -42,11 +68,10 @@ class UsersController extends Controller
         try {
             // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
             if (Gate::denies('edit-users')) {
-                return \redirect()->route('pages.admin.users.index');
+                return back()->withInput();
             }
-            return \view('pages.admin.users.edit')->with([
-                'user' => $this->userRepository->find($id),
-                'roles' => Roles::all()
+            return \view('pages.user.index')->with([
+                'user' => $this->userRepository->find($id)
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -57,14 +82,13 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         try {
             $user = $this->userRepository->find($id);
-            $user->roles()->sync($request->roles);
             $user->name = $request->name;
             $user->email = $request->email;
             if ($this->userRepository->update($user->attributesToArray(), $id)) {
@@ -81,26 +105,11 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try {
-            // ตรวจสอบ Role Gate::denies('delete-users') จาก AuthServiceProvider
-            if (Gate::denies('delete-users')) {
-                return \redirect()->route('pages.admin.users.index');
-            }
-            $result = $this->userRepository->delete($id);
-            $request = new Request();
-            if ($result->exists) {
-                $request->session()->flash('success', ' has been delete');
-            } else {
-                $request->session()->flash('error', 'error flash message!');
-            }
-            return \redirect()->route('pages.admin.users.index');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        //
     }
 }
