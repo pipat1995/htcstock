@@ -21,11 +21,11 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('dasborad');
 // Directory Admin   middleware('can:manage-users') เรียกมาจาก AuthServiceProvider manage-users
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function () {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['can:manage-users','verified'])->group(function () {
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
 });
 
-Route::namespace('Transactions')->prefix('transactions')->name('transactions.')->group(function () {
+Route::namespace('Transactions')->prefix('transactions')->name('transactions.')->middleware(['verified'])->group(function () {
     Route::get('/buy/list','TransactionsController@buyIndex')->name('buy.list');
     Route::get('/buy/create','TransactionsController@buyCreate')->name('buy.create');
     Route::post('/buy/create','TransactionsController@buyStore')->name('buy.store');
@@ -45,7 +45,7 @@ Route::namespace('Transactions')->prefix('transactions')->name('transactions.')-
     Route::put('/lendings/update/{id}','TransactionsController@lendingsUpdate')->name('lendings.update');
 });
 
-Route::namespace('Reports')->prefix('reports')->name('reports.')->group(function () {
+Route::namespace('Reports')->prefix('reports')->name('reports.')->middleware(['verified'])->group(function () {
     Route::get('/accessories','ReportController@reportAccessories')->name('accessories.list');
     // Route::any('/accessories/search','ReportController@searchReport')->name('accessories.search');
 });
