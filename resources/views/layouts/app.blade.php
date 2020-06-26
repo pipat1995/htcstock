@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/template/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/api/index.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

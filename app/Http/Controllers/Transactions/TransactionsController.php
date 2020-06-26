@@ -76,7 +76,7 @@ class TransactionsController extends Controller
     public function buyCreate()
     {
         try {
-            return \view('pages.buys.create')->with('accessories', $this->accessoriesRepo->all());
+            return \view('pages.buys.create')->with('accessories', $this->accessoriesRepo->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }

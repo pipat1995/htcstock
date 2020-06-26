@@ -66,7 +66,10 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    
+                    <div class="col-md-12 mb-12">
+                        <label for="trans_desc">Description</label>
+                        <textarea name="trans_desc" id="trans_desc" class="form-control" rows="3"></textarea>
+                    </div>
                 </div>
                 {{-- <div class="form-group">
                     <div class="form-check">

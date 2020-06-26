@@ -96,6 +96,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-12">
+                        <label for="trans_desc">Description</label>
+                        <textarea name="trans_desc" id="trans_desc" class="form-control" rows="3">{{$transaction->trans_desc}}</textarea>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invalidCheck" name="ref_no" value="ยกเลิก"
