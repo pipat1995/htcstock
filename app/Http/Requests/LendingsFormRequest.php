@@ -25,7 +25,7 @@ class LendingsFormRequest extends FormRequest
     {
         return [
             'access_id' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric|min:1',
             'trans_by' => 'required'
         ];
     }

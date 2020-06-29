@@ -35,7 +35,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control" required>
+                        <select name="access_id" id="validationAccess_id" class="form-control" onchange="checkQtyAccess(this)" required>
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}">{{$item->access_name}}</option>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">จำนวน</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty" value="" required>
+                        <input type="number" class="form-control" id="validationQty" name="qty" value="" min="1" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>

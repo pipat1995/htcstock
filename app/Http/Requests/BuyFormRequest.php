@@ -25,7 +25,7 @@ class BuyFormRequest extends FormRequest
     {
         return [
             'access_id' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric|min:1',
             'ir_no' => 'required',
             'po_no' => 'required',
             'invoice_no' => 'required',

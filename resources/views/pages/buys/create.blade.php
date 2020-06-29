@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">จำนวน</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty" value="" required>
+                        <input type="number" class="form-control" id="validationQty" name="qty" value=""  required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -123,6 +123,7 @@
                         var validation = Array.prototype.filter.call(forms, function (
                             form) {
                             form.addEventListener('submit', function (event) {
+                                
                                 if (form.checkValidity() === false) {
                                     event.preventDefault();
                                     event.stopPropagation();
@@ -133,10 +134,7 @@
                     }, false);
                 })();
 
-                function checkQtyAccess(e) {
-                        console.log(e.value);
-                        // fetch()
-                    }
+
             </script>
         </div>
     </div>

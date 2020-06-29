@@ -16,4 +16,5 @@ interface TransactionsRepositoryInterface
     public function update(array $attributes,String $id): bool;
     public function makeRandomTokenKey(): String;
     public function stock(): Builder;
+    public function howMuchAccessorie(String $id);
 }

@@ -5,6 +5,7 @@ namespace App\Repository\Eloquent;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Transactions;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -65,6 +66,15 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     {
         try {
             return Transactions::select('access_id' ,DB::raw('sum(qty) as quantity'))->groupBy('access_id');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    
+    public function howMuchAccessorie(String $id)
+    {
+        try {
+            return Transactions::select('access_id' ,DB::raw('sum(qty) as quantity'))->groupBy('access_id')->where('access_id',$id)->first();
         } catch (\Throwable $th) {
             throw $th;
         }
