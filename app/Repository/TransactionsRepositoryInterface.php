@@ -17,4 +17,6 @@ interface TransactionsRepositoryInterface
     public function makeRandomTokenKey(): String;
     public function stock(): Builder;
     public function howMuchAccessorie(String $id);
+    public function getAccessoriesLeading();
+    public function getAccessoriesRequisition();
 }

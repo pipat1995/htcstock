@@ -12,9 +12,7 @@ function json(response) {
 
 
 const getAccessoriesId = id => fetch("/api/accessorie/" + id + "/checkstock").then(status).then(json)
-
-const getHistorieTakeId = id => fetch("/histories/take/" + id + "/edit").then(status).then(json)
-const getHistorieLendId = id => fetch("/histories/lend/" + id + "/edit").then(status).then(json)
+// const getAccessoriesAvailable = () => fetch("/accessorie/available").then(status).then(json)
 
 
 

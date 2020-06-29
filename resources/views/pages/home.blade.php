@@ -74,11 +74,11 @@
         <div class="card mb-3 widget-content bg-midnight-bloom">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">อุปกรณ์ ทั้งหมด</div>
+                    <div class="widget-heading">รายการยืม/คืน</div>
                     <div class="widget-subheading">Last year expenses</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>100</span></div>
+                    <div class="widget-numbers text-white"><span>#</span></div>
                 </div>
             </div>
         </div>
@@ -87,11 +87,11 @@
         <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">ยอดเบิก</div>
+                    <div class="widget-heading">รายการยังไม่คืน</div>
                     <div class="widget-subheading">Total Clients Profit</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>200</span></div>
+                    <div class="widget-numbers text-white"><span>{{$leadingTotal}}</span></div>
                 </div>
             </div>
         </div>
@@ -100,11 +100,11 @@
         <div class="card mb-3 widget-content bg-grow-early">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">ยอดยืม</div>
+                    <div class="widget-heading">รายการเบิก</div>
                     <div class="widget-subheading">People Interested</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>253</span></div>
+                    <div class="widget-numbers text-white"><span>{{$requisitionTotal}}</span></div>
                 </div>
             </div>
         </div>
