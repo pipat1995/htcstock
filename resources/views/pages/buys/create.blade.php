@@ -21,10 +21,10 @@
             </button>
             <div class="d-inline-block">
                 {{-- <a href="{{route('transactions.buy.create')}}" class="btn-shadow btn btn-info">
-                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                        <i class="fa fa-business-time fa-w-20"></i>
-                    </span>
-                    ซื้อ</a> --}}
+                <span class="btn-icon-wrapper pr-2 opacity-7">
+                    <i class="fa fa-business-time fa-w-20"></i>
+                </span>
+                ซื้อ</a> --}}
             </div>
         </div>
     </div>
@@ -40,7 +40,8 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control" onchange="checkQtyAccess(this)" required>
+                        <select name="access_id" id="validationAccess_id" class="form-control"
+                            onchange="checkQtyAccess(this)" required>
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}">{{$item->access_name}}</option>
@@ -52,17 +53,18 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">จำนวน</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty" value=""  min="1" oninput="quantity(this)" required>
+                        <input type="number" class="form-control" id="validationQty" name="qty" value="" min="1"
+                            oninput="quantity(this)" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationIrnumber">IR No.</label>
-                        <input type="text" class="form-control" id="validationIrnumber" name="ir_no" value=""
-                            placeholder="123456789" required>
+                        <label for="validationUnitCost">UnitCost</label>
+                        <input type="number" class="form-control" id="validationUnitCost" name="unit_cost" value=""
+                            required>
                         <div class="invalid-feedback">
-                            Please choose a IR No.
+                            Please provide a valid UnitCost.
                         </div>
                     </div>
                 </div>
@@ -89,6 +91,16 @@
                             placeholder="Vendor" required>
                         <div class="invalid-feedback">
                             Please provide a valid Vendor.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationIrnumber">IR No.</label>
+                        <input type="text" class="form-control" id="validationIrnumber" name="ir_no" value=""
+                            placeholder="123456789" required>
+                        <div class="invalid-feedback">
+                            Please choose a IR No.
                         </div>
                     </div>
                 </div>

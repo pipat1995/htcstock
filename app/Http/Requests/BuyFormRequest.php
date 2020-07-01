@@ -29,7 +29,8 @@ class BuyFormRequest extends FormRequest
             'ir_no' => 'required',
             'po_no' => 'required',
             'invoice_no' => 'required',
-            'vendor_id' => 'required'
+            'vendor_id' => 'required',
+            'unit_cost' => 'required'
         ];
     }
 
@@ -47,6 +48,7 @@ class BuyFormRequest extends FormRequest
             'po_no.required' => 'Please enter po',
             'invoice_no.required' => 'Please enter invoice',
             'vendor_id.required' => 'Please enter vendor',
+            'unit_cost.required' => 'Please enter Unit Cost'
         ];
     }
 }
