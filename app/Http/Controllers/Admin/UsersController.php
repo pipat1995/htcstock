@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\FormSearches\UserFormSearch;
 use App\Repository\UserRepositoryInterface;
 use App\Roles;
 use Illuminate\Http\Request;
@@ -21,11 +22,18 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $users = $this->userRepository->all()->get();
-            return \view('pages.admin.users.index', \compact('users'));
+            $users = $this->userRepository->all();
+            $formSearch = new UserFormSearch();
+            if ($request->all()) {
+                $formSearch->search = $request->search;
+                $users->where('name','like','%'.$formSearch->search.'%')
+                ->orWhere('username','like','%'.$formSearch->search.'%')
+                ->orWhere('email','like','%'.$formSearch->search.'%');
+            }
+            return \view('pages.admin.users.index',\compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
         } catch (\Throwable $th) {
             throw $th;
         }

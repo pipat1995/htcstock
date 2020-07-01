@@ -58,6 +58,7 @@ class BaseRepository implements EloquentRepositoryInterface
     {
         try {
             $model = $this->model->find($id);
+            // \dd($attributes);
             return $model->update($attributes);
         } catch (\Throwable $th) {
             throw $th;

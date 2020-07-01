@@ -85,10 +85,10 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('transactions.lendings.list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการยังไม่คืน</div>
-                    <div class="widget-subheading">Total Clients Profit</div>
+                    <div class="widget-subheading">The item is not returned yet.</div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span>{{$leadingTotal}}</span></div>
@@ -98,10 +98,10 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('transactions.requisition.list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการเบิก</div>
-                    <div class="widget-subheading">People Interested</div>
+                    <div class="widget-subheading">Withdrawal list</div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span>{{$requisitionTotal}}</span></div>
@@ -722,4 +722,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function redirext(e) {
+        window.location.href = e.id
+    }
+</script>
 @endsection

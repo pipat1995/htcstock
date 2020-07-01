@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropUserInfoTable extends Migration
+class CreateBudgetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class DropUserInfoTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('user_infos');
+        Schema::create('budgets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->double('budgets_of_month');
+            $table->string('month');
+            $table->string('year');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class DropUserInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_infos');
+        Schema::dropIfExists('budgets');
     }
 }
