@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\TransactionTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,14 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('access_id');
             $table->integer('qty');
-            $table->integer('trans_type');
+            $table->enum('trans_type', [
+                TransactionTypeEnum::BUY, 
+                TransactionTypeEnum::CANCELBUY, 
+                TransactionTypeEnum::LENDINGS, 
+                TransactionTypeEnum::CANCELLENDINGS, 
+                TransactionTypeEnum::REQUISITION, 
+                TransactionTypeEnum::CANCELREQUISITION
+                ]);
             $table->integer('trans_by');
             $table->string('trans_desc')->nullable();
             $table->string('ir_no')->nullable();

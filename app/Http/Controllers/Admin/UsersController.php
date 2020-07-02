@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
 use App\Repository\UserRepositoryInterface;
 use App\Roles;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
@@ -26,6 +26,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         try {
+            \dd(TransactionTypeEnum::class);
             $users = $this->userRepository->all();
             $formSearch = new UserFormSearch();
             if ($request->all()) {
