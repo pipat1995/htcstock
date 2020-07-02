@@ -26,7 +26,6 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         try {
-            \dd(TransactionTypeEnum::class);
             $users = $this->userRepository->all();
             $formSearch = new UserFormSearch();
             if ($request->all()) {
