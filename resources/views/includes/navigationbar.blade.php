@@ -77,7 +77,7 @@
                                     <a href="{{ route('users.me.edit',Auth::user()->id) }}" tabindex="0"
                                         class="dropdown-item">User
                                         Account</a>
-                                    @can('manage-users')
+                                    @can('for-admin-author')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0" class="dropdown-item">User
                                         Management</a>
                                     <a href="{{ route('admin.budgets.index') }}" tabindex="0" class="dropdown-item">Budget

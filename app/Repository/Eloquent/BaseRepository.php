@@ -49,12 +49,12 @@ class BaseRepository implements EloquentRepositoryInterface
         }
     }
 
-        /**
+    /**
      * @param array $attributes
      *
      * @return bool
      */
-    public function update(array $attributes,String $id): bool
+    public function update(array $attributes, String $id): bool
     {
         try {
             $model = $this->model->find($id);
@@ -64,5 +64,4 @@ class BaseRepository implements EloquentRepositoryInterface
             throw $th;
         }
     }
-
 }

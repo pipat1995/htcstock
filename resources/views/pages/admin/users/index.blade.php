@@ -25,7 +25,7 @@
                         <input type="text" class="form-control" id="search" name="search"
                             value="{{$formSearch->search}}">
                     </div>
-                    
+
                     <div class="col-md-2 mb-2">
                         <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
@@ -66,12 +66,10 @@
                         @foreach ($users as $user)
                         <tr>
                             <td>
-                                {{-- @can('edit-users') เรียกใช้จาก AuthServiceProvider --}}
-                                @can('edit-users')
                                 <a href="{{route('admin.users.edit',$user->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                @endcan
-                                @can('delete-users')
+                                {{-- @can('for-admin') เรียกใช้จาก AuthServiceProvider --}}
+                                @can('for-admin')
                                 <form action="{{route('admin.users.destroy',$user->id)}}" method="post"
                                     class="float-left">
                                     @csrf

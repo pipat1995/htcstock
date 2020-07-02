@@ -27,10 +27,10 @@ class BudgetRepository extends BaseRepository implements BudgetRepositoryInterfa
         }
     }
 
-    public function hasBudget(String $month, String $year)
+    public function hasBudget(String $month, String $year): bool
     {
         try {
-            return Budgets::where('year', $year)->where('month', $month)->get()->count();
+            return Budgets::where('year', $year)->where('month', $month)->get()->count() > 0 ? true : false;
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -72,7 +72,7 @@ class BudgetController extends Controller
         try {
 
             $budget = $this->budgetRepository->find($id);
-            $datas = $this->transactionsRepository->buyAll()->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
+            $datas = $this->transactionsRepository->transactionType(0)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
             $tempAmt = 0;
             $amountTotal = 0;
             foreach ($datas as $key => $value) {
@@ -99,7 +99,7 @@ class BudgetController extends Controller
     public function store(BudgetFormRequest $request)
     {
         try {
-            if ($this->budgetRepository->hasBudget($request->month, $request->year) > 0) {
+            if ($this->budgetRepository->hasBudget($request->month, $request->year)) {
                 $request->session()->flash('error', 'มี Budget ของเดือนนี้แล้ว!');
                 return \redirect()->route('admin.budgets.index');
             }
@@ -123,7 +123,7 @@ class BudgetController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            if (Gate::denies('manage-users')) {
+            if (Gate::denies('for-admin-author')) {
                 return \redirect()->route('logout');
             }
             $budget = $this->budgetRepository->find($id);

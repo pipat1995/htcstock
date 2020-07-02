@@ -22,7 +22,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function all(): Builder
     {
         try {
-            return User::select('id','name','username','email');
+            return User::select('id', 'name', 'username', 'email');
         } catch (\Throwable $th) {
             throw $th;
         }

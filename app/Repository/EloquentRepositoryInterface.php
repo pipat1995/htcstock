@@ -20,7 +20,7 @@ interface EloquentRepositoryInterface
      * @param $id
      * @return Model
      */
-    public function find( string $id): Model;
+    public function find(string $id): Model;
 
-    public function update(array $attributes,String $id): bool;
+    public function update(array $attributes, String $id): bool;
 }

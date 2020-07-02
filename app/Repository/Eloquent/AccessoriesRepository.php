@@ -24,7 +24,7 @@ class AccessoriesRepository extends BaseRepository implements AccessoriesReposit
     public function all(): Builder
     {
         try {
-            return Accessories::select('access_id','access_name','unit');
+            return Accessories::select('access_id', 'access_name', 'unit');
         } catch (\Throwable $th) {
             throw $th;
         }

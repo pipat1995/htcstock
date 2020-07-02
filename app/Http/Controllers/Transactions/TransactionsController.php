@@ -37,7 +37,7 @@ class TransactionsController extends Controller
     {
         try {
             $formSearch = new BuyFormSearch();
-            $transactions = $this->transactionsRepo->buyAll();
+            $transactions = $this->transactionsRepo->transactionType(0);
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 $formSearch->ir_no = $request->ir_no;
@@ -136,7 +136,7 @@ class TransactionsController extends Controller
     public function requisitionIndex(Request $request)
     {
         try {
-            $transactions = $this->transactionsRepo->requisitionAll();
+            $transactions = $this->transactionsRepo->transactionType(4);
             $formSearch = new RequisitionFormSearch();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
@@ -237,7 +237,7 @@ class TransactionsController extends Controller
     public function lendingsIndex(Request $request)
     {
         try {
-            $transactions = $this->transactionsRepo->lendingsAll();
+            $transactions = $this->transactionsRepo->transactionType(2);
             $formSearch = new LendingsFormSearch();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;

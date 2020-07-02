@@ -25,21 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-
-        Gate::define('manage-users', function ($user) {
-            // Gate::denies('edit-users') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
+        // Gate::define(string,callback) กำหนดสิทธิ์ parameter1 คือ ชื่อ parameter2 คือ function return condition 
+        // ตอนเรียกใช้ controller Gate::denies('for-admin-author')
+        Gate::define('for-admin-author', function ($user) {
             // $user->hasAnyRoles([ 'admin','author']) เฉพาะ 'admin', 'author' เท่านั้น
             return $user->hasAnyRoles([ 'admin','author']);
         });
 
-        Gate::define('edit-users', function ($user) {
-            // Gate::denies('edit-users') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
-            // $user->hasRole(['admin', 'author', 'user']) เฉพาะ 'admin', 'author', 'user' เท่านั้น
-            return $user->hasAnyRoles(['admin', 'author', 'user']);
-        });
-
-        Gate::define('delete-users', function ($user) {
-            // Gate::denies('delete-users') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
+        Gate::define('for-admin', function ($user) {
+            // Gate::denies('for-admin') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
             // $user->hasRole('admin') เฉพาะ admin เท่านั้น
             return $user->hasRole('admin');
         });

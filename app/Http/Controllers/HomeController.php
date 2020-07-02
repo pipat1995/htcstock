@@ -28,15 +28,19 @@ class HomeController extends Controller
     {
         $leading = 0;
         $requisition = 0;
-        $leadingQty = $this->transactionsRepository->getAccessoriesLeading()->first();
-        $requisitionQty = $this->transactionsRepository->getAccessoriesRequisition()->first();
-        if ($leadingQty) {
-            $leading = substr($leadingQty->quantity, 1);
-        }
-        if ($requisitionQty) {
-            $requisition = substr($requisitionQty->quantity, 1);
-        }
+        try {
+            $leadingQty = $this->transactionsRepository->getAccessoriesType(2);
+            $requisitionQty = $this->transactionsRepository->getAccessoriesType(4);
+            if ($leadingQty) {
+                $leading = \substr($leadingQty->quantity,1);
+            }
+            if ($requisitionQty) {
+                $requisition = \substr($requisitionQty->quantity,1);
+            }
 
-        return view('pages.home')->with(['leadingTotal' => $leading, 'requisitionTotal' => $requisition]);
+            return view('pages.home')->with(['leadingTotal' => $leading, 'requisitionTotal' => $requisition]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

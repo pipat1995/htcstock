@@ -20,8 +20,8 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('dasborad')->middleware('auth');
-// Directory Admin   middleware('can:manage-users') เรียกมาจาก AuthServiceProvider manage-users 'can:manage-users',
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware([ 'can:manage-users','auth', 'verified'])->group(function () {
+// Directory Admin   middleware('can:for-admin-author') เรียกมาจาก AuthServiceProvider for-admin-author 'can:for-admin-author',
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware([ 'can:for-admin-author','auth', 'verified'])->group(function () {
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
     Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'edit', 'create', 'store', 'update']]);
 });

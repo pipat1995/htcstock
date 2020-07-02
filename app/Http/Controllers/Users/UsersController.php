@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepositoryInterface;
-use App\Roles;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -66,10 +64,6 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
-            if (Gate::denies('edit-users')) {
-                return back()->withInput();
-            }
             return \view('pages.user.index')->with([
                 'user' => $this->userRepository->find($id)
             ]);

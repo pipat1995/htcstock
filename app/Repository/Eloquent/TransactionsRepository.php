@@ -28,30 +28,15 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
             throw $th;
         }
     }
-    public function buyAll(): Builder
+    public function transactionType(int $type): Builder
     {
         try {
-            return Transactions::select('id', 'access_id', 'qty', 'unit_cost', 'ir_no', 'invoice_no', 'po_no', 'trans_by', 'created_at')->whereIn('trans_type', [0])->whereNull('ref_no');
+            return Transactions::whereIn('trans_type', [$type])->whereNull('ref_no');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    public function requisitionAll(): Builder
-    {
-        try {
-            return Transactions::select('id', 'access_id', 'qty', 'unit_cost', 'ir_no', 'po_no', 'trans_by', 'created_at')->whereIn('trans_type', [4])->whereNull('ref_no');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-    public function lendingsAll(): Builder
-    {
-        try {
-            return Transactions::select('id', 'access_id', 'qty', 'unit_cost', 'ir_no', 'po_no', 'trans_by', 'created_at')->whereIn('trans_type', [2])->whereNull('ref_no');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
+
     public function makeRandomTokenKey(): String
     {
         try {
@@ -79,19 +64,10 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
         }
     }
 
-    public function getAccessoriesLeading()
+    public function getAccessoriesType(int $type)
     {
         try {
-            return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->whereIn('trans_type', [2]);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    public function getAccessoriesRequisition()
-    {
-        try {
-            return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->whereIn('trans_type', [4]);
+            return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->whereIn('trans_type', [$type])->first();
         } catch (\Throwable $th) {
             throw $th;
         }

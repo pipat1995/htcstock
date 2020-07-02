@@ -7,6 +7,7 @@ use App\Http\FormSearches\UserFormSearch;
 use App\Repository\UserRepositoryInterface;
 use App\Roles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
@@ -48,8 +49,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            // ตรวจสอบ Role Gate::denies('edit-users') จาก AuthServiceProvider
-            if (Gate::denies('edit-users')) {
+            if (Gate::denies('for-admin-author')) {
                 return \redirect()->route('pages.admin.users.index');
             }
             return \view('pages.admin.users.edit')->with([
@@ -95,8 +95,10 @@ class UsersController extends Controller
     public function destroy($id)
     {
         try {
-            // ตรวจสอบ Role Gate::denies('delete-users') จาก AuthServiceProvider
-            if (Gate::denies('delete-users')) {
+            // denies คือ !=
+            // allows คือ ==
+            // ตรวจสอบ Role Gate::denies('for-admin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
+            if (Gate::denies('for-admin')) {
                 return \redirect()->route('pages.admin.users.index');
             }
             $result = $this->userRepository->delete($id);

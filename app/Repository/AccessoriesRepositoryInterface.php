@@ -13,6 +13,6 @@ interface AccessoriesRepositoryInterface
     public function find(String $id): Model;
 
     public function store(Request $request): Model;
-    public function update(array $attributes,String $id): bool;
+    public function update(array $attributes, String $id): bool;
     public function delete(String $id);
 }

@@ -12,5 +12,5 @@ interface BudgetRepositoryInterface
     public function find(String $id): Model;
 
     public function update(array $attributes, String $id): bool;
-    public function hasBudget(String $month,String $year);
+    public function hasBudget(String $month, String $year): bool;
 }

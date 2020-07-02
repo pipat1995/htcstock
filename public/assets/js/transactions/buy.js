@@ -28,3 +28,17 @@ function quantity(e) {
         $(':button[type="submit"]').prop('disabled', true)
     }
 }
+
+function checkQtyAccess(e) {
+    getAccessoriesId(e.value).then(res => {
+        if (res.qty > 0) {
+            maxQty = res.qty
+            document.getElementById('validationQty').value = maxQty
+            $(':button[type="submit"]').prop('disabled', false)
+        } else {
+            document.getElementById('validationQty').value = null
+            $(':button[type="submit"]').prop('disabled', true)
+        }
+        document.getElementById('validationQty').max = maxQty
+    })
+}
