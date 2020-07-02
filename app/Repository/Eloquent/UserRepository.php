@@ -28,7 +28,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         }
     }
 
-    public function delete($id)
+    public function delete($id): bool
     {
         try {
             $user = User::find($id);

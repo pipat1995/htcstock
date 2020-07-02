@@ -13,5 +13,5 @@ interface UserRepositoryInterface
 
     public function update(array $attributes, String $id): bool;
 
-    public function delete(String $id);
+    public function delete(String $id): bool;
 }

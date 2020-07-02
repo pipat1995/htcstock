@@ -92,23 +92,21 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         try {
             // denies คือ !=
             // allows คือ ==
             // ตรวจสอบ Role Gate::denies('for-admin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
             if (Gate::denies('for-admin')) {
-                return \redirect()->route('pages.admin.users.index');
+                return \redirect()->route('admin.users.index');
             }
-            $result = $this->userRepository->delete($id);
-            $request = new Request();
-            if ($result->exists) {
+            if ($this->userRepository->delete($id)) {
                 $request->session()->flash('success', ' has been delete');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \redirect()->route('pages.admin.users.index');
+            return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
             throw $th;
         }
