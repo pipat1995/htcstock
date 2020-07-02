@@ -31,35 +31,35 @@ class UsersTableSeeder extends Seeder
             'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
         ]);
 
-        $author = User::create([
-            'name' => 'Author Pipat',
-            'username' => 'pipat',
-            'email' => 'tao.pipat1995@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make(12345678),
-            'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
-        ]);
+        // $author = User::create([
+        //     'name' => 'Author Pipat',
+        //     'username' => 'pipat',
+        //     'email' => 'tao.pipat1995@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make(12345678),
+        //     'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
+        // ]);
 
-        $user = User::create([
-            'name' => 'User Pipat',
-            'username' => 'test',
-            'email' => 'test@haier.co.th',
-            'email_verified_at' => now(),
-            'password' => Hash::make(12345678),
-            'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
-        ]);
+        // $user = User::create([
+        //     'name' => 'User Pipat',
+        //     'username' => 'test',
+        //     'email' => 'test@haier.co.th',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make(12345678),
+        //     'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
+        // ]);
         $admin->roles()->attach($adminRole);
-        $author->roles()->attach($authorRole);
-        $user->roles()->attach($userRole);
+        // $author->roles()->attach($authorRole);
+        // $user->roles()->attach($userRole);
 
-        $response = Http::get(ENV('USERS_INFO'));
-        foreach ($response->json() as $key => $value) {
-            User::create([
-                'name' => $value['name'],
-                'username' => $value['id'],
-                'email' => $value['email'],
-                'password' => Hash::make(12345678),
-            ]);
-        }
+        // $response = Http::get(ENV('USERS_INFO'));
+        // foreach ($response->json() as $key => $value) {
+        //     User::create([
+        //         'name' => $value['name'],
+        //         'username' => $value['id'],
+        //         'email' => $value['email'],
+        //         'password' => Hash::make(12345678),
+        //     ]);
+        // }
     }
 }
