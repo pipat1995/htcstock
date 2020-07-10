@@ -19,12 +19,12 @@ class CreateTransactionsTable extends Migration
             $table->integer('access_id');
             $table->integer('qty');
             $table->enum('trans_type', [
-                TransactionTypeEnum::BUY, 
-                TransactionTypeEnum::CANCELBUY, 
-                TransactionTypeEnum::LENDINGS, 
-                TransactionTypeEnum::CANCELLENDINGS, 
-                TransactionTypeEnum::REQUISITION, 
-                TransactionTypeEnum::CANCELREQUISITION
+                TransactionTypeEnum::B, 
+                TransactionTypeEnum::CB, 
+                TransactionTypeEnum::L, 
+                TransactionTypeEnum::CL, 
+                TransactionTypeEnum::R, 
+                TransactionTypeEnum::CR
                 ]);
             $table->integer('trans_by');
             $table->string('trans_desc')->nullable();

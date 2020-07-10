@@ -37,7 +37,7 @@ class TransactionsController extends Controller
     {
         try {
             $formSearch = new BuyFormSearch();
-            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::BUY);
+            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::B);
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 $formSearch->ir_no = $request->ir_no;
@@ -84,7 +84,7 @@ class TransactionsController extends Controller
     public function buyStore(BuyFormRequest $request)
     {
         try {
-            if (!$this->transactionsRepo->create(array_merge($request->all(), ['trans_type' => TransactionTypeEnum::BUY, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]))) {
+            if (!$this->transactionsRepo->create(array_merge($request->all(), ['trans_type' => TransactionTypeEnum::B, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]))) {
                 $request->session()->flash('error', 'error create!');
             } else {
                 $request->session()->flash('success',  ' has been create');
@@ -118,7 +118,7 @@ class TransactionsController extends Controller
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
-                    $transaction->trans_type = TransactionTypeEnum::CANCELBUY;
+                    $transaction->trans_type = TransactionTypeEnum::CB;
                     $transaction->qty = '-' . $transaction->qty;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
                         $request->session()->flash('error', 'error update!');
@@ -136,7 +136,7 @@ class TransactionsController extends Controller
     public function requisitionIndex(Request $request)
     {
         try {
-            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::REQUISITION);
+            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::R);
             $formSearch = new RequisitionFormSearch();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
@@ -178,7 +178,7 @@ class TransactionsController extends Controller
     {
         try {
             // qty - 
-            $input = array_merge($request->all(), ['trans_type' => TransactionTypeEnum::REQUISITION, 'created_by' => Auth::user()->id]);
+            $input = array_merge($request->all(), ['trans_type' => TransactionTypeEnum::R, 'created_by' => Auth::user()->id]);
             $input['qty'] = '-' . $request->qty;
             if (!$this->transactionsRepo->create($input)) {
                 $request->session()->flash('error', 'error create!');
@@ -218,7 +218,7 @@ class TransactionsController extends Controller
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
-                    $transaction->trans_type = TransactionTypeEnum::CANCELREQUISITION;
+                    $transaction->trans_type = TransactionTypeEnum::CR;
                     $transaction->qty = substr($transaction->qty, 1);
                     $transaction->created_by = Auth::user()->id;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
@@ -237,7 +237,7 @@ class TransactionsController extends Controller
     public function lendingsIndex(Request $request)
     {
         try {
-            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::LENDINGS);
+            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::L);
             $formSearch = new LendingsFormSearch();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
@@ -279,7 +279,7 @@ class TransactionsController extends Controller
     {
         try {
             // qty - 
-            $input = array_merge($request->all(), ['trans_type' => TransactionTypeEnum::LENDINGS, 'created_by' => Auth::user()->id]);
+            $input = array_merge($request->all(), ['trans_type' => TransactionTypeEnum::L, 'created_by' => Auth::user()->id]);
             $input['qty'] = '-' . $request->qty;
             if (!$this->transactionsRepo->create($input)) {
                 $request->session()->flash('error', 'error create!');
@@ -320,7 +320,7 @@ class TransactionsController extends Controller
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
-                    $transaction->trans_type = TransactionTypeEnum::CANCELLENDINGS;
+                    $transaction->trans_type = TransactionTypeEnum::CL;
                     $transaction->qty = substr($transaction->qty, 1);
                     $transaction->created_by = Auth::user()->id;
                     if (!$this->transactionsRepo->create($transaction->attributesToArray())) {

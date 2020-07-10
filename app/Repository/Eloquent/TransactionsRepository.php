@@ -28,7 +28,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
             throw $th;
         }
     }
-    public function transactionType(int $type): Builder
+    public function transactionType(String $type): Builder
     {
         try {
             return Transactions::whereIn('trans_type', [$type])->whereNull('ref_no');
@@ -64,7 +64,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
         }
     }
 
-    public function getAccessoriesType(int $type)
+    public function getAccessoriesType(String $type)
     {
         try {
             return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->whereIn('trans_type', [$type])->first();
