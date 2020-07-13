@@ -80,8 +80,12 @@
                                     @can('for-admin-author')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0" class="dropdown-item">User
                                         Management</a>
-                                    <a href="{{ route('admin.budgets.index') }}" tabindex="0" class="dropdown-item">Budget
+                                    <a href="{{ route('admin.budgets.index') }}" tabindex="0"
+                                        class="dropdown-item">Budget
                                         Management</a>
+                                    <a href="{{ route('admin.users.fetchdatas') }}" tabindex="0"
+                                        class="dropdown-item">Update
+                                        data users</a>
                                     @endcan
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>

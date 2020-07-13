@@ -5,7 +5,7 @@ namespace App\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-interface UserRepositoryInterface
+interface RolesRepositoryInterface
 {
     public function all(): Builder;
 
@@ -14,6 +14,6 @@ interface UserRepositoryInterface
     public function update(array $attributes, String $id): bool;
 
     public function delete(String $id): bool;
-    
-    public function create(array $attributes ): Model;
+
+    public function create(array $attributes): Model;
 }

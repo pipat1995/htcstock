@@ -6,8 +6,10 @@ use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\BudgetRepositoryInterface;
 use App\Repository\Eloquent\AccessoriesRepository;
 use App\Repository\Eloquent\BudgetRepository;
+use App\Repository\Eloquent\RolesRepository;
 use App\Repository\Eloquent\TransactionsRepository;
 use App\Repository\Eloquent\UserRepository;
+use App\Repository\RolesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -35,5 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TransactionsRepositoryInterface::class,TransactionsRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(BudgetRepositoryInterface::class,BudgetRepository::class);
+        $this->app->bind(RolesRepositoryInterface::class,RolesRepository::class);
     }
 }

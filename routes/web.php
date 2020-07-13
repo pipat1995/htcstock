@@ -21,8 +21,9 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('dasborad')->middleware('auth');
 // Directory Admin   middleware('can:for-admin-author') เรียกมาจาก AuthServiceProvider for-admin-author 'can:for-admin-author',
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware([ 'can:for-admin-author','auth', 'verified'])->group(function () {
-    Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['can:for-admin-author', 'auth', 'verified'])->group(function () {
+    Route::resource('/users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit','updateusers']]);
+    Route::get('/users/fetchdatas','UsersController@fetchdatas')->name('users.fetchdatas');
     Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'edit', 'create', 'store', 'update']]);
 });
 

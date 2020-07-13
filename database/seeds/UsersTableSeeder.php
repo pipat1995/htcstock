@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
 
         $adminRole = Roles::where('name', 'admin')->first();
         $authorRole = Roles::where('name', 'author')->first();
-        $userRole = Roles::where('name', 'user ')->first();
+        $userRole = Roles::where('name', 'user')->first();
         $admin = User::create([
             'name' => 'Admin Pipat',
             'username' => '70037539',
@@ -49,17 +49,18 @@ class UsersTableSeeder extends Seeder
         //     'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
         // ]);
         $admin->roles()->attach($adminRole);
-        // $author->roles()->attach($authorRole);
-        // $user->roles()->attach($userRole);
+        $admin->roles()->attach($authorRole);
+        $admin->roles()->attach($userRole);
 
-        // $response = Http::get(ENV('USERS_INFO'));
-        // foreach ($response->json() as $key => $value) {
-        //     User::create([
-        //         'name' => $value['name'],
-        //         'username' => $value['id'],
-        //         'email' => $value['email'],
-        //         'password' => Hash::make(12345678),
-        //     ]);
-        // }
+        $response = Http::get(ENV('USERS_INFO'));
+        foreach ($response->json() as $key => $value) {
+            $user = User::create([
+                'name' => $value['name'],
+                'username' => $value['id'],
+                'email' => $value['email'],
+                'password' => Hash::make(12345678),
+            ]);
+            $user->roles()->attach($userRole);
+        }
     }
 }

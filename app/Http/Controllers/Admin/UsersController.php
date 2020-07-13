@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
+use App\Repository\RolesRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
-use App\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class UsersController extends Controller
 {
     private $userRepository;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface)
+    private $rolesRepository;
+    public function __construct(UserRepositoryInterface $userRepositoryInterface, RolesRepositoryInterface $rolesRepositoryInterface)
     {
         $this->userRepository = $userRepositoryInterface;
+        $this->rolesRepository = $rolesRepositoryInterface;
     }
 
     /**
@@ -30,11 +33,11 @@ class UsersController extends Controller
             $formSearch = new UserFormSearch();
             if ($request->all()) {
                 $formSearch->search = $request->search;
-                $users->where('name','like','%'.$formSearch->search.'%')
-                ->orWhere('username','like','%'.$formSearch->search.'%')
-                ->orWhere('email','like','%'.$formSearch->search.'%');
+                $users->where('name', 'like', '%' . $formSearch->search . '%')
+                    ->orWhere('username', 'like', '%' . $formSearch->search . '%')
+                    ->orWhere('email', 'like', '%' . $formSearch->search . '%');
             }
-            return \view('pages.admin.users.index',\compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
+            return \view('pages.admin.users.index', \compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -54,7 +57,7 @@ class UsersController extends Controller
             }
             return \view('pages.admin.users.edit')->with([
                 'user' => $this->userRepository->find($id),
-                'roles' => Roles::all()
+                'roles' => $this->rolesRepository->all()->get()
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -92,7 +95,7 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         try {
             // denies คือ !=
@@ -107,6 +110,43 @@ class UsersController extends Controller
                 $request->session()->flash('error', 'error flash message!');
             }
             return \redirect()->route('admin.users.index');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function fetchdatas(Request $request)
+    {
+        try {
+            if (Gate::denies('for-admin')) {
+                return back();
+            }
+            $username = [];
+            $users = $this->userRepository->all()->get();
+            foreach ($users as $key => $value) {
+                \array_push($username, $value->username);
+            }
+            $results = Http::get(ENV('USERS_UPDATE'), ['usernames' => $username])->json();
+            if (count($results) <= 0) {
+                $request->session()->flash('success', 'has been update user');
+                return back();
+            }
+            $role = $this->rolesRepository->all()->where('name', 'user')->first();
+            foreach ($results as $key => $value) {
+                $user = $this->userRepository->create([
+                    'name' => $value['name'],
+                    'username' => $value['username'],
+                    'email' => $value['email'],
+                    'password' => Hash::make(\substr($value['email'], 0, 1) . $value['username'])
+                ]);
+                if (!$user) {
+                    $request->session()->flash('error', 'error update username' . $value['username']);
+                    return back();
+                }
+                $user->roles()->attach($role);
+            }
+            $request->session()->flash('success', 'has been update user');
+            return back();
         } catch (\Throwable $th) {
             throw $th;
         }
