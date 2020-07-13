@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
                 'name' => $value['name'],
                 'username' => $value['username'],
                 'email' => $value['email'],
-                'password' => Hash::make(12345678),
+                'password' => Hash::make(strtolower(substr($value['email'], 0, 1)) . $value['username']),
             ]);
             $user->roles()->attach($userRole);
         }
