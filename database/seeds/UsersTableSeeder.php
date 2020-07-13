@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
         foreach ($response->json() as $key => $value) {
             $user = User::create([
                 'name' => $value['name'],
-                'username' => $value['id'],
+                'username' => $value['username'],
                 'email' => $value['email'],
                 'password' => Hash::make(12345678),
             ]);
