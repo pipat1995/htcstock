@@ -1,73 +1,40 @@
 @extends('layouts.blank')
 
 @section('content_blank')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
+<form class="form-signin" method="POST" action="{{ route('login') }}">
+    @csrf
+    <img class="mb-4" src="{{asset('assets/images/newhaier.png')}}" alt="LOGO">
+    <h1 class="h3 mb-3 font-weight-normal">{{ __('เข้าสู่ระบบ') }}</h1>
+    <label for="inputEmail" class="sr-only">{{ __('รหัสพนักงาน') }}</label>
+    <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username"
+        value="{{ old('username') }}" placeholder="{{ __('รหัสพนักงาน') }}" required autocomplete="username" autofocus>
+    @error('username')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <label for="inputPassword" class="sr-only">{{ __('รหัสผ่าน') }}</label>
+    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+        placeholder="{{ __('รหัสผ่าน') }}" required autocomplete="current-password">
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('รหัสพนักงาน') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('จดจำฉัน') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('เข้าสู่ระบบ') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('ลืมรหัสผ่านหรือไม่?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    @error('password')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            {{ __('จดจำฉัน') }}
+        </label>
     </div>
-</div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('เข้าสู่ระบบ') }}</button>
+    @if (Route::has('password.request'))
+    <a class="btn btn-link" href="{{ route('password.request') }}">
+        {{ __('ลืมรหัสผ่านหรือไม่?') }}
+    </a>
+    @endif
+    {{-- <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p> --}}
+</form>
 @endsection
