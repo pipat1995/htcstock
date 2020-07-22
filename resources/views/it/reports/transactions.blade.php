@@ -98,6 +98,7 @@
                         <tr>
                             <th>#</th>
                             <th>อุปกรณ์</th>
+                            <th>สถานะ</th>
                             <th>จำนวน</th>
                             <th>วันที่</th>
                             <th>สร้างโดย</th>
@@ -108,6 +109,7 @@
                         <tr>
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->accessorie->access_name}}</td>
+                            <td>{{$item->trans_type}}</td>
                             <td>{{$item->qty}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->transactionCreated->name}}</td>

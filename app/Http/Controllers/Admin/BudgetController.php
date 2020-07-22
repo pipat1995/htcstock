@@ -36,7 +36,7 @@ class BudgetController extends Controller
                 }
             }
             $budgets->orderBy('created_at', 'desc');
-            return \view('pages.admin.budgets.index', \compact('formSearch'))->with(
+            return \view('it.admin.budgets.index', \compact('formSearch'))->with(
                 [
                     'budgets' => $budgets->paginate(10)->appends((array) $formSearch),
                     'months' => \config('app.Months'),
@@ -56,7 +56,7 @@ class BudgetController extends Controller
     public function create()
     {
         try {
-            return \view('pages.admin.budgets.create')->with(['months' => \config('app.Months'), 'earliest_year' => 2019]);
+            return \view('it.admin.budgets.create')->with(['months' => \config('app.Months'), 'earliest_year' => 2019]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -80,7 +80,7 @@ class BudgetController extends Controller
                 $amountTotal += $value->amount;
                 $value->amt = $tempAmt += $value->amount;
             }
-            return \view('pages.admin.budgets.edit')->with([
+            return \view('it.admin.budgets.edit')->with([
                 'budget' => $budget,
                 'transactions' => $datas,
                 'amountTotal' => $amountTotal,

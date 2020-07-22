@@ -48,7 +48,7 @@ class ReportController extends Controller
                 }
             }
             $transactions->orderBy('created_at', 'desc');
-            return \view('pages.reports.transactions', \compact('formSearch'))->with([
+            return \view('it.reports.transactions', \compact('formSearch'))->with([
                 'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
                 'accessories' => $this->accessories
             ]);
@@ -69,7 +69,7 @@ class ReportController extends Controller
                 }
             }
             $transactions->orderBy('quantity', 'desc');
-            return \view('pages.reports.stocks', \compact('formSearch'))->with([
+            return \view('it.reports.stocks', \compact('formSearch'))->with([
                 'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
                 'accessories' => $this->accessories
             ]);

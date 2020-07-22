@@ -37,7 +37,7 @@ class UsersController extends Controller
                     ->orWhere('username', 'like', '%' . $formSearch->search . '%')
                     ->orWhere('email', 'like', '%' . $formSearch->search . '%');
             }
-            return \view('pages.admin.users.index', \compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
+            return \view('it.admin.users.index', \compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -55,7 +55,7 @@ class UsersController extends Controller
             if (Gate::denies('for-admin-author')) {
                 return \redirect()->route('pages.admin.users.index');
             }
-            return \view('pages.admin.users.edit')->with([
+            return \view('it.admin.users.edit')->with([
                 'user' => $this->userRepository->find($id),
                 'roles' => $this->rolesRepository->all()->get()
             ]);

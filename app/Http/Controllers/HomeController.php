@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\TransactionTypeEnum;
 use App\Repository\TransactionsRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,8 +28,8 @@ class HomeController extends Controller
         $leading = 0;
         $requisition = 0;
         try {
-            $leadingQty = $this->transactionsRepository->getAccessoriesType(2);
-            $requisitionQty = $this->transactionsRepository->getAccessoriesType(4);
+            $leadingQty = $this->transactionsRepository->getAccessoriesType(TransactionTypeEnum::L);
+            $requisitionQty = $this->transactionsRepository->getAccessoriesType(TransactionTypeEnum::R);
             if ($leadingQty) {
                 $leading = \substr($leadingQty->quantity,1);
             }
@@ -38,7 +37,7 @@ class HomeController extends Controller
                 $requisition = \substr($requisitionQty->quantity,1);
             }
 
-            return view('pages.home')->with(['leadingTotal' => $leading, 'requisitionTotal' => $requisition]);
+            return view('it.home')->with(['leadingTotal' => $leading, 'requisitionTotal' => $requisition]);
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('welcome');
 });
 Auth::routes(['verify' => true]);
 
@@ -55,4 +55,11 @@ Route::namespace('Reports')->prefix('reports')->name('reports.')->middleware(['a
 
 Route::namespace('Users')->prefix('users')->name('users.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('/me', 'UsersController', ['only' => ['edit', 'update']]);
+});
+
+
+// Account
+Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/home', 'HomeController@index')->name('home');
 });

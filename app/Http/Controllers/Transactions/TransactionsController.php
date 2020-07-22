@@ -68,7 +68,7 @@ class TransactionsController extends Controller
             }
             $accessories = $this->accessoriesRepo->all()->get();
             $datas = $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch);
-            return \view('pages.buys.list', \compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
+            return \view('it.buys.list', \compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -76,7 +76,7 @@ class TransactionsController extends Controller
     public function buyCreate()
     {
         try {
-            return \view('pages.buys.create')->with('accessories', $this->accessoriesRepo->all()->get());
+            return \view('it.buys.create')->with('accessories', $this->accessoriesRepo->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -99,7 +99,7 @@ class TransactionsController extends Controller
         try {
             $accessories = $this->accessoriesRepo->all()->get();
             $transaction = $this->transactionsRepo->find($id);
-            return \view('pages.buys.edit')->with('transaction', $transaction)->with('accessories', $accessories);
+            return \view('it.buys.edit')->with('transaction', $transaction)->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -165,7 +165,7 @@ class TransactionsController extends Controller
                 }
             }
             $accessories = $this->accessoriesRepo->all()->get();
-            return \view('pages.requisition.list',\compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
+            return \view('it.requisition.list',\compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -174,7 +174,7 @@ class TransactionsController extends Controller
     public function requisitionCreate()
     {
         try {
-            return \view('pages.requisition.create')->with('accessories', $this->accessoriesRepo->all()->get())->with('users', $this->userRepository->all()->get());
+            return \view('it.requisition.create')->with('accessories', $this->accessoriesRepo->all()->get())->with('users', $this->userRepository->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -202,7 +202,7 @@ class TransactionsController extends Controller
             $accessories = $this->accessoriesRepo->all()->get();
             $transaction = $this->transactionsRepo->find($id);
             $users = $this->userRepository->all()->get();
-            return \view('pages.requisition.edit')->with('transaction', $transaction)->with('accessories', $accessories)->with('users', $users);
+            return \view('it.requisition.edit')->with('transaction', $transaction)->with('accessories', $accessories)->with('users', $users);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -266,7 +266,7 @@ class TransactionsController extends Controller
                 }
             }
             $accessories = $this->accessoriesRepo->all()->get();
-            return \view('pages.lendings.list',\compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
+            return \view('it.lendings.list',\compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -275,7 +275,7 @@ class TransactionsController extends Controller
     public function lendingsCreate()
     {
         try {
-            return \view('pages.lendings.create')->with('accessories', $this->accessoriesRepo->all()->get())->with('users', $this->userRepository->all()->get());
+            return \view('it.lendings.create')->with('accessories', $this->accessoriesRepo->all()->get())->with('users', $this->userRepository->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -303,7 +303,7 @@ class TransactionsController extends Controller
             $accessories = $this->accessoriesRepo->all()->get();
             $transaction = $this->transactionsRepo->find($id);
             $users = $this->userRepository->all()->get();
-            return \view('pages.lendings.edit')->with('transaction', $transaction)->with('accessories', $accessories)->with('users', $users);
+            return \view('it.lendings.edit')->with('transaction', $transaction)->with('accessories', $accessories)->with('users', $users);
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Accounts;
 
 use App\Http\Controllers\Controller;
-use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class HomeController extends Controller
 {
-    private $userRepository;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface)
-    {
-        $this->userRepository = $userRepositoryInterface;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        return \view('account.home');
     }
 
     /**
@@ -63,13 +57,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        try {
-            return \view('it.user.index')->with([
-                'user' => $this->userRepository->find($id)
-            ]);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        //
     }
 
     /**
@@ -81,19 +69,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $user = $this->userRepository->find($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            if ($this->userRepository->update($user->attributesToArray(), $id)) {
-                $request->session()->flash('success', $user->name . ' user has been update');
-            } else {
-                $request->session()->flash('error', 'error flash message!');
-            }
-            return \redirect()->route('admin.users.index');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        //
     }
 
     /**
