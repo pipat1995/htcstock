@@ -51,7 +51,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">จำนวน</label>
                         <input type="number" class="form-control" id="validationQty" name="qty"
-                            value="{{$transaction->qty}}" required>
+                            value="{{substr($transaction->qty, 1)}}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>

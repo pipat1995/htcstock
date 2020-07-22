@@ -62,11 +62,11 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationIrnumber">IR No.</label>
-                        <input type="text" class="form-control" id="validationIrnumber" name="ir_no"
-                            value="{{$transaction->ir_no}}" placeholder="123456789">
+                        <label for="validationUnitCost">UnitCost</label>
+                        <input type="number" class="form-control" id="validationUnitCost" name="unit_cost" value="{{$transaction->unit_cost}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please choose a IR No.
+                            Please provide a valid UnitCost.
                         </div>
                     </div>
                 </div>
@@ -97,9 +97,20 @@
                     </div>
                 </div>
                 <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationIrnumber">IR No.</label>
+                        <input type="text" class="form-control" id="validationIrnumber" name="ir_no"
+                            value="{{$transaction->ir_no}}" placeholder="123456789">
+                        <div class="invalid-feedback">
+                            Please choose a IR No.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="trans_desc">Description</label>
-                        <textarea name="trans_desc" id="trans_desc" class="form-control" rows="3">{{$transaction->trans_desc}}</textarea>
+                        <textarea name="trans_desc" id="trans_desc" class="form-control"
+                            rows="3">{{$transaction->trans_desc}}</textarea>
                     </div>
                 </div>
                 <div class="form-group">

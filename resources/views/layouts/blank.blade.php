@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>STOCK IT</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sarabun:200,600" rel="stylesheet">

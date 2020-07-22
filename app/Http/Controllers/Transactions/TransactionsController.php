@@ -110,9 +110,15 @@ class TransactionsController extends Controller
             if (!is_null($request->ref_no)) {
                 $token = $this->transactionsRepo->makeRandomTokenKey();
                 $transaction = $this->transactionsRepo->find($id);
+                // ตรวจสอบ stock ว่าเหลือเท่าตอนซื้อ
+                if ($this->transactionsRepo->howMuchAccessorie($transaction->access_id)->quantity < $transaction->qty) {
+                    $request->session()->flash('error', 'มีของในคลังไม่พอให้ยกเลิก!');
+                    return \back();
+                }
+                // ตรวจสอบ Ref_no
                 if ($transaction->ref_no) {
                     $request->session()->flash('error', 'รายการเคยยกเลิกแล้ว!');
-                    return \redirect()->route('transactions.buy.list');
+                    return \back();
                 }
                 $transaction->ref_no = $token;
                 if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
@@ -312,7 +318,7 @@ class TransactionsController extends Controller
 
                 if ($transaction->ref_no) {
                     $request->session()->flash('error', 'รายการคืนแล้ว!');
-                    return \redirect()->route('transactions.requisition.list');
+                    return \back();
                 }
                 $transaction->ref_no = $token;
 
