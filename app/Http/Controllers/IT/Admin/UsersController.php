@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\IT\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;

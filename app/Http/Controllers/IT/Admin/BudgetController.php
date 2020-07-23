@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\IT\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BudgetFormSearch;
@@ -36,6 +36,7 @@ class BudgetController extends Controller
                 }
             }
             $budgets->orderBy('created_at', 'desc');
+            // \dd($budgets->get());
             return \view('it.admin.budgets.index', \compact('formSearch'))->with(
                 [
                     'budgets' => $budgets->paginate(10)->appends((array) $formSearch),

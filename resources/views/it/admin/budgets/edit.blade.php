@@ -91,35 +91,35 @@
                             <td>{{$item->accessorie->access_name}}</td>
                             <td>{{$item->accessorie->unit}}</td>
                             <td>{{$item->qty}}</td>
-                            <td>@moneyTH($item->unit_cost)</td>
-                            <td>@moneyTH($item->amount)</td>
-                            <td>@moneyTH($item->amt)</td>
+                            <td>{{convertToTHB($item->unit_cost)}}</td>
+                            <td>{{convertToTHB($item->amount)}}</td>
+                            <td>{{convertToTHB($item->amt)}}</td>
                         </tr>
                         @endforeach
                         <tr>
                             <td colspan="7"></td>
-                            <td>@moneyTH($amountTotal)</td>
+                            <td>{{convertToTHB($amountTotal)}}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Remain Budget</td>
-                            <td>@moneyTH($remainBudget)</td>
+                            <td>{{convertToTHB($remainBudget)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Grand total budget</td>
-                            <td>@moneyTH($budget->budgets_of_month)</td>
+                            <td>{{convertToTHB($budget->budgets_of_month)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Total used budge</td>
-                            <td>@moneyTH($amountTotal)</td>
+                            <td>{{convertToTHB($amountTotal)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Total remain budget</td>
-                            <td>@moneyTH($remainBudget)</td>
+                            <td>{{convertToTHB($remainBudget)}}</td>
                         </tr>
                     </tbody>
                 </table>

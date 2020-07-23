@@ -66,7 +66,7 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->route('dasborad');
+            return \redirect()->route('welcome');
         }
     }
 }

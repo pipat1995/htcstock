@@ -1,6 +1,8 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-        <a href="{{ url('/') }}"><div class="logo-src"></div></a>
+        <a href="{{ url('/') }}">
+            <div class="logo-src"></div>
+        </a>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -32,7 +34,7 @@
     </div>
     <div class="app-header__content">
         <div class="app-header-left">
-            {{-- <div class="search-wrapper">
+            <div class="search-wrapper">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="Type to search">
                     <button class="search-icon"><span></span></button>
@@ -58,7 +60,7 @@
                         Settings
                     </a>
                 </li>
-            </ul> --}}
+            </ul>
         </div>
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">
@@ -74,18 +76,15 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('users.me.edit',Auth::user()->id) }}" tabindex="0"
-                                        class="dropdown-item">User
-                                        Account</a>
+                                    <a href="{{ route('it.me.edit',Auth::user()->id) }}" tabindex="0"
+                                        class="dropdown-item">โปรไฟล์</a>
                                     @can('for-admin-author')
-                                    <a href="{{ route('admin.users.index') }}" tabindex="0" class="dropdown-item">User
-                                        Management</a>
+                                    <a href="{{ route('admin.users.index') }}" tabindex="0"
+                                        class="dropdown-item">การจัดการผู้ใช้</a>
                                     <a href="{{ route('admin.budgets.index') }}" tabindex="0"
-                                        class="dropdown-item">Budget
-                                        Management</a>
+                                        class="dropdown-item">การจัดการงบประมาณ</a>
                                     <a href="{{ route('admin.users.fetchdatas') }}" tabindex="0"
-                                        class="dropdown-item">Update
-                                        data users</a>
+                                        class="dropdown-item">อัปเดตข้อมูลผู้ใช้</a>
                                     @endcan
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
@@ -94,7 +93,7 @@
 
                                     <button type="button" href="{{ route('logout') }}" tabindex="0"
                                         class="dropdown-item" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Logout</button>
+                                            document.getElementById('logout-form').submit();">ออกจากระบบ</button>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf

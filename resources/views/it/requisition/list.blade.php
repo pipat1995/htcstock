@@ -20,7 +20,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="{{route('transactions.requisition.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('it.accessories.requisition_create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -33,7 +33,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <form action="{{route('transactions.requisition.list')}}" method="GET">
+                <form action="{{route('it.accessories.requisition_list')}}" method="GET">
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationAccess_id" class="">อุปกรณ์</label>
@@ -113,7 +113,7 @@
                                 <td>{{$item->qty}}</td>
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->created_at}}</td>
-                                <td><a href="{{route('transactions.requisition.edit',$item->id)}}"><button type="button"
+                                <td><a href="{{route('it.accessories.requisition_edit',$item->id)}}"><button type="button"
                                             class="btn btn-primary btn-sm float-left">ข้อมูล</button></a></td>
                             </tr>
                             @endforeach

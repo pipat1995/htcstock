@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use DateTime;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -27,10 +26,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        Blade::directive('moneyTH', function ($amount) {
-            // setlocale(LC_MONETARY, 'th_TH');
-            return "<?php echo '฿' . number_format($amount, 2); ?>";
-        });
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Transactions;
+namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;

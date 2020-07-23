@@ -85,7 +85,7 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('transactions.lendings.list')}}" onclick="redirext(this)">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.accessories.lendings_list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการยังไม่คืน</div>
                     <div class="widget-subheading">The item is not returned yet.</div>
@@ -98,7 +98,7 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('transactions.requisition.list')}}" onclick="redirext(this)">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.accessories.requisition_list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการเบิก</div>
                     <div class="widget-subheading">Withdrawal list</div>
@@ -123,7 +123,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-12 col-lg-6">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
@@ -414,7 +414,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="row">
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content">

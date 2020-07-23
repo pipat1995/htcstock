@@ -16,50 +16,47 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 Auth::routes(['verify' => true]);
+// IT
 
-Route::get('/home', 'HomeController@index')->name('dasborad')->middleware('auth');
 // Directory Admin   middleware('can:for-admin-author') เรียกมาจาก AuthServiceProvider for-admin-author 'can:for-admin-author',
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['can:for-admin-author', 'auth', 'verified'])->group(function () {
+Route::namespace('IT\Admin')->prefix('admin')->name('admin.')->middleware(['can:for-admin-author', 'auth', 'verified'])->group(function () {
     Route::resource('/users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit','updateusers']]);
     Route::get('/users/fetchdatas','UsersController@fetchdatas')->name('users.fetchdatas');
     Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'edit', 'create', 'store', 'update']]);
 });
 
 
-Route::namespace('Transactions')->prefix('transactions')->name('transactions.')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/buy/list', 'TransactionsController@buyIndex')->name('buy.list');
-    Route::get('/buy/create', 'TransactionsController@buyCreate')->name('buy.create');
-    Route::post('/buy/create', 'TransactionsController@buyStore')->name('buy.store');
-    Route::get('/buy/edit/{id}', 'TransactionsController@buyEdit')->name('buy.edit');
-    Route::put('/buy/update/{id}', 'TransactionsController@buyUpdate')->name('buy.update');
+Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/accessories/buy/list', 'TransactionsController@buyIndex')->name('accessories.buy_list');
+    Route::get('/accessories/buy/create', 'TransactionsController@buyCreate')->name('accessories.buy_create');
+    Route::post('/accessories/buy/create', 'TransactionsController@buyStore')->name('accessories.buy_store');
+    Route::get('/accessories/buy/edit/{id}', 'TransactionsController@buyEdit')->name('accessories.buy_edit');
+    Route::put('/accessories/buy/update/{id}', 'TransactionsController@buyUpdate')->name('accessories.buy_update');
 
-    Route::get('/requisition/list', 'TransactionsController@requisitionIndex')->name('requisition.list');
-    Route::get('/requisition/create', 'TransactionsController@requisitionCreate')->name('requisition.create');
-    Route::post('/requisition/create', 'TransactionsController@requisitionStore')->name('requisition.store');
-    Route::get('/requisition/edit/{id}', 'TransactionsController@requisitionEdit')->name('requisition.edit');
-    Route::put('/requisition/update/{id}', 'TransactionsController@requisitionUpdate')->name('requisition.update');
+    Route::get('/accessories/requisition/list', 'TransactionsController@requisitionIndex')->name('accessories.requisition_list');
+    Route::get('/accessories/requisition/create', 'TransactionsController@requisitionCreate')->name('accessories.requisition_create');
+    Route::post('/accessories/requisition/create', 'TransactionsController@requisitionStore')->name('accessories.requisition_store');
+    Route::get('/accessories/requisition/edit/{id}', 'TransactionsController@requisitionEdit')->name('accessories.requisition_edit');
+    Route::put('/accessories/requisition/update/{id}', 'TransactionsController@requisitionUpdate')->name('accessories.requisition_update');
 
-    Route::get('/lendings/list', 'TransactionsController@lendingsIndex')->name('lendings.list');
-    Route::get('/lendings/create', 'TransactionsController@lendingsCreate')->name('lendings.create');
-    Route::post('/lendings/create', 'TransactionsController@lendingsStore')->name('lendings.store');
-    Route::get('/lendings/edit/{id}', 'TransactionsController@lendingsEdit')->name('lendings.edit');
-    Route::put('/lendings/update/{id}', 'TransactionsController@lendingsUpdate')->name('lendings.update');
-});
+    Route::get('/accessories/lendings/list', 'TransactionsController@lendingsIndex')->name('accessories.lendings_list');
+    Route::get('/accessories/lendings/create', 'TransactionsController@lendingsCreate')->name('accessories.lendings_create');
+    Route::post('/accessories/lendings/create', 'TransactionsController@lendingsStore')->name('accessories.lendings_store');
+    Route::get('/accessories/lendings/edit/{id}', 'TransactionsController@lendingsEdit')->name('accessories.lendings_edit');
+    Route::put('/accessories/lendings/update/{id}', 'TransactionsController@lendingsUpdate')->name('accessories.lendings_update');
 
-Route::namespace('Reports')->prefix('reports')->name('reports.')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/transactions', 'ReportController@reportTransactions')->name('transactions.list');
-    Route::get('/stocks', 'ReportController@reportStocks')->name('stocks.list');
-});
+    Route::get('/check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
+    Route::get('/check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
 
-Route::namespace('Users')->prefix('users')->name('users.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('/me', 'UsersController', ['only' => ['edit', 'update']]);
 });
 
 
 // Account
-Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(['auth'])->group(function ()
+Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(['auth','verified'])->group(function ()
 {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 });

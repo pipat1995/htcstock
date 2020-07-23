@@ -35,7 +35,7 @@
         <div class="main-card mb-12 card">
             <div class="card-body">
                 <h5 class="card-title">Edit {{$user->name}}</h5>
-                <form action="{{route('users.me.update',$user->id)}}" method="post">
+                <form action="{{route('it.me.update',$user->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-group row">

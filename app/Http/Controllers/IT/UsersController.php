@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Accessories;
+namespace App\Http\Controllers\IT;
 
 use App\Http\Controllers\Controller;
-use App\Repository\AccessoriesRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
+use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
-class AccessoriesController extends Controller
+class UsersController extends Controller
 {
-    protected $accessoriesRepository;
-    protected $transactionsRepository;
-    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface, TransactionsRepositoryInterface $transactionsRepositoryInterface)
+    private $userRepository;
+    public function __construct(UserRepositoryInterface $userRepositoryInterface)
     {
-        $this->accessoriesRepository = $accessoriesRepositoryInterface;
-        $this->transactionsRepository = $transactionsRepositoryInterface;
+        $this->userRepository = $userRepositoryInterface;
     }
     /**
      * Display a listing of the resource.
@@ -66,7 +63,13 @@ class AccessoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            return \view('it.user.index')->with([
+                'user' => $this->userRepository->find($id)
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -78,7 +81,19 @@ class AccessoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $user = $this->userRepository->find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($this->userRepository->update($user->attributesToArray(), $id)) {
+                $request->session()->flash('success', $user->name . ' user has been update');
+            } else {
+                $request->session()->flash('error', 'error flash message!');
+            }
+            return \redirect()->route('admin.users.index');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -90,27 +105,5 @@ class AccessoriesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function checkStock(String $id)
-    {
-        try {
-            $result = $this->transactionsRepository->howMuchAccessorie($id);
-            if (is_null($result)) {
-                return response()->json(['message' => "No data transactions"], 200);
-            }
-            return response()->json(['name' => $result->accessorie->access_name, 'qty' => (int) $result->quantity], 200);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    public function accessoriesAvailable()
-    {
-        try {
-            // \dd($this->transactionsRepository->getAccessoriesAvailable());
-        } catch (\Throwable $th) {
-            throw $th;
-        }
     }
 }

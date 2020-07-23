@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/accessorie/{id}/checkstock','Accessories\AccessoriesController@checkStock');
-Route::get('/accessorie/available','Accessories\AccessoriesController@accessoriesAvailable');
+Route::get('/accessorie/{id}/checkstock','IT\AccessoriesController@checkStock');
+Route::get('/accessorie/available','IT\AccessoriesController@accessoriesAvailable');

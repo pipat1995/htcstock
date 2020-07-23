@@ -29,7 +29,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">แบบฟอร์มการเบิก</h5>
-            <form class="needs-validation" novalidate action="{{route('transactions.requisition.update',$transaction->id)}}" method="POST"
+            <form class="needs-validation" novalidate action="{{route('it.accessories.requisition_update',$transaction->id)}}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

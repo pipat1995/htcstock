@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
+use App\Http\Controllers\Controller;
 use App\Repository\TransactionsRepositoryInterface;
 
 class HomeController extends Controller

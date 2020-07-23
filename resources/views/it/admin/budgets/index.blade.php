@@ -94,7 +94,8 @@
                         <tr>
                             <td><a href="{{route('admin.budgets.edit',$budget->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a></td>
-                            <td>@moneyTH($budget->budgets_of_month)</td>
+                            <td>{{convertToTHB($budget->budgets_of_month)}}
+                            </td>
                             <td>{{ date("F", mktime(0, 0, 0, $budget->month, 1)) }}</td>
                             <td>{{$budget->year}}</td>
                         </tr>

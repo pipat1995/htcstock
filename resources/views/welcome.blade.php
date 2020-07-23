@@ -104,25 +104,27 @@
                 <i class="fa fa-bars"></i>
             </a>
             @if (Route::has('login'))
-            @auth
-            <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-            @else
-            <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
-                LOGIN</a>
+                @auth
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
+                @else
+                <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
+                    LOGIN</a>
+                @endauth
             @endif
         </div>
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
             @if (Route::has('login'))
-            @auth
-            <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-            @else
-            <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
-                    class="fa fa-user"></i> LOGIN</a>
-            @endauth
+                @auth
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
+                @else
+                <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
+                        class="fa fa-user"></i> LOGIN</a>
+                @endauth
             @endif
         </div>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -143,25 +145,24 @@
         <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
         <div class="w3-row-padding w3-center">
             <div class="w3-col m3">
-                <img src="" style="width:100%" onclick="goTo('home')"
-                    class="w3-hover-opacity" alt="IT STOCK">
+                <img src="" style="width:100%" onclick="goTo('it/dashboard')" class="w3-hover-opacity" alt="IT STOCK">
             </div>
 
             <div class="w3-col m3">
-                <img src="" style="width:100%" onclick="goTo('accounts/home')"
-                    class="w3-hover-opacity" alt="ACCOUNT STOCK">
+                <img src="" style="width:100%" onclick="goTo('accounts/dashboard')" class="w3-hover-opacity"
+                    alt="ACCOUNT STOCK">
             </div>
 
             {{-- <div class="w3-col m3">
                 <img src="{{asset('assets/images/avatars/3.jpg')}}" style="width:100%" class="w3-hover-opacity"
-                    alt="Bear closeup">
-            </div>
-
-            <div class="w3-col m3">
-                <img src="{{asset('assets/images/avatars/4.jpg')}}" style="width:100%" class="w3-hover-opacity"
-                    alt="Quiet ocean">
-            </div> --}}
+            alt="Bear closeup">
         </div>
+
+        <div class="w3-col m3">
+            <img src="{{asset('assets/images/avatars/4.jpg')}}" style="width:100%" class="w3-hover-opacity"
+                alt="Quiet ocean">
+        </div> --}}
+    </div>
     </div>
 
     <!-- Footer -->
@@ -174,7 +175,7 @@
         // Change style of navbar on scroll
         window.onscroll = function() {myFunction()};
         function myFunction() {
-            var navbar = document.getElementById("myNavbar");
+            let navbar = document.getElementById("myNavbar");
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
             } else {
@@ -184,14 +185,13 @@
         
         // Used to toggle the menu on small screens when clicking on the menu button
         function toggleFunction() {
-            var x = document.getElementById("navDemo");
+            let x = document.getElementById("navDemo");
             if (x.className.indexOf("w3-show") == -1) {
                 x.className += " w3-show";
             } else {
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-        
         function goTo(uri) {
             window.location = uri
         }

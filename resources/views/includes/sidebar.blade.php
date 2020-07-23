@@ -31,70 +31,79 @@
         </span>
     </div>
     <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">รายงาน</li>
-                <li>
-                    <a href="{{route('dasborad')}}" class="{{ request()->routeIs('dasborad') ? 'mm-active' : ''}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard Report
-                    </a>
-                </li>
-                <li class="app-sidebar__heading">การทำงาน</li>
-                <li class="{{ request()->routeIs('transactions.*') ? 'mm-active' : ''}}">
-                    <a href="#" class="{{ request()->routeIs('transactions.*') ? 'mm-active' : ''}}">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
-                        อุปกรณ์
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{route('transactions.buy.list')}}"
-                                class="{{ request()->routeIs('transactions.buy.*') ? 'mm-active' : ''}}">
-                                <i class="metismenu-icon"></i>
-                                ซื้อ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('transactions.requisition.list')}}"
-                                class="{{ request()->routeIs('transactions.requisition.*') ? 'mm-active' : ''}}">
-                                <i class="metismenu-icon"></i>
-                                เบิก
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('transactions.lendings.list')}}"
-                                class="{{ request()->routeIs('transactions.lendings.*') ? 'mm-active' : ''}}">
-                                <i class="metismenu-icon"></i>
-                                ยืม-คืน
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="{{ request()->routeIs('reports.*') ? 'mm-active' : ''}}">
-                    <a href="#" class="{{ request()->routeIs('reports.*') ? 'mm-active' : ''}}">
-                        <i class="metismenu-icon pe-7s-car"></i>
-                        ตรวจสอบ
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{route('reports.transactions.list')}}"
-                                class="{{ request()->routeIs('reports.transactions.list') ? 'mm-active' : ''}}">
-                                <i class="metismenu-icon">
-                                </i>Transactions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('reports.stocks.list')}}"
-                                class="{{ request()->routeIs('reports.stocks.list') ? 'mm-active' : ''}}">
-                                <i class="metismenu-icon">
-                                </i>Stocks
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        @switch(request()->segment(1))
+            @case('it')
+            @include('includes.it_sidebar');
+                @break
+            @case('accounts')
+            @include('includes.ac_sidebar');
+                @break
+            @default
+            <div class="app-sidebar__inner">
+                {{-- <ul class="vertical-nav-menu">
+                    <li class="app-sidebar__heading">รายงาน</li>
+                    <li>
+                        <a href="{{url('it/dashboard')}}" class="{{ isActive('it/dashboard')}}">
+                            <i class="metismenu-icon pe-7s-rocket"></i>
+                            รายงานแดชบอร์ด
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">การทำงาน</li>
+                    <li class="{{ isActive('it/accessories/*')}}">
+                        <a href="#" class="{{ isActive('it/accessories/*')}}">
+                            <i class="metismenu-icon pe-7s-diamond"></i>
+                            อุปกรณ์
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{{route('it.accessories.buy_list')}}"
+                                    class="{{isActive('it/accessories/buy/list')}}">
+                                    <i class="metismenu-icon"></i>
+                                    ซื้อ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('it.accessories.requisition_list')}}"
+                                    class="{{isActive('it/accessories/requisition/list')}}">
+                                    <i class="metismenu-icon"></i>
+                                    เบิก
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('it.accessories.lendings_list')}}"
+                                    class="{{isActive('it/accessories/lendings/list')}}">
+                                    <i class="metismenu-icon"></i>
+                                    ยืม-คืน
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{{ isActive('it/check/*')}}">
+                        <a href="#" class="{{ isActive('it/check/*')}}">
+                            <i class="metismenu-icon pe-7s-car"></i>
+                            ตรวจสอบ
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{{route('it.check.transactions_list')}}"
+                                    class="{{ isActive('it/check/transactions')}}">
+                                    <i class="metismenu-icon">
+                                    </i>ประวัติการทำงาน
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('it.check.stocks_list')}}" class="{{ isActive('it/check/stocks') }}">
+                                    <i class="metismenu-icon">
+                                    </i>คลัง
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> --}}
+            </div>
+        @endswitch
+        
     </div>
 </div>
