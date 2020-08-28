@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('sidebar')
+@include('includes.it_sidebar');
+@stop
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -91,35 +94,35 @@
                             <td>{{$item->accessorie->access_name}}</td>
                             <td>{{$item->accessorie->unit}}</td>
                             <td>{{$item->qty}}</td>
-                            <td>{{convertToTHB($item->unit_cost)}}</td>
-                            <td>{{convertToTHB($item->amount)}}</td>
-                            <td>{{convertToTHB($item->amt)}}</td>
+                            <td>{{Helper::convertToTHB($item->unit_cost)}}</td>
+                            <td>{{Helper::convertToTHB($item->amount)}}</td>
+                            <td>{{Helper::convertToTHB($item->amt)}}</td>
                         </tr>
                         @endforeach
                         <tr>
                             <td colspan="7"></td>
-                            <td>{{convertToTHB($amountTotal)}}</td>
+                            <td>{{Helper::convertToTHB($amountTotal)}}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Remain Budget</td>
-                            <td>{{convertToTHB($remainBudget)}}</td>
+                            <td>{{Helper::convertToTHB($remainBudget)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Grand total budget</td>
-                            <td>{{convertToTHB($budget->budgets_of_month)}}</td>
+                            <td>{{Helper::convertToTHB($budget->budgets_of_month)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Total used budge</td>
-                            <td>{{convertToTHB($amountTotal)}}</td>
+                            <td>{{Helper::convertToTHB($amountTotal)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
                             <td style="text-align: left">Total remain budget</td>
-                            <td>{{convertToTHB($remainBudget)}}</td>
+                            <td>{{Helper::convertToTHB($remainBudget)}}</td>
                         </tr>
                     </tbody>
                 </table>

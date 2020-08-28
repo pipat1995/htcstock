@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\IT\Admin;
 
+use App\Enum\TransactionTypeEnum;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BudgetFormSearch;
 use App\Http\Requests\BudgetFormRequest;
@@ -36,12 +38,12 @@ class BudgetController extends Controller
                 }
             }
             $budgets->orderBy('created_at', 'desc');
-            // \dd($budgets->get());
-            return \view('it.admin.budgets.index', \compact('formSearch'))->with(
+            return \view('it.admin.budgets.index')->with(
                 [
+                    'formSearch' => $formSearch,
                     'budgets' => $budgets->paginate(10)->appends((array) $formSearch),
-                    'months' => \config('app.Months'),
-                    'earliest_year' => 2019
+                    'months' => Helper::getMonth(),
+                    'earliest_year' => 2020
                 ]
             );
         } catch (\Throwable $th) {
@@ -57,7 +59,7 @@ class BudgetController extends Controller
     public function create()
     {
         try {
-            return \view('it.admin.budgets.create')->with(['months' => \config('app.Months'), 'earliest_year' => 2019]);
+            return \view('it.admin.budgets.create')->with(['months' => Helper::getMonth(), 'earliest_year' => 2020]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -73,7 +75,8 @@ class BudgetController extends Controller
         try {
 
             $budget = $this->budgetRepository->find($id);
-            $datas = $this->transactionsRepository->transactionType(0)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
+            $datas = $this->transactionsRepository->transactionType(TransactionTypeEnum::B)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
+            
             $tempAmt = 0;
             $amountTotal = 0;
             foreach ($datas as $key => $value) {

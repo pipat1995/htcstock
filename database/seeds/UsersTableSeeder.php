@@ -22,14 +22,14 @@ class UsersTableSeeder extends Seeder
         $adminRole = Roles::where('name', 'admin')->first();
         $authorRole = Roles::where('name', 'author')->first();
         $userRole = Roles::where('name', 'user')->first();
-        $admin = User::create([
-            'name' => 'Admin Pipat',
-            'username' => '70037539',
-            'email' => 'pipat.p@haier.co.th',
-            'email_verified_at' => now(),
-            'password' => Hash::make(12345678),
-            'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
-        ]);
+        // $admin = User::create([
+        //     'name' => 'Admin Pipat',
+        //     'username' => '70037539',
+        //     'email' => 'pipat.p@haier.co.th',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make(12345678),
+        //     'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
+        // ]);
 
         // $author = User::create([
         //     'name' => 'Author Pipat',
@@ -48,9 +48,9 @@ class UsersTableSeeder extends Seeder
         //     'password' => Hash::make(12345678),
         //     'remember_token' => 'EyGHqSUdIChW1hOnJZfoITkQvOHPD8VdPP6qcBM97k3kM2DCxCJq7scux8oT',
         // ]);
-        $admin->roles()->attach($adminRole);
-        $admin->roles()->attach($authorRole);
-        $admin->roles()->attach($userRole);
+        // $admin->roles()->attach($adminRole);
+        // $admin->roles()->attach($authorRole);
+        // $admin->roles()->attach($userRole);
 
         $response = Http::get(ENV('USERS_INFO'));
         foreach ($response->json() as $key => $value) {
@@ -60,7 +60,14 @@ class UsersTableSeeder extends Seeder
                 'email' => $value['email'],
                 'password' => Hash::make(strtolower(substr($value['email'], 0, 1)) . $value['username']),
             ]);
-            $user->roles()->attach($userRole);
+            if ($user->username === "70037539") {
+                $user->roles()->attach($adminRole);
+                $user->roles()->attach($authorRole);
+                $user->roles()->attach($userRole);
+            } else {
+                $user->roles()->attach($userRole);
+            }
+            
         }
     }
 }

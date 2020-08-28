@@ -26,7 +26,7 @@
     <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('includes.navigationbar')
         <div class="app-main">
-            @include('includes.sidebar')
+            @yield('sidebar')
             <div class="app-main__outer">
                 @include('partials.alerts')
                 <div class="app-main__inner">

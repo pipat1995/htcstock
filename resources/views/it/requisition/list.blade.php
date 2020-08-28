@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('sidebar')
+@include('includes.it_sidebar');
+@stop
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -110,7 +112,7 @@
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
                                 <td>{{$item->accessorie->access_name}}</td>
-                                <td>{{$item->qty}}</td>
+                                <td>{{Helper::convertQty($item->qty)}}</td>
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->created_at}}</td>
                                 <td><a href="{{route('it.accessories.requisition_edit',$item->id)}}"><button type="button"

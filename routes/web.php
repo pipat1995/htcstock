@@ -26,7 +26,9 @@ Route::namespace('IT\Admin')->prefix('admin')->name('admin.')->middleware(['can:
     Route::get('/users/fetchdatas','UsersController@fetchdatas')->name('users.fetchdatas');
     Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'edit', 'create', 'store', 'update']]);
 });
-
+Route::namespace('Auth')->prefix('me')->name('me.')->middleware(['auth','verified'])->group(function () {
+    Route::resource('/user', 'UsersController', ['only' => ['edit', 'update']]);
+});
 
 Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
@@ -50,8 +52,6 @@ Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified
 
     Route::get('/check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
     Route::get('/check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
-
-    Route::resource('/me', 'UsersController', ['only' => ['edit', 'update']]);
 });
 
 

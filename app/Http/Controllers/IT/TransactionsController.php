@@ -89,7 +89,7 @@ class TransactionsController extends Controller
             } else {
                 $request->session()->flash('success',  ' has been create');
             }
-            return \redirect()->route('transactions.buy.list');
+            return \redirect()->route('it.accessories.buy_list');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -133,7 +133,7 @@ class TransactionsController extends Controller
                     }
                 }
             }
-            return \redirect()->route('transactions.buy.list');
+            return \redirect()->route('it.accessories.buy_list');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -191,7 +191,7 @@ class TransactionsController extends Controller
             } else {
                 $request->session()->flash('success',  ' has been create');
             }
-            return \redirect()->route('transactions.requisition.list');
+            return \redirect()->route('it.accessories.requisition_list');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -216,7 +216,7 @@ class TransactionsController extends Controller
 
                 if ($transaction->ref_no) {
                     $request->session()->flash('error', 'รายการเคยยกเลิกแล้ว!');
-                    return \redirect()->route('transactions.requisition.list');
+                    return \redirect()->route('it.accessories.requisition_list');
                 }
                 $transaction->ref_no = $token;
 
@@ -234,7 +234,7 @@ class TransactionsController extends Controller
                     }
                 }
             }
-            return \redirect()->route('transactions.requisition.list');
+            return \redirect()->route('it.accessories.requisition_list');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -292,7 +292,7 @@ class TransactionsController extends Controller
             } else {
                 $request->session()->flash('success',  ' has been create');
             }
-            return \redirect()->route('transactions.lendings.list');
+            return \redirect()->route('it.accessories.lendings_list');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -336,7 +336,7 @@ class TransactionsController extends Controller
                     }
                 }
             }
-            return \redirect()->route('transactions.lendings.list');
+            return \redirect()->route('it.accessories.lendings_list');
         } catch (\Throwable $th) {
             throw $th;
         }

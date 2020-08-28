@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('sidebar')
+@include('includes.it_sidebar');
+@stop
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -94,7 +97,7 @@
                         <tr>
                             <td><a href="{{route('admin.budgets.edit',$budget->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a></td>
-                            <td>{{convertToTHB($budget->budgets_of_month)}}
+                            <td>{{Helper::convertToTHB($budget->budgets_of_month)}}
                             </td>
                             <td>{{ date("F", mktime(0, 0, 0, $budget->month, 1)) }}</td>
                             <td>{{$budget->year}}</td>

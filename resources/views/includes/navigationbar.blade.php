@@ -76,7 +76,7 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('it.me.edit',Auth::user()->id) }}" tabindex="0"
+                                    <a href="{{ route('me.user.edit',Auth::user()->id) }}" tabindex="0"
                                         class="dropdown-item">โปรไฟล์</a>
                                     @can('for-admin-author')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"

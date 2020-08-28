@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('sidebar')
+@include('includes.it_sidebar');
+@stop
+
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -35,7 +40,7 @@
         <div class="main-card mb-12 card">
             <div class="card-body">
                 <h5 class="card-title">Edit {{$user->name}}</h5>
-                <form action="{{route('it.me.update',$user->id)}}" method="post">
+                <form action="{{route('me.user.update',$user->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-group row">

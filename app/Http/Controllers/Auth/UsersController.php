@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\IT;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -64,7 +65,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            return \view('it.user.index')->with([
+            return \view('user.index')->with([
                 'user' => $this->userRepository->find($id)
             ]);
         } catch (\Throwable $th) {
@@ -85,12 +86,12 @@ class UsersController extends Controller
             $user = $this->userRepository->find($id);
             $user->name = $request->name;
             $user->email = $request->email;
-            if ($this->userRepository->update($user->attributesToArray(), $id)) {
+            if (Auth::user()->id == $user->id && $this->userRepository->update($user->attributesToArray(), $id)) {
                 $request->session()->flash('success', $user->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \redirect()->route('admin.users.index');
+            return \back();
         } catch (\Throwable $th) {
             throw $th;
         }

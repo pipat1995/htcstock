@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('sidebar')
+@include('includes.it_sidebar');
+@stop
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -85,7 +87,8 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.accessories.lendings_list')}}" onclick="redirext(this)">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;"
+                id="{{route('it.accessories.lendings_list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการยังไม่คืน</div>
                     <div class="widget-subheading">The item is not returned yet.</div>
@@ -98,7 +101,8 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.accessories.requisition_list')}}" onclick="redirext(this)">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;"
+                id="{{route('it.accessories.requisition_list')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการเบิก</div>
                     <div class="widget-subheading">Withdrawal list</div>
