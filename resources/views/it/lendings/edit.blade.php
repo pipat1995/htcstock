@@ -39,7 +39,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control" required>
+                        <select name="access_id" id="validationAccess_id" class="form-control select2" required>
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}"
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTrans_by" class="">คนยืม</label>
-                        <select name="trans_by" id="validationTrans_by" class="form-control" required>
+                        <select name="trans_by" id="validationTrans_by" class="form-control select2" required>
                             <option value="">--เลือก--</option>
                             @foreach ($users as $item)
                             <option value="{{$item->id}}" {{$transaction->trans_by == $item->id ? 'selected' : ''}}>{{$item->name}}</option>

@@ -43,7 +43,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control">
+                        <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}"

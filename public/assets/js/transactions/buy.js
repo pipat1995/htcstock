@@ -1,11 +1,13 @@
 /**  เบิก
  * 
  * */
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict';
     window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        $('#validationAccess_id').select2();
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         var validation = Array.prototype.filter.call(forms, function (
@@ -18,6 +20,11 @@
                 form.classList.add('was-validated');
             }, false);
         });
+
+
+        if (document.getElementById("validationSCreated_at").value) {
+            document.getElementById("validationECreated_at").readOnly = false;
+        }
     }, false);
 })();
 
@@ -41,4 +48,12 @@ function checkQtyAccess(e) {
         }
         document.getElementById('validationQty').max = maxQty
     })
+}
+
+function changeValue(e){
+    if (e.value) {
+        document.getElementById("validationECreated_at").readOnly = false;
+    } else{
+        document.getElementById("validationECreated_at").readOnly = true;
+    }
 }

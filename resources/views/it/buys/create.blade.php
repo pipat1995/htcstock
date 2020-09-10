@@ -42,7 +42,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control"
+                        <select name="access_id" id="validationAccess_id" class="form-control select2"
                             onchange="checkQtyAccess(this)" required>
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
@@ -114,7 +114,8 @@
                 </div>
                 <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>Submit form</button>
             </form>
-            <script src="{{asset('assets\js\transactions\buy.js')}}"></script>
+            <script src="{{asset('assets\js\transactions\buy.js')}}" defer></script>
+            
         </div>
     </div>
 </div>

@@ -38,7 +38,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control">
+                        <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}" {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
@@ -68,25 +68,7 @@
                     </div>
                 </div>
             </form>
-            <script>
-                (function () {
-                    'use strict';
-                    window.addEventListener('load', function () {
-                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                        if (document.getElementById("validationSCreated_at").value) {
-                            document.getElementById("validationECreated_at").readOnly = false;
-                        }
-                        
-                    }, false);
-                })();
-                function changeValue(e){
-                    if (e.value) {
-                        document.getElementById("validationECreated_at").readOnly = false;
-                    } else{
-                        document.getElementById("validationECreated_at").readOnly = true;
-                    }
-                }
-            </script>
+            <script src="{{asset('assets\js\transactions\history.js')}}" defer></script>
         </div>
     </div>
 </div>

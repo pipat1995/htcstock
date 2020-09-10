@@ -5,11 +5,12 @@
 (function () {
     'use strict';
     window.addEventListener('load', function () {
+        $('#validationAccess_id').select2();
+        $('#validationTrans_by').select2();
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (
-            form) {
+        var validation = Array.prototype.filter.call(forms, function (form) {
             form.addEventListener('submit', function (event) {
                 if (form.checkValidity() === false) {
                     event.preventDefault();
@@ -18,6 +19,10 @@
                 form.classList.add('was-validated');
             }, false);
         });
+
+        if (document.getElementById("validationSCreated_at").value) {
+            document.getElementById("validationECreated_at").readOnly = false;
+        }
     }, false);
 })();
 var maxQty = 0
@@ -41,5 +46,13 @@ function quantity(e) {
         $(':button[type="submit"]').prop('disabled', false)
     } else {
         $(':button[type="submit"]').prop('disabled', true)
+    }
+}
+
+function changeValue(e) {
+    if (e.value) {
+        document.getElementById("validationECreated_at").readOnly = false;
+    } else {
+        document.getElementById("validationECreated_at").readOnly = true;
     }
 }

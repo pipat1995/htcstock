@@ -14,8 +14,11 @@
     <script src="{{ asset('assets/js/template/app.js') }}" defer></script>
     <script src="{{ asset('assets/js/api/index.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    {{-- <script src="sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> --}}
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

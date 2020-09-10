@@ -67,25 +67,7 @@
                         </div>
                     </div>
                 </form>
-                <script>
-                    (function () {
-                        'use strict';
-                        window.addEventListener('load', function () {
-                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                            if (document.getElementById("validationSCreated_at").value) {
-                                document.getElementById("validationECreated_at").readOnly = false;
-                            }
-                            
-                        }, false);
-                    })();
-                    function changeValue(e){
-                        if (e.value) {
-                            document.getElementById("validationECreated_at").readOnly = false;
-                        } else{
-                            document.getElementById("validationECreated_at").readOnly = true;
-                        }
-                    }
-                </script>
+                <script src="{{asset('assets\js\transactions\requisition.js')}}" defer></script>
             </div>
         </div>
     </div>
