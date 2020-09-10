@@ -31,7 +31,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">แบบฟอร์มการยืม</h5>
-            <form class="needs-validation" novalidate action="{{route('it.accessories.lendings_store')}}" method="POST"
+            <form class="needs-validation" novalidate action="{{route('it.lendings.store')}}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">

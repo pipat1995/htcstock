@@ -32,7 +32,7 @@
         <div class="card-body">
             <h5 class="card-title">แบบฟอร์มการยืม</h5>
             <form class="needs-validation" novalidate
-                action="{{route('it.accessories.lendings_update',$transaction->id)}}" method="POST"
+                action="{{route('it.lendings.update',$transaction->id)}}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

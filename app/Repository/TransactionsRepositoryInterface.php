@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Transactions;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 

@@ -49,20 +49,20 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="{{route('it.accessories.buy_list')}}" class="{{Helper::isActive('it/accessories/buy/list')}}">
+                        <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/accessories/buy/list')}}">
                             <i class="metismenu-icon"></i>
                             ซื้อ
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('it.accessories.requisition_list')}}"
+                        <a href="{{route('it.requisition.index')}}"
                             class="{{Helper::isActive('it/accessories/requisition/list')}}">
                             <i class="metismenu-icon"></i>
                             เบิก
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('it.accessories.lendings_list')}}"
+                        <a href="{{route('it.lendings.index')}}"
                             class="{{Helper::isActive('it/accessories/lendings/list')}}">
                             <i class="metismenu-icon"></i>
                             ยืม-คืน

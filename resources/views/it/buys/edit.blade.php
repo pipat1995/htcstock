@@ -22,7 +22,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                {{-- <a href="{{route('it.accessories.buy_create')}}" class="btn-shadow btn btn-info">
+                {{-- <a href="{{route('it.buy.create')}}" class="btn-shadow btn btn-info">
                 <span class="btn-icon-wrapper pr-2 opacity-7">
                     <i class="fa fa-business-time fa-w-20"></i>
                 </span>
@@ -36,7 +36,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">แบบฟอร์มการซื้อ</h5>
-            <form class="needs-validation" novalidate action="{{route('it.accessories.buy_update',$transaction->id)}}"
+            <form class="needs-validation" novalidate action="{{route('it.buy.update',$transaction->id)}}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

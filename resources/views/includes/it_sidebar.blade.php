@@ -41,30 +41,30 @@
                     </a>
                 </li>
                 <li class="app-sidebar__heading">การทำงาน</li>
-                <li class="{{Helper::isActive('it/accessories/*')}}">
-                    <a href="#" class="{{Helper::isActive('it/accessories/*')}}">
+                <li class="{{Helper::isActive('it/*')}}">
+                    <a href="#" class="{{Helper::isActive('it/*')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         อุปกรณ์
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('it.accessories.buy_list')}}"
-                                class="{{Helper::isActive('it/accessories/buy/*')}}">
+                            <a href="{{route('it.buy.index')}}"
+                                class="{{Helper::isActive('it/buy*')}}">
                                 <i class="metismenu-icon"></i>
                                 ซื้อ
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.accessories.requisition_list')}}"
-                                class="{{Helper::isActive('it/accessories/requisition/*')}}">
+                            <a href="{{route('it.requisition.index')}}"
+                                class="{{Helper::isActive('it/requisition*')}}">
                                 <i class="metismenu-icon"></i>
                                 เบิก
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.accessories.lendings_list')}}"
-                                class="{{Helper::isActive('it/accessories/lendings/*')}}">
+                            <a href="{{route('it.lendings.index')}}"
+                                class="{{Helper::isActive('it/lendings*')}}">
                                 <i class="metismenu-icon"></i>
                                 ยืม-คืน
                             </a>
