@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/clear-all', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    return "Cache is cleared";
+});
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -41,6 +48,7 @@ Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified
 
     Route::get('/check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
     Route::get('/check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
+    Route::resource('/manage/accessories','AccessoriesController', ['only' => ['index', 'create', 'store', 'edit', 'update','destroy']]);
 });
 
 

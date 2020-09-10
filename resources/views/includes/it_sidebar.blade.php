@@ -49,24 +49,28 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('it.buy.index')}}"
-                                class="{{Helper::isActive('it/buy*')}}">
+                            <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/buy*')}}">
                                 <i class="metismenu-icon"></i>
                                 ซื้อ
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.requisition.index')}}"
-                                class="{{Helper::isActive('it/requisition*')}}">
+                            <a href="{{route('it.requisition.index')}}" class="{{Helper::isActive('it/requisition*')}}">
                                 <i class="metismenu-icon"></i>
                                 เบิก
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.lendings.index')}}"
-                                class="{{Helper::isActive('it/lendings*')}}">
+                            <a href="{{route('it.lendings.index')}}" class="{{Helper::isActive('it/lendings*')}}">
                                 <i class="metismenu-icon"></i>
                                 ยืม-คืน
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('it.accessories.index')}}"
+                                class="{{Helper::isActive('it/manage/accessories*') }}">
+                                <i class="metismenu-icon">
+                                </i>จัดการอุปกรณ์
                             </a>
                         </li>
                     </ul>
@@ -86,15 +90,16 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.check.stocks_list')}}" class="{{Helper::isActive('it/check/stocks') }}">
+                            <a href="{{route('it.check.stocks_list')}}"
+                                class="{{Helper::isActive('it/check/stocks') }}">
                                 <i class="metismenu-icon">
                                 </i>คลัง
                             </a>
                         </li>
+
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-

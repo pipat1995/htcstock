@@ -18,7 +18,7 @@ class Accessories extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'unit'
+        'access_name', 'unit', 'created_at'
     ];
 
     public function transaction()
