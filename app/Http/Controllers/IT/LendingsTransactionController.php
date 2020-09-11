@@ -5,6 +5,7 @@ namespace App\Http\Controllers\IT;
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\LendingsFormSearch;
+use App\Http\Requests\LendingsFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
@@ -84,7 +85,7 @@ class LendingsTransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LendingsFormRequest $request)
     {
         try {
             // qty - 
@@ -137,7 +138,7 @@ class LendingsTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LendingsFormRequest $request, $id)
     {
         try {
             if (!is_null($request->ref_no)) {

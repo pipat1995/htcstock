@@ -5,6 +5,7 @@ namespace App\Http\Controllers\IT;
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BuyFormSearch;
+use App\Http\Requests\BuyFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
@@ -94,7 +95,7 @@ class BuyTransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BuyFormRequest $request)
     {
         try {
             if (!$this->transactionsRepo->create(array_merge($request->all(), ['trans_type' => TransactionTypeEnum::B, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]))) {
@@ -143,7 +144,7 @@ class BuyTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BuyFormRequest $request, $id)
     {
         try {
             $token = $this->transactionsRepo->makeRandomTokenKey();

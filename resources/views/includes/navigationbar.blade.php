@@ -81,9 +81,9 @@
                                     @can('for-admin-author')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
                                         class="dropdown-item">การจัดการผู้ใช้</a>
-                                    <a href="{{ route('admin.budgets.index') }}" tabindex="0"
+                                    <a href="{{ route('it.budgets.index') }}" tabindex="0"
                                         class="dropdown-item">การจัดการงบประมาณ</a>
-                                    <a href="{{ route('admin.users.fetchdatas') }}" tabindex="0"
+                                    <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">อัปเดตข้อมูลผู้ใช้</a>
                                     @endcan
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>

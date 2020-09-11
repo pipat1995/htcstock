@@ -28,13 +28,13 @@ class AuthServiceProvider extends ServiceProvider
         // Gate::define(string,callback) กำหนดสิทธิ์ parameter1 คือ ชื่อ parameter2 คือ function return condition 
         // ตอนเรียกใช้ controller Gate::denies('for-admin-author')
         Gate::define('for-admin-author', function ($user) {
-            // $user->hasAnyRoles([ 'admin','author']) เฉพาะ 'admin', 'author' เท่านั้น
-            return $user->hasAnyRoles([ 'admin','author']);
+            // $user->hasRole('admin','author') True
+            return $user->hasRole('admin','author');
         });
 
         Gate::define('for-admin', function ($user) {
             // Gate::denies('for-admin') เรียกใช้ที่ controller จะได้ $user ที่ใช้งานอยู่
-            // $user->hasRole('admin') เฉพาะ admin เท่านั้น
+            // $user->hasRole('admin') True
             return $user->hasRole('admin');
         });
     }

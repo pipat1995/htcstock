@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('sidebar')
-@include('includes.it_sidebar');
+@include('includes.admin_sidebar');
 @stop
 @section('content')
 <div class="app-page-title">

@@ -22,7 +22,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="{{route('admin.budgets.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('it.budgets.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -95,7 +95,7 @@
                     <tbody>
                         @foreach ($budgets as $key => $budget)
                         <tr>
-                            <td><a href="{{route('admin.budgets.edit',$budget->id)}}"><button type="button"
+                            <td><a href="{{route('it.budgets.edit',$budget->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a></td>
                             <td>{{Helper::convertToTHB($budget->budgets_of_month)}}
                             </td>

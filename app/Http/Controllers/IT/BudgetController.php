@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\IT\Admin;
+namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
 use App\Helpers\Helper;
@@ -38,7 +38,7 @@ class BudgetController extends Controller
                 }
             }
             $budgets->orderBy('created_at', 'desc');
-            return \view('it.admin.budgets.index')->with(
+            return \view('it.budgets.index')->with(
                 [
                     'formSearch' => $formSearch,
                     'budgets' => $budgets->paginate(10)->appends((array) $formSearch),
@@ -59,7 +59,7 @@ class BudgetController extends Controller
     public function create()
     {
         try {
-            return \view('it.admin.budgets.create')->with(['months' => Helper::getMonth(), 'earliest_year' => 2020]);
+            return \view('it.budgets.create')->with(['months' => Helper::getMonth(), 'earliest_year' => 2020]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -84,7 +84,7 @@ class BudgetController extends Controller
                 $amountTotal += $value->amount;
                 $value->amt = $tempAmt += $value->amount;
             }
-            return \view('it.admin.budgets.edit')->with([
+            return \view('it.budgets.edit')->with([
                 'budget' => $budget,
                 'transactions' => $datas,
                 'amountTotal' => $amountTotal,
@@ -105,14 +105,14 @@ class BudgetController extends Controller
         try {
             if ($this->budgetRepository->hasBudget($request->month, $request->year)) {
                 $request->session()->flash('error', 'มี Budget ของเดือนนี้แล้ว!');
-                return \redirect()->route('admin.budgets.index');
+                return \redirect()->route('it.budgets.index');
             }
             if ($this->budgetRepository->create($request->all())) {
                 $request->session()->flash('success', ' Budget create success!');
             } else {
                 $request->session()->flash('error', 'error budget create!');
             }
-            return \redirect()->route('admin.budgets.index');
+            return \redirect()->route('it.budgets.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -124,7 +124,7 @@ class BudgetController extends Controller
      * @param  \App\Budgets  $budget
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BudgetFormRequest $request, $id)
     {
         try {
             if (Gate::denies('for-admin-author')) {
@@ -137,7 +137,7 @@ class BudgetController extends Controller
             } else {
                 $request->session()->flash('error', 'error budget update!');
             }
-            return \redirect()->route('admin.budgets.index');
+            return \redirect()->route('it.budgets.index');
         } catch (\Throwable $th) {
             throw $th;
         }

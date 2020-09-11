@@ -65,7 +65,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            return \view('user.index')->with([
+            return \view('me.index')->with([
                 'user' => $this->userRepository->find($id)
             ]);
         } catch (\Throwable $th) {

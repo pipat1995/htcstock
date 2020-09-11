@@ -4,6 +4,7 @@ namespace App\Http\Controllers\IT;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\AccessFormSearch;
+use App\Http\Requests\AccessorieFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class AccessoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccessorieFormRequest $request)
     {
         try {
             $isCreate = $this->accessoriesRepository->create($request->except(['_token']));
@@ -108,7 +109,7 @@ class AccessoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AccessorieFormRequest $request, $id)
     {
         try {
             $isUpdate = $this->accessoriesRepository->update($request->except(['_token','_method']),$id);

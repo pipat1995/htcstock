@@ -5,6 +5,7 @@ namespace App\Http\Controllers\IT;
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\RequisitionFormSearch;
+use App\Http\Requests\RequisitionFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
@@ -84,7 +85,7 @@ class RequisitionTransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequisitionFormRequest $request)
     {
         try {
             // qty - 
@@ -137,7 +138,7 @@ class RequisitionTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequisitionFormRequest $request, $id)
     {
         try {
             if (!is_null($request->ref_no)) {

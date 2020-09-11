@@ -38,7 +38,7 @@
         <div class="main-card mb-12 card">
             <div class="card-body">
                 <h5 class="card-title">Create</h5>
-                <form action="{{route('admin.budgets.store')}}" method="POST">
+                <form action="{{route('it.budgets.store')}}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="budgets_of_month"
