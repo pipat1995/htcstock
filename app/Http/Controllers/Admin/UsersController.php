@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
-use App\Repository\RolesRepositoryInterface;
+use App\Repository\RoleRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +15,7 @@ class UsersController extends Controller
 {
     private $userRepository;
     private $rolesRepository;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface, RolesRepositoryInterface $rolesRepositoryInterface)
+    public function __construct(UserRepositoryInterface $userRepositoryInterface, RoleRepositoryInterface $rolesRepositoryInterface)
     {
         $this->userRepository = $userRepositoryInterface;
         $this->rolesRepository = $rolesRepositoryInterface;
@@ -52,9 +52,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            if (Gate::denies('for-admin-author')) {
-                return \redirect()->route('pages.admin.users.index');
-            }
+            // if (Gate::denies('for-superadmin-admin')) {
+            //     return \redirect()->route('admin.users.index');
+            // }
             return \view('admin.users.edit')->with([
                 'user' => $this->userRepository->find($id),
                 'roles' => $this->rolesRepository->all()->get()
@@ -73,12 +73,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'roles' => 'required|nullable',
+        ]);
+
         try {
             $user = $this->userRepository->find($id);
-            $user->roles()->sync($request->roles);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            if ($this->userRepository->update($user->attributesToArray(), $id)) {
+            if ($this->userRepository->update(['name' => $request->name], $id)) {
+                $user->roles()->sync($request->roles);
                 $request->session()->flash('success', $user->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
@@ -100,8 +103,8 @@ class UsersController extends Controller
         try {
             // denies คือ !=
             // allows คือ ==
-            // ตรวจสอบ Role Gate::denies('for-admin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
-            if (Gate::denies('for-admin')) {
+            // ตรวจสอบ Role Gate::denies('for-superadmin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
+            if (Gate::denies('for-superadmin')) {
                 return \redirect()->route('admin.users.index');
             }
             if ($this->userRepository->delete($id)) {
@@ -118,7 +121,7 @@ class UsersController extends Controller
     public function updateusers(Request $request)
     {
         try {
-            if (Gate::denies('for-admin')) {
+            if (Gate::denies('for-superadmin')) {
                 return back();
             }
             $username = [];

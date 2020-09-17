@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('sidebar')
-@include('includes.it_sidebar');
+@include('includes.admin_sidebar');
 @stop
 @section('content')
 <div class="app-page-title">
@@ -61,7 +61,7 @@
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ $user->email }}" required autocomplete="email">
+                                name="email" value="{{ $user->email }}" autocomplete="email" readonly>
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -72,12 +72,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Roles') }}</label>
+                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Role') }}</label>
                         <div class="col-md-6">
                             <div class="row">
                                 @foreach ($roles as $role)
                                 <div class="form-check col-md-4" style="margin-top: 10px;">
-                                    <input type="checkbox" name="roles[]" id="" value="{{$role->id}}"
+                                    <input type="checkbox" name="roles[]" id="role{{$role->id}}" value="{{$role->id}}"
                                         @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
                                     <label>{{$role->name}}</label>
                                 </div>
@@ -90,9 +90,9 @@
                             @enderror
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
+                <script src="{{asset('assets\js\admin\user.js')}}"></script>
             </div>
         </div>
     </div>

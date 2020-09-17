@@ -26,12 +26,13 @@ Route::get('/', function () {
 })->name('welcome');
 Auth::routes(['verify' => true]);
 
-// Directory Admin   middleware('can:for-admin-author') เรียกมาจาก AuthServiceProvider for-admin-author 'can:for-admin-author',
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['can:for-admin-author', 'auth', 'verified'])->group(function () {
+// Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware([ 'auth', 'verified'])->group(function () {
     Route::resource('/users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit']]);
     Route::get('/updateusers','UsersController@updateusers')->name('users.updateusers');
     // Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'edit', 'create', 'store', 'update']]);
     Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'edit', 'create', 'store', 'update','destroy']]);
+    Route::resource('roles', 'RoleController', ['only' => ['index', 'edit', 'create', 'store', 'update','destroy']]);
 });
 
 Route::namespace('Auth')->prefix('me')->name('me.')->middleware(['auth','verified'])->group(function () {

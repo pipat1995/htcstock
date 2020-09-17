@@ -48,12 +48,15 @@
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
+                        @can('for-superadmin-admin')
                         <li>
                             <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/buy*')}}">
                                 <i class="metismenu-icon"></i>
                                 ซื้อ
                             </a>
                         </li>
+                        @endcan
+
                         <li>
                             <a href="{{route('it.requisition.index')}}" class="{{Helper::isActive('it/requisition*')}}">
                                 <i class="metismenu-icon"></i>
@@ -66,6 +69,8 @@
                                 ยืม-คืน
                             </a>
                         </li>
+
+                        @can('for-superadmin-admin')
                         <li>
                             <a href="{{route('it.accessories.index')}}"
                                 class="{{Helper::isActive('it/manage/accessories*') }}">
@@ -73,8 +78,10 @@
                                 </i>จัดการอุปกรณ์
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @can('for-superadmin-admin')
                 <li class="{{Helper::isActive('it/check/*')}}">
                     <a href="#" class="{{Helper::isActive('it/check/*')}}">
                         <i class="metismenu-icon pe-7s-car"></i>
@@ -99,6 +106,7 @@
 
                     </ul>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>

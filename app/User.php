@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable , HasPermissionsTrait;
+    use Notifiable,HasPermissionsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -47,4 +47,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(\App\Transactions::class, 'created_by');
     }
+
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class, 'user_role');
+    // }
+
+    // public function hasRole(...$roles)
+    // {
+    //     foreach ($roles as $role) {
+    //         if ($this->roles->contains('slug', $role)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 }

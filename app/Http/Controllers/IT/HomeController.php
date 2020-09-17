@@ -5,6 +5,7 @@ namespace App\Http\Controllers\IT;
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Repository\TransactionsRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {

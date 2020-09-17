@@ -74,7 +74,7 @@
                     </div>
 
                     {{-- <div class="form-group row">
-                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Roles') }}</label>
+                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Role') }}</label>
                         <div class="col-md-6">
                             <div class="row">
                                 @foreach ($roles as $role)

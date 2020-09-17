@@ -22,7 +22,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="{{route('admin.permissions.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('admin.roles.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -57,8 +57,8 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Permissions</h5>
-                <table class="mb-0 table table-hover" id="table-permissions">
+                <h5 class="card-title">Roles</h5>
+                <table class="mb-0 table table-hover" id="table-roles">
                     <thead>
                         <tr>
                             <th width="150px">#</th>
@@ -66,13 +66,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($permissions as $permission)
+                        @foreach ($roles as $role)
                         <tr>
                             <td>
-                                <a href="{{route('admin.permissions.edit',$permission->id)}}"><button type="button"
+                                <a href="{{route('admin.roles.edit',$role->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
                                 @can('for-superadmin')
-                                <form action="{{route('admin.permissions.destroy',$permission->id)}}" method="post"
+                                <form action="{{route('admin.roles.destroy',$role->id)}}" method="POST"
                                     class="float-left">
                                     @csrf
                                     @method('DELETE')
@@ -82,13 +82,13 @@
 
 
                             </td>
-                            <td>{{$permission->name}}</td>
+                            <td>{{$role->name}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            {{-- {{ $permissions->links() }} --}}
+            {{-- {{ $roles->links() }} --}}
         </div>
     </div>
 </div>

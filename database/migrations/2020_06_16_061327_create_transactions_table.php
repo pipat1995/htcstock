@@ -34,6 +34,7 @@ class CreateTransactionsTable extends Migration
             $table->double('unit_cost')->nullable();
             $table->string('vendor_id')->nullable();
             $table->string('ref_no')->nullable();
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

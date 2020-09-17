@@ -3,18 +3,18 @@
 namespace App\Repository\Eloquent;
 
 use App\Repository\Eloquent\BaseRepository;
-use App\Repository\RolesRepositoryInterface;
-use App\Roles;
+use App\Repository\RoleRepositoryInterface;
+use App\Role;
 use Illuminate\Database\Eloquent\Builder;
 
-class RolesRepository extends BaseRepository implements RolesRepositoryInterface
+class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 {
     /**
      * UserRepository constructor.
      *
-     * @param Roles $model
+     * @param Role $model
      */
-    public function __construct(Roles $model)
+    public function __construct(Role $model)
     {
         parent::__construct($model);
     }
@@ -22,7 +22,7 @@ class RolesRepository extends BaseRepository implements RolesRepositoryInterface
     public function all(): Builder
     {
         try {
-            return Roles::select('id', 'name');
+            return Role::select('id', 'name');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -31,7 +31,7 @@ class RolesRepository extends BaseRepository implements RolesRepositoryInterface
     public function delete($id): bool
     {
         try {
-            $user = Roles::find($id);
+            $user = Role::find($id);
             $user->roles()->detach();
             return $user->delete();
         } catch (\Throwable $th) {

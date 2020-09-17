@@ -5,7 +5,7 @@ namespace App\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-interface RolesRepositoryInterface
+interface RoleRepositoryInterface
 {
     public function all(): Builder;
 

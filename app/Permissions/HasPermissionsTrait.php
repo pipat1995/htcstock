@@ -3,7 +3,7 @@
 namespace App\Permissions;
 
 use App\Permission;
-use App\Roles;
+use App\Role;
 
 trait HasPermissionsTrait
 {
@@ -54,9 +54,9 @@ trait HasPermissionsTrait
 
     public function hasRole(...$roles)
     {
-        
+
         foreach ($roles as $role) {
-            if ($this->roles->contains('name', $role)) {
+            if ($this->roles->contains('slug', $role)) {
                 return true;
             }
         }
@@ -65,19 +65,23 @@ trait HasPermissionsTrait
 
     public function roles()
     {
-        return $this->belongsToMany(Roles::class, 'roles_user');
+
+        return $this->belongsToMany(Role::class, 'user_role');
     }
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'users_permissions');
+
+        return $this->belongsToMany(Permission::class, 'user_permission');
     }
     protected function hasPermission($permission)
     {
-        return (bool) $this->permissions->where('name', $permission->name)->count();
+
+        return (bool) $this->permissions->where('slug', $permission->slug)->count();
     }
 
     protected function getAllPermissions(array $permissions)
     {
-        return Permission::whereIn('name', $permissions)->get();
+
+        return Permission::whereIn('slug', $permissions)->get();
     }
 }

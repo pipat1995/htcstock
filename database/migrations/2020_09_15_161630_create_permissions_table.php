@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCreatedTransactionTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddCreatedTransactionTable extends Migration
      */
     public function up()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->integer('created_by');
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name'); // edit posts
+            $table->string('slug'); //edit-posts
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class AddCreatedTransactionTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('permissions');
     }
 }

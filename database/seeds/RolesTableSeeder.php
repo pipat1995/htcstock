@@ -1,9 +1,10 @@
 <?php
 
-use App\Roles;
+use App\Permission;
+use App\Role;
 use Illuminate\Database\Seeder;
 
-class RolesTableSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +13,32 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Roles::truncate();
-        Roles::create(['name' => 'admin']);
-        Roles::create(['name' => 'author']);
-        Roles::create(['name' => 'user']);
+        $roles = [
+            [
+                'id' => '1',
+                'name' => 'Super Admin',
+                'slug' => 'super-admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => '2',
+                'name' => 'Admin',
+                'slug' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => '3',
+                'name' => 'User',
+                'slug' => 'user',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
+        foreach ($roles as $key => $value) {
+            Role::insert($value);
+        }
     }
 }

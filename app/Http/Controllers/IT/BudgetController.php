@@ -127,7 +127,7 @@ class BudgetController extends Controller
     public function update(BudgetFormRequest $request, $id)
     {
         try {
-            if (Gate::denies('for-admin-author')) {
+            if (Gate::denies('for-superadmin-admin')) {
                 return \redirect()->route('logout');
             }
             $budget = $this->budgetRepository->find($id);

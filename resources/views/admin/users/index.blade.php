@@ -62,7 +62,7 @@
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Roles</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,8 +71,8 @@
                             <td>
                                 <a href="{{route('admin.users.edit',$user->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                {{-- @can('for-admin') เรียกใช้จาก AuthServiceProvider --}}
-                                @can('for-admin')
+                                {{-- @can('for-superadmin') เรียกใช้จาก AuthServiceProvider --}}
+                                @can('for-superadmin')
                                 <form action="{{route('admin.users.destroy',$user->id)}}" method="post"
                                     class="float-left">
                                     @csrf

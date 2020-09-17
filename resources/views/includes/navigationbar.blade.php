@@ -78,14 +78,14 @@
                                     class="dropdown-menu dropdown-menu-right">
                                     <a href="{{ route('me.user.edit',Auth::user()->id) }}" tabindex="0"
                                         class="dropdown-item">โปรไฟล์</a>
-                                    @can('for-admin-author')
+                                    {{-- @can('for-superadmin-admin') --}}
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
                                         class="dropdown-item">การจัดการผู้ใช้</a>
                                     <a href="{{ route('it.budgets.index') }}" tabindex="0"
                                         class="dropdown-item">การจัดการงบประมาณ</a>
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">อัปเดตข้อมูลผู้ใช้</a>
-                                    @endcan
+                                    {{-- @endcan --}}
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                     <button type="button" tabindex="0" class="dropdown-item">Actions</button> --}}

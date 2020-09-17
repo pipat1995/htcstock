@@ -35,23 +35,23 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
-                    <a href="{{route('admin.users.index')}}" class="{{Helper::isActive('admin/users')}}">
+                    <a href="{{route('admin.users.index')}}" class="{{Helper::isActive('admin/users*')}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Users
+                        Users Management
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="">
+                    <a href="{{route('admin.roles.index')}}" class="{{Helper::isActive('admin/roles*')}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Roles
+                        Role
                     </a>
                 </li>
-                <li>
-                    <a href="{{route('admin.permissions.index')}}" class="{{Helper::isActive('admin/permissions')}}">
+                {{-- <li>
+                    <a href="{{route('admin.permissions.index')}}" class="{{Helper::isActive('admin/permissions*')}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Permissions
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="app-sidebar__heading">การทำงาน</li>
                 <li class="{{Helper::isActive('it/accessories/*')}}">
                 <a href="#" class="{{Helper::isActive('it/accessories/*')}}">

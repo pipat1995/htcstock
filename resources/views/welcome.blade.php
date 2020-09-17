@@ -104,27 +104,26 @@
                 <i class="fa fa-bars"></i>
             </a>
             @if (Route::has('login'))
-                @auth
-                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small"
-                onclick="event.preventDefault();
+            @auth
+            <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-                @else
-                <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
-                    LOGIN</a>
-                @endauth
+            @else
+            <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
+                LOGIN</a>
+            @endauth
             @endif
         </div>
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
             @if (Route::has('login'))
-                @auth
-                <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
+            @auth
+            <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-                @else
-                <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
-                        class="fa fa-user"></i> LOGIN</a>
-                @endauth
+            @else
+            <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
+                    class="fa fa-user"></i> LOGIN</a>
+            @endauth
             @endif
         </div>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -148,28 +147,18 @@
                 <img src="" style="width:100%" onclick="goTo('it/dashboard')" class="w3-hover-opacity" alt="IT STOCK">
             </div>
 
-            <div class="w3-col m3">
+            {{-- <div class="w3-col m3">
                 <img src="" style="width:100%" onclick="goTo('accounts/dashboard')" class="w3-hover-opacity"
                     alt="ACCOUNT STOCK">
-            </div>
-
-            {{-- <div class="w3-col m3">
-                <img src="{{asset('assets/images/avatars/3.jpg')}}" style="width:100%" class="w3-hover-opacity"
-            alt="Bear closeup">
+            </div> --}}
         </div>
-
-        <div class="w3-col m3">
-            <img src="{{asset('assets/images/avatars/4.jpg')}}" style="width:100%" class="w3-hover-opacity"
-                alt="Quiet ocean">
-        </div> --}}
-    </div>
     </div>
 
     <!-- Footer -->
-    <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+    {{-- <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
         <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
                 class="w3-hover-text-green">w3.css</a></p>
-    </footer>
+    </footer> --}}
 
     <script type="text/javascript">
         // Change style of navbar on scroll
