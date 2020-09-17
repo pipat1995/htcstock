@@ -50,6 +50,13 @@
                     <ul>
                         @can('for-superadmin-admin')
                         <li>
+                            <a href="{{route('it.accessories.index')}}"
+                                class="{{Helper::isActive('it/manage/accessories*') }}">
+                                <i class="metismenu-icon">
+                                </i>อุปกรณ์
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/buy*')}}">
                                 <i class="metismenu-icon"></i>
                                 ซื้อ
@@ -69,16 +76,6 @@
                                 ยืม-คืน
                             </a>
                         </li>
-
-                        @can('for-superadmin-admin')
-                        <li>
-                            <a href="{{route('it.accessories.index')}}"
-                                class="{{Helper::isActive('it/manage/accessories*') }}">
-                                <i class="metismenu-icon">
-                                </i>จัดการอุปกรณ์
-                            </a>
-                        </li>
-                        @endcan
                     </ul>
                 </li>
                 @can('for-superadmin-admin')

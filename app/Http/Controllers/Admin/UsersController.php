@@ -52,9 +52,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         try {
-            // if (Gate::denies('for-superadmin-admin')) {
-            //     return \redirect()->route('admin.users.index');
-            // }
+            if (Gate::denies('for-superadmin-admin')) {
+                return \redirect()->route('admin.users.index');
+            }
             return \view('admin.users.edit')->with([
                 'user' => $this->userRepository->find($id),
                 'roles' => $this->rolesRepository->all()->get()
@@ -121,7 +121,7 @@ class UsersController extends Controller
     public function updateusers(Request $request)
     {
         try {
-            if (Gate::denies('for-superadmin')) {
+            if (Gate::denies('for-superadmin-admin')) {
                 return back();
             }
             $username = [];
