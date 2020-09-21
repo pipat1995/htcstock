@@ -9,6 +9,7 @@ use App\Http\Requests\LendingsFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
+use App\Traits\MakeTokenTransaction;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LendingsTransactionController extends Controller
 {
+    use MakeTokenTransaction;
     protected $accessoriesRepo;
     protected $transactionsRepo;
     protected $userRepository;
@@ -58,8 +60,9 @@ class LendingsTransactionController extends Controller
                     }
                 }
             }
+            $datas = $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch);
             $accessories = $this->accessoriesRepo->all()->get();
-            return \view('it.lendings.list',\compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
+            return \view('it.lendings.list',\compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -142,7 +145,7 @@ class LendingsTransactionController extends Controller
     {
         try {
             if (!is_null($request->ref_no)) {
-                $token = $this->transactionsRepo->makeRandomTokenKey();
+                $token = $this->makeRandomTokenKey();
                 $transaction = $this->transactionsRepo->find($id);
 
                 if ($transaction->ref_no) {

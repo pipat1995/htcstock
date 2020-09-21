@@ -37,15 +37,6 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
         }
     }
 
-    public function makeRandomTokenKey(): String
-    {
-        try {
-            return Str::random(32);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
     public function stock(): Builder
     {
         try {

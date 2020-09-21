@@ -48,18 +48,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(\App\Transactions::class, 'created_by');
     }
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class, 'user_role');
-    // }
-
-    // public function hasRole(...$roles)
-    // {
-    //     foreach ($roles as $role) {
-    //         if ($this->roles->contains('slug', $role)) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+    public function department()
+    {
+        return $this->belongsTo(\App\Department::class);
+    }
 }
