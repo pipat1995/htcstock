@@ -1,0 +1,71 @@
+.u-section-1 .u-sheet-1 {min-height: 738px}
+.u-section-1 .u-image-1 {width: 507px; height: 647px; margin: 40px 0 0 auto}
+.u-section-1 .u-group-1 {width: 486px; min-height: 217px; margin: -659px auto 0 147px}
+.u-section-1 .u-container-layout-1 {padding: 30px 30px 30px 0}
+.u-section-1 .u-text-1 {margin: 0}
+.u-section-1 .u-text-2 {margin-left: 0; margin-right: 0; font-style: italic; margin-top: 20px}
+.u-section-1 .u-list-1 {width: 570px; min-height: 381px; grid-template-columns: repeat(3, calc(33.3333% - 20px)); grid-template-rows: repeat(2, auto); grid-gap: 30px; margin: -8px auto 61px 147px}
+.u-section-1 .u-container-layout-2 {padding: 30px}
+.u-section-1 .u-icon-1 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-3 {margin: 20px 0 0}
+.u-section-1 .u-list-item-2 {background-image: none}
+.u-section-1 .u-container-layout-3 {padding: 30px}
+.u-section-1 .u-icon-2 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-4 {margin: 20px 0 0}
+.u-section-1 .u-container-layout-4 {padding: 30px}
+.u-section-1 .u-icon-3 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-5 {margin: 20px 0 0}
+.u-section-1 .u-container-layout-5 {padding: 30px}
+.u-section-1 .u-icon-4 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-6 {margin: 20px 0 0}
+.u-section-1 .u-container-layout-6 {padding: 30px}
+.u-section-1 .u-icon-5 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-7 {margin: 20px 0 0}
+.u-section-1 .u-container-layout-7 {padding: 30px}
+.u-section-1 .u-icon-6 {height: 48px; width: 48px; margin: 0 auto}
+.u-section-1 .u-text-8 {margin: 20px 0 0} 
+
+@media (max-width: 1199px){ .u-section-1 .u-image-1 {margin-top: 46px}
+.u-section-1 .u-group-1 {min-height: 181px; margin-top: -647px; margin-left: 20px}
+.u-section-1 .u-container-layout-1 {padding-top: 0; padding-bottom: 7px}
+.u-section-1 .u-text-2 {margin-bottom: 0}
+.u-section-1 .u-list-1 {height: auto; margin-top: 46px; margin-bottom: 60px; margin-left: 20px}
+.u-section-1 .u-list-item-1 {background-size: auto}
+.u-section-1 .u-list-item-3 {background-size: auto}
+.u-section-1 .u-list-item-4 {background-size: auto}
+.u-section-1 .u-list-item-5 {background-size: auto}
+.u-section-1 .u-list-item-6 {background-size: auto} }
+
+@media (max-width: 991px){ .u-section-1 .u-sheet-1 {min-height: 861px}
+.u-section-1 .u-image-1 {width: 353px}
+.u-section-1 .u-group-1 {width: 386px; min-height: 206px}
+.u-section-1 .u-list-1 {width: 366px; min-height: 516px; grid-template-columns: repeat(2, calc(((100% - 720px) / 2)  + 345px)); margin-bottom: 47px} }
+
+@media (max-width: 767px){ .u-section-1 .u-sheet-1 {min-height: 829px}
+.u-section-1 .u-image-1 {height: 453px; margin-top: 214px}
+.u-section-1 .u-group-1 {margin-left: 0}
+.u-section-1 .u-container-layout-1 {padding-right: 10px}
+.u-section-1 .u-list-1 {width: 374px; grid-template-columns: repeat(2, calc(((100% - 540px) / 2)  + 255px)); margin-top: 47px; margin-bottom: 40px; margin-left: 0}
+.u-section-1 .u-container-layout-2 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-3 {margin-left: 1px; margin-right: 1px}
+.u-section-1 .u-container-layout-3 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-4 {margin-left: 1px; margin-right: 1px}
+.u-section-1 .u-container-layout-4 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-5 {margin-left: 1px; margin-right: 1px}
+.u-section-1 .u-container-layout-5 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-6 {margin-left: 1px; margin-right: 1px}
+.u-section-1 .u-container-layout-6 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-7 {margin-left: 1px; margin-right: 1px}
+.u-section-1 .u-container-layout-7 {padding-left: 10px; padding-right: 10px}
+.u-section-1 .u-text-8 {margin-left: 1px; margin-right: 1px} }
+
+@media (max-width: 575px){ .u-section-1 .u-sheet-1 {min-height: 1001px}
+.u-section-1 .u-image-1 {width: 340px; height: 436px; margin-top: 20px}
+.u-section-1 .u-group-1 {width: 340px; margin-top: 20px}
+.u-section-1 .u-list-1 {grid-template-columns: repeat(2, calc(((100% - 340px) / 2)  + 155px)); margin-top: 20px; margin-bottom: 60px; margin-right: initial; margin-left: initial; width: auto}
+.u-section-1 .u-text-3 {margin-left: 0; margin-right: 0}
+.u-section-1 .u-text-4 {margin-left: 0; margin-right: 0}
+.u-section-1 .u-text-5 {margin-left: 0; margin-right: 0}
+.u-section-1 .u-text-6 {margin-left: 0; margin-right: 0}
+.u-section-1 .u-text-7 {margin-left: 0; margin-right: 0}
+.u-section-1 .u-text-8 {margin-left: 0; margin-right: 0} }

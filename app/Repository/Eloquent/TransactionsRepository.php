@@ -23,7 +23,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
     public function all(): Builder
     {
         try {
-            return Transactions::select('id', 'access_id', 'trans_type', 'qty', 'unit_cost', 'ir_no', 'po_no', 'trans_by', 'created_at', 'created_by');
+            return Transactions::whereNotNull('id');
         } catch (\Throwable $th) {
             throw $th;
         }

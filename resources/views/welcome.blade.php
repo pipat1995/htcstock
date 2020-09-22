@@ -9,156 +9,123 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/w3.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Lato", sans-serif;
-        }
 
-        body,
-        html {
-            height: 100%;
-            color: #777;
-            line-height: 1.8;
-        }
-
-        /* Create a Parallax Effect */
-        .bgimg-1,
-        .bgimg-2,
-        .bgimg-3 {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* First image (Logo. Full height) */
-        .bgimg-1 {
-            background-image: url('/w3images/parallax1.jpg');
-            min-height: 100%;
-        }
-
-        /* Second image (Portfolio) */
-        .bgimg-2 {
-            background-image: url("{{ asset('assets/images/background/welcome.gif') }}");
-            min-height: 400px;
-        }
-
-        /* Third image (Contact) */
-        .bgimg-3 {
-            background-image: url("/w3images/parallax3.jpg");
-            min-height: 400px;
-        }
-
-        .w3-wide {
-            letter-spacing: 10px;
-        }
-
-        .w3-hover-opacity {
-            cursor: pointer;
-        }
-
-        /* Turn off parallax scrolling for tablets and phones */
-        @media only screen and (max-device-width: 1600px) {
-
-            .bgimg-1,
-            .bgimg-2,
-            .bgimg-3 {
-                background-attachment: scroll;
-                min-height: 400px;
-            }
-        }
-
-        /* body,
-        h1 {
-            font-family: "Raleway", sans-serif
-        }
-
-        body,
-        html {
-            height: 100%
-        }
-
-        .bgimg {
-            background-image: url("{{ asset('assets/images/background/welcome.gif') }}");
-            min-height: 100%;
-            background-position: center;
-            background-size: cover;
-        } */
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('assets/css/Page-2.css') }}" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i">
 </head>
 
 <body>
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top">
-        <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
-                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-            @if (Route::has('login'))
-            @auth
-            <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-            @else
-            <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
-                LOGIN</a>
-            @endauth
-            @endif
-        </div>
-
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-            @if (Route::has('login'))
-            @auth
-            <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
-            @else
-            <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
-                    class="fa fa-user"></i> LOGIN</a>
-            @endauth
-            @endif
-        </div>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    </div>
-
-    <!-- Second Parallax Image with Portfolio Text -->
-    <div class="bgimg-2 w3-display-container w3-opacity-min">
-        <div class="w3-display-middle">
-            <span class="w3-xxlarge w3-text-white w3-wide">ALL SYSTEM</span>
-        </div>
-    </div>
-
-    <!-- Container (Portfolio Section) -->
-    <div class="w3-content w3-container w3-padding-64" id="portfolio">
-
-        <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-        <div class="w3-row-padding w3-center">
-            <div class="w3-col m3">
-                <img src="" style="width:100%" onclick="goTo('it/dashboard')" class="w3-hover-opacity" alt="IT STOCK">
+    <section class="u-clearfix u-section-1" id="carousel_5783">
+        <div class="w3-top">
+            <div class="w3-bar" id="myNavbar">
+                <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                    href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+                @if (Route::has('login'))
+                @auth
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
+                @else
+                <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
+                    LOGIN</a>
+                @endauth
+                @endif
             </div>
 
-            {{-- <div class="w3-col m3">
-                <img src="" style="width:100%" onclick="goTo('accounts/dashboard')" class="w3-hover-opacity"
-                    alt="ACCOUNT STOCK">
-            </div> --}}
+            <!-- Navbar on small screens -->
+            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+                @if (Route::has('login'))
+                @auth
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
+                @else
+                <a href="{{ route('login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()"><i
+                        class="fa fa-user"></i> LOGIN</a>
+                @endauth
+                @endif
+            </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </div>
-    </div>
 
-    <!-- Footer -->
-    {{-- <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
-                class="w3-hover-text-green">w3.css</a></p>
-    </footer> --}}
+        <div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
+            <img src="{{ asset('assets/images/pexelsphoto3178818.jpeg') }}" alt=""
+                class="u-image u-image-default u-image-1">
+            <div class="u-container-style u-group u-group-1">
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                    <h1 class="u-custom-font u-font-playfair-display u-text u-text-1">Haier<br><b>All System</b>
+                        <br>
+                    </h1>
+                    <p class="u-text u-text-2">Adding items that have that natural feel or are from organic roots would
+                        give our
+                        homes the warmth of nature. </p>
+                </div>
+            </div>
+            <div class="u-expanded-width-xs u-list u-repeater u-list-1">
+                <div style="cursor: pointer;" onclick="goTo('it/dashboard')"
+                    class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-1">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+
+                        <i class="fa fa-dropbox fa-5x" aria-hidden="true" style="margin: auto"></i>
+                        <h5 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-3"
+                            style="margin: auto">
+                            IT STOCK</h5>
+                    </div>
+                </div>
+                <div style="cursor: pointer;" onclick="goTo('legal/dashboard')"
+                    class="u-align-center u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-list-item-2">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
+                        <i class="fa fa-gavel fa-5x" aria-hidden="true" style="margin: auto"></i>
+
+                        <h5 class="u-custom-font u-font-playfair-display u-text u-text-default u-text-4"
+                            style="margin: auto">CONTRACT LEGAL
+                        </h5>
+                    </div>
+                </div>
+                {{-- <div style="cursor: pointer;"
+                    class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-3">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-4">
+
+                        <h5 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-5" style="margin: auto">
+                            Contact</h5>
+                    </div>
+                </div>
+                <div style="cursor: pointer;"
+                    class="u-align-center u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-4">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-5">
+
+                        <h5 class="u-custom-font u-font-playfair-display u-text u-text-default u-text-6" style="margin: auto">Setting</h5>
+                    </div>
+                </div>
+                <div style="cursor: pointer;"
+                    class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-5">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-6">
+
+                        <h5 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-7" style="margin: auto">
+                            Support</h5>
+                    </div>
+                </div>
+                <div style="cursor: pointer;"
+                    class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-6">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-7">
+
+                        <h5 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-8" style="margin: auto">
+                            Design</h5>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+    </section>
+
+
+
 
     <script type="text/javascript">
         // Change style of navbar on scroll

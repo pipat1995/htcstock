@@ -22,7 +22,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function all(): Builder
     {
         try {
-            return User::select('id', 'name', 'username', 'email');
+            return User::whereNotNull('department_id');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -63,6 +63,7 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Dept</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +87,12 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
+                            <td>
+                                {{-- <div class="badge badge-warning"> --}}
+                                    {{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}
+                                {{-- </div> --}}
+                            </td>
+                            <td>{{$user->department->name}}</td>
                         </tr>
                         @endforeach
                     </tbody>

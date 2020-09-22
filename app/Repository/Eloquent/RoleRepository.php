@@ -22,7 +22,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     public function all(): Builder
     {
         try {
-            return Role::select('id', 'name');
+            return Role::whereNotNull('id');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -33,18 +33,18 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">รายงาน</li>
+                <li class="app-sidebar__heading">{{ __('itsidebar.report') }}</li>
                 <li>
                     <a href="{{url('it/dashboard')}}" class="{{Helper::isActive('it/dashboard')}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        รายงานแดชบอร์ด
+                        {{ __('itsidebar.dashboard') }}
                     </a>
                 </li>
-                <li class="app-sidebar__heading">การทำงาน</li>
+                <li class="app-sidebar__heading">{{ __('itsidebar.actions') }}</li>
                 <li class="{{Helper::isActive('it/*')}}">
                     <a href="#" class="{{Helper::isActive('it/*')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        อุปกรณ์
+                        {{ __('itsidebar.accessorie') }}
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
@@ -53,13 +53,13 @@
                             <a href="{{route('it.accessories.index')}}"
                                 class="{{Helper::isActive('it/manage/accessories*') }}">
                                 <i class="metismenu-icon">
-                                </i>อุปกรณ์
+                                </i>{{ __('itsidebar.manage_accessorie') }}
                             </a>
                         </li>
                         <li>
                             <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/buy*')}}">
                                 <i class="metismenu-icon"></i>
-                                ซื้อ
+                                {{ __('itsidebar.buy') }}
                             </a>
                         </li>
                         @endcan
@@ -67,13 +67,13 @@
                         <li>
                             <a href="{{route('it.requisition.index')}}" class="{{Helper::isActive('it/requisition*')}}">
                                 <i class="metismenu-icon"></i>
-                                เบิก
+                                {{ __('itsidebar.requisition') }}
                             </a>
                         </li>
                         <li>
                             <a href="{{route('it.lendings.index')}}" class="{{Helper::isActive('it/lendings*')}}">
                                 <i class="metismenu-icon"></i>
-                                ยืม-คืน
+                                {{ __('itsidebar.lend') }}
                             </a>
                         </li>
                     </ul>

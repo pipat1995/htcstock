@@ -42,7 +42,7 @@
                 <button class="close"></button>
             </div>
             <ul class="header-menu nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="javascript:void(0);" class="nav-link">
                         <i class="nav-link-icon fa fa-database"> </i>
                         Statistics
@@ -59,6 +59,22 @@
                         <i class="nav-link-icon fa fa-cog"></i>
                         Settings
                     </a>
+                </li> --}}
+
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link" href="javascript:void(0);" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i
+                            class="nav-link-icon fa fa-globe"></i>
+                        {{ __('navigation.language') }}
+
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item {{Session::get('locale') === 'en' ? 'active' : ''}}"
+                            href="{{route('switch.language','en')}}">{{ __('navigation.english') }}</a>
+                        <a class="dropdown-item {{Session::get('locale') === 'th' ? 'active' : ''}}"
+                            href="{{route('switch.language','th')}}">{{ __('navigation.thailand') }}
+                        </a>
+                    </div>
                 </li>
             </ul>
         </div>

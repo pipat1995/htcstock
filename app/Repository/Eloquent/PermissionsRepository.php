@@ -22,7 +22,7 @@ class PermissionsRepository extends BaseRepository implements PermissionsReposit
     public function all(): Builder
     {
         try {
-            return Permission::select('id', 'name');
+            return Permission::whereNotNull('id');
         } catch (\Throwable $th) {
             throw $th;
         }

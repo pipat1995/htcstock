@@ -21,7 +21,7 @@ class BudgetRepository extends BaseRepository implements BudgetRepositoryInterfa
     public function all(): Builder
     {
         try {
-            return Budgets::select('id', 'budgets_of_month', 'month', 'year', 'created_at');
+            return Budgets::whereNotNull('id');
         } catch (\Throwable $th) {
             throw $th;
         }
