@@ -77,4 +77,17 @@ class ReportController extends Controller
             throw $th;
         }
     }
+
+    public function checkStock(int $id)
+    {
+        try {
+            $result = $this->transactionsRepository->quantityAccessorie($id);
+            if (is_null($result)) {
+                return response()->json(['message' => "No data transactions"], 200);
+            }
+            return response()->json(['name' => $result->accessorie->access_name, 'qty' => (int) $result->quantity], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

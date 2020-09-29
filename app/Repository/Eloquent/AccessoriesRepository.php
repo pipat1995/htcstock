@@ -6,8 +6,6 @@ use App\Accessories;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\Eloquent\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class AccessoriesRepository extends BaseRepository implements AccessoriesRepositoryInterface
 {
@@ -25,19 +23,6 @@ class AccessoriesRepository extends BaseRepository implements AccessoriesReposit
     {
         try {
             return Accessories::whereNotNull('access_id');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    public function delete(String $id)
-    {
-        try {
-            $accessories = Accessories::find($id);
-            if ($accessories->transaction()->get()->sum('qty') > 0) {
-                return false;
-            }
-            return $accessories->delete();
         } catch (\Throwable $th) {
             throw $th;
         }

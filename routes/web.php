@@ -38,29 +38,42 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
 });
 
 Route::namespace('Auth')->prefix('me')->name('me.')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('/user', 'UsersController', ['only' => ['edit', 'update']]);
+    Route::resource('user', 'UsersController', ['only' => ['edit', 'update']]);
 });
 // IT
 Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
-    Route::resource('/budgets', 'BudgetController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-    Route::resource('/buy', 'BuyTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-    Route::resource('/requisition', 'RequisitionTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-    Route::resource('/lendings', 'LendingsTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
+    Route::resource('budgets', 'BudgetController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
+    Route::resource('buy', 'BuyTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
+    Route::resource('requisition', 'RequisitionTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
+    Route::resource('lendings', 'LendingsTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
-    Route::get('/check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
-    Route::get('/check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
-    Route::resource('/manage/accessories', 'AccessoriesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+    Route::get('check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
+    Route::get('check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
+    Route::resource('manage/accessories', 'AccessoriesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
 });
 
 
 // Account
 Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('dashboard', 'HomeController@index')->name('dashboard');
 });
 
 
 // Legal
 Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
+    Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
+
+    Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
+        Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('mould', 'MouldController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('scrap', 'ScrapController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('vendorservicecontract', 'VendorServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+    });
 });

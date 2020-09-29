@@ -8,9 +8,11 @@
  =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
- table th,td{
+table th,
+td {
     text-align: center;
- }
+}
+
 .border-primary {
     border-color: #3f6ad8
 }
@@ -25706,4 +25708,30 @@ a.fc-more:hover {
     height: 350px;
     margin-bottom: 30px;
     background-size: 100%
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    text-align: center;
+}
+
+.type-contract-input {
+    width: 10%;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-bottom-color: black;
+}
+
+.li-none-type {
+    list-style-type: none;
 }

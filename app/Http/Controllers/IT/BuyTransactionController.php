@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BuyFormSearch;
 use App\Http\Requests\BuyFormRequest;
@@ -36,8 +37,8 @@ class BuyTransactionController extends Controller
      */
     public function index(Request $request)
     {
+        $formSearch = new BuyFormSearch();
         try {
-            $formSearch = new BuyFormSearch();
             $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::B);
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
@@ -98,11 +99,13 @@ class BuyTransactionController extends Controller
     public function store(BuyFormRequest $request)
     {
         try {
-            if (!$this->transactionsRepo->create(array_merge($request->all(), ['trans_type' => TransactionTypeEnum::B, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]))) {
+            $attributes = array_merge($request->except(['_token']), ['trans_type' => TransactionTypeEnum::B, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]);
+            $create = $this->transactionsRepo->create($attributes);
+            if (!$create) {
                 $request->session()->flash('error', 'error create!');
-            } else {
-                $request->session()->flash('success',  ' has been create');
-            }
+                return \back();
+            } 
+            $request->session()->flash('success',  ' has been create');
             return \redirect()->route('it.buy.index');
         } catch (\Throwable $th) {
             throw $th;
@@ -147,12 +150,12 @@ class BuyTransactionController extends Controller
     public function update(BuyFormRequest $request, $id)
     {
         try {
-            $token = $this->transactionsRepo->makeRandomTokenKey();
+            $token = Helper::makeRandomTokenKey();
             $transaction = $this->transactionsRepo->find($id);
             if (!is_null($request->ref_no)) {
 
                 // ตรวจสอบ stock ว่าเหลือเท่าตอนซื้อ
-                if ($this->transactionsRepo->howMuchAccessorie($transaction->access_id)->quantity < $transaction->qty) {
+                if ($this->transactionsRepo->quantityAccessorie($transaction->access_id)->quantity < $transaction->qty) {
                     $request->session()->flash('error', 'มีของในคลังไม่พอให้ยกเลิก!');
                     return \back();
                 }

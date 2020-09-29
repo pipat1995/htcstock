@@ -9,8 +9,8 @@ interface BudgetRepositoryInterface
 {
     public function all(): Builder;
     public function create(array $attributes): Model;
-    public function find(String $id): Model;
+    public function find(int $id): Model;
 
-    public function update(array $attributes, String $id): bool;
+    public function update(array $attributes, int $id): bool;
     public function hasBudget(String $month, String $year): bool;
 }

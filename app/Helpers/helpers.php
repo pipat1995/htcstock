@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Request;
-
+use Illuminate\Support\Str;
 class Helper
 {
     public static function changeDateFormate($date, $date_format)
@@ -36,5 +36,10 @@ class Helper
             return substr($qty,1);
         }
         return $qty;
+    }
+
+    public static function makeRandomTokenKey()
+    {
+        return Str::random(32);
     }
 }

@@ -6,7 +6,6 @@ use App\Repository\TransactionsRepositoryInterface;
 use App\Transactions;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class TransactionsRepository extends BaseRepository implements TransactionsRepositoryInterface
 {
@@ -46,7 +45,7 @@ class TransactionsRepository extends BaseRepository implements TransactionsRepos
         }
     }
 
-    public function howMuchAccessorie(String $id)
+    public function quantityAccessorie(int $id)
     {
         try {
             return Transactions::select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->where('access_id', $id)->first();

@@ -11,8 +11,8 @@
     <link href="{{ asset('assets/css/w3.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/nicepage.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('assets/css/Page-2.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('assets/css/nicepage.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/Page-2.css') }}">
     <link id="u-theme-google-font" rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet"

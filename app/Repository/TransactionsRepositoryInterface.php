@@ -9,10 +9,10 @@ interface TransactionsRepositoryInterface
 {
     public function all(): Builder;
     public function transactionType(String $type): Builder;
-    public function find(String $id): Model;
+    public function find(int $id): Model;
     public function create(array $attributes): Model;
-    public function update(array $attributes,String $id): bool;
+    public function update(array $attributes,int $id): bool;
     public function stock(): Builder;
-    public function howMuchAccessorie(String $id);
+    public function quantityAccessorie(int $id);
     public function getAccessoriesType(String $type);
 }

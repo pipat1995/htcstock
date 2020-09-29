@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\RequisitionFormSearch;
 use App\Http\Requests\RequisitionFormRequest;
@@ -142,7 +143,7 @@ class RequisitionTransactionController extends Controller
     {
         try {
             if (!is_null($request->ref_no)) {
-                $token = $this->transactionsRepo->makeRandomTokenKey();
+                $token = Helper::makeRandomTokenKey();
                 $transaction = $this->transactionsRepo->find($id);
 
                 if ($transaction->ref_no) {

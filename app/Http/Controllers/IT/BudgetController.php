@@ -9,6 +9,7 @@ use App\Http\FormSearches\BudgetFormSearch;
 use App\Http\Requests\BudgetFormRequest;
 use App\Repository\BudgetRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
+use App\Services\BuyTransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 

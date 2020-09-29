@@ -9,11 +9,11 @@ interface UserRepositoryInterface
 {
     public function all(): Builder;
 
-    public function find(String $id): Model;
+    public function find(int $id): Model;
 
-    public function update(array $attributes, String $id): bool;
+    public function update(array $attributes, int $id): bool;
 
-    public function delete(String $id): bool;
+    public function delete(int $id): bool;
     
     public function create(array $attributes ): Model;
 }

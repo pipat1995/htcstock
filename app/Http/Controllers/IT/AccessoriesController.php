@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\IT;
 
+use App\Accessories;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\AccessFormSearch;
 use App\Http\Requests\AccessorieFormRequest;
@@ -69,7 +70,7 @@ class AccessoriesController extends Controller
                 return \back();
             }
             $request->session()->flash('success',' has been create success');
-            return \back();
+            return \redirect()->route('it.accessories.edit',$isCreate->access_id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -118,7 +119,7 @@ class AccessoriesController extends Controller
                 return \back();
             }
             $request->session()->flash('success',' has been update success');
-            return \back();
+            return \redirect()->route('it.accessories.edit',$id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -133,8 +134,14 @@ class AccessoriesController extends Controller
     public function destroy($id)
     {
         try {
-            $accessorie = $this->accessoriesRepository->delete($id);
-            if (!$accessorie) {
+            $accessorie = $this->accessoriesRepository->find($id);
+            if (!$this->accessorieInTransaction($accessorie)) {
+                Session::flash('error',  ' has been delete fail');
+                return \back();
+            }
+
+            $delete = $this->accessoriesRepository->destroy($id);
+            if (!$delete) {
                 Session::flash('error',  ' has been delete fail');
                 return \back();
             }
@@ -145,25 +152,11 @@ class AccessoriesController extends Controller
         }
     }
 
-    public function checkStock(String $id)
+    private function accessorieInTransaction(Accessories $accessorie)
     {
-        try {
-            $result = $this->transactionsRepository->howMuchAccessorie($id);
-            if (is_null($result)) {
-                return response()->json(['message' => "No data transactions"], 200);
-            }
-            return response()->json(['name' => $result->accessorie->access_name, 'qty' => (int) $result->quantity], 200);
-        } catch (\Throwable $th) {
-            throw $th;
+        if ($accessorie->transaction()->get()->sum('qty') > 0) {
+            return false;
         }
-    }
-
-    public function accessoriesAvailable()
-    {
-        try {
-            // \dd($this->transactionsRepository->getAccessoriesAvailable());
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return true;
     }
 }

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\LendingsFormSearch;
 use App\Http\Requests\LendingsFormRequest;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
-use App\Traits\MakeTokenTransaction;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LendingsTransactionController extends Controller
 {
-    use MakeTokenTransaction;
     protected $accessoriesRepo;
     protected $transactionsRepo;
     protected $userRepository;
@@ -145,7 +144,7 @@ class LendingsTransactionController extends Controller
     {
         try {
             if (!is_null($request->ref_no)) {
-                $token = $this->makeRandomTokenKey();
+                $token = Helper::makeRandomTokenKey();
                 $transaction = $this->transactionsRepo->find($id);
 
                 if ($transaction->ref_no) {

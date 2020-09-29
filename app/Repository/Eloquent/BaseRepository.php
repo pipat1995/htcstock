@@ -40,7 +40,7 @@ class BaseRepository implements EloquentRepositoryInterface
      * @param $id
      * @return Model
      */
-    public function find(String $id): Model
+    public function find(int $id): Model
     {
         try {
             return $this->model->find($id);
@@ -54,11 +54,20 @@ class BaseRepository implements EloquentRepositoryInterface
      *
      * @return bool
      */
-    public function update(array $attributes, String $id): bool
+    public function update(array $attributes, int $id): bool
     {
         try {
             $model = $this->model->find($id);
             return $model->update($attributes);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroy(int $id)
+    {
+        try {
+            return $this->model->destroy($id);
         } catch (\Throwable $th) {
             throw $th;
         }

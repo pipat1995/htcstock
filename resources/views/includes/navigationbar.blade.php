@@ -108,7 +108,7 @@
                                     <div tabindex="-1" class="dropdown-divider"></div>
 
                                     <button type="button" href="{{ route('logout') }}" tabindex="0"
-                                        class="dropdown-item" onclick="event.preventDefault();
+                                        class="dropdown-item" onclick="event.preventDefault(); localStorage.clear();
                                             document.getElementById('logout-form').submit();">ออกจากระบบ</button>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">

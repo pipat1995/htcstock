@@ -9,8 +9,8 @@ interface AccessoriesRepositoryInterface
 {
     public function all(): Builder;
     public function create(array $attributes): Model;
-    public function find(String $id): Model;
+    public function find(int $id): Model;
 
-    public function update(array $attributes, String $id): bool;
-    public function delete(String $id);
+    public function update(array $attributes, int $id): bool;
+    public function destroy(int $id);
 }

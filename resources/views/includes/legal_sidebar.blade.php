@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.users.index')}}" class="{{Helper::isActive('admin/users*')}}">
+                    <a href="{{route('legal.contract-request.index')}}" class="{{Helper::isActive('legal/contract-request*')}}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Contract Request Form
                     </a>
