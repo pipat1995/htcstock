@@ -92,7 +92,12 @@
                                     {{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}
                                 {{-- </div> --}}
                             </td>
+                            @if ($user->department)
                             <td>{{$user->department->name}}</td>
+                            @else
+                            <td>ไม่มี</td>
+                            @endif
+                            
                         </tr>
                         @endforeach
                     </tbody>

@@ -37,6 +37,7 @@ class UsersController extends Controller
                     ->orWhere('username', 'like', '%' . $formSearch->search . '%')
                     ->orWhere('email', 'like', '%' . $formSearch->search . '%');
             }
+            // \dd($users->get()[0]->department);
             return \view('admin.users.index', \compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
         } catch (\Throwable $th) {
             throw $th;

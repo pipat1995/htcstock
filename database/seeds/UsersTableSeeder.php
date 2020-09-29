@@ -17,35 +17,33 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
         $adminRole = Role::where('slug', 'super-admin')->first();
         $authorRole = Role::where('slug', 'admin')->first();
         $userRole = Role::where('slug', 'user')->first();
-        $a = Permission::where('slug','create-buy')->first();
-        $b = Permission::where('slug','edit-buy')->first();
-        $c = Permission::where('slug','show-buy')->first();
-        $d = Permission::where('slug','delete-buy')->first();
-        $response = Http::get(ENV('USERS_INFO'));
-        foreach ($response->json() as $key => $value) {
-            $user = User::create([
-                'name' => $value['name'],
-                'username' => $value['username'],
-                'email' => $value['email'],
-                'password' => Hash::make(strtolower(substr($value['email'], 0, 1)) . $value['username']),
-            ]);
-            if ($user->username === "70037539") {
-                
-                $user->roles()->attach($adminRole);
-                $user->roles()->attach($authorRole);
-                $user->roles()->attach($userRole);
-                $user->permissions()->attach($a);
-                $user->permissions()->attach($b);
-                $user->permissions()->attach($c);
-                $user->permissions()->attach($d);
-            } else {
-                $user->roles()->attach($userRole);
+        // $response = Http::get(ENV('USERS_INFO'));
+
+        $per = Permission::all();
+        foreach ($per as $key => $value) {
+            if (substr($value->slug,0,6) === 'delete') {
+                $adminRole->permissions()->attach($value);
+            }else{
+                $adminRole->permissions()->attach($value);
+                $authorRole->permissions()->attach($value);
+                $userRole->permissions()->attach($value);
             }
-            
+        }
+        $users = User::all();
+        foreach ($users as $key => $item) {
+            if ($item->email === 'Pipat.p@haier.co.th') {
+                $item->roles()->attach($adminRole);
+                $item->roles()->attach($authorRole);
+                $item->roles()->attach($userRole);
+            }
+            if ($item->email === 'tanapat.k@haier.co.th') {
+                $item->roles()->attach($authorRole);
+                $item->roles()->attach($userRole);
+            }
+            $item->roles()->attach($userRole);
         }
     }
 }
