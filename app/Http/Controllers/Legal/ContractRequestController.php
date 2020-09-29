@@ -14,7 +14,7 @@ class ContractRequestController extends Controller
      */
     public function index()
     {
-        return \view('legal.contractRequestForm.index');
+        return \view('legal.ContractRequestForm.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ContractRequestController extends Controller
      */
     public function create()
     {
-        return \view('legal.contractRequestForm.create');
+        return \view('legal.ContractRequestForm.create');
     }
 
     /**
@@ -57,12 +57,12 @@ class ContractRequestController extends Controller
             case '7':
                 return \redirect()->route('legal.contract-request.leasecontract.create');
                 break;
-                case '8':
-                    return \redirect()->route('legal.contract-request.projectbasedagreement.create');
-                    break;
-                    case '9':
-                        return \redirect()->route('legal.contract-request.marketingagreement.create');
-                        break;
+            case '8':
+                return \redirect()->route('legal.contract-request.projectbasedagreement.create');
+                break;
+            case '9':
+                return \redirect()->route('legal.contract-request.marketingagreement.create');
+                break;
             default:
                 return \abort(404);
                 break;
