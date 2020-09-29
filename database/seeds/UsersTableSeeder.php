@@ -37,11 +37,9 @@ class UsersTableSeeder extends Seeder
             if ($item->email === 'Pipat.p@haier.co.th') {
                 $item->roles()->attach($adminRole);
                 $item->roles()->attach($authorRole);
-                $item->roles()->attach($userRole);
             }
             if ($item->email === 'tanapat.k@haier.co.th') {
                 $item->roles()->attach($authorRole);
-                $item->roles()->attach($userRole);
             }
             $item->roles()->attach($userRole);
         }
