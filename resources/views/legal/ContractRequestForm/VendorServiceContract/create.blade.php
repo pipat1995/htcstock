@@ -40,7 +40,7 @@
                 <div class="col-md-3 mb-3">
                     <label for="validationSubType"><strong></strong> </label>
                     <select id="validationSubType" class="form-control" name="subtype" onchange="changeSubType(this)"
-                        required>
+                        >
                         <option data-id="">Shoose....</option>
                         <option value="1" data-id="bus-contract">Bus</option>
                         <option value="2" data-id="cleaning-contract">Cleaning</option>
@@ -69,7 +69,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -77,7 +77,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -86,7 +86,7 @@
                             <label for="validationTransportationPermission"><strong>Transportation Permission</strong>
                             </label>
                             <input type="file" class="form-control" id="validationTransportationPermission"
-                                name="transportation_permission" placeholder="abcdefg" required>
+                                name="transportation_permission" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -97,21 +97,21 @@
                             <label for="validationVehicleRegistration"><strong>Vehicle Registration
                                     Certificate</strong></label>
                             <input type="file" class="form-control" id="validationVehicleRegistration"
-                                name="vehicle_registration_certificate" required>
+                                name="vehicle_registration_certificate" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationRoute"><strong>Route</strong></label>
-                            <input type="file" class="form-control" id="validationRoute" name="route" required>
+                            <input type="file" class="form-control" id="validationRoute" name="route" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationInsurance"><strong>Insurance</strong></label>
-                            <input type="file" class="form-control" id="validationInsurance" name="insurance" required>
+                            <input type="file" class="form-control" id="validationInsurance" name="insurance" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -121,7 +121,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDriverLicense"><strong>Driver License</strong></label>
                             <input type="file" class="form-control" id="validationDriverLicense" name="driver_license"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -133,14 +133,14 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-6">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-6 mb-6">
                             <label for="validationLocation"><strong>Location</strong></label>
-                            <input type="text" class="form-control" id="validationLocation" name="location" required>
+                            <input type="text" class="form-control" id="validationLocation" name="location" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -150,14 +150,14 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -165,7 +165,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -174,7 +174,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -185,7 +185,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -193,14 +193,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRouteChange"><strong>Route Change</strong></label>
                             <input type="number" class="form-control" id="validationRouteChange" name="route_change"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationOT"><strong>OT</strong></label>
-                            <input type="number" class="form-control" id="validationOT" name="ot" required>
+                            <input type="number" class="form-control" id="validationOT" name="ot" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -208,7 +208,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong></label>
                             <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -217,7 +217,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationOTDriver"><strong>OT driver</strong></label>
-                            <input type="number" class="form-control" id="validationOTDriver" name="ot_driver" required>
+                            <input type="number" class="form-control" id="validationOTDriver" name="ot_driver" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -238,7 +238,7 @@
                         <div class="col-md-6 mb-6">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -246,7 +246,7 @@
                         <div class="col-md-6 mb-6">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -258,7 +258,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -268,14 +268,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -283,14 +283,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -300,7 +300,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -308,7 +308,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -325,28 +325,28 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationRoad"><strong>Road</strong></label>
-                            <input type="number" class="form-control" id="validationRoad" name="road" required>
+                            <input type="number" class="form-control" id="validationRoad" name="road" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationBuilding"><strong>Building</strong></label>
-                            <input type="number" class="form-control" id="validationBuilding" name="building" required>
+                            <input type="number" class="form-control" id="validationBuilding" name="building" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationToilet"><strong>Toilet</strong></label>
-                            <input type="number" class="form-control" id="validationToilet" name="toilet" required>
+                            <input type="number" class="form-control" id="validationToilet" name="toilet" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCanteen"><strong>Canteen</strong></label>
-                            <input type="number" class="form-control" id="validationCanteen" name="canteen" required>
+                            <input type="number" class="form-control" id="validationCanteen" name="canteen" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -355,28 +355,28 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationWashing"><strong>Washing</strong></label>
-                            <input type="number" class="form-control" id="validationWashing" name="washing" required>
+                            <input type="number" class="form-control" id="validationWashing" name="washing" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationWater"><strong>Water</strong></label>
-                            <input type="number" class="form-control" id="validationWater" name="water" required>
+                            <input type="number" class="form-control" id="validationWater" name="water" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationMowing"><strong>Mowing</strong></label>
-                            <input type="number" class="form-control" id="validationMowing" name="mowing" required>
+                            <input type="number" class="form-control" id="validationMowing" name="mowing" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationGeneral"><strong>General</strong></label>
-                            <input type="number" class="form-control" id="validationGeneral" name="general" required>
+                            <input type="number" class="form-control" id="validationGeneral" name="general" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -385,7 +385,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="Total"><strong>Total</strong></label>
-                            <input type="number" class="form-control" value="" required>
+                            <input type="number" class="form-control" value="" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -398,14 +398,14 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong></label>
-                            <input type="number" class="form-control" id="validationOT" name="ot" required>
+                            <input type="number" class="form-control" id="validationOT" name="ot" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -413,7 +413,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong></label>
                             <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -433,7 +433,7 @@
                         <div class="col-md-6 mb-6">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -441,7 +441,7 @@
                         <div class="col-md-6 mb-6">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -453,7 +453,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -463,14 +463,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -478,14 +478,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -495,7 +495,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationNumberOfCook"><strong>Number of cook</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfCook" name="number_of_cook"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -503,7 +503,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -511,14 +511,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationOT"><strong>OT</strong></label>
-                            <input type="number" class="form-control" id="validationOT" name="ot" required>
+                            <input type="number" class="form-control" id="validationOT" name="ot" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -530,7 +530,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -538,7 +538,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationOtherExpense"><strong>Other Expense</strong></label>
                             <input type="text" class="form-control" id="validationOtherExpense" name="other_expense"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -558,7 +558,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -566,7 +566,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -574,7 +574,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDoctorLicense"><strong>Doctor License</strong> </label>
                             <input type="file" class="form-control" id="validationDoctorLicense" name="doctor_license"
-                                placeholder="abcdefg" required>
+                                placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -586,7 +586,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -596,14 +596,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -611,14 +611,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -628,7 +628,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfDoctor"
-                                name="number_of_doctor" required>
+                                name="number_of_doctor" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -636,7 +636,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -644,7 +644,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -656,7 +656,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -676,7 +676,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -684,7 +684,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -692,7 +692,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNurseLicense"><strong>Nurse License</strong> </label>
                             <input type="file" class="form-control" id="validationNurseLicense" name="nurse_license"
-                                placeholder="abcdefg" required>
+                                placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -704,7 +704,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -714,14 +714,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -729,14 +729,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -746,7 +746,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfDoctor"
-                                name="number_of_doctor" required>
+                                name="number_of_doctor" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -754,7 +754,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -762,7 +762,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -774,7 +774,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -794,7 +794,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -802,7 +802,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -811,7 +811,7 @@
                             <label for="validationSecurityService"><strong>Security Service
                                     Certification</strong></label>
                             <input type="file" class="form-control" id="validationSecurityService"
-                                name="security_service_certification" placeholder="abcdefg" required>
+                                name="security_service_certification" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -819,7 +819,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationSecurityGuardLicense"><strong>Security Guard License</strong></label>
                             <input type="file" class="form-control" id="validationSecurityGuardLicense"
-                                name="security_guard_license" placeholder="abcdefg" required>
+                                name="security_guard_license" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -831,7 +831,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -841,14 +841,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -856,14 +856,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -874,7 +874,7 @@
                             <label for="validationNumberOfSercurityGuard"><strong>Number of sercurity
                                     guard</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfSercurityGuard"
-                                name="number_of_sercurity_guard" required>
+                                name="number_of_sercurity_guard" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -882,7 +882,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -890,7 +890,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -902,7 +902,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -922,7 +922,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -930,7 +930,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -942,7 +942,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -952,14 +952,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -967,14 +967,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -985,7 +985,7 @@
                             <label for="validationNumberOfSubcontractor"><strong>Number of
                                     subcontractor</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfSubcontractor"
-                                name="number_of_subcontractor" required>
+                                name="number_of_subcontractor" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -993,7 +993,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationNumberOfAgent"><strong>Number of agent</strong></label>
                             <input type="number" class="form-control" id="validationNumberOfAgent"
-                                name="number_of_agent" required>
+                                name="number_of_agent" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1001,7 +1001,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1009,7 +1009,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1021,7 +1021,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" required>
+                            <input type="number" class="form-control" id="validationMonthly" name="monthly" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1041,7 +1041,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> </label>
                             <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1049,7 +1049,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> </label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" placeholder="abcdefg" required>
+                                name="coparation_sheet" placeholder="abcdefg" >
                             <div class="invalid-feedback">
                                 Please provide a valid PO No.
                             </div>
@@ -1061,7 +1061,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-12">
                             <label for="validationScope"><strong>Scope of Work</strong></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" required>
+                            <input type="text" class="form-control" id="validationScope" name="scope_of_work" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1071,14 +1071,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong></label>
                             <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated" required>
+                            <input type="date" class="form-control" id="validationDated" name="dated" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1086,14 +1086,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong></label>
                             <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill" required>
+                            <input type="date" class="form-control" id="validationUntill" name="untill" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1102,14 +1102,14 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationRoute"><strong>Route</strong></label>
-                            <input type="text" class="form-control" id="validationRoute" name="route" required>
+                            <input type="text" class="form-control" id="validationRoute" name="route" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationTo"><strong>To</strong></label>
-                            <input type="text" class="form-control" id="validationTo" name="to" required>
+                            <input type="text" class="form-control" id="validationTo" name="to" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1117,7 +1117,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationDryContainerSize"><strong>Dry Container Size</strong></label>
                             <input type="number" class="form-control" id="validationDryContainerSize"
-                                name="dry_container_size" step="0.01" required>
+                                name="dry_container_size" step="0.01" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1125,7 +1125,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationThenumberoftruck"><strong>The number of truck</strong></label>
                             <input type="number" class="form-control" id="validationThenumberoftruck"
-                                name="the_number_of_truck" required>
+                                name="the_number_of_truck" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1136,7 +1136,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong></label>
                             <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1144,7 +1144,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong></label>
                             <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
-                                required>
+                                >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>
@@ -1156,7 +1156,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationPriceOfService"><strong>Price of service</strong></label>
-                            <input type="number" class="form-control" id="validationPriceOfService" name="price_of_service" required>
+                            <input type="number" class="form-control" id="validationPriceOfService" name="price_of_service" >
                             <div class="invalid-feedback">
                                 Please provide a valid Ivoice No.
                             </div>

@@ -44,7 +44,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_name">Name</label>
                         <input type="text" class="form-control" id="validationAccess_name" name="access_name"
-                            value="{{$accessorie->access_name}}" required>
+                            value="{{$accessorie->access_name}}" >
                         <div class="invalid-feedback">
                             Please provide a valid Name.
                         </div>
@@ -52,7 +52,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="validationUnit">Unit</label>
                         <input type="text" class="form-control" id="validationUnit" name="unit"
-                            value="{{$accessorie->unit}}" required>
+                            value="{{$accessorie->unit}}" >
                         <div class="invalid-feedback">
                             Please provide a valid Unit.
                         </div>
