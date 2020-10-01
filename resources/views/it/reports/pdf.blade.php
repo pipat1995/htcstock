@@ -37,7 +37,7 @@
                 @else
                 <td style="width: 15px;">0</td>
                 @endif
-                <td style="width: 15px;">[ ]</td>
+                <td style="width: 15px;">__</td>
                 @if (($key + 1) % 2 == 0)
             </tr>
             @endif
