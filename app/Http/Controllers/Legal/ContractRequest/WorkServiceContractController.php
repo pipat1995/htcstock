@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Legal\ContractRequest;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class WorkServiceContractController extends Controller
@@ -81,5 +82,17 @@ class WorkServiceContractController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF()
+    {
+        $pdf = PDF::loadView('legal.ContractRequestForm.WorkServiceContract.pdf');
+        return $pdf->stream();
+        // return \view('legal.ContractRequestForm.WorkServiceContract.pdf');
     }
 }

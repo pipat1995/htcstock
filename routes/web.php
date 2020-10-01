@@ -67,6 +67,7 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
 
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
         Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+        Route::get('workservicecontract/pdf','WorkServiceContractController@generatePDF');
         Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'store', 'edit', 'update']]);
         Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index','create', 'store', 'edit', 'update']]);
         Route::resource('mould', 'MouldController', ['only' => ['index','create', 'store', 'edit', 'update']]);
