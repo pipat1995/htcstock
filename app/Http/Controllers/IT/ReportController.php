@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\FormSearches\TransactionsFormSearch;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\TransactionsRepositoryInterface;
+use Barryvdh\DomPDF\Facade as PDF;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -86,6 +87,18 @@ class ReportController extends Controller
                 return response()->json(['message' => "No data transactions"], 200);
             }
             return response()->json(['name' => $result->accessorie->access_name, 'qty' => (int) $result->quantity], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function generateAccessoriesPDF()
+    {
+        try {
+            
+            $accessories = $this->accessoriesRepository->sumAccessories()->get();
+            $pdf = PDF::loadView('it.reports.pdf', compact('accessories',$accessories));
+            return $pdf->stream();
         } catch (\Throwable $th) {
             throw $th;
         }

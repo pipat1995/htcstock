@@ -50,6 +50,7 @@ Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified
 
     Route::get('check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
     Route::get('check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
+    Route::get('download/accessories/PDF', 'ReportController@generateAccessoriesPDF')->name('generateAccessoriesPDF');
     Route::resource('manage/accessories', 'AccessoriesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
 });
 

@@ -5,7 +5,9 @@ namespace App\Repository\Eloquent;
 use App\Accessories;
 use App\Repository\AccessoriesRepositoryInterface;
 use App\Repository\Eloquent\BaseRepository;
+use App\Transactions;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class AccessoriesRepository extends BaseRepository implements AccessoriesRepositoryInterface
 {
@@ -23,6 +25,19 @@ class AccessoriesRepository extends BaseRepository implements AccessoriesReposit
     {
         try {
             return Accessories::whereNotNull('access_id');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function sumAccessories()
+    {
+        try {
+            return Accessories::addSelect(['totals' => function ($query) {
+                $query->selectRaw('SUM(transactions.qty) as total')
+                    ->from('transactions')
+                    ->whereColumn('access_id', 'accessories.access_id');
+            }]);
         } catch (\Throwable $th) {
             throw $th;
         }
