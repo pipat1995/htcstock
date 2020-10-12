@@ -44,34 +44,3 @@ $('#accessoriesModal').on('hidden.bs.modal', function (event) {
     var modal = $(this)
     clearModal(modal)
 })
-
-// window.addEventListener('load', function () {
-//     $('#table-access').DataTable({
-//         data: accessories,
-//         deferRender: true,
-//         buttons: {
-//             buttons: ['copy', 'csv', 'excel']
-//         },
-//         language: {
-//             url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'
-//         },
-//         columns: [
-//             // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-//             {
-//                 data: 'action',
-//                 name: 'action',
-//                 orderable: false,
-//                 searchable: false
-//             },
-//             {
-//                 data: 'name',
-//                 name: 'name'
-//             },
-//             {
-//                 data: 'unit',
-//                 name: 'unit'
-//             },
-//         ]
-//     });
-//     $(".toast").toast('show');
-// });

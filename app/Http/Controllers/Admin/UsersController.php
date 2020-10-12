@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
-use App\Repository\RoleRepositoryInterface;
-use App\Repository\UserRepositoryInterface;
+use App\Services\IT\Interfaces\RoleServiceInterface;
+use App\Services\IT\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Http;
 
 class UsersController extends Controller
 {
-    private $userRepository;
-    private $rolesRepository;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface, RoleRepositoryInterface $rolesRepositoryInterface)
+    private $userService;
+    private $rolesService;
+    public function __construct(UserServiceInterface $userServiceInterface, RoleServiceInterface $rolesServiceInterface)
     {
-        $this->userRepository = $userRepositoryInterface;
-        $this->rolesRepository = $rolesRepositoryInterface;
+        $this->userService = $userServiceInterface;
+        $this->rolesService = $rolesServiceInterface;
     }
 
     /**
@@ -29,7 +29,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         try {
-            $users = $this->userRepository->all();
+            $users = $this->userService->all();
             $formSearch = new UserFormSearch();
             if ($request->all()) {
                 $formSearch->search = $request->search;
@@ -57,8 +57,8 @@ class UsersController extends Controller
                 return \redirect()->route('admin.users.index');
             }
             return \view('admin.users.edit')->with([
-                'user' => $this->userRepository->find($id),
-                'roles' => $this->rolesRepository->all()->get()
+                'user' => $this->userService->find($id),
+                'roles' => $this->rolesService->all()->get()
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -80,8 +80,8 @@ class UsersController extends Controller
         ]);
 
         try {
-            $user = $this->userRepository->find($id);
-            if ($this->userRepository->update(['name' => $request->name], $id)) {
+            $user = $this->userService->find($id);
+            if ($this->userService->update(['name' => $request->name], $id)) {
                 $user->roles()->sync($request->roles);
                 $request->session()->flash('success', $user->name . ' user has been update');
             } else {
@@ -108,7 +108,7 @@ class UsersController extends Controller
             if (Gate::denies('for-superadmin')) {
                 return \redirect()->route('admin.users.index');
             }
-            if ($this->userRepository->delete($id)) {
+            if ($this->userService->delete($id)) {
                 $request->session()->flash('success', ' has been delete');
             } else {
                 $request->session()->flash('error', 'error flash message!');
@@ -126,7 +126,7 @@ class UsersController extends Controller
                 return back();
             }
             $username = [];
-            $users = $this->userRepository->all()->get();
+            $users = $this->userService->all()->get();
             foreach ($users as $key => $value) {
                 \array_push($username, $value->username);
             }
@@ -135,9 +135,9 @@ class UsersController extends Controller
                 $request->session()->flash('success', 'has been update user');
                 return back();
             }
-            $role = $this->rolesRepository->all()->where('name', 'user')->first();
+            $role = $this->rolesService->all()->where('name', 'user')->first();
             foreach ($results as $key => $value) {
-                $user = $this->userRepository->create([
+                $user = $this->userService->create([
                     'name' => $value['name'],
                     'username' => $value['username'],
                     'email' => $value['email'],

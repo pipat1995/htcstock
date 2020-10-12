@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\IT;
 
-use App\Accessories;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\AccessFormSearch;
-use App\Http\Requests\AccessorieFormRequest;
-use App\Repository\AccessoriesRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
+use App\Http\Requests\IT\AccessorieFormRequest;
+use App\Models\IT\Accessories;
+use App\Services\IT\Interfaces\AccessoriesServiceInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AccessoriesController extends Controller
 {
-    protected $accessoriesRepository;
-    protected $transactionsRepository;
-    public function __construct(AccessoriesRepositoryInterface $accessoriesRepositoryInterface, TransactionsRepositoryInterface $transactionsRepositoryInterface)
+    protected $accessoriesService;
+    protected $transactionsService;
+    public function __construct(AccessoriesServiceInterface $accessoriesServiceInterface, TransactionsServiceInterface $transactionsServiceInterface)
     {
-        $this->accessoriesRepository = $accessoriesRepositoryInterface;
-        $this->transactionsRepository = $transactionsRepositoryInterface;
+        $this->accessoriesService = $accessoriesServiceInterface;
+        $this->transactionsService = $transactionsServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class AccessoriesController extends Controller
     {
         try {
             $formSearch = new AccessFormSearch();
-            $accessories = $this->accessoriesRepository->all();
+            $accessories = $this->accessoriesService->all();
             if ($request->has('search')) {
                 $formSearch->search = $request->search;
                 $accessories->where('access_name', 'like', '%' . $formSearch->search . '%');
@@ -64,13 +64,13 @@ class AccessoriesController extends Controller
     public function store(AccessorieFormRequest $request)
     {
         try {
-            $isCreate = $this->accessoriesRepository->create($request->except(['_token']));
+            $isCreate = $this->accessoriesService->create($request->except(['_token']));
             if (!$isCreate) {
-                $request->session()->flash('error',' has been create fail');
+                $request->session()->flash('error', ' has been create fail');
                 return \back();
             }
-            $request->session()->flash('success',' has been create success');
-            return \redirect()->route('it.accessories.edit',$isCreate->access_id);
+            $request->session()->flash('success', ' has been create success');
+            return \redirect()->route('it.accessories.edit', $isCreate->access_id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -96,7 +96,7 @@ class AccessoriesController extends Controller
     public function edit($id)
     {
         try {
-            $accessorie = $this->accessoriesRepository->find($id);
+            $accessorie = $this->accessoriesService->find($id);
             return \view('it.accessorie.edit')->with('accessorie', $accessorie);
         } catch (\Throwable $th) {
             throw $th;
@@ -113,13 +113,13 @@ class AccessoriesController extends Controller
     public function update(AccessorieFormRequest $request, $id)
     {
         try {
-            $isUpdate = $this->accessoriesRepository->update($request->except(['_token','_method']),$id);
+            $isUpdate = $this->accessoriesService->update($request->except(['_token', '_method']), $id);
             if (!$isUpdate) {
-                $request->session()->flash('error',' has been update fail');
+                $request->session()->flash('error', ' has been update fail');
                 return \back();
             }
-            $request->session()->flash('success',' has been update success');
-            return \redirect()->route('it.accessories.edit',$id);
+            $request->session()->flash('success', ' has been update success');
+            return \redirect()->route('it.accessories.edit', $id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -134,13 +134,13 @@ class AccessoriesController extends Controller
     public function destroy($id)
     {
         try {
-            $accessorie = $this->accessoriesRepository->find($id);
+            $accessorie = $this->accessoriesService->find($id);
             if (!$this->accessorieInTransaction($accessorie)) {
                 Session::flash('error',  ' has been delete fail');
                 return \back();
             }
 
-            $delete = $this->accessoriesRepository->destroy($id);
+            $delete = $this->accessoriesService->destroy($id);
             if (!$delete) {
                 Session::flash('error',  ' has been delete fail');
                 return \back();

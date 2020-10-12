@@ -4,20 +4,20 @@ namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
-use App\Repository\TransactionsRepositoryInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
-    protected $transactionsRepository;
+    protected $transactionsService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(TransactionsRepositoryInterface $transactionsRepositoryInterface)
+    public function __construct(TransactionsServiceInterface $transactionsServiceInterface)
     {
-        $this->transactionsRepository = $transactionsRepositoryInterface;
+        $this->transactionsService = $transactionsServiceInterface;
     }
 
     /**
@@ -30,8 +30,8 @@ class HomeController extends Controller
         $leading = 0;
         $requisition = 0;
         try {
-            $leadingQty = $this->transactionsRepository->getAccessoriesType(TransactionTypeEnum::L);
-            $requisitionQty = $this->transactionsRepository->getAccessoriesType(TransactionTypeEnum::R);
+            $leadingQty = $this->transactionsService->getAccessoriesType(TransactionTypeEnum::L);
+            $requisitionQty = $this->transactionsService->getAccessoriesType(TransactionTypeEnum::R);
             if ($leadingQty) {
                 $leading = \substr($leadingQty->quantity,1);
             }

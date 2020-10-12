@@ -6,27 +6,26 @@ use App\Enum\TransactionTypeEnum;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BudgetFormSearch;
-use App\Http\Requests\BudgetFormRequest;
-use App\Repository\BudgetRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
-use App\Services\BuyTransactionService;
+use App\Http\Requests\IT\BudgetFormRequest;
+use App\Services\IT\Interfaces\BudgetServiceInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class BudgetController extends Controller
 {
-    protected $budgetRepository;
-    protected $transactionsRepository;
-    public function __construct(BudgetRepositoryInterface $budgetRepositoryInterface, TransactionsRepositoryInterface $transactionsRepositoryInterface)
+    protected $budgetService;
+    protected $transactionsService;
+    public function __construct(BudgetServiceInterface $budgetServiceInterface, TransactionsServiceInterface $transactionsServiceInterface)
     {
-        $this->budgetRepository = $budgetRepositoryInterface;
-        $this->transactionsRepository = $transactionsRepositoryInterface;
+        $this->budgetService = $budgetServiceInterface;
+        $this->transactionsService = $transactionsServiceInterface;
     }
 
     public function index(Request $request)
     {
         try {
-            $budgets = $this->budgetRepository->all();
+            $budgets = $this->budgetService->all();
             $formSearch = new BudgetFormSearch();
             if ($request->all()) {
                 $formSearch->month = $request->month;
@@ -75,8 +74,8 @@ class BudgetController extends Controller
     {
         try {
 
-            $budget = $this->budgetRepository->find($id);
-            $datas = $this->transactionsRepository->transactionType(TransactionTypeEnum::B)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
+            $budget = $this->budgetService->find($id);
+            $datas = $this->transactionsService->transactionType(TransactionTypeEnum::B)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
             
             $tempAmt = 0;
             $amountTotal = 0;
@@ -104,11 +103,11 @@ class BudgetController extends Controller
     public function store(BudgetFormRequest $request)
     {
         try {
-            if ($this->budgetRepository->hasBudget($request->month, $request->year)) {
+            if ($this->budgetService->hasBudget($request->month, $request->year)) {
                 $request->session()->flash('error', 'มี Budget ของเดือนนี้แล้ว!');
                 return \redirect()->route('it.budgets.index');
             }
-            if ($this->budgetRepository->create($request->all())) {
+            if ($this->budgetService->create($request->all())) {
                 $request->session()->flash('success', ' Budget create success!');
             } else {
                 $request->session()->flash('error', 'error budget create!');
@@ -131,9 +130,9 @@ class BudgetController extends Controller
             if (Gate::denies('for-superadmin-admin')) {
                 return \redirect()->route('logout');
             }
-            $budget = $this->budgetRepository->find($id);
+            $budget = $this->budgetService->find($id);
             $budget->budgets_of_month = $request->budgets_of_month;
-            if ($this->budgetRepository->update($budget->attributesToArray(), $id)) {
+            if ($this->budgetService->update($budget->attributesToArray(), $id)) {
                 $request->session()->flash('success', ' budget has been update');
             } else {
                 $request->session()->flash('error', 'error budget update!');

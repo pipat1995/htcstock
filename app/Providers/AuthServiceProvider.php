@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Enum\UserEnum;
-use App\Permission;
+use App\Models\IT\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 

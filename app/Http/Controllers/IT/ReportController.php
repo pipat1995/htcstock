@@ -4,8 +4,8 @@ namespace App\Http\Controllers\IT;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\TransactionsFormSearch;
-use App\Repository\AccessoriesRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
+use App\Services\IT\Interfaces\AccessoriesServiceInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use Barryvdh\DomPDF\Facade as PDF;
 use DateInterval;
 use DateTime;
@@ -13,21 +13,21 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    protected $transactionsRepository;
-    protected $accessoriesRepository;
+    protected $transactionsService;
+    protected $accessoriesService;
     public $accessories;
-    public function __construct(TransactionsRepositoryInterface $transactionsRepositoryInterface, AccessoriesRepositoryInterface $accessoriesRepositoryInterface)
+    public function __construct(TransactionsServiceInterface $transactionsServiceInterface, AccessoriesServiceInterface $accessoriesServiceInterface)
     {
-        $this->transactionsRepository = $transactionsRepositoryInterface;
-        $this->accessoriesRepository = $accessoriesRepositoryInterface;
-        $this->accessories = $this->accessoriesRepository->all()->get();
+        $this->transactionsService = $transactionsServiceInterface;
+        $this->accessoriesService = $accessoriesServiceInterface;
+        $this->accessories = $this->accessoriesService->all()->get();
     }
 
     public function reportTransactions(Request $request)
     {
         try {
             $formSearch = new TransactionsFormSearch();
-            $transactions = $this->transactionsRepository->all();
+            $transactions = $this->transactionsService->all();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 $formSearch->s_created_at = $request->s_created_at;
@@ -62,7 +62,7 @@ class ReportController extends Controller
     {
         try {
             $formSearch = new TransactionsFormSearch();
-            $transactions = $this->transactionsRepository->stock();
+            $transactions = $this->transactionsService->stock();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 if (isset($request->access_id)) {
@@ -82,7 +82,7 @@ class ReportController extends Controller
     public function checkStock(int $id)
     {
         try {
-            $result = $this->transactionsRepository->quantityAccessorie($id);
+            $result = $this->transactionsService->quantityAccessorie($id);
             if (is_null($result)) {
                 return response()->json(['message' => "No data transactions"], 200);
             }
@@ -96,7 +96,7 @@ class ReportController extends Controller
     {
         try {
             
-            $accessories = $this->accessoriesRepository->sumAccessories()->get();
+            $accessories = $this->accessoriesService->sumAccessories()->get();
             $pdf = PDF::loadView('it.reports.pdf', compact('accessories',$accessories));
             return $pdf->stream();
         } catch (\Throwable $th) {

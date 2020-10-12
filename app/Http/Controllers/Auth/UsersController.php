@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Repository\UserRepositoryInterface;
+use App\Services\IT\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    private $userRepository;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface)
+    private $userService;
+    public function __construct(UserServiceInterface $userServiceInterface)
     {
-        $this->userRepository = $userRepositoryInterface;
+        $this->userService = $userServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -66,7 +66,7 @@ class UsersController extends Controller
     {
         try {
             return \view('me.index')->with([
-                'user' => $this->userRepository->find($id)
+                'user' => $this->userService->find($id)
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -83,10 +83,10 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $user = $this->userRepository->find($id);
+            $user = $this->userService->find($id);
             $user->name = $request->name;
             $user->email = $request->email;
-            if (Auth::user()->id == $user->id && $this->userRepository->update($user->attributesToArray(), $id)) {
+            if (Auth::user()->id == $user->id && $this->userService->update($user->attributesToArray(), $id)) {
                 $request->session()->flash('success', $user->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');

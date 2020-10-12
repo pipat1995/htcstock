@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionsFormRequest;
-use App\Repository\PermissionsRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Services\IT\Interfaces\PermissionsServiceInterface;
 
 class PermissionsController extends Controller
 {
-    protected $permissionsRepository;
-    public function __construct(PermissionsRepositoryInterface $permissionsRepositoryInterface) {
-        $this->permissionsRepository = $permissionsRepositoryInterface;
+    protected $permissionsService;
+    public function __construct(PermissionsServiceInterface $permissionsServiceInterface) {
+        $this->permissionsService = $permissionsServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class PermissionsController extends Controller
     public function index()
     {
         try {
-            $permissions = $this->permissionsRepository->all()->get();
+            $permissions = $this->permissionsService->all()->get();
             return \view('admin.permissions.index')->with('permissions',$permissions);
         } catch (\Throwable $th) {
             throw $th;
@@ -48,7 +47,7 @@ class PermissionsController extends Controller
     public function store(PermissionsFormRequest $request)
     {
         try {
-            $this->permissionsRepository->create($request->except(['_token'])) ? $request->session()->flash('success','create permission success') : $request->session()->flash('error','create permission fail!');
+            $this->permissionsService->create($request->except(['_token'])) ? $request->session()->flash('success','create permission success') : $request->session()->flash('error','create permission fail!');
             return \redirect()->route('admin.permissions.index');
         } catch (\Throwable $th) {
             throw $th;
@@ -75,7 +74,7 @@ class PermissionsController extends Controller
     public function edit($id)
     {
         try {
-            return \view('admin.permissions.edit')->with('permission',$this->permissionsRepository->find($id));
+            return \view('admin.permissions.edit')->with('permission',$this->permissionsService->find($id));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -91,7 +90,7 @@ class PermissionsController extends Controller
     public function update(PermissionsFormRequest $request, $id)
     {
         try {
-            $this->permissionsRepository->update($request->except(['_token']),$id) ? $request->session()->flash('success','update permission success') : $request->session()->flash('error','update permission fail!');
+            $this->permissionsService->update($request->except(['_token']),$id) ? $request->session()->flash('success','update permission success') : $request->session()->flash('error','update permission fail!');
             return \redirect()->route('admin.permissions.edit',$id);
         } catch (\Throwable $th) {
             throw $th;

@@ -6,10 +6,10 @@ use App\Enum\TransactionTypeEnum;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BuyFormSearch;
-use App\Http\Requests\BuyFormRequest;
-use App\Repository\AccessoriesRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
-use App\Repository\UserRepositoryInterface;
+use App\Http\Requests\IT\BuyFormRequest;
+use App\Services\IT\Interfaces\AccessoriesServiceInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
+use App\Services\IT\Interfaces\UserServiceInterface;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Auth;
 
 class BuyTransactionController extends Controller
 {
-    protected $accessoriesRepo;
-    protected $transactionsRepo;
-    protected $userRepository;
+    protected $accessoriesService;
+    protected $transactionsService;
+    protected $userService;
     public function __construct(
-        AccessoriesRepositoryInterface $accessoriesRepositoryInterface,
-        TransactionsRepositoryInterface $transactionsRepositoryInterface,
-        UserRepositoryInterface $userRepositoryInterface
+        AccessoriesServiceInterface $accessoriesServiceInterface,
+        TransactionsServiceInterface $transactionsServiceInterface,
+        UserServiceInterface $userServiceInterface
     ) {
-        $this->accessoriesRepo = $accessoriesRepositoryInterface;
-        $this->transactionsRepo = $transactionsRepositoryInterface;
-        $this->userRepository = $userRepositoryInterface;
+        $this->accessoriesService = $accessoriesServiceInterface;
+        $this->transactionsService = $transactionsServiceInterface;
+        $this->userService = $userServiceInterface;
     }
 
     /**
@@ -39,7 +39,7 @@ class BuyTransactionController extends Controller
     {
         $formSearch = new BuyFormSearch();
         try {
-            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::B);
+            $transactions = $this->transactionsService->transactionType(TransactionTypeEnum::B);
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
                 $formSearch->ir_no = $request->ir_no;
@@ -68,7 +68,7 @@ class BuyTransactionController extends Controller
                     }
                 }
             }
-            $accessories = $this->accessoriesRepo->all()->get();
+            $accessories = $this->accessoriesService->all()->get();
             $datas = $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch);
             return \view('it.buys.list', \compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
         } catch (\Throwable $th) {
@@ -84,7 +84,7 @@ class BuyTransactionController extends Controller
     public function create()
     {
         try {
-            return \view('it.buys.create')->with('accessories', $this->accessoriesRepo->all()->get());
+            return \view('it.buys.create')->with('accessories', $this->accessoriesService->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -100,7 +100,7 @@ class BuyTransactionController extends Controller
     {
         try {
             $attributes = array_merge($request->except(['_token']), ['trans_type' => TransactionTypeEnum::B, 'trans_by' => Auth::user()->id, 'created_by' => Auth::user()->id]);
-            $create = $this->transactionsRepo->create($attributes);
+            $create = $this->transactionsService->create($attributes);
             if (!$create) {
                 $request->session()->flash('error', 'error create!');
                 return \back();
@@ -132,8 +132,8 @@ class BuyTransactionController extends Controller
     public function edit($id)
     {
         try {
-            $accessories = $this->accessoriesRepo->all()->get();
-            $transaction = $this->transactionsRepo->find($id);
+            $accessories = $this->accessoriesService->all()->get();
+            $transaction = $this->transactionsService->find($id);
             return \view('it.buys.edit')->with('transaction', $transaction)->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
@@ -151,11 +151,11 @@ class BuyTransactionController extends Controller
     {
         try {
             $token = Helper::makeRandomTokenKey();
-            $transaction = $this->transactionsRepo->find($id);
+            $transaction = $this->transactionsService->find($id);
             if (!is_null($request->ref_no)) {
 
                 // ตรวจสอบ stock ว่าเหลือเท่าตอนซื้อ
-                if ($this->transactionsRepo->quantityAccessorie($transaction->access_id)->quantity < $transaction->qty) {
+                if ($this->transactionsService->quantityAccessorie($transaction->access_id)->quantity < $transaction->qty) {
                     $request->session()->flash('error', 'มีของในคลังไม่พอให้ยกเลิก!');
                     return \back();
                 }
@@ -165,12 +165,12 @@ class BuyTransactionController extends Controller
                     return \back();
                 }
                 $transaction->ref_no = $token;
-                if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
+                if (!$this->transactionsService->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
                     $transaction->trans_type = TransactionTypeEnum::CB;
                     $transaction->qty = '-' . $transaction->qty;
-                    if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
+                    if (!$this->transactionsService->create($transaction->attributesToArray())) {
                         $request->session()->flash('error', 'error update!');
                     } else {
                         $request->session()->flash('success',  ' has been update');

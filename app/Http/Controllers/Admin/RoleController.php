@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\PermissionsRepositoryInterface;
-use App\Repository\RoleRepositoryInterface;
-use App\Role;
+use App\Services\IT\Interfaces\PermissionsServiceInterface;
+use App\Services\IT\Interfaces\RoleServiceInterface;
+use App\Models\IT\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    protected $rolesRepository, $permissionsRepository;
-    public function __construct(RoleRepositoryInterface $rolesRepositoryInterface,PermissionsRepositoryInterface $permissionsRepositoryInterface) {
-        $this->rolesRepository = $rolesRepositoryInterface;
-        $this->permissionsRepository = $permissionsRepositoryInterface;
+    protected $rolesService, $permissionsService;
+    public function __construct(RoleServiceInterface $rolesServiceInterface,PermissionsServiceInterface $permissionsServiceInterface) {
+        $this->rolesService = $rolesServiceInterface;
+        $this->permissionsService = $permissionsServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function index()
     {
         try {
-            $roles = $this->rolesRepository->all()->get();
+            $roles = $this->rolesService->all()->get();
             return \view('admin.roles.index')->with('roles',$roles);
         } catch (\Throwable $th) {
             throw $th;
@@ -38,7 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return \view('admin.roles.create')->with(['permissions' => $this->permissionsRepository->all()->get()]);
+        return \view('admin.roles.create')->with(['permissions' => $this->permissionsService->all()->get()]);
     }
 
     /**
@@ -50,7 +50,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->rolesRepository->create($request->except(['_token'])) ? $request->session()->flash('success','create permission success') : $request->session()->flash('error','create permission fail!');
+            $this->rolesService->create($request->except(['_token'])) ? $request->session()->flash('success','create permission success') : $request->session()->flash('error','create permission fail!');
             return \redirect()->route('admin.roles.index');
         } catch (\Throwable $th) {
             throw $th;
@@ -77,8 +77,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         try {
-            $role = $this->rolesRepository->find($id);
-            $permissions = $this->permissionsRepository->all()->get();
+            $role = $this->rolesService->find($id);
+            $permissions = $this->permissionsService->all()->get();
             return \view('admin.roles.edit')->with(['role'=>$role,'permissions' => $permissions]);
         } catch (\Throwable $th) {
             throw $th;
@@ -99,14 +99,14 @@ class RoleController extends Controller
             'permission_name' => 'required|nullable',
         ]);
         try {
-            $role = $this->rolesRepository->find($id);
-            if ($this->rolesRepository->update([$request->name],$id)) {
+            $role = $this->rolesService->find($id);
+            if ($this->rolesService->update([$request->name],$id)) {
                 $role->permissions()->sync($request->permission_name);
                 $request->session()->flash('success','update roles success');
             }else{
                 $request->session()->flash('error','update roles fail!');
             }
-            // $this->rolesRepository->update($request->except(['_token','_method']),$id) ? $request->session()->flash('success','update roles success') : $request->session()->flash('error','update roles fail!');
+            // $this->rolesService->update($request->except(['_token','_method']),$id) ? $request->session()->flash('success','update roles success') : $request->session()->flash('error','update roles fail!');
             return \redirect()->route('admin.roles.edit',$id);
         } catch (\Throwable $th) {
             throw $th;

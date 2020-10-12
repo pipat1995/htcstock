@@ -38,7 +38,7 @@
         <div class="main-card mb-12 card">
             <div class="card-body">
                 <h5 class="card-title">Create</h5>
-                <form action="{{route('it.budgets.store')}}" method="POST">
+                <form class="needs-validation" novalidate action="{{route('it.budgets.store')}}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="budgets_of_month"
@@ -54,13 +54,16 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <div class="invalid-feedback">
+                                Please provide a valid budgets of month.
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="month" class="col-md-3 col-form-label text-md-right">{{ __('month') }}</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="month" id="month">
+                            <select class="form-control" name="month" id="month" required>
                                 <option value="">--เลือก--</option>
                                 @foreach ($months as $key => $item)
                                 <option value="{{$key}}">{{$item}}
@@ -73,13 +76,16 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="year" class="col-md-3 col-form-label text-md-right">{{ __('year') }}</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="year" id="year">
+                            <select class="form-control" name="year" id="year" required>
                                 <option value="">--เลือก--</option>
                                 @foreach (range( date('Y'), $earliest_year ) as $i)
                                 <option value="{{$i}}">{{$i}}</option>
@@ -91,10 +97,22 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit form</button>
                 </form>
+                <script>
+                    (function () {
+                    'use strict';
+                    window.addEventListener('load', function () {
+                        var forms = document.getElementsByClassName('needs-validation');
+                        validationForm(forms)
+                    }, false);
+                })();
+                </script>
             </div>
         </div>
     </div>

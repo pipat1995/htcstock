@@ -6,10 +6,10 @@ use App\Enum\TransactionTypeEnum;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\RequisitionFormSearch;
-use App\Http\Requests\RequisitionFormRequest;
-use App\Repository\AccessoriesRepositoryInterface;
-use App\Repository\TransactionsRepositoryInterface;
-use App\Repository\UserRepositoryInterface;
+use App\Http\Requests\IT\RequisitionFormRequest;
+use App\Services\IT\Interfaces\AccessoriesServiceInterface;
+use App\Services\IT\Interfaces\TransactionsServiceInterface;
+use App\Services\IT\Interfaces\UserServiceInterface;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Auth;
 
 class RequisitionTransactionController extends Controller
 {
-    protected $accessoriesRepo;
-    protected $transactionsRepo;
-    protected $userRepository;
+    protected $accessoriesService;
+    protected $transactionsService;
+    protected $userService;
     public function __construct(
-        AccessoriesRepositoryInterface $accessoriesRepositoryInterface,
-        TransactionsRepositoryInterface $transactionsRepositoryInterface,
-        UserRepositoryInterface $userRepositoryInterface
+        AccessoriesServiceInterface $accessoriesServiceInterface,
+        TransactionsServiceInterface $transactionsServiceInterface,
+        UserServiceInterface $userServiceInterface
     ) {
-        $this->accessoriesRepo = $accessoriesRepositoryInterface;
-        $this->transactionsRepo = $transactionsRepositoryInterface;
-        $this->userRepository = $userRepositoryInterface;
+        $this->accessoriesService = $accessoriesServiceInterface;
+        $this->transactionsService = $transactionsServiceInterface;
+        $this->userService = $userServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -37,7 +37,7 @@ class RequisitionTransactionController extends Controller
     public function index(Request $request)
     {
         try {
-            $transactions = $this->transactionsRepo->transactionType(TransactionTypeEnum::R);
+            $transactions = $this->transactionsService->transactionType(TransactionTypeEnum::R);
             $formSearch = new RequisitionFormSearch();
             if ($request->all()) {
                 $formSearch->access_id = $request->access_id;
@@ -59,7 +59,7 @@ class RequisitionTransactionController extends Controller
                     }
                 }
             }
-            $accessories = $this->accessoriesRepo->all()->get();
+            $accessories = $this->accessoriesService->all()->get();
             return \view('it.requisition.list', \compact('formSearch'))->with('transactions', $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch))->with('accessories', $accessories);
         } catch (\Throwable $th) {
             throw $th;
@@ -74,7 +74,7 @@ class RequisitionTransactionController extends Controller
     public function create()
     {
         try {
-            return \view('it.requisition.create')->with('accessories', $this->accessoriesRepo->all()->get())->with('users', $this->userRepository->all()->get());
+            return \view('it.requisition.create')->with('accessories', $this->accessoriesService->all()->get())->with('users', $this->userService->all()->get());
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -92,7 +92,7 @@ class RequisitionTransactionController extends Controller
             // qty - 
             $input = array_merge($request->all(), ['trans_type' => TransactionTypeEnum::R, 'created_by' => Auth::user()->id]);
             $input['qty'] = '-' . $request->qty;
-            if (!$this->transactionsRepo->create($input)) {
+            if (!$this->transactionsService->create($input)) {
                 $request->session()->flash('error', 'error create!');
             } else {
                 $request->session()->flash('success',  ' has been create');
@@ -123,9 +123,9 @@ class RequisitionTransactionController extends Controller
     public function edit($id)
     {
         try {
-            $accessories = $this->accessoriesRepo->all()->get();
-            $transaction = $this->transactionsRepo->find($id);
-            $users = $this->userRepository->all()->get();
+            $accessories = $this->accessoriesService->all()->get();
+            $transaction = $this->transactionsService->find($id);
+            $users = $this->userService->all()->get();
             return \view('it.requisition.edit')->with('transaction', $transaction)->with('accessories', $accessories)->with('users', $users);
         } catch (\Throwable $th) {
             throw $th;
@@ -144,7 +144,7 @@ class RequisitionTransactionController extends Controller
         try {
             if (!is_null($request->ref_no)) {
                 $token = Helper::makeRandomTokenKey();
-                $transaction = $this->transactionsRepo->find($id);
+                $transaction = $this->transactionsService->find($id);
 
                 if ($transaction->ref_no) {
                     $request->session()->flash('error', 'รายการเคยยกเลิกแล้ว!');
@@ -153,13 +153,13 @@ class RequisitionTransactionController extends Controller
                 $transaction->ref_no = $token;
 
                 // $transaction->qty +
-                if (!$this->transactionsRepo->update($transaction->attributesToArray(), $id)) {
+                if (!$this->transactionsService->update($transaction->attributesToArray(), $id)) {
                     $request->session()->flash('error', 'error update!');
                 } else {
                     $transaction->trans_type = TransactionTypeEnum::CR;
                     $transaction->qty = substr($transaction->qty, 1);
                     $transaction->created_by = Auth::user()->id;
-                    if (!$this->transactionsRepo->create($transaction->attributesToArray())) {
+                    if (!$this->transactionsService->create($transaction->attributesToArray())) {
                         $request->session()->flash('error', 'error update!');
                     } else {
                         $request->session()->flash('success',  ' has been update');

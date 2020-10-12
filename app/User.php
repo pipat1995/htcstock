@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\IT\Department;
+use App\Models\IT\Transactions;
+use App\Models\Legal\LegalContract;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,16 +43,32 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function transaction()
     {
-        return $this->belongsTo(\App\Transactions::class, 'trans_by');
+        return $this->belongsTo(Transactions::class, 'trans_by');
     }
 
     public function createdTransaction()
     {
-        return $this->belongsTo(\App\Transactions::class, 'created_by');
+        return $this->belongsTo(Transactions::class, 'created_by');
     }
 
     public function department()
     {
-        return $this->belongsTo(\App\Department::class);
+        return $this->belongsTo(Department::class);
+    }
+
+    // Legal
+    public function requestorContract()
+    {
+        return $this->belongsTo(LegalContract::class,'requestor_by');
+    }
+
+    public function checkedContract()
+    {
+        return $this->belongsTo(LegalContract::class,'checked_by');
+    }
+
+    public function createdContract()
+    {
+        return $this->belongsTo(LegalContract::class,'created_by');
     }
 }

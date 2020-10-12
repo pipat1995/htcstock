@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Permission;
-use App\Role;
+use App\Models\IT\Permission;
+use App\Models\IT\Role;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;

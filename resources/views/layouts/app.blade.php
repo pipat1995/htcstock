@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
+    <script src="{{ asset('assets/js/index.js') }}" defer></script>
     @yield('first-script')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
