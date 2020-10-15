@@ -101,8 +101,7 @@ class WorkServiceContractController extends Controller
             if ($workservicecontract->value_of_contract) {
                 $workservicecontract->value_of_contract = explode(",", $workservicecontract->value_of_contract);
             }
-            // \dd($workservicecontract->value_of_contract);
-            $paymentType = $this->paymentTypeService->dropdownPaymentType(1);
+            $paymentType = $this->paymentTypeService->dropdownPaymentType($workservicecontract->legalcontract->agreement_id);
         } catch (\Throwable $th) {
             throw $th;
         }
