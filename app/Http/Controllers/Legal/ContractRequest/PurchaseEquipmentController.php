@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Legal\ContractRequest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Legal\StorePurchaseEquipment;
 use App\Services\Legal\Interfaces\ComercialListsServiceInterface;
 use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
@@ -110,7 +111,7 @@ class PurchaseEquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePurchaseEquipment $request, $id)
     {
         $data = $request->except(['_token', '_method']);
         $attributes = [];

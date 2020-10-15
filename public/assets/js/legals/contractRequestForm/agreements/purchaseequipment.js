@@ -31,14 +31,16 @@
 })();
 
 var changeType = (e) => {
+    let firstContract = document.getElementById("contractType1")
     switch (e.value) {
         case '3':
-            document.getElementById("contractType1").classList.remove('hide-contract');
-            document.getElementById("contractType1").classList.add('show-contract');
+            firstContract.classList.remove('hide-contract');
+            firstContract.classList.add('show-contract');
+            setValueOfContract(firstContract)
             break;
         default:
-            document.getElementById("contractType1").classList.remove('show-contract');
-            document.getElementById("contractType1").classList.add('hide-contract');
+            firstContract.classList.remove('show-contract');
+            firstContract.classList.add('hide-contract');
             break;
     }
 }

@@ -355,5 +355,5 @@
 
 @section('second-script')
 <script src="{{asset('assets\js\legals\contractRequestForm\agreements\purchaseequipment.js')}}" defer></script>
-<script src="{{asset('assets\js\legals\contractRequestForm\agreements\agreementall.js')}}"></script>
+<script src="{{asset('assets\js\legals\contractRequestForm\agreements\agreementall.js')}}" defer></script>
 @endsection

@@ -49,6 +49,7 @@ class ComercialListsController extends Controller
             'contract_dests_id' => 'required'
         ]);
         $attributes = $request->all();
+        // \dd($attributes);
         try {
             $comercialLists = $this->comercialListsService->create($attributes);
         } catch (\Throwable $th) {
@@ -104,11 +105,6 @@ class ComercialListsController extends Controller
      */
     public function destroy($id)
     {
-        // try {
-        //     $comercialLists = $this->comercialListsService->destroy($id);
-        // } catch (\Throwable $th) {
-        //     throw $th;
-        // }
         try {
             $this->comercialListsService->destroy($id);
         } catch (\Throwable $th) {
