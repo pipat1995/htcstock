@@ -2,7 +2,6 @@
 
 namespace App\Models\Legal;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class LegalComercialTerm extends Model

@@ -152,7 +152,6 @@ class PurchaseEquipmentInstallController extends Controller
             throw $th;
         }
         DB::commit();
-        // return \redirect()->route('legal.contract-request.workservicecontract.edit', $id);
         return \redirect()->route('legal.contract-request.index');
     }
 
