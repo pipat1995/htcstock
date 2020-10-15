@@ -2,88 +2,219 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
+        let contract = document.getElementById('validationContractDestsId')
+        let poFile = document.getElementById('validationPurchaseOrderFile')
+        let quotationFile = document.getElementById('validationQuotationFile')
+        let coparationFile = document.getElementById('validationCoparationFile')
+        let workPlanFile = document.getElementById('validationWorkPlan')
 
+        let contractType = document.getElementById('validationContractType')
+        let warranty = document.getElementById('validationWarranty')
+        // Supporting Documents
+        displayFileName(poFile)
+        displayFileName(quotationFile)
+        displayFileName(coparationFile)
+        displayFileName(workPlanFile)
 
+        // Comercial Terms
+        comercialLists(contract.value)
+        // Payment Terms
+        changeType(contractType)
+        // warranty
+        calMonthToYear(warranty)
     })
 
     window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        document.getElementById('validationDate').value = new Date().toDateInputValue();
+        // document.getElementById('validationDate').value = new Date().toDateInputValue();
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
-
         validationForm(forms)
     }, false);
 
 })();
-class ComercialList {
-    constructor(description = null, unit_price = null, discount = null, amount = null) {
-        this.description = description;
-        this.unit_price = unit_price;
-        this.discount = discount;
-        this.amount = amount;
+
+
+var createRow = () => {
+    let isCreated = true,
+        description = null,
+        unit_price = 0,
+        discount = 0,
+        amount = 0,
+        id = null
+    let div = document.getElementById('table-comercial-lists')
+    let selectElemen = div.querySelectorAll('input')
+    // validation input
+    selectElemen.forEach(element => {
+        if (!element.value) {
+            return isCreated = false
+        }
+        if (element.name === 'description') {
+            description = element.value
+        }
+        if (element.name === 'unit_price') {
+            unit_price = parseFloat(element.value)
+        }
+        if (element.name === 'discount') {
+            discount = parseFloat(element.value)
+        }
+        if (element.name === 'amount') {
+            amount = parseFloat(element.value)
+        }
+        if (element.name === 'contract_dests_id') {
+            id = element.value
+        }
+    })
+
+    if (isCreated) {
+        let formData = formDataComercialLists(description, unit_price, discount, amount, id)
+        postComercialLists(formData).then(result => {
+            comercialLists(result.data.id)
+        }).catch(err => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Purchase list input type fail',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        }).finally(() => {
+            let div = document.getElementById('table-comercial-lists')
+            let selectElemen = div.querySelectorAll('input')
+            // clear input
+            selectElemen.forEach(element => {
+                if (!element.name === 'contract_dests_id') {
+                    element.value = ""
+                }
+            });
+        })
+    } else {
+        isCreated = true
+        alert(isCreated)
     }
 }
-var comercialList = []
-var createRow = () => {
-    let model = new ComercialList
-    model.description = document.getElementById('validationDescription').value
-    model.unit_price = parseFloat(document.getElementById('validationUnitPrice').value)
-    model.discount = parseFloat(document.getElementById('validationDiscount').value)
-    model.amount = parseFloat(document.getElementById('validationAmount').value)
-    comercialList.push(model);
 
-    // console.log(comercialList[comercialList.length - 1])
+var deleteRow = (id) => {
+    deleteComercialLists(id).then(result => {
+        console.log(result.data);
+        if (result.data.status) {
+            comercialLists(document.getElementById('validationContractDestsId').value)
+        }
+    }).catch(err => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Purchase list delete fail',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    })
+}
+
+var formDataComercialLists = (description, unitPrice, discount, amount, id) => {
+    var formData = new FormData()
+    formData.append('description', description);
+    formData.append('unit_price', unitPrice);
+    formData.append('discount', discount);
+    formData.append('amount', amount);
+    formData.append('contract_dests_id', id)
+    return formData
+}
+
+var postComercialLists = formData => {
+    return axios.post('/legal/contract-request/comerciallists', formData)
+}
+
+var getComercialLists = id => {
+    return axios.get('/legal/contract-request/comerciallists/' + id + '/edit')
+}
+
+var deleteComercialLists = id => {
+    return axios.delete('/legal/contract-request/comerciallists/' + id)
+}
+
+var generateRowFromComercial = (data) => {
     const table = document.getElementById('table-comercial-lists').tBodies[0]
-    var newRow = table.insertRow()
-    var newCell0 = newRow.insertCell(0),
+    let newRow = table.insertRow()
+    let newCell0 = newRow.insertCell(0),
         newCell1 = newRow.insertCell(1),
         newCell2 = newRow.insertCell(2),
         newCell3 = newRow.insertCell(3),
         newCell4 = newRow.insertCell(4)
-
-    var btn = document.createElement('button')
+    let btn = document.createElement('button')
     btn.innerHTML = "delete"
     btn.type = 'button'
     btn.className = 'btn btn-danger sm'
-    btn.setAttribute('onclick', 'deleteRow(this)')
+    btn.setAttribute('onclick', `deleteRow(${data.id})`)
+
     newCell0.appendChild(btn)
-    newCell1.appendChild(document.createTextNode(comercialList[comercialList.length - 1].description))
-    newCell2.appendChild(document.createTextNode(comercialList[comercialList.length - 1].unit_price))
-    newCell3.appendChild(document.createTextNode(comercialList[comercialList.length - 1].discount))
-    newCell4.appendChild(document.createTextNode(comercialList[comercialList.length - 1].amount))
-    document.getElementById('total').textContent = comercialList.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
-    console.log(comercialList);
+    newCell1.appendChild(document.createTextNode(data.description))
+    newCell2.appendChild(document.createTextNode(data.unit_price))
+    newCell3.appendChild(document.createTextNode(data.discount))
+    newCell4.appendChild(document.createTextNode(data.amount))
 }
 
-var deleteRow = (e) => {
-    const table = document.getElementById('table-comercial-lists').tBodies[0]
-    comercialList.shift()
-    table.deleteRow(1)
-    document.getElementById('total').textContent = comercialList.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
+var comercialLists = (id) => {
+    getComercialLists(id).then(result => {
+        document.getElementById('table-comercial-lists').tBodies[0].innerHTML = ""
+        result.data.forEach(element => {
+            generateRowFromComercial(element)
+        });
+
+        document.getElementById('total').textContent = result.data.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
+
+    }).catch(err => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Purchase list query fail',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    })
 }
 
 var changeType = (e) => {
+    let firstContract = document.getElementById("contractType1")
+    let secondContract = document.getElementById("contractType2")
     switch (e.value) {
         case '1':
-            document.getElementById("contractType1").classList.remove('hide-contract');
-            document.getElementById("contractType1").classList.add('show-contract');
+            firstContract.classList.remove('hide-contract')
+            firstContract.classList.add('show-contract')
+            setValueOfContract(firstContract)
+            secondContract.classList.add('hide-contract')
+            secondContract.classList.remove('show-contract')
 
-            document.getElementById("contractType2").classList.add('hide-contract');
-            document.getElementById("contractType2").classList.remove('show-contract');
             break;
         case '2':
-            document.getElementById("contractType2").classList.remove('hide-contract');
-            document.getElementById("contractType2").classList.add('show-contract');
+            secondContract.classList.remove('hide-contract')
+            secondContract.classList.add('show-contract')
+            setValueOfContract(secondContract)
+            firstContract.classList.add('hide-contract')
+            firstContract.classList.remove('show-contract')
 
-            document.getElementById("contractType1").classList.add('hide-contract');
-            document.getElementById("contractType1").classList.remove('show-contract');
             break;
         default:
-            document.getElementById("contractType1").classList.remove('show-contract');
-            document.getElementById("contractType2").classList.remove('show-contract');
-            document.getElementById("contractType1").classList.add('hide-contract');
-            document.getElementById("contractType2").classList.add('hide-contract');
+            firstContract.classList.remove('show-contract')
+            secondContract.classList.remove('show-contract')
+            firstContract.classList.add('hide-contract')
+            secondContract.classList.add('hide-contract')
+            document.getElementsByName('value_of_contract')[0].value = ""
             break;
     }
+}
+var changeContractValue = (e) => {
+    let el = document.getElementById(e.offsetParent.id)
+    setValueOfContract(el)
+    enterNoSubmit(e)
+}
+var setValueOfContract = (e) => {
+    let el = e.children[0].children
+    let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value)
+    el[2].children[0].value = total
+
+    document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value}`
+}
+var calMonthToYear = (e) => {
+    document.getElementById('validationWarrantyForYear').value = `${parseInt(e.value/12)}.${e.value%12}`
 }

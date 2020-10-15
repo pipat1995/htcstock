@@ -1,8 +1,20 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: inline;
+    }
+</style>
+@endsection
 @section('sidebar')
 @include('includes.legal_sidebar');
 @stop
 @section('content')
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -10,7 +22,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>จัดการอุปกรณ์
+            <div>CONTRACT REQUEST FORM
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -22,11 +34,6 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                {{-- <a href="{{route('it.buy.create')}}" class="btn-shadow btn btn-info">
-                <span class="btn-icon-wrapper pr-2 opacity-7">
-                    <i class="fa fa-business-time fa-w-20"></i>
-                </span>
-                ซื้อ</a> --}}
             </div>
         </div>
     </div>
@@ -35,34 +42,101 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">แบบฟอร์มอุปกรณ์</h5>
-            <form class="needs-validation" novalidate action="{{route('it.accessories.update',$accessorie->access_id)}}"
-                method="POST" enctype="multipart/form-data">
+            {{-- <h5 class="card-title">CONTRACT REQUEST FORM</h5> --}}
+            <form class="needs-validation" novalidate action="{{route('legal.contract-request.update',$contract->id)}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label for="validationAccess_name">Name</label>
-                        <input type="text" class="form-control" id="validationAccess_name" name="access_name"
-                            value="{{$accessorie->access_name}}" >
-                        <div class="invalid-feedback">
-                            Please provide a valid Name.
+                    <div class="col-md-6 mb-6">
+                        <label for="validationAcction"><strong>Action</strong> <span
+                                style="color: red;">*</span></label>
+                        <select name="action_id" id="validationAcction" class="form-control" required>
+                            <option value="">Shoose....</option>
+                            @isset($actions)
+                            @foreach ($actions as $action)
+                            <option value="{{$action->id}}" {{$contract->action_id == $action->id ? "selected" : ""}}>{{$action->name}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationUnit">Unit</label>
-                        <input type="text" class="form-control" id="validationUnit" name="unit"
-                            value="{{$accessorie->unit}}" >
-                        <div class="invalid-feedback">
-                            Please provide a valid Unit.
+                    <div class="col-md-6 mb-6">
+                        <label for="validationAgreements"><strong>General Agreements</strong> <span
+                                style="color: red;">*</span></label>
+                        <select name="agreement_id" id="validationAgreements" class="form-control" required>
+                            <option value="">Shoose....</option>
+                            @isset($agreements)
+                            @foreach ($agreements as $agreement)
+                            <option value="{{$agreement->id}}" {{$contract->agreement_id == $agreement->id ? "selected" : ""}}>{{$agreement->name}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px">Submit form</button>
-            </form>
 
-            <script src="{{asset('assets\js\transactions\accessorie.js')}}"></script>
+                <div class="form-row">
+                    <div class="col-md-6 mb-6">
+                        <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
+                                style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="validationCompanyName" name="company_name" value="{{$contract->company_name}}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid PO No.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-6">
+                        <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
+                            style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationCompanyCertificate" name="company_cer"
+                        data-cache="{{substr($contract->company_cer,9)}}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid Ivoice No.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-6">
+                        <label for="validationRepresentative"><strong>Legal Representative</strong> <span
+                            style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="validationRepresentative" name="representative" value="{{$contract->representative}}"
+                            required>
+                        <div class="invalid-feedback">
+                            Please provide a valid PO No.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-6">
+                        <label for="validationRepresen"><strong>Representative Certificate</strong> <span
+                            style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationRepresen" name="representative_cer"
+                        data-cache="{{substr($contract->representative_cer,9)}}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid Ivoice No.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-12">
+                        <label for="validationAddress"><strong>Address</strong> <span
+                            style="color: red;">*</span></label>
+                        <textarea class="form-control" name="address" id="validationAddress" rows="4"
+                            required> {{$contract->address}}</textarea>
+                        <div class="invalid-feedback">
+                            Please provide a valid Ivoice No.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary float-right" type="submit" style="margin-top: 5px">Next</button>
+            </form>
         </div>
     </div>
 </div>
 @stop
+
+@section('second-script')
+<script src="{{asset('assets\js\legals\contractRequestForm\create.js')}}"></script>
+@endsection

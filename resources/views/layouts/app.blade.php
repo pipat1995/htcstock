@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
     <script src="{{ asset('assets/js/template/app.js') }}" defer></script>
     <script src="{{ asset('assets/js/api/index.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

@@ -2,7 +2,11 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
-
+        let companyFile = document.getElementById('validationCompanyCertificate')
+        let RepresenFile = document.getElementById('validationRepresen')
+        // Supporting Documents
+        displayFileName(companyFile)
+        displayFileName(RepresenFile)
 
     })
 

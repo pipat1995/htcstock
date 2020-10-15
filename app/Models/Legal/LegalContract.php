@@ -3,7 +3,6 @@
 namespace App\Models\Legal;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class LegalContract extends Model
 {
@@ -19,17 +18,17 @@ class LegalContract extends Model
 
     public function legalAction()
     {
-        return $this->hasMany(\App\Models\Legal\legalAction::class);
+        return $this->hasMany(legalAction::class);
     }
 
     public function legalAgreement()
     {
-        return $this->hasMany(\App\Models\Legal\LegalAgreement::class);
+        return $this->hasMany(LegalAgreement::class);
     }
 
     public function legalContractDest()
     {
-        return $this->hasMany(\App\Models\Legal\LegalContractDest::class);
+        return $this->belongsTo(LegalContractDest::class);
     }
 
     public function requestorBy()

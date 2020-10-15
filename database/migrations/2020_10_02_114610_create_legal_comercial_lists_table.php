@@ -28,10 +28,10 @@ class CreateLegalComercialListsTable extends Migration
             $table->integer('water')->nullable();
             $table->integer('mowing')->nullable();
             $table->integer('general')->nullable();
-            $table->unsignedInteger('agreement_id')->nullable();
+            $table->unsignedInteger('contract_dests_id');
             $table->timestamps();
 
-            $table->foreign('agreement_id')->references('id')->on('legal_agreements')->onDelete('cascade');
+            $table->foreign('contract_dests_id')->references('id')->on('legal_contract_dests')->onDelete('cascade');
         });
     }
 

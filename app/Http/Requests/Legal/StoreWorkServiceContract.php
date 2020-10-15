@@ -35,9 +35,9 @@ class StoreWorkServiceContract extends FormRequest
             'dated' => 'required',
             'contract_period' => 'required',
             'untill' => 'required',
-            'comercial_term_id' => 'required',
 
-            'contract_type' => 'required',
+            'payment_type_id' => 'required',
+            'value_of_contract' => 'required',
 
             'warranty' => 'required',
         ];
@@ -62,9 +62,9 @@ class StoreWorkServiceContract extends FormRequest
             'dated.required' => 'Please enter dated',
             'contract_period.required' => 'Please enter contract_period',
             'untill.required' => 'Please enter untill',
-            'comercial_term_id.required' => 'Please enter comercial List',
 
-            'contract_type.required' => 'Please enter contract_type',
+            'payment_type_id.required' => 'Please enter payment_term',
+            'value_of_contract.required' => 'Please enter value_of_contract',
 
             'warranty.required' => 'Please enter warranty',
         ];

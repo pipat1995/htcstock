@@ -2,6 +2,7 @@
 
 namespace App\Models\Legal;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class LegalComercialTerm extends Model
@@ -13,8 +14,14 @@ class LegalComercialTerm extends Model
      */
     protected $fillable = [
         'scope_of_work', 'location', 'purchase_order_no', 'quotation_no', 'dated', 'contract_period', 'untill',
-        'delivery_date', 'to_manufacture', 'of', 'working_day', 'working_time', 'number_of_cook','comercial_ot',
-        'number_of_doctor','number_of_sercurity_guard','number_of_subcontractor','number_of_agent','route','to',
-        'dry_container_size','the_number_of_truck','purpose','promote_a_product'
+        'delivery_date', 'to_manufacture', 'of', 'working_day', 'working_time', 'number_of_cook', 'comercial_ot',
+        'number_of_doctor', 'number_of_sercurity_guard', 'number_of_subcontractor', 'number_of_agent', 'route', 'to',
+        'dry_container_size', 'the_number_of_truck', 'purpose', 'promote_a_product'
     ];
+    protected $dates = ['dated', 'contract_period', 'untill', 'delivery_date'];
+    
+    public function legalContractDest()
+    {
+        return $this->hasOne(LegalContractDest::class, 'comercial_term_id');
+    }
 }

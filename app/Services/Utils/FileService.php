@@ -14,12 +14,12 @@ class FileService
         return base64_encode($file);
     }
 
-    public function convertTextToPdf(String $base64)
+    public function convertTextToPdf(String $base64,String $name)
     {
         $pdf_decoded = \base64_decode($base64);
         $time = new Carbon();
-        $name = $time->locale(\config('app.locale'))->isoFormat('YMDhmm') . '.pdf';
+        $name = $name .'_'. $time->locale(\config('app.locale'))->isoFormat('YMDhmm') . '.pdf';
         $isUpload = Storage::disk('public')->put($name, $pdf_decoded);
-        return $isUpload ? $name : false;
+        return $isUpload ? Storage::url($name) : false;
     }
 }

@@ -38,8 +38,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         {{-- <label for="validationSearch">เลข IR</label> --}}
-                        <input type="text" class="form-control" id="validationSearch" name="search"
-                            value="">
+                        <input type="text" class="form-control" id="validationSearch" name="search" value="">
                     </div>
                     <div class="col-md-4 mb-3">
                         <button class="btn-shadow btn btn-info" type="submit">
@@ -63,37 +62,26 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>Unit</th>
+                            <th>Full name (Company’s, Person’s) </th>
+                            <th>Legal Representative </th>
                             <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($accessories as $key => $item)
+                        @foreach ($contracts as $key => $item)
                         <tr>
                             <th scope="row">{{$key+1}}</th>
-                            <td>{{$item->access_name}}</td>
-                            <td>{{$item->unit}}</td>
-                            <td><a href="{{route('it.accessories.edit',$item->access_id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">ข้อมูล</button></a>
-
-                                <button type="button" class="btn btn-danger btn-sm float-left"
-                                    onclick="destroy({{$item->access_id}})">ลบ</button>
-                                <form id="destroy-form{{$item->access_id}}"
-                                    action="{{route('it.accessories.destroy',$item->access_id)}}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
+                            <td>{{$item->company_name}}</td>
+                            <td>{{$item->representative}}</td>
+                            <td><a href="{{route('legal.contract-request.edit',$item->id)}}"
+                                    class="btn btn-primary btn-sm float-left">View</a>
                             </td>
-
                         </tr>
-
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
-            {{-- {{ $accessories->links() }} --}}
+            {{ $contracts->links() }}
         </div>
     </div>
 </div>

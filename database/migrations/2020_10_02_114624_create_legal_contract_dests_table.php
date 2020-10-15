@@ -36,12 +36,15 @@ class CreateLegalContractDestsTable extends Migration
 
             $table->unsignedInteger('comercial_term_id')->nullable();
             $table->unsignedInteger('payment_term_id')->nullable();
+            $table->unsignedInteger('payment_type_id')->nullable();
+            $table->string('value_of_contract',50)->nullable();
             $table->integer('warranty')->nullable();
             $table->timestamps();
 
             $table->foreign('sub_type_contract_id')->references('id')->on('legal_subtype_contracts')->onDelete('cascade');
             $table->foreign('comercial_term_id')->references('id')->on('legal_comercial_terms')->onDelete('cascade');
             $table->foreign('payment_term_id')->references('id')->on('legal_payment_terms')->onDelete('cascade');
+            $table->foreign('payment_type_id')->references('id')->on('legal_payment_types')->onDelete('cascade');
         });
     }
 

@@ -13,6 +13,6 @@ class LegalComercialList extends Model
      */
     protected $fillable = [
         'description','unit_price','discount','amount','road','building','toilet',
-        'canteen','washing','water','mowing','general','agreement_id'
+        'canteen','washing','water','mowing','general','contract_dests_id'
     ];
 }
