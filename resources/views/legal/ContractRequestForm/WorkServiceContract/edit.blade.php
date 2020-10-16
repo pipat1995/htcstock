@@ -300,43 +300,6 @@
                     </div>
                 </div>
                 <hr>
-
-                {{-- <span class="badge badge-primary">LOCATION INFORMATION</span>
-                <div class="form-row">
-                    <div class="col-md-6 mb-6">
-                        <label for="validationRequestor"><strong>Requestor</strong> <span
-                                style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationRequestor" name="requestor" min="0"
-                            step="1" required>
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-6">
-                        <label for="validationDate"><strong>Date</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDate" name="date">
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-6">
-                        <label for="validationDept"><strong>Dept</strong> <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationDept" name="dept" required>
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-6">
-                        <label for="validationPhone"><strong>Phone/Ext</strong> <span
-                                style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationPhone" name="phone" required>
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                </div> --}}
                 <a class="btn btn-primary float-rigth" style="color: white !important; margin-top: 5px" type="button"
                     href="{{route('legal.contract-request.edit',$workservicecontract->legalcontract->id)}}">Back</a>
                 <button class="btn btn-primary float-right" type="submit" style="margin-top: 5px">Next</button>

@@ -21,6 +21,7 @@ use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
 use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
+use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Legal\Service\ActionService;
 use App\Services\Legal\Service\AgreementService;
 use App\Services\Legal\Service\ComercialListsService;
@@ -28,6 +29,7 @@ use App\Services\Legal\Service\ComercialTermService;
 use App\Services\Legal\Service\ContractDescService;
 use App\Services\Legal\Service\ContractRequestService;
 use App\Services\Legal\Service\PaymentTypeService;
+use App\Services\Legal\Service\SubtypeContractService;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -68,5 +70,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PaymentTypeServiceInterface::class,PaymentTypeService::class);
         $this->app->bind(ComercialListsServiceInterface::class,ComercialListsService::class);
         $this->app->bind(ComercialTermServiceInterface::class,ComercialTermService::class);
+        $this->app->bind(SubtypeContractServiceInterface::class,SubtypeContractService::class);
     }
 }

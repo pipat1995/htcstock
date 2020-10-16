@@ -29,4 +29,9 @@ class LegalContractDest extends Model
         return $this->belongsTo(LegalComercialTerm::class,'comercial_term_id');
     }
 
+    public function legalPaymentTerm()
+    {
+        return $this->belongsTo(LegalPaymentTerm::class,'payment_term_id');
+    }
+
 }

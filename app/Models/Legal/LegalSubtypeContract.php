@@ -12,6 +12,6 @@ class LegalSubtypeContract extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'agreement_id'
+        'name', 'slug', 'agreement_id'
     ];
 }

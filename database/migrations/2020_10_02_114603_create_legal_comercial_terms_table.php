@@ -39,6 +39,15 @@ class CreateLegalComercialTermsTable extends Migration
             $table->integer('the_number_of_truck')->nullable();
             $table->string('purpose')->nullable();
             $table->string('promote_a_product')->nullable();
+            $table->integer('road')->nullable();
+            $table->integer('building')->nullable();
+            $table->integer('toilet')->nullable();
+            $table->integer('canteen')->nullable();
+            $table->integer('washing')->nullable();
+            $table->integer('water')->nullable();
+            $table->integer('mowing')->nullable();
+            $table->integer('general')->nullable();
+
             $table->timestamps();
         });
     }
