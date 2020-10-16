@@ -43,6 +43,7 @@ var changeType = (e) => {
         default:
             firstContract.classList.remove('show-contract');
             firstContract.classList.add('hide-contract');
+            document.getElementsByName('value_of_contract')[0].value = ""
             break;
     }
 }

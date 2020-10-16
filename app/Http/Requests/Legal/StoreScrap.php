@@ -4,7 +4,7 @@ namespace App\Http\Requests\Legal;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePurchaseEquipmentInstall extends FormRequest
+class StoreScrap extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class StorePurchaseEquipmentInstall extends FormRequest
         return [
             'quotation' => 'required',
             'coparation_sheet' => 'required',
-            'boq' => 'required',
+            'factory_permission' => 'required',
+            'waste_permission' => 'required',
 
             'scope_of_work' => 'required',
             'location' => 'required',
@@ -35,11 +36,10 @@ class StorePurchaseEquipmentInstall extends FormRequest
             'delivery_date' => 'required',
 
             'comercial_term_id' => 'required',
-            
+
             'payment_type_id' => 'required',
             'value_of_contract' => 'required',
 
-            'warranty' => 'required',
         ];
     }
 
@@ -51,12 +51,14 @@ class StorePurchaseEquipmentInstall extends FormRequest
     public function messages()
     {
         return [
-            'quotation.required' => 'Please enter quotation',
+            'purchase_order.required' => 'Please enter purchase_order',
             'coparation_sheet.required' => 'Please enter coparation_sheet',
-            'boq.required' => 'Please enter boq',
+            'quotation.required' => 'Please enter quotation',
+            'drawing.required' => 'Please enter drawing',
 
             'scope_of_work.required' => 'Please enter scope_of_work',
-            'location.required' => 'Please enter location',
+            // 'to_manufacture.required' => 'Please enter to_manufacture',
+            // 'of.required' => 'Please enter of',
             'quotation_no.required' => 'Please enter quotation_no',
             'dated.required' => 'Please enter dated',
             'delivery_date.required' => 'Please enter delivery_date',
@@ -66,7 +68,6 @@ class StorePurchaseEquipmentInstall extends FormRequest
             'payment_type_id.required' => 'Please enter payment_term',
             'value_of_contract.required' => 'Please enter value_of_contract',
 
-            'warranty.required' => 'Please enter warranty',
         ];
     }
 }
