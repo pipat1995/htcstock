@@ -20,7 +20,7 @@ class ContractRequestService extends BaseService implements ContractRequestServi
     public function all()
     {
         try {
-            return LegalContract::paginate(10);
+            return LegalContract::orderBy('created_at', 'desc')->paginate(10);
         } catch (\Throwable $th) {
             throw $th;
         }

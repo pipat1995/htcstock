@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('style')
 <style>
-    .show {
-        display: block;
+    .hide-contract {
+        display: none;
     }
 
-    .hide {
-        display: inline;
+    .show-contract {
+        display: block;
     }
 </style>
 @endsection
@@ -90,9 +90,14 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
-                            style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationCompanyCertificate" name="company_cer"
-                            required>
+                                style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationCompanyCertificate"
+                            data-name="company_cer" onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="company_cer" value="">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -101,7 +106,7 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresentative"><strong>Legal Representative</strong> <span
-                            style="color: red;">*</span></label>
+                                style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="validationRepresentative" name="representative"
                             required>
                         <div class="invalid-feedback">
@@ -110,9 +115,14 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresen"><strong>Representative Certificate</strong> <span
-                            style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationRepresen" name="representative_cer"
-                            required>
+                                style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationRepresen" data-name="representative_cer"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="representative_cer" value="">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -121,7 +131,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationAddress"><strong>Address</strong> <span
-                            style="color: red;">*</span></label>
+                                style="color: red;">*</span></label>
                         <textarea class="form-control" name="address" id="validationAddress" rows="4"
                             required></textarea>
                         <div class="invalid-feedback">

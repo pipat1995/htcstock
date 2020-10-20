@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('style')
 <style>
-    .show {
-        display: block;
+    .hide-contract {
+        display: none;
     }
 
-    .hide {
-        display: inline;
+    .show-contract {
+        display: block;
     }
 </style>
 @endsection
@@ -43,8 +43,8 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             {{-- <h5 class="card-title">CONTRACT REQUEST FORM</h5> --}}
-            <form class="needs-validation" novalidate action="{{route('legal.contract-request.update',$contract->id)}}" method="POST"
-                enctype="multipart/form-data">
+            <form class="needs-validation" novalidate action="{{route('legal.contract-request.update',$contract->id)}}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -55,7 +55,8 @@
                             <option value="">Shoose....</option>
                             @isset($actions)
                             @foreach ($actions as $action)
-                            <option value="{{$action->id}}" {{$contract->action_id == $action->id ? "selected" : ""}}>{{$action->name}}</option>
+                            <option value="{{$action->id}}" {{$contract->action_id == $action->id ? "selected" : ""}}>
+                                {{$action->name}}</option>
                             @endforeach
                             @endisset
                         </select>
@@ -70,7 +71,9 @@
                             <option value="">Shoose....</option>
                             @isset($agreements)
                             @foreach ($agreements as $agreement)
-                            <option value="{{$agreement->id}}" {{$contract->agreement_id == $agreement->id ? "selected" : ""}}>{{$agreement->name}}</option>
+                            <option value="{{$agreement->id}}"
+                                {{$contract->agreement_id == $agreement->id ? "selected" : ""}}>{{$agreement->name}}
+                            </option>
                             @endforeach
                             @endisset
                         </select>
@@ -84,16 +87,23 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationCompanyName" name="company_name" value="{{$contract->company_name}}" required>
+                        <input type="text" class="form-control" id="validationCompanyName" name="company_name"
+                            value="{{$contract->company_name}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
-                            style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationCompanyCertificate" name="company_cer"
-                        data-cache="{{substr($contract->company_cer,9)}}" required>
+                                style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationCompanyCertificate"
+                            onchange="uploadFile(this)" data-name="company_cer"
+                            data-cache="{{substr($contract->company_cer,9)}}" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="company_cer" value="{{$contract->company_cer}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -102,18 +112,25 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresentative"><strong>Legal Representative</strong> <span
-                            style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationRepresentative" name="representative" value="{{$contract->representative}}"
-                            required>
+                                style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="validationRepresentative" name="representative"
+                            value="{{$contract->representative}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresen"><strong>Representative Certificate</strong> <span
-                            style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationRepresen" name="representative_cer"
-                        data-cache="{{substr($contract->representative_cer,9)}}" required>
+                                style="color: red;">*</span></label>
+                        <input type="file" class="form-control" id="validationRepresen" onchange="uploadFile(this)"
+                            data-name="representative_cer" data-cache="{{substr($contract->representative_cer,9)}}"
+                            required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="representative_cer"
+                            value="{{$contract->representative_cer}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -122,7 +139,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationAddress"><strong>Address</strong> <span
-                            style="color: red;">*</span></label>
+                                style="color: red;">*</span></label>
                         <textarea class="form-control" name="address" id="validationAddress" rows="4"
                             required> {{$contract->address}}</textarea>
                         <div class="invalid-feedback">

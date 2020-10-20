@@ -21,12 +21,14 @@ Date.prototype.toDateInputValue = (function () {
  * @return void
  */
 var displayFileName = (e) => {
-    if (e.dataset.cache) {
-        let f = new File([""], e.dataset.cache, {
-            type: "application/pdf",
-            lastModified: Date.now()
-        })
-        e.files = new FileListItems([f])
+    if (e) {
+        if (e.dataset.cache) {
+            let f = new File([""], e.dataset.cache, {
+                type: "application/pdf",
+                lastModified: Date.now()
+            })
+            e.files = new FileListItems([f])
+        }
     }
 }
 
@@ -50,4 +52,33 @@ function enterNoSubmit(e) {
             return false;
         }
     }
+}
+
+/**
+ * @params {element} document.getElementById
+ * @return path string
+ */
+var uploadFile = async e => {
+    const config = {
+        onUploadProgress: function (progressEvent) {
+            var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            let progress = e.offsetParent.getElementsByClassName('progress')[0]
+            progress.classList.add('show-contract')
+            progress.classList.remove('hide-contract')
+            progress.children[0].style.width = `${percentCompleted}%`
+            progress.children[0].textContent = `${percentCompleted}%`
+        },
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+    let uri = "/legal/uploadfile"
+    let data = new FormData()
+    data.append('file', e.files[0])
+    axios.post(uri, data, config)
+        .then(res => {
+            e.offsetParent.querySelector(`input[name='${e.dataset.name}']`).value = res.data.path
+            e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = 'Success !'
+        })
+        .catch(err => console.log(err))
 }

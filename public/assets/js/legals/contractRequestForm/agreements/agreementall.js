@@ -117,23 +117,25 @@ var generateRowFromComercial = (data) => {
 }
 
 var comercialLists = (id) => {
-    getComercialLists(id).then(result => {
-        document.getElementById('table-comercial-lists').tBodies[0].innerHTML = ""
-        result.data.forEach(element => {
-            generateRowFromComercial(element)
-        });
+    if (id) {
+        getComercialLists(id).then(result => {
+            document.getElementById('table-comercial-lists').tBodies[0].innerHTML = ""
+            result.data.forEach(element => {
+                generateRowFromComercial(element)
+            });
 
-        document.getElementById('total').textContent = result.data.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
+            document.getElementById('total').textContent = result.data.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
 
-    }).catch(err => {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Purchase list query fail',
-            showConfirmButton: false,
-            timer: 2000
+        }).catch(err => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Purchase list query fail',
+                showConfirmButton: false,
+                timer: 2000
+            })
         })
-    })
+    }
 }
 
 var calMonthToYear = (e) => {

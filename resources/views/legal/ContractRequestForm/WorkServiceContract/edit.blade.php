@@ -43,8 +43,15 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
-                        <input type="file" class="form-control" id="validationPurchaseOrderFile" name="purchase_order"
-                            data-cache="{{substr($workservicecontract->purchase_order,9)}}" value="">
+                        <input type="file" class="form-control" id="validationPurchaseOrderFile"
+                            data-name="purchase_order" data-cache="{{substr($workservicecontract->purchase_order,9)}}"
+                            onchange="uploadFile(this)">
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="purchase_order"
+                            value="{{$workservicecontract->purchase_order}}">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
@@ -53,9 +60,13 @@
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="file" class="form-control" id="validationQuotationFile"
-                            data-cache="{{substr($workservicecontract->quotation,9)}}" name="quotation" value=""
-                            required>
-
+                            data-cache="{{substr($workservicecontract->quotation,9)}}" data-name="quotation"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="quotation" value="{{$workservicecontract->quotation}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -65,8 +76,16 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationCoparationFile" name="coparation_sheet"
-                            data-cache="{{substr($workservicecontract->coparation_sheet,9)}}" value="" required>
+                        <input type="file" class="form-control" id="validationCoparationFile"
+                            data-name="coparation_sheet"
+                            data-cache="{{substr($workservicecontract->coparation_sheet,9)}}"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="coparation_sheet"
+                            value="{{$workservicecontract->coparation_sheet}}">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
@@ -74,8 +93,14 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationWorkPlan"><strong>Work Plan</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationWorkPlan" name="work_plan"
-                            data-cache="{{substr($workservicecontract->work_plan,9)}}" value="" required>
+                        <input type="file" class="form-control" id="validationWorkPlan" data-name="work_plan"
+                            data-cache="{{substr($workservicecontract->work_plan,9)}}" onchange="uploadFile(this)"
+                            required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="work_plan" value="{{$workservicecontract->work_plan}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>

@@ -65,7 +65,8 @@ Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(
 Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-
+    Route::post('uploadfile','ContractRequestController@uploadFile')->name('uploadfile');
+    
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
         Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
         Route::get('workservicecontract/pdf','WorkServiceContractController@generatePDF');
@@ -80,5 +81,7 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
         Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
         Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
         Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
+
+        
     });
 });

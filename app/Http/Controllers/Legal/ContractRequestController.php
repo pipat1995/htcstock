@@ -13,6 +13,8 @@ use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class ContractRequestController extends Controller
 {
@@ -69,8 +71,8 @@ class ContractRequestController extends Controller
     public function store(StoreContractRequest $request)
     {
         $attributes = $request->except(['_token']);
-        $attributes['company_cer'] = $this->fileService->convertPdfToText($attributes['company_cer']);
-        $attributes['representative_cer'] = $this->fileService->convertPdfToText($attributes['representative_cer']);
+        // $attributes['company_cer'] = $this->fileService->convertPdfToText($attributes['company_cer']);
+        // $attributes['representative_cer'] = $this->fileService->convertPdfToText($attributes['representative_cer']);
         $attributes['created_by'] = Auth::user()->id;
         DB::beginTransaction();
         try {
@@ -115,8 +117,8 @@ class ContractRequestController extends Controller
     {
         try {
             $contract = $this->contractRequestService->find($id);
-            $contract->company_cer = $this->fileService->convertTextToPdf($contract->company_cer, 'company_cer');
-            $contract->representative_cer = $this->fileService->convertTextToPdf($contract->representative_cer, 'representative_cer');
+            // $contract->company_cer = $this->fileService->convertTextToPdf($contract->company_cer, 'company_cer');
+            // $contract->representative_cer = $this->fileService->convertTextToPdf($contract->representative_cer, 'representative_cer');
             $actions = $this->actionService->dropdownAction();
             $agreements = $this->agreementService->dropdownAgreement();
         } catch (\Throwable $th) {
@@ -134,19 +136,19 @@ class ContractRequestController extends Controller
      */
     public function update(StoreContractRequest $request, $id)
     {
-        $data = $request->except(['_token', '_method']);
-        $attributes = [];
-        if ($request->file('company_cer')->getSize() > 0) {
-            $attributes['company_cer'] = $this->fileService->convertPdfToText($data['company_cer']);
-        }
-        if ($request->file('representative_cer')->getSize() > 0) {
-            $attributes['representative_cer'] = $this->fileService->convertPdfToText($data['representative_cer']);
-        }
-        $attributes['action_id'] = $data['action_id'];
-        $attributes['agreement_id'] = $data['agreement_id'];
-        $attributes['company_name'] = $data['company_name'];
-        $attributes['representative'] = $data['representative'];
-        $attributes['address'] = $data['address'];
+        $attributes = $request->except(['_token', '_method']);
+        // $attributes = [];
+        // if ($request->file('company_cer')->getSize() > 0) {
+        //     $attributes['company_cer'] = $this->fileService->convertPdfToText($data['company_cer']);
+        // }
+        // if ($request->file('representative_cer')->getSize() > 0) {
+        //     $attributes['representative_cer'] = $this->fileService->convertPdfToText($data['representative_cer']);
+        // }
+        // $attributes['action_id'] = $data['action_id'];
+        // $attributes['agreement_id'] = $data['agreement_id'];
+        // $attributes['company_name'] = $data['company_name'];
+        // $attributes['representative'] = $data['representative'];
+        // $attributes['address'] = $data['address'];
         DB::beginTransaction();
         try {
             $this->contractRequestService->update($attributes, $id);
@@ -212,5 +214,16 @@ class ContractRequestController extends Controller
                 return \abort(404);
                 break;
         }
+    }
+
+    
+    public function uploadFile(Request $request)
+    {
+        $segments = explode('/', \substr(url()->previous(),strlen($request->root())));
+        $path = Storage::disk('public')->put(
+            $segments[1].'/'.$segments[2],
+            $request->file('file'),
+        );
+        return \response()->json(['path' => $path]);
     }
 }

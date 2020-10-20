@@ -35,7 +35,7 @@ class StoreWorkServiceContract extends FormRequest
             'contract_period' => 'required',
             'untill' => 'required',
 
-            'comercial_term_id' => 'required',
+            // 'comercial_term_id' => 'required',
 
             'payment_type_id' => 'required',
             'value_of_contract' => 'required',

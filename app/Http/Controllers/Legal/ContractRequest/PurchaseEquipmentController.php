@@ -84,15 +84,15 @@ class PurchaseEquipmentController extends Controller
     {
         try {
             $purchaseequipment = $this->contractDescService->find($id);
-            if ($purchaseequipment->purchase_order) {
-                $purchaseequipment->purchase_order = $this->fileService->convertTextToPdf($purchaseequipment->purchase_order, 'purchase_order');
-            }
-            if ($purchaseequipment->quotation) {
-                $purchaseequipment->quotation = $this->fileService->convertTextToPdf($purchaseequipment->quotation, 'quotation');
-            }
-            if ($purchaseequipment->coparation_sheet) {
-                $purchaseequipment->coparation_sheet = $this->fileService->convertTextToPdf($purchaseequipment->coparation_sheet, 'coparation_sheet');
-            }
+            // if ($purchaseequipment->purchase_order) {
+            //     $purchaseequipment->purchase_order = $this->fileService->convertTextToPdf($purchaseequipment->purchase_order, 'purchase_order');
+            // }
+            // if ($purchaseequipment->quotation) {
+            //     $purchaseequipment->quotation = $this->fileService->convertTextToPdf($purchaseequipment->quotation, 'quotation');
+            // }
+            // if ($purchaseequipment->coparation_sheet) {
+            //     $purchaseequipment->coparation_sheet = $this->fileService->convertTextToPdf($purchaseequipment->coparation_sheet, 'coparation_sheet');
+            // }
 
             if ($purchaseequipment->value_of_contract) {
                 $purchaseequipment->value_of_contract = explode(",", $purchaseequipment->value_of_contract);
@@ -117,10 +117,10 @@ class PurchaseEquipmentController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['quotation'] = $this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $this->fileService->convertPdfToText($data['coparation_sheet']);
+        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
         if (!empty($request->purchase_order)) {
-            $attributes['purchase_order'] = $this->fileService->convertPdfToText($data['purchase_order']);
+            $attributes['purchase_order'] = $data['purchase_order'];//$this->fileService->convertPdfToText($data['purchase_order']);
         }
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
