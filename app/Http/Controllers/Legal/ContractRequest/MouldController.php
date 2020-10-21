@@ -84,18 +84,18 @@ class MouldController extends Controller
     {
         try {
             $mould = $this->contractDescService->find($id);
-            if ($mould->purchase_order) {
-                $mould->purchase_order = $this->fileService->convertTextToPdf($mould->purchase_order, 'purchase_order');
-            }
-            if ($mould->quotation) {
-                $mould->quotation = $this->fileService->convertTextToPdf($mould->quotation, 'quotation');
-            }
-            if ($mould->coparation_sheet) {
-                $mould->coparation_sheet = $this->fileService->convertTextToPdf($mould->coparation_sheet, 'coparation_sheet');
-            }
-            if ($mould->boq) {
-                $mould->boq = $this->fileService->convertTextToPdf($mould->boq, 'boq');
-            }
+            // if ($mould->purchase_order) {
+            //     $mould->purchase_order = $this->fileService->convertTextToPdf($mould->purchase_order, 'purchase_order');
+            // }
+            // if ($mould->quotation) {
+            //     $mould->quotation = $this->fileService->convertTextToPdf($mould->quotation, 'quotation');
+            // }
+            // if ($mould->coparation_sheet) {
+            //     $mould->coparation_sheet = $this->fileService->convertTextToPdf($mould->coparation_sheet, 'coparation_sheet');
+            // }
+            // if ($mould->boq) {
+            //     $mould->boq = $this->fileService->convertTextToPdf($mould->boq, 'boq');
+            // }
 
             if ($mould->value_of_contract) {
                 $mould->value_of_contract = explode(",", $mould->value_of_contract);
@@ -120,10 +120,10 @@ class MouldController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['purchase_order'] = $this->fileService->convertPdfToText($data['purchase_order']);
-        $attributes['quotation'] = $this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['drawing'] = $this->fileService->convertPdfToText($data['drawing']);
+        $attributes['purchase_order'] = $data['purchase_order'];//$this->fileService->convertPdfToText($data['purchase_order']);
+        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
+        $attributes['drawing'] = $data['drawing'];//$this->fileService->convertPdfToText($data['drawing']);
         
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];

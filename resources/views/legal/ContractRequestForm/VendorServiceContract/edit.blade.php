@@ -91,7 +91,8 @@
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                     aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                             </div>
-                            <input type="hidden" type="text" name="coparation_sheet" value="{{$vendorservice->coparation_sheet}}">
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -106,7 +107,8 @@
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                     aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                             </div>
-                            <input type="hidden" type="text" name="transportation_permission" value="{{$vendorservice->transportation_permission}}">
+                            <input type="hidden" type="text" name="transportation_permission"
+                                value="{{$vendorservice->transportation_permission}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Transportation Permission.
                             </div>
@@ -123,7 +125,8 @@
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                     aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                             </div>
-                            <input type="hidden" type="text" name="vehicle_registration_certificate" value="{{$vendorservice->transportation_permission}}">
+                            <input type="hidden" type="text" name="vehicle_registration_certificate"
+                                value="{{$vendorservice->transportation_permission}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Vehicle Registration.
                             </div>
@@ -168,7 +171,8 @@
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                     aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                             </div>
-                            <input type="hidden" type="text" name="driver_license" value="{{$vendorservice->driver_license}}">
+                            <input type="hidden" type="text" name="driver_license"
+                                value="{{$vendorservice->driver_license}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Driver License.
                             </div>
@@ -322,8 +326,15 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -332,8 +343,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -401,8 +418,8 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
-                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day : ""}}"
                                 required>
                             <div class="invalid-feedback">
                                 Please provide a valid Working Day.
@@ -411,7 +428,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -424,7 +441,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRoad"><strong>Road</strong> </label>
                             <input type="number" class="form-control" id="validationRoad" name="road" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->road : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -434,8 +451,8 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationBuilding"><strong>Building</strong></label>
                             <input type="number" class="form-control" id="validationBuilding" name="building" min="0"
-                                onchange="totalOfMaid(this)"
-                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->road : 0}}"
+                                onchange="totalOfMaid()"
+                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->building : 0}}"
                                 required>
                             <div class="invalid-feedback">
                                 Please provide a valid Building.
@@ -444,7 +461,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationToilet"><strong>Toilet</strong></label>
                             <input type="number" class="form-control" id="validationToilet" name="toilet" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->toilet : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -454,7 +471,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationCanteen"><strong>Canteen</strong></label>
                             <input type="number" class="form-control" id="validationCanteen" name="canteen" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->canteen : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -466,7 +483,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWashing"><strong>Washing</strong></label>
                             <input type="number" class="form-control" id="validationWashing" name="washing" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->washing : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -476,7 +493,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWater"><strong>Water</strong></label>
                             <input type="number" class="form-control" id="validationWater" name="water" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->water : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -486,7 +503,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationMowing"><strong>Mowing</strong></label>
                             <input type="number" class="form-control" id="validationMowing" name="mowing" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->mowing : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -496,7 +513,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationGeneral"><strong>General</strong></label>
                             <input type="number" class="form-control" id="validationGeneral" name="general" min="0"
-                                onchange="totalOfMaid(this)"
+                                onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->general : 0}}"
                                 required>
                             <div class="invalid-feedback">
@@ -566,8 +583,14 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -576,8 +599,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -656,7 +685,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -666,7 +695,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -675,8 +704,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="ot" min="0" step="0.1"
-                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->ot : ""}}"
+                            <input type="number" class="form-control" id="validationOT" name="comercial_ot" min="0"
+                                step="0.1"
+                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->comercial_ot : ""}}"
                                 required>
                             <div class="invalid-feedback">
                                 Please provide a valid OT.
@@ -728,8 +758,14 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -738,8 +774,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -747,8 +789,16 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDoctorLicense"><strong>Doctor License</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationDoctorLicense" name="doctor_license"
-                                data-cache="{{substr($vendorservice->doctor_license,9)}}" value="" required>
+
+                            <input type="file" class="form-control" id="validationDoctorLicense"
+                                onchange="uploadFile(this)" data-name="doctor_license"
+                                data-cache="{{substr($vendorservice->doctor_license,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="doctor_license"
+                                value="{{$vendorservice->doctor_license}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Doctor License.
                             </div>
@@ -827,7 +877,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -837,7 +887,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -880,8 +930,14 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -890,8 +946,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -899,8 +961,16 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNurseLicense"><strong>Nurse License</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationNurseLicense" name="nurse_license"
-                                data-cache="{{substr($vendorservice->nurse_license,9)}}" value="" required>
+
+                            <input type="file" class="form-control" id="validationNurseLicense"
+                                onchange="uploadFile(this)" data-name="nurse_license"
+                                data-cache="{{substr($vendorservice->nurse_license,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="nurse_license"
+                                value="{{$vendorservice->nurse_license}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Nurse License.
                             </div>
@@ -979,7 +1049,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -989,7 +1059,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1032,8 +1102,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -1042,8 +1118,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -1051,10 +1133,16 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationSecurityService"><strong>Security Service
                                     Certification</strong> <span style="color: red;">*</span></label>
+
                             <input type="file" class="form-control" id="validationSecurityService"
-                                name="security_service_certification"
-                                data-cache="{{substr($vendorservice->security_service_certification,9)}}" value=""
-                                required>
+                                onchange="uploadFile(this)" data-name="security_service_certification"
+                                data-cache="{{substr($vendorservice->security_service_certification,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="security_service_certification"
+                                value="{{$vendorservice->security_service_certification}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Security Service Certification.
                             </div>
@@ -1062,9 +1150,16 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationSecurityGuardLicense"><strong>Security Guard License</strong> <span
                                     style="color: red;">*</span></label>
+
                             <input type="file" class="form-control" id="validationSecurityGuardLicense"
-                                name="security_guard_license"
-                                data-cache="{{substr($vendorservice->security_guard_license,9)}}" value="" required>
+                                onchange="uploadFile(this)" data-name="security_guard_license"
+                                data-cache="{{substr($vendorservice->security_guard_license,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="security_guard_license"
+                                value="{{$vendorservice->security_guard_license}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Security Guard License.
                             </div>
@@ -1143,7 +1238,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1153,7 +1248,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1196,8 +1291,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -1206,8 +1307,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -1286,7 +1393,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1296,7 +1403,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1309,13 +1416,13 @@
                     <span class="badge badge-primary">Payment Terms</span>
                     <input type="hidden" name="payment_term_id" value="{{$vendorservice->payment_term_id}}">
                     <div class="form-row">
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-12 mb-12">
                             <label for="validationDetailPaymentTerm"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationDetailPaymentTerm"
-                                name="detail_payment_term"
-                                value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->detail_payment_term : ""}}"
-                                required>
+                            <textarea class="form-control" name="detail_payment_term" id="validationDetailPaymentTerm"
+                                rows="4" required>
+                                        {{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->detail_payment_term : ""}}
+                                    </textarea>
                             <div class="invalid-feedback">
                                 Please provide a valid Detail Payment Term.
                             </div>
@@ -1340,8 +1447,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" name="quotation" value="" required>
+                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="quotation" value="{{$vendorservice->quotation}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Quotation.
                             </div>
@@ -1350,8 +1463,14 @@
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                     style="color: red;">*</span></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
-                                name="coparation_sheet" data-cache="{{substr($vendorservice->coparation_sheet,9)}}"
-                                value="" required>
+                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
+                            <div class="mb-3 progress hide-contract">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <input type="hidden" type="text" name="coparation_sheet"
+                                value="{{$vendorservice->coparation_sheet}}">
                             <div class="invalid-feedback">
                                 Please provide a valid Coparation Sheet.
                             </div>
@@ -1482,13 +1601,12 @@
                     <span class="badge badge-primary">Payment Terms</span>
                     <input type="hidden" name="payment_term_id" value="{{$vendorservice->payment_term_id}}">
                     <div class="form-row">
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-12 mb-12">
                             <label for="validationPriceOfService"><strong>Price of service</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationPriceOfService"
-                                name="price_of_service"
-                                value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->price_of_service : ""}}"
-                                required>
+
+                            <textarea class="form-control" name="price_of_service" id="validationPriceOfService"
+                                rows="4" required>{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->price_of_service : ""}}</textarea>
                             <div class="invalid-feedback">
                                 Please provide a valid Price of service.
                             </div>

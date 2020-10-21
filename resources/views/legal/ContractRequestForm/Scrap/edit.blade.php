@@ -45,8 +45,14 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationQuotationFile" name="quotation"
-                            data-cache="{{substr($scrap->quotation,9)}}" value="" required>
+
+                        <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            data-cache="{{substr($scrap->quotation,9)}}" onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="quotation" value="{{$scrap->quotation}}">
                         <div class="invalid-feedback">
                             Please provide a valid quotation.
                         </div>
@@ -54,8 +60,15 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationCoparationFile" name="coparation_sheet"
-                            data-cache="{{substr($scrap->coparation_sheet,9)}}" value="" required>
+
+                        <input type="file" class="form-control" id="validationCoparationFile"
+                            data-name="coparation_sheet" data-cache="{{substr($scrap->coparation_sheet,9)}}"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="coparation_sheet" value="{{$scrap->coparation_sheet}}">
                         <div class="invalid-feedback">
                             Please provide a valid Coparation Sheet.
                         </div>
@@ -65,9 +78,16 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationFactoryPermission"><strong>Factory Permission</strong> <span
                                 style="color: red;">*</span></label>
+
                         <input type="file" class="form-control" id="validationFactoryPermission"
-                            name="factory_permission" data-cache="{{substr($scrap->factory_permission,9)}}" value=""
-                            required>
+                            data-name="factory_permission" data-cache="{{substr($scrap->factory_permission,9)}}"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="factory_permission"
+                            value="{{$scrap->factory_permission}}">
                         <div class="invalid-feedback">
                             Please provide a valid Factory Permission.
                         </div>
@@ -75,8 +95,15 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationWastePermission"><strong>Waste Permission</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="file" class="form-control" id="validationWastePermission" name="waste_permission"
-                            data-cache="{{substr($scrap->waste_permission,9)}}" value="" required>
+
+                        <input type="file" class="form-control" id="validationWastePermission"
+                            data-name="waste_permission" data-cache="{{substr($scrap->waste_permission,9)}}"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="waste_permission" value="{{$scrap->waste_permission}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>

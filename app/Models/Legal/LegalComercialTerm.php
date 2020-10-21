@@ -19,7 +19,7 @@ class LegalComercialTerm extends Model
         'dry_container_size', 'the_number_of_truck', 'purpose', 'promote_a_product',
         'road','building','toilet','canteen','washing','water','mowing','general'
     ];
-    protected $dates = ['dated', 'contract_period', 'untill', 'delivery_date','working_day'];
+    protected $dates = ['dated', 'contract_period', 'untill', 'delivery_date'];
     
     public function legalContractDest()
     {

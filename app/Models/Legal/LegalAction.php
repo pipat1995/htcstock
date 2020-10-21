@@ -18,6 +18,6 @@ class LegalAction extends Model
 
     public function legalcontract()
     {
-        return $this->belongsTo(\App\Models\Legal\LegalContract::class);
+        return $this->hasMany(LegalContract::class);
     }
 }

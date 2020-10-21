@@ -23,7 +23,7 @@ class CreateLegalPaymentTermsTable extends Migration
             $table->float('holiday_pay')->nullable();
             $table->float('ot_driver')->nullable();
             $table->string('other_expense')->nullable();
-            $table->float('price_of_service')->nullable();
+            $table->text('price_of_service')->nullable();
             $table->text('detail_payment_term')->nullable();
             $table->timestamps();
 

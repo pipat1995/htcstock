@@ -34,8 +34,6 @@ class StorePurchaseEquipmentInstall extends FormRequest
             'dated' => 'required',
             'delivery_date' => 'required',
 
-            // 'comercial_term_id' => 'required',
-            
             'payment_type_id' => 'required',
             'value_of_contract' => 'required',
 
@@ -60,8 +58,6 @@ class StorePurchaseEquipmentInstall extends FormRequest
             'quotation_no.required' => 'Please enter quotation_no',
             'dated.required' => 'Please enter dated',
             'delivery_date.required' => 'Please enter delivery_date',
-
-            'comercial_term_id.required' => 'Please enter comercial_term_id',
 
             'payment_type_id.required' => 'Please enter payment_term',
             'value_of_contract.required' => 'Please enter value_of_contract',

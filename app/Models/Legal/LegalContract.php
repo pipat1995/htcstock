@@ -18,31 +18,31 @@ class LegalContract extends Model
 
     public function legalAction()
     {
-        return $this->hasMany(legalAction::class);
+        return $this->belongsTo(legalAction::class,'action_id');
     }
 
     public function legalAgreement()
     {
-        return $this->hasMany(LegalAgreement::class);
+        return $this->belongsTo(LegalAgreement::class,'agreement_id');
     }
 
     public function legalContractDest()
     {
-        return $this->belongsTo(LegalContractDest::class);
+        return $this->belongsTo(LegalContractDest::class,'contract_dest_id');
     }
 
     public function requestorBy()
     {
-        return $this->hasMany(\App\User::class);
+        return $this->belongsTo(\App\User::class,'requestor_by');
     }
 
     public function checkedBy()
     {
-        return $this->hasMany(\App\User::class);
+        return $this->belongsTo(\App\User::class,'checked_by');
     }
 
     public function createdBy()
     {
-        return $this->hasMany(\App\User::class);
+        return $this->belongsTo(\App\User::class,'created_by');
     }
 }

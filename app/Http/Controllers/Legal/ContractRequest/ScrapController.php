@@ -84,18 +84,18 @@ class ScrapController extends Controller
         try {
             $scrap = $this->contractDescService->find($id);
 
-            if ($scrap->quotation) {
-                $scrap->quotation = $this->fileService->convertTextToPdf($scrap->quotation, 'quotation');
-            }
-            if ($scrap->coparation_sheet) {
-                $scrap->coparation_sheet = $this->fileService->convertTextToPdf($scrap->coparation_sheet, 'coparation_sheet');
-            }
-            if ($scrap->factory_permission) {
-                $scrap->factory_permission = $this->fileService->convertTextToPdf($scrap->factory_permission, 'factory_permission');
-            }
-            if ($scrap->waste_permission) {
-                $scrap->waste_permission = $this->fileService->convertTextToPdf($scrap->waste_permission, 'waste_permission');
-            }
+            // if ($scrap->quotation) {
+            //     $scrap->quotation = $this->fileService->convertTextToPdf($scrap->quotation, 'quotation');
+            // }
+            // if ($scrap->coparation_sheet) {
+            //     $scrap->coparation_sheet = $this->fileService->convertTextToPdf($scrap->coparation_sheet, 'coparation_sheet');
+            // }
+            // if ($scrap->factory_permission) {
+            //     $scrap->factory_permission = $this->fileService->convertTextToPdf($scrap->factory_permission, 'factory_permission');
+            // }
+            // if ($scrap->waste_permission) {
+            //     $scrap->waste_permission = $this->fileService->convertTextToPdf($scrap->waste_permission, 'waste_permission');
+            // }
 
             if ($scrap->value_of_contract) {
                 $scrap->value_of_contract = explode(",", $scrap->value_of_contract);
@@ -120,10 +120,10 @@ class ScrapController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['quotation'] = $this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['factory_permission'] = $this->fileService->convertPdfToText($data['factory_permission']);
-        $attributes['waste_permission'] = $this->fileService->convertPdfToText($data['waste_permission']);
+        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
+        $attributes['factory_permission'] = $data['factory_permission'];//$this->fileService->convertPdfToText($data['factory_permission']);
+        $attributes['waste_permission'] = $data['waste_permission'];//$this->fileService->convertPdfToText($data['waste_permission']);
 
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];

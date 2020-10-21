@@ -4,7 +4,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         let subtype = document.getElementById('validationSubType')
         changeSubType(subtype)
-        displayFileBySubType(subtype)
     })
 
     window.addEventListener('load', function () {
@@ -25,6 +24,7 @@ var changeSubType = (e) => {
             let form = element.getElementsByTagName('form')[0]
             let key = form.querySelector("input[name='sub_type_contract_id']")
             key.value = uid.value
+            displayFileBySubType(form)
             element.classList.remove('hide-contract')
             element.classList.add('show-contract')
         } else {
@@ -34,7 +34,7 @@ var changeSubType = (e) => {
     });
 }
 
-var totalOfMaid = (e) => {
+var totalOfMaid = () => {
     let road = document.getElementById('validationRoad').value
     let building = document.getElementById('validationBuilding').value
     let toilet = document.getElementById('validationToilet').value
@@ -49,46 +49,49 @@ var totalOfMaid = (e) => {
 
 
 var displayFileBySubType = e => {
-    let subtype = e.options[e.selectedIndex]
-    if (subtype.dataset.id === 'bus-contract') {
-        let quotationFile = document.getElementById('validationQuotationFile')
-        let coparationFile = document.getElementById('validationCoparationFile')
-        let transportation = document.getElementById('validationTransportationPermission')
-        let vehicle = document.getElementById('validationVehicleRegistration')
-        let route = document.getElementById('validationRoute')
-        let insurance = document.getElementById('validationInsurance')
-        let driver = document.getElementById('validationDriverLicense')
-        // Supporting Documents
-        displayFileName(quotationFile)
-        displayFileName(coparationFile)
-        displayFileName(transportation)
-        displayFileName(vehicle)
-        displayFileName(route)
-        displayFileName(insurance)
-        displayFileName(driver)
+    if (e.id === 'form-bus') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
+        displayFileName(e.querySelector("input[id='validationTransportationPermission']"))
+        displayFileName(e.querySelector("input[id='validationVehicleRegistration']"))
+        displayFileName(e.querySelector("input[id='validationRoute']"))
+        displayFileName(e.querySelector("input[id='validationInsurance']"))
+        displayFileName(e.querySelector("input[id='validationDriverLicense']"))
     }
-    if (subtype.dataset.id === 'cleaning-contract') {
-        
+    if (e.id === 'form-cleaning') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
+        totalOfMaid()
     }
-    if (subtype.dataset.id === 'cook-contract') {
-        
+    if (e.id === 'form-cook') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
     }
-    if (subtype.dataset.id === 'doctor-contract') {
-        
+    if (e.id === 'form-doctor') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
+        displayFileName(e.querySelector("input[id='validationDoctorLicense']"))
     }
-    if (subtype.dataset.id === 'nurse-contract') {
-        
+    if (e.id === 'form-nurse') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
+        displayFileName(e.querySelector("input[id='validationNurseLicense']"))
     }
-    if (subtype.dataset.id === 'security-contract') {
-        
+    if (e.id === 'form-security') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
+        displayFileName(e.querySelector("input[id='validationSecurityService']"))
+        displayFileName(e.querySelector("input[id='validationSecurityGuardLicense']"))
     }
-    if (subtype.dataset.id === 'subcontractor-contract') {
-        
+    if (e.id === 'form-subcontractor') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
     }
-    if (subtype.dataset.id === 'transportation-contract') {
-        
+    if (e.id === 'form-transportation') {
+        displayFileName(e.querySelector("input[id='validationQuotationFile']"))
+        displayFileName(e.querySelector("input[id='validationCoparationFile']"))
     }
-    if (subtype.dataset.id === 'it-contract') {
+    if (e.id === 'form-it') {
         
     }
 }

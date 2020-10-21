@@ -64,6 +64,7 @@
                             <th>#</th>
                             <th>Full name (Company’s, Person’s) </th>
                             <th>Legal Representative </th>
+                            <th>Legal Agreement </th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -73,6 +74,7 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
+                            <td>{{$item->legalAgreement->name}}</td>
                             <td><a href="{{route('legal.contract-request.edit',$item->id)}}"
                                     class="btn btn-primary btn-sm float-left">View</a>
                             </td>

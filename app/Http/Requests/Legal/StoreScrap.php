@@ -35,8 +35,6 @@ class StoreScrap extends FormRequest
             'dated' => 'required',
             'delivery_date' => 'required',
 
-            'comercial_term_id' => 'required',
-
             'payment_type_id' => 'required',
             'value_of_contract' => 'required',
 

@@ -59,16 +59,16 @@ class User extends Authenticatable implements MustVerifyEmail
     // Legal
     public function requestorContract()
     {
-        return $this->belongsTo(LegalContract::class,'requestor_by');
+        return $this->hasMany(LegalContract::class);
     }
 
     public function checkedContract()
     {
-        return $this->belongsTo(LegalContract::class,'checked_by');
+        return $this->hasMany(LegalContract::class);
     }
 
     public function createdContract()
     {
-        return $this->belongsTo(LegalContract::class,'created_by');
+        return $this->hasMany(LegalContract::class);
     }
 }

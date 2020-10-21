@@ -30,13 +30,9 @@ class StoreMould extends FormRequest
             'drawing' => 'required',
 
             'scope_of_work' => 'required',
-            // 'to_manufacture' => 'required',
-            // 'of' => 'required',
             'quotation_no' => 'required',
             'dated' => 'required',
             'delivery_date' => 'required',
-
-            'comercial_term_id' => 'required',
             
             'payment_type_id' => 'required',
             'value_of_contract' => 'required',
@@ -59,13 +55,9 @@ class StoreMould extends FormRequest
             'drawing.required' => 'Please enter drawing',
 
             'scope_of_work.required' => 'Please enter scope_of_work',
-            // 'to_manufacture.required' => 'Please enter to_manufacture',
-            // 'of.required' => 'Please enter of',
             'quotation_no.required' => 'Please enter quotation_no',
             'dated.required' => 'Please enter dated',
             'delivery_date.required' => 'Please enter delivery_date',
-
-            'comercial_term_id.required' => 'Please enter comercial_term_id',
 
             'payment_type_id.required' => 'Please enter payment_term',
             'value_of_contract.required' => 'Please enter value_of_contract',

@@ -66,7 +66,8 @@ var uploadFile = async e => {
             progress.classList.add('show-contract')
             progress.classList.remove('hide-contract')
             progress.children[0].style.width = `${percentCompleted}%`
-            progress.children[0].textContent = `${percentCompleted}%`
+            progress.children[0].textContent = `${percentCompleted-1}%`
+            
         },
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -78,6 +79,7 @@ var uploadFile = async e => {
     axios.post(uri, data, config)
         .then(res => {
             e.offsetParent.querySelector(`input[name='${e.dataset.name}']`).value = res.data.path
+            e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = '100%'
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = 'Success !'
         })
         .catch(err => console.log(err))
