@@ -84,19 +84,6 @@ class ScrapController extends Controller
         try {
             $scrap = $this->contractDescService->find($id);
 
-            // if ($scrap->quotation) {
-            //     $scrap->quotation = $this->fileService->convertTextToPdf($scrap->quotation, 'quotation');
-            // }
-            // if ($scrap->coparation_sheet) {
-            //     $scrap->coparation_sheet = $this->fileService->convertTextToPdf($scrap->coparation_sheet, 'coparation_sheet');
-            // }
-            // if ($scrap->factory_permission) {
-            //     $scrap->factory_permission = $this->fileService->convertTextToPdf($scrap->factory_permission, 'factory_permission');
-            // }
-            // if ($scrap->waste_permission) {
-            //     $scrap->waste_permission = $this->fileService->convertTextToPdf($scrap->waste_permission, 'waste_permission');
-            // }
-
             if ($scrap->value_of_contract) {
                 $scrap->value_of_contract = explode(",", $scrap->value_of_contract);
             }
