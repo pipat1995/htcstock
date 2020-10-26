@@ -84,16 +84,6 @@ class PurchaseEquipmentController extends Controller
     {
         try {
             $purchaseequipment = $this->contractDescService->find($id);
-            // if ($purchaseequipment->purchase_order) {
-            //     $purchaseequipment->purchase_order = $this->fileService->convertTextToPdf($purchaseequipment->purchase_order, 'purchase_order');
-            // }
-            // if ($purchaseequipment->quotation) {
-            //     $purchaseequipment->quotation = $this->fileService->convertTextToPdf($purchaseequipment->quotation, 'quotation');
-            // }
-            // if ($purchaseequipment->coparation_sheet) {
-            //     $purchaseequipment->coparation_sheet = $this->fileService->convertTextToPdf($purchaseequipment->coparation_sheet, 'coparation_sheet');
-            // }
-
             if ($purchaseequipment->value_of_contract) {
                 $purchaseequipment->value_of_contract = explode(",", $purchaseequipment->value_of_contract);
             }
@@ -148,7 +138,6 @@ class PurchaseEquipmentController extends Controller
             throw $th;
         }
         DB::commit();
-        // return \redirect()->route('legal.contract-request.workservicecontract.edit', $id);
         return \redirect()->route('legal.contract-request.index');
     }
 

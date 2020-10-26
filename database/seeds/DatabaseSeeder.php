@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Legal\LegalPaymentType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +17,12 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RoleTableSeeder::class,
             // UsersTableSeeder::class,
+            
+            // LegalActionTableSeeder::class,
+            // LegalAgreementTableSeeder::class,
+            // LegalSubtypeContractTableSeeder::class,
+            // LegalPaymentType::class
+
         ]);
     }
 }

@@ -3,112 +3,75 @@
 
     document.addEventListener('DOMContentLoaded', function () {
 
+        let contract = document.getElementById('validationContractDestsId')
+        let poFile = document.getElementById('validationPurchaseOrderFile')
+        let quotationFile = document.getElementById('validationQuotationFile')
+        let coparationFile = document.getElementById('validationCoparationFile')
+
+        let contractType = document.getElementById('validationContractType')
+        // Supporting Documents
+        displayFileName(poFile)
+        displayFileName(quotationFile)
+        displayFileName(coparationFile)
+
+        // Comercial Terms
+        comercialLists(contract.value)
+        // Payment Terms
+        changeType(contractType)
 
     })
 
     window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
-        var contract_type = document.getElementById('validationContractType')
-        changeType(contract_type)
         // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
+        validationForm(forms)
     }, false);
 
 })();
 
-var comercialList = []
-var createRow = () => {
-    let model = new ComercialList
-    model.description = document.getElementById('validationDescription').value
-    model.unit_price = parseFloat(document.getElementById('validationUnitPrice').value)
-    model.discount = parseFloat(document.getElementById('validationDiscount').value)
-    model.amount = parseFloat(document.getElementById('validationAmount').value)
-    comercialList.push(model);
-
-    // console.log(comercialList[comercialList.length - 1])
-    const table = document.getElementById('table-comercial-lists').tBodies[0]
-    var newRow = table.insertRow()
-    var newCell0 = newRow.insertCell(0),
-        newCell1 = newRow.insertCell(1),
-        newCell2 = newRow.insertCell(2),
-        newCell3 = newRow.insertCell(3),
-        newCell4 = newRow.insertCell(4)
-
-    var btn = document.createElement('button')
-    btn.innerHTML = "delete"
-    btn.type = 'button'
-    btn.className = 'btn btn-danger sm'
-    btn.setAttribute('onclick', 'deleteRow(this)')
-    newCell0.appendChild(btn)
-    newCell1.appendChild(document.createTextNode(comercialList[comercialList.length - 1].description))
-    newCell2.appendChild(document.createTextNode(comercialList[comercialList.length - 1].unit_price))
-    newCell3.appendChild(document.createTextNode(comercialList[comercialList.length - 1].discount))
-    newCell4.appendChild(document.createTextNode(comercialList[comercialList.length - 1].amount))
-    document.getElementById('total').textContent = comercialList.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
-    console.log(comercialList);
-}
-
-class ComercialList {
-    constructor(description = null, unit_price = null, discount = null, amount = null) {
-        this.description = description;
-        this.unit_price = unit_price;
-        this.discount = discount;
-        this.amount = amount;
-    }
-}
-var deleteRow = (e) => {
-    const table = document.getElementById('table-comercial-lists').tBodies[0]
-    comercialList.shift()
-    table.deleteRow(1)
-    document.getElementById('total').textContent = comercialList.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
-}
-
-
 var changeType = (e) => {
+    let secondContract = document.getElementById("contractType2")
     switch (e.value) {
-        case '1':
+        case '8':
             document.getElementById("contractType1").classList.remove('hide-contract');
             document.getElementById("contractType1").classList.add('show-contract');
             document.getElementById("contractType2").classList.remove('show-contract');
             document.getElementById("contractType2").classList.add('hide-contract');
-            addAttributeRequired()
+            setValueOfContract(null)
             break;
-        case '2':
+        case '9':
             document.getElementById("contractType2").classList.remove('hide-contract');
             document.getElementById("contractType2").classList.add('show-contract');
             document.getElementById("contractType1").classList.remove('show-contract');
             document.getElementById("contractType1").classList.add('hide-contract');
-            removeAttributeRequired()
+            setValueOfContract(secondContract)
             break;
         default:
             document.getElementById("contractType1").classList.remove('show-contract');
             document.getElementById("contractType1").classList.add('hide-contract');
             document.getElementById("contractType2").classList.remove('show-contract');
             document.getElementById("contractType2").classList.add('hide-contract');
-            removeAttributeRequired()
+            setValueOfContract(null)
             break;
     }
 }
 
-var removeAttributeRequired = () => {
-    document.getElementById('validationMonthly').removeAttribute('required')
+var changeContractValue = (e) => {
+    let el = document.getElementById(e.offsetParent.id)
+    setValueOfContract(el)
+    enterNoSubmit(e)
 }
+var setValueOfContract = (e) => {
+    console.log(e);
+    if (e) {
+        let el = e.children[0].children
+        let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value)
+        el[2].children[0].value = total
 
-var addAttributeRequired = () => {
-    let ele = document.getElementById('validationMonthly')
-    let test = document.getElementById('validationPurchaseOrderNo')
-    // console.log(ele);
-    if (ele.value === '') {
-        // ele.validity.valid = false
-        ele.required = true
+        document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value}`
+    } else {
+        document.getElementsByName('value_of_contract')[0].value = ""
     }
+
 }

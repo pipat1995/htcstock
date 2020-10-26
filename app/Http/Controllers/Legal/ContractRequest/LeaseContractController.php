@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Legal\ContractRequest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Legal\StoreLeaseContract;
 use App\Services\Legal\Interfaces\ComercialListsServiceInterface;
 use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
+use App\Services\Legal\Interfaces\PaymentTermServiceInterface;
 use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
+use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeaseContractController extends Controller
 {
@@ -17,18 +21,24 @@ class LeaseContractController extends Controller
     protected $fileService;
     protected $comercialListsService;
     protected $comercialTermService;
+    protected $subtypeContractService;
+    protected $paymentTermService;
     public function __construct(
         ContractDescServiceInterface $contractDescServiceInterface,
         PaymentTypeServiceInterface $paymentTypeServiceInterface,
         FileService $fileService,
         ComercialListsServiceInterface $comercialListsServiceInterface,
-        ComercialTermServiceInterface $comercialTermServiceInterface
+        ComercialTermServiceInterface $comercialTermServiceInterface,
+        SubtypeContractServiceInterface $subtypeContractServiceInterface,
+        PaymentTermServiceInterface $paymentTermServiceInterface
     ) {
         $this->contractDescService = $contractDescServiceInterface;
         $this->paymentTypeService = $paymentTypeServiceInterface;
         $this->fileService = $fileService;
         $this->comercialListsService = $comercialListsServiceInterface;
         $this->comercialTermService = $comercialTermServiceInterface;
+        $this->subtypeContractService = $subtypeContractServiceInterface;
+        $this->paymentTermService = $paymentTermServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -81,16 +91,17 @@ class LeaseContractController extends Controller
     public function edit($id)
     {
         try {
-            $scrap = $this->contractDescService->find($id);
+            $leaseContract = $this->contractDescService->find($id);
 
-            if ($scrap->value_of_contract) {
-                $scrap->value_of_contract = explode(",", $scrap->value_of_contract);
+            if ($leaseContract->value_of_contract) {
+                $leaseContract->value_of_contract = explode(",", $leaseContract->value_of_contract);
             }
-            $paymentType = $this->paymentTypeService->dropdownPaymentType($scrap->legalcontract->agreement_id);
+            $subtypeContract = $this->subtypeContractService->dropdownSubtypeContract($leaseContract->legalcontract->agreement_id);
+            $paymentType = $this->paymentTypeService->dropdownPaymentType($leaseContract->legalcontract->agreement_id);
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('legal.ContractRequestForm.Scrap.edit')->with(['scrap' => $scrap, 'paymentType' => $paymentType]);
+        return \view('legal.ContractRequestForm.LeaseContract.edit')->with(['leaseContract' => $leaseContract, 'paymentType' => $paymentType, 'subtypeContract' => $subtypeContract]);
     }
 
     /**
@@ -100,9 +111,54 @@ class LeaseContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreLeaseContract $request, $id)
     {
-        //
+        $data = $request->except(['_token', '_method']);
+        $attributes = [];
+        $comercialAttr = [];
+        $paymentAttr = [];
+
+        $attributes['sub_type_contract_id'] = $data['subtype'];
+        if (!empty($request->purchase_order)) {
+            $attributes['purchase_order'] = $data['purchase_order'];
+        }
+        $attributes['quotation'] = $data['quotation'];
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];
+        
+        $attributes['payment_type_id'] = (int) $data['payment_type_id'];
+        $attributes['value_of_contract'] = $data['value_of_contract'];
+        // comercialTerm data
+        $comercialAttr['scope_of_work'] = $data['scope_of_work'];
+        $comercialAttr['location'] = $data['location'];
+        $comercialAttr['purchase_order_no'] = $data['purchase_order_no'];
+        $comercialAttr['quotation_no'] = $data['quotation_no'];
+        $comercialAttr['dated'] = $data['dated'];
+        $comercialAttr['contract_period'] = $data['contract_period'];
+        $comercialAttr['untill'] = $data['untill'];
+
+        $paymentAttr['monthly'] = $data['monthly'];
+        DB::beginTransaction();
+        try {
+            if ($data['comercial_term_id']) {
+                $this->comercialTermService->update($comercialAttr, $data['comercial_term_id']);
+                $attributes['comercial_term_id'] = $data['comercial_term_id'];
+            } else {
+                $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
+            }
+            if ($data['payment_term_id']) {
+                $this->paymentTermService->update($paymentAttr, $request->payment_term_id);
+                $attributes['payment_term_id'] = $data['payment_term_id'];
+            } else {
+                $attributes['payment_term_id'] = $this->paymentTermService->create($paymentAttr)->id;
+            }
+            $this->contractDescService->update($attributes, $id);
+            $request->session()->flash('success',  ' has been create');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \redirect()->route('legal.contract-request.index');
     }
 
     /**

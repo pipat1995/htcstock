@@ -222,7 +222,7 @@
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
-                                Please provide a valid Dated No.
+                                Please provide a valid Dated 
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">

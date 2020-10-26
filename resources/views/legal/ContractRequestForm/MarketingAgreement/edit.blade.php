@@ -34,107 +34,26 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            {{-- <h5 class="card-title">CONTRACT REQUEST FORM</h5> --}}
-
+            <span class="badge badge-primary">Sub-type of Contract</span>
             <form class="needs-validation" novalidate
-                action="{{route('legal.contract-request.marketingagreement.store')}}" method="POST"
-                enctype="multipart/form-data">
+                action="{{route('legal.contract-request.marketingagreement.update',$marketing->id)}}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
-                <span class="badge badge-primary">CONTRACT REQUEST FORM</span>
-                <div class="form-row">
-                    <div class="col-md-6 mb-6">
-                        <label for="validationAcction"><strong>Action</strong> <span
-                                style="color: red;">*</span></label>
-                        <select name="action_id" id="validationAcction" class="form-control" >
-                            <option value="">Shoose....</option>
-                            <option value="1">New contract</option>
-                            <option value="2">Amend contract</option>
-                            <option value="3">Renew contract</option>
-                            <option value="4">Terminate contract</option>
-                            <option value="5">Review contract</option>
-                            <option value="6">Others</option>
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-6">
-                        <label for="validationAgreements"><strong>General Agreements</strong> <span
-                                style="color: red;">*</span></label>
-                        <select name="agreement_id" id="validationAgreements" class="form-control" >
-                            <option value="">Shoose....</option>
-                            <option value="1">Hire of Work/Service Contract</option>
-                            <option value="2">Purchase Equipment</option>
-                            <option value="3">Purchase Equipment and Installation</option>
-                            <option value="4">Mould</option>
-                            <option value="5">Scrap</option>
-                            <option value="6">Vendor Service Contract</option>
-                            <option value="7">Lease Contract</option>
-                            <option value="8">Project Based Agreement</option>
-                            <option value="9">Advertisement and Marketing Agreement</option>
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-6 mb-6">
-                        <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> </label>
-                        <input type="text" class="form-control" id="validationCompanyName" name="company_name" value=""
-                            placeholder="abcdefg" >
-                        <div class="invalid-feedback">
-                            Please provide a valid PO No.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-6">
-                        <label for="validationCompanyCertificate"><strong>Company Certificate</strong> </label>
-                        <input type="file" class="form-control" id="validationCompanyCertificate" name="company_cer"
-                            value="" >
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-6">
-                        <label for="validationRepresentative"><strong>Legal Representative</strong> </label>
-                        <input type="text" class="form-control" id="validationRepresentative" name="representative"
-                            value="" placeholder="abcdefg" >
-                        <div class="invalid-feedback">
-                            Please provide a valid PO No.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-6">
-                        <label for="validationRepresen"><strong>Representative Certificate</strong></label>
-                        <input type="file" class="form-control" id="validationRepresen" name="representative_cer"
-                            value="" >
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-12 mb-12">
-                        <label for="validationAddress"><strong>Address</strong> </label>
-                        <textarea class="form-control" name="address" id="validationAddress" rows="4"
-                            ></textarea>
-                        <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
-                        </div>
-                    </div>
-                </div>
-                <hr>
-
+                @method('PUT')
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
-                        <label for="validationSubTypeContract"><strong>Sub-type of contract</strong> <span
-                                style="color: red;">*</span></label>
-                        <select name="sub_type_contract" id="validationSubTypeContract" class="form-control" >
-                            <option value="">Shoose....</option>
-                            <option value="1">Receiving the money</option>
-                            <option value="2">Transfering the money</option>
+                        <label for="validationSubType"><strong></strong> </label>
+                        <select id="validationSubType" class="form-control" name="subtype"
+                            onchange="changeSubType(this)" required>
+                            <option data-id="" value="">Shoose....</option>
+                            @isset($subtypeContract)
+                            @foreach ($subtypeContract as $item)
+                            <option value="{{$item->id}}"
+                                {{$item->id === $marketing->sub_type_contract_id ? "selected" : ""}}
+                                data-id="{{$item->slug}}">
+                                {{$item->name}}</option>
+                            @endforeach
+                            @endisset
                         </select>
                         <div class="valid-feedback">
                             Looks good!
@@ -146,16 +65,28 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
-                        <input type="file" class="form-control" id="validationPurchaseOrderFile" name="purchase_order"
-                            value="" placeholder="abcdefg" >
+                        <input type="file" class="form-control" id="validationPurchaseOrderFile"
+                            onchange="uploadFile(this)" data-name="purchase_order"
+                            data-cache="{{substr($marketing->purchase_order,9)}}">
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="purchase_order"
+                            value="{{$marketing->purchase_order}}">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationQuotationFile"><strong>Quotation</strong> </label>
-                        <input type="file" class="form-control" id="validationQuotationFile" name="quotation" value=""
-                            >
+                        <label for="validationQuotationFile"><strong>Quotation</strong></label>
+                        <input type="file" class="form-control" id="validationQuotationFile" onchange="uploadFile(this)"
+                            data-cache="{{substr($marketing->quotation,9)}}" data-name="quotation" >
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="quotation" value="{{$marketing->quotation}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -164,82 +95,97 @@
                 <hr>
 
                 <span class="badge badge-primary">Comercial Terms</span>
+                <input type="hidden" name="comercial_term_id" value="{{$marketing->comercial_term_id}}">
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
-                        <label for="validationPurpose"><strong>Purpose</strong></label>
-                        <input type="text" class="form-control" id="validationPurpose" name="purpose" value="" >
+                        <label for="validationPurpose"><strong>Purpose</strong> <span
+                                style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="validationPurpose" name="purpose"
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->purpose : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Purpose.
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <label for="validationPromoteProduct"><strong>Promote a product</strong></label>
+                        <label for="validationPromoteProduct"><strong>Promote a product</strong> <span
+                                style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="validationPromoteProduct" name="promote_a_product"
-                            value="" >
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->promote_a_product : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Promote a product.
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong></label>
+                        <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong> <span
+                                style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
-                            value="" >
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->purchase_order_no : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Purchase Order No.
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationQuotationNo"><strong>Quotation No</strong></label>
-                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no" value=""
-                            >
+                        <label for="validationQuotationNo"><strong>Quotation No</strong> <span
+                                style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->quotation_no : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Quotation No.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationDated"><strong>Dated</strong></label>
-                        <input type="date" class="form-control" id="validationDated" name="dated" value="" >
+                        <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
+                        <input type="date" class="form-control" id="validationDated" name="dated"
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Dated
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationDeliveryDate"><strong>Contract period</strong></label>
-                        <input type="date" class="form-control" id="validationDeliveryDate" name="contract_period"
-                            value="" >
+                        <label for="validationContractPeriod"><strong>Contract period</strong> <span
+                                style="color: red;">*</span></label>
+                        <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Contract period.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationUntill"><strong>Untill</strong></label>
-                        <input type="date" class="form-control" id="validationUntill" name="untill" value="" >
+                        <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
+                        <input type="date" class="form-control" id="validationUntill" name="untill"
+                            value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->untill->format('Y-m-d') : ""}}"
+                            required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Untill.
                         </div>
                     </div>
                 </div>
                 <hr>
-
                 <span class="badge badge-primary">Payment Terms</span>
+                <input type="hidden" name="payment_term_id" value="{{$marketing->payment_term_id}}">
                 <div class="form-row">
-                    <div class="col-md-9 mb-9">
-                        {{-- <div class="col-md-3 mb-3"> --}}
-                        <label for="validationMonthly"><strong>Monthly</strong></label>
-                        <textarea class="form-control" name="payment_description" id="validationPaymentDescription"
-                            rows="3" ></textarea>
-                        {{-- <input type="text" class="form-control" id="validationMonthly" name="monthly" value="" > --}}
+                    <div class="col-md-12 mb-12">
+                        <label for="validationWarranty"></label>
+                        <textarea class="form-control" name="detail_payment_term" id="validationPaymentDescription"
+                            rows="3"
+                            required>{{isset($marketing->legalPaymentTerm) ? $marketing->legalPaymentTerm->detail_payment_term : ""}}</textarea>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Payment Terms.
                         </div>
-                        {{-- </div> --}}
                     </div>
                 </div>
                 <hr>
-                <button class="btn btn-success lg float-right" type="submit" style="margin-top: 5px">Create
-                    Contract</button>
+                <a class="btn btn-primary float-rigth" style="color: white !important; margin-top: 5px" type="button"
+                    href="{{route('legal.contract-request.edit',$marketing->legalcontract->id)}}">Back</a>
+                <button class="btn btn-primary float-right" type="submit" style="margin-top: 5px">Next</button>
             </form>
         </div>
     </div>
@@ -247,5 +193,6 @@
 @stop
 
 @section('second-script')
-<script src="{{asset('assets\js\legals\contractRequestForm\agreements\marketingagreement.js')}}"></script>
+<script src="{{asset('assets\js\legals\contractRequestForm\agreements\marketingagreement.js')}}" defer></script>
+<script src="{{asset('assets\js\legals\contractRequestForm\agreements\agreementall.js')}}" defer></script>
 @endsection

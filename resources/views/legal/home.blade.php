@@ -87,14 +87,14 @@
     </div>
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;"
-                id="{{route('it.lendings.index')}}" onclick="redirext(this)">
+            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.lendings.index')}}"
+                onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">รายการยังไม่คืน</div>
                     <div class="widget-subheading">The item is not returned yet.</div>
                 </div>
                 <div class="widget-content-right">
-                <div class="widget-numbers text-white"><span></span></div>
+                    <div class="widget-numbers text-white"><span></span></div>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
                     <div class="widget-subheading">Withdrawal list</div>
                 </div>
                 <div class="widget-content-right">
-                <div class="widget-numbers text-white"><span></span></div>
+                    <div class="widget-numbers text-white"><span></span></div>
                 </div>
             </div>
         </div>

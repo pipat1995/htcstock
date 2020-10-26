@@ -1,6 +1,6 @@
 <?php
 
-use App\Accessories;
+use App\Models\IT\Accessories;
 use Illuminate\Database\Seeder;
 
 class AccessoriesTableSeeder extends Seeder

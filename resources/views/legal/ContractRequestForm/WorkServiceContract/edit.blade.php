@@ -280,7 +280,6 @@
                         </ul>
                     </div>
                     <div class="col-md-8 mb-8 hide-contract" id="contractType2">
-
                         <ul>
                             <li class="li-none-type"><input type="number"
                                     value="{{isset($workservicecontract->value_of_contract)?$workservicecontract->value_of_contract[0]:30}}"

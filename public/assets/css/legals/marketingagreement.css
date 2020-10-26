@@ -1,3 +1,11 @@
 .badge {
     text-transform: capitalize !important;
 }
+
+.hide-contract {
+    display: none;
+}
+
+.show-contract {
+    display: block;
+}

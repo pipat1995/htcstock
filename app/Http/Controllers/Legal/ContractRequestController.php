@@ -117,8 +117,6 @@ class ContractRequestController extends Controller
     {
         try {
             $contract = $this->contractRequestService->find($id);
-            // $contract->company_cer = $this->fileService->convertTextToPdf($contract->company_cer, 'company_cer');
-            // $contract->representative_cer = $this->fileService->convertTextToPdf($contract->representative_cer, 'representative_cer');
             $actions = $this->actionService->dropdownAction();
             $agreements = $this->agreementService->dropdownAgreement();
         } catch (\Throwable $th) {
@@ -137,23 +135,10 @@ class ContractRequestController extends Controller
     public function update(StoreContractRequest $request, $id)
     {
         $attributes = $request->except(['_token', '_method']);
-        // $attributes = [];
-        // if ($request->file('company_cer')->getSize() > 0) {
-        //     $attributes['company_cer'] = $this->fileService->convertPdfToText($data['company_cer']);
-        // }
-        // if ($request->file('representative_cer')->getSize() > 0) {
-        //     $attributes['representative_cer'] = $this->fileService->convertPdfToText($data['representative_cer']);
-        // }
-        // $attributes['action_id'] = $data['action_id'];
-        // $attributes['agreement_id'] = $data['agreement_id'];
-        // $attributes['company_name'] = $data['company_name'];
-        // $attributes['representative'] = $data['representative'];
-        // $attributes['address'] = $data['address'];
         DB::beginTransaction();
         try {
             $this->contractRequestService->update($attributes, $id);
             $contractRequest = $this->contractRequestService->find($id);
-            // \dd($attributes,$contractRequest);
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
