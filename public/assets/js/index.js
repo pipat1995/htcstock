@@ -91,6 +91,5 @@ var uploadFile = async e => {
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-success')
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-danger')
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.data.file[0]}`
-            
         })
 }

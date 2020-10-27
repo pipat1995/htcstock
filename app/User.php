@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable,HasPermissionsTrait;
+    use Notifiable, HasPermissionsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password', 'department_id', 'locale'
+        'name', 'email', 'phone', 'username', 'password', 'department_id', 'locale'
     ];
 
     /**
@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function department()
     {
-        return $this->belongsTo(Department::class,'department_id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     // Legal
@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function checkedContract()
     {
-        return $this->hasMany(LegalContract::class,'checked_by');
+        return $this->hasMany(LegalContract::class, 'checked_by');
     }
 
     public function createdContract()

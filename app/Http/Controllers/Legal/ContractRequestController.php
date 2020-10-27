@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ContractRequestController extends Controller
@@ -39,7 +40,12 @@ class ContractRequestController extends Controller
     public function index()
     {
         try {
-            $contracts = $this->contractRequestService->all();
+            if (Auth::user()->department->name === 'Legal') {
+                $contracts = $this->contractRequestService->all();
+            }else{
+                $contracts = $this->contractRequestService->getByCreated();
+            }
+            
             return \view('legal.ContractRequestForm.index')->with(['contracts' => $contracts]);
         } catch (\Throwable $th) {
             throw $th;

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 interface ContractRequestServiceInterface
 {
     public function all();
+    public function getByCreated();
     public function create(array $attributes): Model;
     public function find(int $id): Model;
 
