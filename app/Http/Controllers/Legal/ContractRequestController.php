@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Validator;
 
 class ContractRequestController extends Controller
 {
@@ -200,6 +201,14 @@ class ContractRequestController extends Controller
     
     public function uploadFile(Request $request)
     {
+        // max 20 MB.
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:pdf|max:20480',
+        ]);
+
+        if ($validator->fails()) {
+            return \response()->json($validator->messages(),400);
+        }
         $segments = explode('/', \substr(url()->previous(),strlen($request->root())));
         $path = Storage::disk('public')->put(
             $segments[1].'/'.$segments[2],

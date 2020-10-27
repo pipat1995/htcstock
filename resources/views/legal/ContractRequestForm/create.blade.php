@@ -26,6 +26,7 @@
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
+                <div id="imagePreview"></div> 
             </div>
         </div>
         <div class="page-title-actions">

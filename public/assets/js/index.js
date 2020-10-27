@@ -76,9 +76,13 @@ var uploadFile = async e => {
     let uri = "/legal/uploadfile"
     let data = new FormData()
     data.append('file', e.files[0])
+    
     axios.post(uri, data, config)
         .then(res => {
             e.offsetParent.querySelector(`input[name='${e.dataset.name}']`).value = res.data.path
+            console.log(e.offsetParent.getElementsByClassName('progress-bar')[0].classList);
+            e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-danger')
+            e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-success')
             e.offsetParent.getElementsByClassName('progress-bar')[0].style.width = `100%`
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `100%`
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `Success !`
@@ -86,6 +90,7 @@ var uploadFile = async e => {
         .catch(err => {
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-success')
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-danger')
-            e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `Fail !  ${err.response.statusText}`
+            e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.data.file[0]}`
+            
         })
 }

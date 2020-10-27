@@ -1,6 +1,5 @@
 var createRow = () => {
-    let isCreated = true,
-        description = null,
+    let description = null,
         unit_price = 0,
         discount = 0,
         amount = 0,
@@ -9,10 +8,7 @@ var createRow = () => {
     let selectElemen = div.querySelectorAll('input')
     // validation input
     selectElemen.forEach(element => {
-        
-        // if (!element.value) {
-        //     isCreated = false
-        // }
+
         if (element.name === 'description') {
             description = element.value
         }
@@ -30,39 +26,27 @@ var createRow = () => {
         }
     })
 
-    // if (isCreated) {
-        let formData = formDataComercialLists(description, unit_price, discount, amount, id)
-        postComercialLists(formData).then(result => {
-            comercialLists(result.data.id)
-        }).catch(err => {
-            let errors = err.response.data.errors
-            console.log(errors);
-            for (const key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    const element = errors[key];
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: `${element}`,
-                        showConfirmButton: false,
-                        timer: 5000
-                    })
-                }
+    let formData = formDataComercialLists(description, unit_price, discount, amount, id)
+    postComercialLists(formData).then(result => {
+        comercialLists(result.data.id)
+    }).catch(err => {
+        let errors = err.response.data.errors
+        console.log(errors);
+        for (const key in errors) {
+            if (errors.hasOwnProperty(key)) {
+                const element = errors[key];
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: `${element}`,
+                    showConfirmButton: false,
+                    timer: 5000
+                })
             }
-        }).finally(() => {
-            let div = document.getElementById('table-comercial-lists')
-            let selectElemen = div.querySelectorAll('input')
-            // clear input
-            // selectElemen.forEach(element => {
-            //     if (!element.name === 'contract_dests_id') {
-            //         element.value = ""
-            //     }
-            // });
-        })
-    // } else {
-    //     isCreated = true
-    //     alert(isCreated)
-    // }
+        }
+    }).finally(() => {
+
+    })
 }
 
 var deleteRow = (id) => {
@@ -135,13 +119,20 @@ var comercialLists = (id) => {
             document.getElementById('total').textContent = result.data.reduce((previousValue, currentValue) => previousValue + currentValue.amount, 0)
 
         }).catch(err => {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Purchase list query fail',
-                showConfirmButton: false,
-                timer: 2000
-            })
+            let errors = err.response.data.errors
+            console.log(errors);
+            for (const key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    const element = errors[key];
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: `${element}`,
+                        showConfirmButton: false,
+                        timer: 5000
+                    })
+                }
+            }
         })
     }
 }
