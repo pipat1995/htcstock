@@ -45,7 +45,7 @@ var createRow = () => {
                         icon: 'error',
                         title: `${element}`,
                         showConfirmButton: false,
-                        timer: 10000
+                        timer: 5000
                     })
                 }
             }
