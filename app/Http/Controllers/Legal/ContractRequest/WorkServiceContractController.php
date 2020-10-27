@@ -9,7 +9,6 @@ use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
 use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -167,17 +166,5 @@ class WorkServiceContractController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function generatePDF()
-    {
-        $pdf = PDF::loadView('legal.ContractRequestForm.WorkServiceContract.pdf');
-        return $pdf->stream();
-        // return \view('legal.ContractRequestForm.WorkServiceContract.pdf');
     }
 }

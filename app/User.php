@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function department()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class,'department_id');
     }
 
     // Legal
@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function checkedContract()
     {
-        return $this->hasMany(LegalContract::class);
+        return $this->hasMany(LegalContract::class,'checked_by');
     }
 
     public function createdContract()

@@ -66,21 +66,19 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
     Route::post('uploadfile','ContractRequestController@uploadFile')->name('uploadfile');
-    
+    Route::get('contract/{id}/pdf','ContractRequestController@generatePDF')->name('pdf');
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
-        Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::get('workservicecontract/pdf','WorkServiceContractController@generatePDF');
+        Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('mould', 'MouldController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('scrap', 'ScrapController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('vendorservicecontract', 'VendorServiceContractController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index','create', 'edit', 'update']]);
 
         Route::resource('comerciallists','ComercialListsController',['only' => ['store', 'edit', 'destroy']]);
-
-        Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('mould', 'MouldController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('scrap', 'ScrapController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('vendorservicecontract', 'VendorServiceContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
-        Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index','create', 'store', 'edit', 'update']]);
 
         
     });

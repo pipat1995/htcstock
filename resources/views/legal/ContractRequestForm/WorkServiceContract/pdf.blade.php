@@ -38,6 +38,7 @@
             font-family: "THSarabunNew";
         }
 
+
         .page-break {
             page-break-after: always;
         }
@@ -58,7 +59,7 @@
             /* padding: 5px; */
             border: 1px solid black;
             /* border-left: 1px solid black;
-            border-right: 1px solid black; */
+    border-right: 1px solid black; */
         }
 
         /* Style the footer */
@@ -87,8 +88,8 @@
         table,
         th,
         td {
-            padding: 5px
-                /* border: 1px solid black; */
+            padding: 5px;
+            /* border: 1px solid black; */
         }
 
         hr {
@@ -112,7 +113,7 @@
         <table style="width: 100%">
             <tbody>
                 <tr>
-                    <td colspan="3" style="text-align: center;">
+                    <td colspan="2" style="text-align: center;">
                         * = Required Information
                     </td>
                 </tr>
@@ -121,19 +122,17 @@
                         <h4>ACTION : </h4>
                     </td>
 
-                    <td style="width: 20%;">
-                        <font style="text-decoration: underline">New contract</font>
+                    <td style="width: 80%;">
+                        <font style="text-decoration: underline">{{$contract->legalAction->name}}</font>
                     </td>
-                    <td style="width: 60%;"></td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
                         <h4>GENERAL AGREEMENTS : </h4>
                     </td>
-                    <td style="width: 20%;">
-                        <font style="text-decoration: underline">Hire of Work/Service</font>
+                    <td style="width: 80%;">
+                        <font style="text-decoration: underline">{{$contract->legalAgreement->name}}</font>
                     </td>
-                    <td style="width: 60%;"></td>
                 </tr>
             </tbody>
         </table>
@@ -144,77 +143,120 @@
                     <td style="text-align: right;">
                         <h4>Full name (Company’s, Person’s) : </h4>
                     </td>
-
-                    <td style="width: 45%;">
-                        <font style="text-decoration: underline">Company’s</font>
+                    <td style="width: 44%;">
+                        <font style="text-decoration: underline">{{$contract->company_name}}</font>
                     </td>
-                    <td style="width: 27%;"></td>
+                    <td style="text-align: right; width: 25%;">
+                        <h4>Company Certificate : </h4>
+                    </td>
+                    <td style="width: 3%;">
+                        <input type="checkbox" {{$contract->company_cer ? "checked" : ""}}>
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        <h4>Legal Representative : </h4>
+                        <h4>Legal Representative :</h4>
                     </td>
-
-                    <td style="width: 45%;">
-                        <font style="text-decoration: underline">Representative</font>
+                    <td>
+                        <font style="text-decoration: underline">{{$contract->representative}}</font>
                     </td>
-                    <td style="width: 27%;"></td>
+                    <td style="text-align: right;">
+                        <h4>Representative Certificate :</h4>
+                    </td>
+                    <td>
+                        <input type="checkbox" {{$contract->representative_cer ? "checked" : ""}}>
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
                         <h4>Address : </h4>
                     </td>
 
-                    <td style="width: 45%;">
-                        <font style="text-decoration: underline">address</font>
+                    <td colspan="3">
+                        <font style="text-decoration: underline">{{$contract->address}}</font>
                     </td>
-                    <td style="width: 27%;"></td>
                 </tr>
             </tbody>
 
         </table>
         <hr>
         <h4 style="text-align: center;">Hire of Work/Service Contract</h4>
-        <table>
+        <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td><h5 style="text-decoration: underline;">Supporting Documents</h5></td>
+                    <td>
+                        <h5 style="text-decoration: underline;">Supporting Documents</h5>
+                    </td>
                     <td style="text-align: right;">Purchase Order :</td>
-                    <td><font style="text-decoration: underline;">true</font></td>
+                    <td style="width: 3%;">
+                        <font><input type="checkbox" {{$contract->legalContractDest->purchase_order ? "checked" : ""}}>
+                        </font>
+                    </td>
                     <td style="text-align: right;">Quotation :</td>
-                    <td><font style="text-decoration: underline;">true</font></td>
+                    <td style="width: 3%;">
+                        <font><input type="checkbox" {{$contract->legalContractDest->quotation ? "checked" : ""}}>
+                        </font>
+                    </td>
                     <td style="text-align: right;">AEC/Coparation Sheet :</td>
-                    <td><font style="text-decoration: underline;">true</font></td>
+                    <td style="width: 3%;">
+                        <font><input type="checkbox"
+                                {{$contract->legalContractDest->coparation_sheet ? "checked" : ""}}></font>
+                    </td>
                     <td style="text-align: right;">Work Plan :</td>
-                    <td><font style="text-decoration: underline;">true</font></td>
+                    <td style="width: 3%;">
+                        <font><input type="checkbox" {{$contract->legalContractDest->work_plan ? "checked" : ""}}>
+                        </font>
+                    </td>
 
                 </tr>
                 <tr>
-                    <td><h5 style="text-decoration: underline;">Comercial Terms</h5></td>
-                    <td>Scope of Work :</td>
-                    <td colspan="7"><font style="text-decoration: underline;">test...</font></td>
+                    <td>
+                        <h5 style="text-decoration: underline;">Comercial Terms</h5>
+                    </td>
+                    <td style="text-align: right;">Scope of Work :</td>
+                    <td colspan="7">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->scope_of_work}}</font>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right;">Location :</td>
-                    <td colspan="7"><font style="text-decoration: underline;">test...</font></td>
+                    <td colspan="7">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->location}}</font>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right;">Purchase Order No. :</td>
-                    <td colspan="7"><font style="text-decoration: underline;">test...</font></td>
+                    <td colspan="7">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->purchase_order_no}}</font>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right;">Quotation No. :</td>
-                    <td><font style="text-decoration: underline;">test...</font></td>
-                    <td style="text-align: right;">Dated :</td>
-                    <td><font style="text-decoration: underline;">10/01/2020</font></td>
-                    <td colspan="4"></td>
+                    <td colspan="2">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->quotation_no}}</font>
+                    </td>
+                    <td style="text-align: right;">Dated:</td>
+                    <td colspan="4">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->dated->format('Y-m-d')}}</font>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right;">Contract period :</td>
-                    <td><font style="text-decoration: underline;">10/01/2020</font></td>
-                    <td style="text-align: right;">Untill :</td>
-                    <td><font style="text-decoration: underline;">10/01/2020</font></td>
-                    <td colspan="4"></td>
+                    <td colspan="2">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->contract_period->format('Y-m-d')}}
+                        </font>
+                    </td>
+                    <td style="text-align: right;">Untill:</td>
+                    <td colspan="4">
+                        <font style="text-decoration: underline;">
+                            {{$contract->legalContractDest->legalComercialTerm->untill->format('Y-m-d')}}</font>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -230,11 +272,11 @@
                     </td>
 
                     <td style="">
-                        <font style="text-decoration: underline">pipat .....</font>
+                        <font style="text-decoration: underline">{{$contract->createdBy->name}}</font>
                     </td>
                     <td style="text-align: right">Date : </td>
                     <td style="">
-                        <font style="text-decoration: underline">01/10/2020</font>
+                        <font style="text-decoration: underline">{{$contract->created_at->format('Y-m-d')}}</font>
                     </td>
                 </tr>
                 <tr>
@@ -243,11 +285,11 @@
                     </td>
 
                     <td>
-                        <font style="text-decoration: underline">IT .....</font>
+                        <font style="text-decoration: underline">{{$contract->createdBy->department->name}}</font>
                     </td>
                     <td style="text-align: right;">Phone : </td>
                     <td>
-                        <font style="text-decoration: underline">0808080080</font>
+                        <font style="text-decoration: underline">{{$contract->createdBy->phone}}</font>
                     </td>
                 </tr>
             </tbody>
@@ -264,11 +306,11 @@
                 <tr>
                     <td style="width: 25%; text-align: right;border:1px solid black;">Department :</td>
                     <td style="text-align: center; border:1px solid black; width: 80%;">
-                        <font>IT....</font>
+                        <font>{{$contract->createdBy->department->name}}</font>
                     </td>
                     <td style="width: 25%; text-align: right; border:1px solid black; ">Department :</td>
                     <td style="text-align: center; border:1px solid black; width: 80%;">
-                        <font>Legal.....</font>
+                        <font>{{$contract->checkedBy->department->name}}</font>
                     </td>
                 </tr>
             </tbody>

@@ -11,10 +11,9 @@ use App\Services\Legal\Interfaces\ContractDescServiceInterface;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ContractRequestController extends Controller
 {
@@ -71,9 +70,6 @@ class ContractRequestController extends Controller
     public function store(StoreContractRequest $request)
     {
         $attributes = $request->except(['_token']);
-        // $attributes['company_cer'] = $this->fileService->convertPdfToText($attributes['company_cer']);
-        // $attributes['representative_cer'] = $this->fileService->convertPdfToText($attributes['representative_cer']);
-        $attributes['created_by'] = Auth::user()->id;
         DB::beginTransaction();
         try {
             $body = $this->contractDescService->create([]);
@@ -210,5 +206,24 @@ class ContractRequestController extends Controller
             $request->file('file'),
         );
         return \response()->json(['path' => $path]);
+    }
+
+    
+    /**
+     * Create pdf stream.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF($id)
+    {
+        try {
+            $contract = $this->contractRequestService->find($id);
+            // \dd($contract->checkedBy->department->name);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        $pdf = PDF::loadView('legal.ContractRequestForm.WorkServiceContract.pdf',['contract' => $contract]);
+        return $pdf->stream();
+        // return \view('legal.ContractRequestForm.WorkServiceContract.pdf');
     }
 }
