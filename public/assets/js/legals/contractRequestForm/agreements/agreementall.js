@@ -9,9 +9,10 @@ var createRow = () => {
     let selectElemen = div.querySelectorAll('input')
     // validation input
     selectElemen.forEach(element => {
-        if (!element.value) {
-            return isCreated = false
-        }
+        
+        // if (!element.value) {
+        //     isCreated = false
+        // }
         if (element.name === 'description') {
             description = element.value
         }
@@ -29,32 +30,39 @@ var createRow = () => {
         }
     })
 
-    if (isCreated) {
+    // if (isCreated) {
         let formData = formDataComercialLists(description, unit_price, discount, amount, id)
         postComercialLists(formData).then(result => {
             comercialLists(result.data.id)
         }).catch(err => {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Purchase list input type fail',
-                showConfirmButton: false,
-                timer: 2000
-            })
+            let errors = err.response.data.errors
+            console.log(errors);
+            for (const key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    const element = errors[key];
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: `${element}`,
+                        showConfirmButton: false,
+                        timer: 10000
+                    })
+                }
+            }
         }).finally(() => {
             let div = document.getElementById('table-comercial-lists')
             let selectElemen = div.querySelectorAll('input')
             // clear input
-            selectElemen.forEach(element => {
-                if (!element.name === 'contract_dests_id') {
-                    element.value = ""
-                }
-            });
+            // selectElemen.forEach(element => {
+            //     if (!element.name === 'contract_dests_id') {
+            //         element.value = ""
+            //     }
+            // });
         })
-    } else {
-        isCreated = true
-        alert(isCreated)
-    }
+    // } else {
+    //     isCreated = true
+    //     alert(isCreated)
+    // }
 }
 
 var deleteRow = (id) => {

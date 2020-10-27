@@ -43,9 +43,9 @@ class ComercialListsController extends Controller
     {
         $request->validate([
             'description' => 'required|max:255',
-            'unit_price' => 'required|numeric|min:0.1',
-            'discount' => 'required|numeric|min:0.1',
-            'amount' => 'required|numeric|min:0.1',
+            'unit_price' => 'required|numeric|min:0.01',
+            'discount' => 'required|numeric|min:0.01',
+            'amount' => 'required|numeric|min:0.01',
             'contract_dests_id' => 'required'
         ]);
         $attributes = $request->all();
