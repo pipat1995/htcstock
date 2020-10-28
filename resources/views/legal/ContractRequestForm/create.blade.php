@@ -26,7 +26,7 @@
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
-                <div id="imagePreview"></div> 
+                <div id="imagePreview"></div>
             </div>
         </div>
         <div class="page-title-actions">
@@ -91,7 +91,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span><a href=""
+                                target="_blank"
+                                rel="noopener noreferrer"></a></label>
                         <input type="file" class="form-control" id="validationCompanyCertificate"
                             data-name="company_cer" onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
@@ -116,7 +118,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresen"><strong>Representative Certificate</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a href=""
+                                target="_blank"
+                                rel="noopener noreferrer"></a></label>
                         <input type="file" class="form-control" id="validationRepresen" data-name="representative_cer"
                             onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">

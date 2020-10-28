@@ -13,6 +13,7 @@ use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class LeaseContractController extends Controller
 {
@@ -124,7 +125,7 @@ class LeaseContractController extends Controller
         }
         $attributes['quotation'] = $data['quotation'];
         $attributes['coparation_sheet'] = $data['coparation_sheet'];
-        
+
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
         // comercialTerm data
@@ -151,7 +152,18 @@ class LeaseContractController extends Controller
             } else {
                 $attributes['payment_term_id'] = $this->paymentTermService->create($paymentAttr)->id;
             }
+            $leaseContract = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+
+            if ($leaseContract->purchase_order !== $request->purchase_order) {
+                Storage::delete($leaseContract->purchase_order);
+            }
+            if ($leaseContract->quotation !== $request->quotation) {
+                Storage::delete($leaseContract->purchase_order);
+            }
+            if ($leaseContract->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($leaseContract->coparation_sheet);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

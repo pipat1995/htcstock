@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Legal\ContractRequest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Legal\StoreScrap;
 use App\Services\Legal\Interfaces\ComercialListsServiceInterface;
 use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
@@ -10,6 +11,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ScrapController extends Controller
 {
@@ -101,16 +103,16 @@ class ScrapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreScrap $request, $id)
     {
         $data = $request->except(['_token', '_method']);
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['factory_permission'] = $data['factory_permission'];//$this->fileService->convertPdfToText($data['factory_permission']);
-        $attributes['waste_permission'] = $data['waste_permission'];//$this->fileService->convertPdfToText($data['waste_permission']);
+        $attributes['quotation'] = $data['quotation'];
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];
+        $attributes['factory_permission'] = $data['factory_permission'];
+        $attributes['waste_permission'] = $data['waste_permission'];
 
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
@@ -130,7 +132,21 @@ class ScrapController extends Controller
             } else {
                 $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
             }
+            $scrap = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+            
+            if ($scrap->quotation !== $request->quotation) {
+                Storage::delete($scrap->quotation);
+            }
+            if ($scrap->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($scrap->coparation_sheet);
+            }
+            if ($scrap->factory_permission !== $request->factory_permission) {
+                Storage::delete($scrap->factory_permission);
+            }
+            if ($scrap->waste_permission !== $request->waste_permission) {
+                Storage::delete($scrap->waste_permission);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

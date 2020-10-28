@@ -11,6 +11,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MouldController extends Controller
 {
@@ -108,10 +109,10 @@ class MouldController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['purchase_order'] = $data['purchase_order']; //$this->fileService->convertPdfToText($data['purchase_order']);
-        $attributes['quotation'] = $data['quotation']; //$this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $data['coparation_sheet']; //$this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['drawing'] = $data['drawing']; //$this->fileService->convertPdfToText($data['drawing']);
+        $attributes['purchase_order'] = $data['purchase_order'];
+        $attributes['quotation'] = $data['quotation'];
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];
+        $attributes['drawing'] = $data['drawing'];
 
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
@@ -133,7 +134,21 @@ class MouldController extends Controller
             } else {
                 $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
             }
+            $mould = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+
+            if ($mould->purchase_order !== $request->purchase_order) {
+                Storage::delete($mould->purchase_order);
+            }
+            if ($mould->quotation !== $request->quotation) {
+                Storage::delete($mould->quotation);
+            }
+            if ($mould->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($mould->coparation_sheet);
+            }
+            if ($mould->drawing !== $request->drawing) {
+                Storage::delete($mould->drawing);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -138,10 +138,17 @@ class ContractRequestController extends Controller
     public function update(StoreContractRequest $request, $id)
     {
         $attributes = $request->except(['_token', '_method']);
+        
         DB::beginTransaction();
         try {
-            $this->contractRequestService->update($attributes, $id);
             $contractRequest = $this->contractRequestService->find($id);
+            $this->contractRequestService->update($attributes, $id);
+            if ($contractRequest->company_cer !== $attributes['company_cer']) {
+                Storage::delete($contractRequest->company_cer);
+            }
+            if ($contractRequest->representative_cer !== $attributes['representative_cer']) {
+                Storage::delete($contractRequest->representative_cer);
+            }
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

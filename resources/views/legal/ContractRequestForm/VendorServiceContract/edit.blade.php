@@ -68,7 +68,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile"
                                 onchange="uploadFile(this)" data-cache="{{substr($vendorservice->quotation,9)}}"
                                 data-name="quotation" required>
@@ -83,7 +85,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -99,7 +103,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationTransportationPermission"><strong>Transportation Permission</strong>
-                                <span style="color: red;">*</span></label>
+                                <span style="color: red;">*</span> <a
+                                href="{{url('storage/'.$vendorservice->transportation_permission)}}" target="_blank"
+                                rel="noopener noreferrer">{{$vendorservice->transportation_permission ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationTransportationPermission"
                                 data-name="transportation_permission" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->transportation_permission,9)}}" required>
@@ -117,7 +123,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationVehicleRegistration"><strong>Vehicle Registration</strong>
-                                <span style="color: red;">*</span></label>
+                                <span style="color: red;">*</span> <a
+                                href="{{url('storage/'.$vendorservice->vehicle_registration_certificate)}}" target="_blank"
+                                rel="noopener noreferrer">{{$vendorservice->vehicle_registration_certificate ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationVehicleRegistration"
                                 data-name="vehicle_registration_certificate" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->vehicle_registration_certificate,9)}}" required>
@@ -133,7 +141,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationRoute"><strong>Route</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->route)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->route ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationRoute" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->route,9)}}" data-name="route" required>
                             <div class="mb-3 progress hide-contract">
@@ -147,7 +157,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationInsurance"><strong>Insurance</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->insurance)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->insurance ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationInsurance" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->insurance,9)}}" data-name="insurance" required>
                             <div class="mb-3 progress hide-contract">
@@ -163,7 +175,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationDriverLicense"><strong>Driver License</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->driver_license)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->driver_license ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationDriverLicense"
                                 onchange="uploadFile(this)" data-cache="{{substr($vendorservice->driver_license,9)}}"
                                 data-name="driver_license" required>
@@ -222,7 +236,7 @@
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
-                                Please provide a valid Dated 
+                                Please provide a valid Dated
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
@@ -325,7 +339,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
@@ -341,7 +357,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -582,7 +600,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -597,7 +617,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -757,7 +779,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -772,7 +796,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -788,7 +814,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationDoctorLicense"><strong>Doctor License</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->doctor_license)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->doctor_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationDoctorLicense"
                                 onchange="uploadFile(this)" data-name="doctor_license"
@@ -929,7 +957,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -944,7 +974,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -960,7 +992,9 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationNurseLicense"><strong>Nurse License</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->nurse_license)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->nurse_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationNurseLicense"
                                 onchange="uploadFile(this)" data-name="nurse_license"
@@ -1101,7 +1135,9 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -1116,7 +1152,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -1132,7 +1170,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationSecurityService"><strong>Security Service
-                                    Certification</strong> <span style="color: red;">*</span></label>
+                                    Certification</strong> <span style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->security_service_certification)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->security_service_certification ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationSecurityService"
                                 onchange="uploadFile(this)" data-name="security_service_certification"
@@ -1149,7 +1189,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationSecurityGuardLicense"><strong>Security Guard License</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->security_guard_license)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->security_guard_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationSecurityGuardLicense"
                                 onchange="uploadFile(this)" data-name="security_guard_license"
@@ -1290,7 +1332,9 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -1305,7 +1349,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -1446,7 +1492,9 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
@@ -1461,7 +1509,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                    style="color: red;">*</span></label>
+                                    style="color: red;">*</span> <a
+                                    href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
+                                    rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
@@ -1606,7 +1656,8 @@
                                     style="color: red;">*</span></label>
 
                             <textarea class="form-control" name="price_of_service" id="validationPriceOfService"
-                                rows="4" required>{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->price_of_service : ""}}</textarea>
+                                rows="4"
+                                required>{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->price_of_service : ""}}</textarea>
                             <div class="invalid-feedback">
                                 Please provide a valid Price of service.
                             </div>

@@ -43,9 +43,12 @@
                 <span class="badge badge-primary">Supporting Documents</span>
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
-                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
+                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
+                                href="{{url('storage/'.$purchaseequipmentinstall->purchase_order)}}" target="_blank"
+                                rel="noopener noreferrer">{{$purchaseequipmentinstall->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
-                            data-name="purchase_order" data-cache="{{substr($purchaseequipmentinstall->purchase_order,9)}}"
+                            data-name="purchase_order"
+                            data-cache="{{substr($purchaseequipmentinstall->purchase_order,9)}}"
                             onchange="uploadFile(this)">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -59,15 +62,18 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                style="color: red;">*</span></label>
-                                <input type="file" class="form-control" id="validationQuotationFile"
-                                data-cache="{{substr($purchaseequipmentinstall->quotation,9)}}" data-name="quotation"
-                                onchange="uploadFile(this)" required>
-                            <div class="mb-3 progress hide-contract">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-                            </div>
-                            <input type="hidden" type="text" name="quotation" value="{{$purchaseequipmentinstall->quotation}}">
+                                style="color: red;">*</span> <a href="{{url('storage/'.$purchaseequipmentinstall->quotation)}}"
+                                target="_blank"
+                                rel="noopener noreferrer">{{$purchaseequipmentinstall->quotation ? 'view file' : ""}}</a></label>
+                        <input type="file" class="form-control" id="validationQuotationFile"
+                            data-cache="{{substr($purchaseequipmentinstall->quotation,9)}}" data-name="quotation"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="quotation"
+                            value="{{$purchaseequipmentinstall->quotation}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -76,34 +82,36 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                style="color: red;">*</span></label>
-                                <input type="file" class="form-control" id="validationCoparationFile"
-                                data-name="coparation_sheet" data-cache="{{substr($purchaseequipmentinstall->coparation_sheet,9)}}"
-                                onchange="uploadFile(this)" required>
-                            <div class="mb-3 progress hide-contract">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-                            </div>
-                            <input type="hidden" type="text" name="coparation_sheet"
-                                value="{{$purchaseequipmentinstall->coparation_sheet}}">
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$purchaseequipmentinstall->coparation_sheet)}}" target="_blank"
+                                rel="noopener noreferrer">{{$purchaseequipmentinstall->coparation_sheet ? 'view file' : ""}}</a></label>
+                        <input type="file" class="form-control" id="validationCoparationFile"
+                            data-name="coparation_sheet"
+                            data-cache="{{substr($purchaseequipmentinstall->coparation_sheet,9)}}"
+                            onchange="uploadFile(this)" required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="coparation_sheet"
+                            value="{{$purchaseequipmentinstall->coparation_sheet}}">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-6 mb-6">
-                        <label for="validationBOQFile"><strong>BOQ</strong> <span style="color: red;">*</span></label>
-                        {{-- <input type="file" class="form-control" id="validationBOQFile" name="boq"
-                            data-cache="{{substr($purchaseequipmentinstall->boq,9)}}" value="" required> --}}
+                        <label for="validationBOQFile"><strong>BOQ</strong> <span style="color: red;">*</span> <a
+                                href="{{url('storage/'.$purchaseequipmentinstall->boq)}}" target="_blank"
+                                rel="noopener noreferrer">{{$purchaseequipmentinstall->boq ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationBOQFile"
-                                data-name="boq" data-cache="{{substr($purchaseequipmentinstall->boq,9)}}"
-                                onchange="uploadFile(this)" required>
-                            <div class="mb-3 progress hide-contract">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-                            </div>
-                            <input type="hidden" type="text" name="boq"
-                                value="{{$purchaseequipmentinstall->boq}}">
+                        <input type="file" class="form-control" id="validationBOQFile" data-name="boq"
+                            data-cache="{{substr($purchaseequipmentinstall->boq,9)}}" onchange="uploadFile(this)"
+                            required>
+                        <div class="mb-3 progress hide-contract">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="boq" value="{{$purchaseequipmentinstall->boq}}">
                         <div class="invalid-feedback">
                             Please provide a valid BOQ.
                         </div>

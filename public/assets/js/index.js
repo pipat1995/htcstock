@@ -59,30 +59,33 @@ function enterNoSubmit(e) {
  * @return path string
  */
 var uploadFile = async e => {
+    
     const config = {
         onUploadProgress: function (progressEvent) {
             var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
             let progress = e.offsetParent.getElementsByClassName('progress')[0]
             progress.classList.add('show-contract')
             progress.classList.remove('hide-contract')
-            progress.children[0].style.width = `${percentCompleted-10}%`
-            progress.children[0].textContent = `${percentCompleted-10}%`
+            progress.children[0].style.width = `${percentCompleted-7}%`
+            progress.children[0].textContent = `${percentCompleted-7}%`
 
         },
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }
+    e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-danger')
+    e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-success')
     let uri = "/legal/uploadfile"
     let data = new FormData()
     data.append('file', e.files[0])
-    
+
     axios.post(uri, data, config)
         .then(res => {
+            e.offsetParent.getElementsByTagName('a')[0].href = `${window.location.href.split('/').slice(0, 3).join('/')}/storage/${res.data.path}`
+            e.offsetParent.getElementsByTagName('a')[0].textContent = `view file`
             e.offsetParent.querySelector(`input[name='${e.dataset.name}']`).value = res.data.path
-            console.log(e.offsetParent.getElementsByClassName('progress-bar')[0].classList);
-            e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-danger')
-            e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-success')
+
             e.offsetParent.getElementsByClassName('progress-bar')[0].style.width = `100%`
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `100%`
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `Success !`
@@ -90,6 +93,11 @@ var uploadFile = async e => {
         .catch(err => {
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.remove('bg-success')
             e.offsetParent.getElementsByClassName('progress-bar')[0].classList.add('bg-danger')
-            e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.data.file[0]}`
+            if (Array.isArray(err.response.data.file)) {
+                e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.data.file[0]}`
+            } else {
+                e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.statusText}`
+            }
+
         })
 }

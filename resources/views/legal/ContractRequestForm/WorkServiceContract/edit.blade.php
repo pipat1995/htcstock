@@ -42,7 +42,9 @@
                 <span class="badge badge-primary">Supporting Documents</span>
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
-                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
+                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
+                                href="{{url('storage/'.$workservicecontract->purchase_order)}}" target="_blank"
+                                rel="noopener noreferrer">{{$workservicecontract->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             data-name="purchase_order" data-cache="{{substr($workservicecontract->purchase_order,9)}}"
                             onchange="uploadFile(this)">
@@ -58,7 +60,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$workservicecontract->quotation)}}" target="_blank"
+                                rel="noopener noreferrer">{{$workservicecontract->quotation ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationQuotationFile"
                             data-cache="{{substr($workservicecontract->quotation,9)}}" data-name="quotation"
                             onchange="uploadFile(this)" required>
@@ -75,7 +79,9 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$workservicecontract->coparation_sheet)}}" target="_blank"
+                                rel="noopener noreferrer">{{$workservicecontract->coparation_sheet ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationCoparationFile"
                             data-name="coparation_sheet"
                             data-cache="{{substr($workservicecontract->coparation_sheet,9)}}"
@@ -91,8 +97,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-6">
-                        <label for="validationWorkPlan"><strong>Work Plan</strong> <span
-                                style="color: red;">*</span></label>
+                        <label for="validationWorkPlan"><strong>Work Plan</strong> <span style="color: red;">*</span> <a
+                                href="{{url('storage/'.$workservicecontract->work_plan)}}" target="_blank"
+                                rel="noopener noreferrer">{{$workservicecontract->work_plan ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationWorkPlan" data-name="work_plan"
                             data-cache="{{substr($workservicecontract->work_plan,9)}}" onchange="uploadFile(this)"
                             required>

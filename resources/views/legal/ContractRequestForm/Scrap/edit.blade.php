@@ -44,7 +44,9 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$scrap->quotation)}}" target="_blank"
+                                rel="noopener noreferrer">{{$scrap->quotation ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                             data-cache="{{substr($scrap->quotation,9)}}" onchange="uploadFile(this)" required>
@@ -59,7 +61,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$scrap->coparation_sheet)}}" target="_blank"
+                                rel="noopener noreferrer">{{$scrap->coparation_sheet ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationCoparationFile"
                             data-name="coparation_sheet" data-cache="{{substr($scrap->coparation_sheet,9)}}"
@@ -77,7 +81,9 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationFactoryPermission"><strong>Factory Permission</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$scrap->factory_permission)}}" target="_blank"
+                                rel="noopener noreferrer">{{$scrap->factory_permission ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationFactoryPermission"
                             data-name="factory_permission" data-cache="{{substr($scrap->factory_permission,9)}}"
@@ -94,7 +100,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationWastePermission"><strong>Waste Permission</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$scrap->waste_permission)}}" target="_blank"
+                                rel="noopener noreferrer">{{$scrap->waste_permission ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationWastePermission"
                             data-name="waste_permission" data-cache="{{substr($scrap->waste_permission,9)}}"
@@ -105,7 +113,7 @@
                         </div>
                         <input type="hidden" type="text" name="waste_permission" value="{{$scrap->waste_permission}}">
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Waste Permission.
                         </div>
                     </div>
                 </div>
@@ -133,7 +141,7 @@
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->location : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Location.
                         </div>
                     </div>
                 </div>
@@ -154,7 +162,7 @@
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Dated.
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -164,7 +172,7 @@
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Delivery Date.
                         </div>
                     </div>
                 </div>

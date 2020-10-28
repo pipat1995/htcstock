@@ -11,6 +11,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class WorkServiceContractController extends Controller
 {
@@ -84,19 +85,6 @@ class WorkServiceContractController extends Controller
     {
         try {
             $workservicecontract = $this->contractDescService->find($id);
-            // if ($workservicecontract->purchase_order) {
-            //     $workservicecontract->purchase_order = $this->fileService->convertTextToPdf($workservicecontract->purchase_order, 'purchase_order');
-            // }
-            // if ($workservicecontract->quotation) {
-            //     $workservicecontract->quotation = $this->fileService->convertTextToPdf($workservicecontract->quotation, 'quotation');
-            // }
-            // if ($workservicecontract->coparation_sheet) {
-            //     $workservicecontract->coparation_sheet = $this->fileService->convertTextToPdf($workservicecontract->coparation_sheet, 'coparation_sheet');
-            // }
-            // if ($workservicecontract->work_plan) {
-            //     $workservicecontract->work_plan = $this->fileService->convertTextToPdf($workservicecontract->work_plan, 'work_plan');
-            // }
-
             if ($workservicecontract->value_of_contract) {
                 $workservicecontract->value_of_contract = explode(",", $workservicecontract->value_of_contract);
             }
@@ -120,11 +108,11 @@ class WorkServiceContractController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['work_plan'] = $data['work_plan'];//$this->fileService->convertPdfToText($data['work_plan']);
+        $attributes['quotation'] = $data['quotation'];
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];
+        $attributes['work_plan'] = $data['work_plan'];
         if (!empty($request->purchase_order)) {
-            $attributes['purchase_order'] = $data['purchase_order'];//$this->fileService->convertPdfToText($data['purchase_order']);
+            $attributes['purchase_order'] = $data['purchase_order'];
         }
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
@@ -146,7 +134,20 @@ class WorkServiceContractController extends Controller
             } else {
                 $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
             }
+            $workServiceContract = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+            if ($workServiceContract->quotation !== $request->quotation) {
+                Storage::delete($workServiceContract->quotation);
+            }
+            if ($workServiceContract->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($workServiceContract->coparation_sheet);
+            }
+            if ($workServiceContract->work_plan !== $request->work_plan) {
+                Storage::delete($workServiceContract->work_plan);
+            }
+            if ($workServiceContract->purchase_order !== $request->purchase_order) {
+                Storage::delete($workServiceContract->purchase_order);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -43,7 +43,9 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$mould->purchase_order)}}" target="_blank"
+                                rel="noopener noreferrer">{{$mould->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             data-name="purchase_order" data-cache="{{substr($mould->purchase_order,9)}}"
                             onchange="uploadFile(this)" required>
@@ -58,7 +60,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a href="{{url('storage/'.$mould->quotation)}}"
+                                target="_blank"
+                                rel="noopener noreferrer">{{$mould->quotation ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
                             data-cache="{{substr($mould->quotation,9)}}" onchange="uploadFile(this)" required>
@@ -75,7 +79,9 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$mould->coparation_sheet)}}" target="_blank"
+                                rel="noopener noreferrer">{{$mould->coparation_sheet ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationCoparationFile"
                             data-name="coparation_sheet" data-cache="{{substr($mould->coparation_sheet,9)}}"
@@ -90,8 +96,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-6">
-                        <label for="validationDrawingFile"><strong>Drawing</strong> <span
-                                style="color: red;">*</span></label>
+                        <label for="validationDrawingFile"><strong>Drawing</strong> <span style="color: red;">*</span>
+                            <a href="{{url('storage/'.$mould->drawing)}}" target="_blank"
+                                rel="noopener noreferrer">{{$mould->drawing ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationCoparationFile" data-name="drawing"
                             data-cache="{{substr($mould->drawing,9)}}" onchange="uploadFile(this)" required>

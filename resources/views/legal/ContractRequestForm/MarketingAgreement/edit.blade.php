@@ -36,8 +36,8 @@
         <div class="card-body">
             <span class="badge badge-primary">Sub-type of Contract</span>
             <form class="needs-validation" novalidate
-                action="{{route('legal.contract-request.marketingagreement.update',$marketing->id)}}"
-                method="POST" enctype="multipart/form-data">
+                action="{{route('legal.contract-request.marketingagreement.update',$marketing->id)}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -64,7 +64,9 @@
                 <span class="badge badge-primary">Supporting Documents</span>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
+                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
+                                href="{{url('storage/'.$marketing->purchase_order)}}" target="_blank"
+                                rel="noopener noreferrer">{{$marketing->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             onchange="uploadFile(this)" data-name="purchase_order"
                             data-cache="{{substr($marketing->purchase_order,9)}}">
@@ -72,16 +74,17 @@
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                         </div>
-                        <input type="hidden" type="text" name="purchase_order"
-                            value="{{$marketing->purchase_order}}">
+                        <input type="hidden" type="text" name="purchase_order" value="{{$marketing->purchase_order}}">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationQuotationFile"><strong>Quotation</strong></label>
+                        <label for="validationQuotationFile"><strong>Quotation</strong> <a
+                                href="{{url('storage/'.$marketing->quotation)}}" target="_blank"
+                                rel="noopener noreferrer">{{$marketing->quotation ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationQuotationFile" onchange="uploadFile(this)"
-                            data-cache="{{substr($marketing->quotation,9)}}" data-name="quotation" >
+                            data-cache="{{substr($marketing->quotation,9)}}" data-name="quotation">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

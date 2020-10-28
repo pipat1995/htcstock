@@ -95,7 +95,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a href="{{url('storage/'.$contract->company_cer)}}"
+                                target="_blank"
+                                rel="noopener noreferrer">{{$contract->company_cer ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationCompanyCertificate"
                             onchange="uploadFile(this)" data-name="company_cer"
                             data-cache="{{substr($contract->company_cer,9)}}" required>
@@ -121,7 +123,9 @@
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresen"><strong>Representative Certificate</strong> <span
-                                style="color: red;">*</span></label>
+                                style="color: red;">*</span><a href="{{url('storage/'.$contract->representative_cer)}}"
+                                target="_blank"
+                                rel="noopener noreferrer">{{$contract->representative_cer ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationRepresen" onchange="uploadFile(this)"
                             data-name="representative_cer" data-cache="{{substr($contract->representative_cer,9)}}"
                             required>

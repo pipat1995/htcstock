@@ -11,6 +11,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PurchaseEquipmentController extends Controller
 {
@@ -131,7 +132,18 @@ class PurchaseEquipmentController extends Controller
             } else {
                 $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
             }
+            $purchaseEquipment = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+            
+            if ($purchaseEquipment->quotation !== $request->quotation) {
+                Storage::delete($purchaseEquipment->quotation);
+            }
+            if ($purchaseEquipment->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($purchaseEquipment->coparation_sheet);
+            }
+            if ($purchaseEquipment->purchase_order !== $request->purchase_order) {
+                Storage::delete($purchaseEquipment->purchase_order);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

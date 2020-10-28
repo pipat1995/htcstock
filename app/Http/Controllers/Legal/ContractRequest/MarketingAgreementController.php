@@ -12,6 +12,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MarketingAgreementController extends Controller
 {
@@ -142,7 +143,15 @@ class MarketingAgreementController extends Controller
             } else {
                 $attributes['payment_term_id'] = $this->paymentTermService->create($paymentAttr)->id;
             }
+            $marketing = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+
+            if ($marketing->purchase_order !== $request->purchase_order) {
+                Storage::delete($marketing->purchase_order);
+            }
+            if ($marketing->quotation !== $request->quotation) {
+                Storage::delete($marketing->quotation);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

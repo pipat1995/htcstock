@@ -11,6 +11,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PurchaseEquipmentInstallController extends Controller
 {
@@ -84,19 +85,6 @@ class PurchaseEquipmentInstallController extends Controller
     {
         try {
             $purchaseequipmentinstall = $this->contractDescService->find($id);
-            // if ($purchaseequipmentinstall->purchase_order) {
-            //     $purchaseequipmentinstall->purchase_order = $this->fileService->convertTextToPdf($purchaseequipmentinstall->purchase_order, 'purchase_order');
-            // }
-            // if ($purchaseequipmentinstall->quotation) {
-            //     $purchaseequipmentinstall->quotation = $this->fileService->convertTextToPdf($purchaseequipmentinstall->quotation, 'quotation');
-            // }
-            // if ($purchaseequipmentinstall->coparation_sheet) {
-            //     $purchaseequipmentinstall->coparation_sheet = $this->fileService->convertTextToPdf($purchaseequipmentinstall->coparation_sheet, 'coparation_sheet');
-            // }
-            // if ($purchaseequipmentinstall->boq) {
-            //     $purchaseequipmentinstall->boq = $this->fileService->convertTextToPdf($purchaseequipmentinstall->boq, 'boq');
-            // }
-
             if ($purchaseequipmentinstall->value_of_contract) {
                 $purchaseequipmentinstall->value_of_contract = explode(",", $purchaseequipmentinstall->value_of_contract);
             }
@@ -120,11 +108,11 @@ class PurchaseEquipmentInstallController extends Controller
         $attributes = [];
         $comercialAttr = [];
 
-        $attributes['quotation'] = $data['quotation'];//$this->fileService->convertPdfToText($data['quotation']);
-        $attributes['coparation_sheet'] = $data['coparation_sheet'];//$this->fileService->convertPdfToText($data['coparation_sheet']);
-        $attributes['boq'] = $data['boq'];//$this->fileService->convertPdfToText($data['boq']);
+        $attributes['quotation'] = $data['quotation'];
+        $attributes['coparation_sheet'] = $data['coparation_sheet'];
+        $attributes['boq'] = $data['boq'];
         if (!empty($request->purchase_order)) {
-            $attributes['purchase_order'] = $data['purchase_order'];//$this->fileService->convertPdfToText($data['purchase_order']);
+            $attributes['purchase_order'] = $data['purchase_order'];
         }
         $attributes['payment_type_id'] = (int) $data['payment_type_id'];
         $attributes['value_of_contract'] = $data['value_of_contract'];
@@ -145,7 +133,21 @@ class PurchaseEquipmentInstallController extends Controller
             } else {
                 $attributes['comercial_term_id'] = $this->comercialTermService->create($comercialAttr)->id;
             }
+            $purchaseEquipmentInstall = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+            
+            if ($purchaseEquipmentInstall->quotation !== $request->quotation) {
+                Storage::delete($purchaseEquipmentInstall->quotation);
+            }
+            if ($purchaseEquipmentInstall->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($purchaseEquipmentInstall->coparation_sheet);
+            }
+            if ($purchaseEquipmentInstall->boq !== $request->boq) {
+                Storage::delete($purchaseEquipmentInstall->boq);
+            }
+            if ($purchaseEquipmentInstall->purchase_order !== $request->purchase_order) {
+                Storage::delete($purchaseEquipmentInstall->purchase_order);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -49,7 +49,6 @@ class ComercialListsController extends Controller
             'contract_dests_id' => 'required'
         ]);
         $attributes = $request->all();
-        // \dd($attributes);
         try {
             $comercialLists = $this->comercialListsService->create($attributes);
         } catch (\Throwable $th) {

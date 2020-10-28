@@ -13,6 +13,7 @@ use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectBasedAgreementController extends Controller
 {
@@ -149,7 +150,22 @@ class ProjectBasedAgreementController extends Controller
             } else {
                 $attributes['payment_term_id'] = $this->paymentTermService->create($paymentAttr)->id;
             }
+            $projectBased = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
+
+            if ($projectBased->purchase_order !== $request->purchase_order) {
+                Storage::delete($projectBased->purchase_order);
+            }
+            if ($projectBased->quotation !== $request->quotation) {
+                Storage::delete($projectBased->quotation);
+            }
+            if ($projectBased->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($projectBased->coparation_sheet);
+            }
+            if ($projectBased->work_plan !== $request->work_plan) {
+                Storage::delete($projectBased->work_plan);
+            }
+
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             DB::rollBack();

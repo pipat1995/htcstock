@@ -65,7 +65,9 @@
                 <span class="badge badge-primary">Supporting Documents</span>
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
-                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> </label>
+                        <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
+                                href="{{url('storage/'.$leaseContract->purchase_order)}}" target="_blank"
+                                rel="noopener noreferrer">{{$leaseContract->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             onchange="uploadFile(this)" data-name="purchase_order"
                             data-cache="{{substr($leaseContract->purchase_order,9)}}" required>
@@ -81,7 +83,9 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label for="validationQuotationFile"><strong>Quotation</strong> <span
-                            style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a href="{{url('storage/'.$leaseContract->quotation)}}"
+                                target="_blank"
+                                rel="noopener noreferrer">{{$leaseContract->quotation ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationQuotationFile" onchange="uploadFile(this)"
                             data-cache="{{substr($leaseContract->quotation,9)}}" data-name="quotation" required>
                         <div class="mb-3 progress hide-contract">
@@ -95,7 +99,9 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                            style="color: red;">*</span></label>
+                                style="color: red;">*</span> <a
+                                href="{{url('storage/'.$leaseContract->coparation_sheet)}}" target="_blank"
+                                rel="noopener noreferrer">{{$leaseContract->coparation_sheet ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationCoparationFile"
                             onchange="uploadFile(this)" data-name="coparation_sheet"
                             data-cache="{{substr($leaseContract->coparation_sheet,9)}}" required>

@@ -13,7 +13,6 @@ use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use ZipArchive;
 
 class VendorServiceContractController extends Controller
 {
@@ -128,7 +127,42 @@ class VendorServiceContractController extends Controller
             } else {
                 $attributes['attributes']['payment_term_id'] = $this->paymentTermService->create($attributes['paymentAttr'])->id;
             }
+            $vendorServiceContract = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes['attributes'], $id);
+
+            if ($vendorServiceContract->quotation !== $request->quotation) {
+                Storage::delete($vendorServiceContract->quotation);
+            }
+            if ($vendorServiceContract->coparation_sheet !== $request->coparation_sheet) {
+                Storage::delete($vendorServiceContract->coparation_sheet);
+            }
+            if ($vendorServiceContract->transportation_permission !== $request->transportation_permission) {
+                Storage::delete($vendorServiceContract->transportation_permission);
+            }
+            if ($vendorServiceContract->vehicle_registration_certificate !== $request->vehicle_registration_certificate) {
+                Storage::delete($vendorServiceContract->vehicle_registration_certificate);
+            }
+            if ($vendorServiceContract->route !== $request->route) {
+                Storage::delete($vendorServiceContract->route);
+            }
+            if ($vendorServiceContract->insurance !== $request->insurance) {
+                Storage::delete($vendorServiceContract->insurance);
+            }
+            if ($vendorServiceContract->driver_license !== $request->driver_license) {
+                Storage::delete($vendorServiceContract->driver_license);
+            }
+            if ($vendorServiceContract->doctor_license !== $request->doctor_license) {
+                Storage::delete($vendorServiceContract->doctor_license);
+            }
+            if ($vendorServiceContract->nurse_license !== $request->nurse_license) {
+                Storage::delete($vendorServiceContract->nurse_license);
+            }
+            if ($vendorServiceContract->security_service_certification !== $request->security_service_certification) {
+                Storage::delete($vendorServiceContract->security_service_certification);
+            }
+            if ($vendorServiceContract->security_guard_license !== $request->security_guard_license) {
+                Storage::delete($vendorServiceContract->security_guard_license);
+            }
             $request->session()->flash('success',  ' has been create');
         } catch (\Throwable $th) {
             throw $th;
@@ -393,8 +427,8 @@ class VendorServiceContractController extends Controller
     private function setAttributesCleaning(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -424,8 +458,8 @@ class VendorServiceContractController extends Controller
     private function setAttributesCook(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -447,9 +481,9 @@ class VendorServiceContractController extends Controller
     private function setAttributesDortor(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
-        $attributes['doctor_license'] = $request->doctor_license;//$this->fileService->convertPdfToText($request->doctor_license);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['doctor_license'] = $request->doctor_license; //$this->fileService->convertPdfToText($request->doctor_license);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -469,9 +503,9 @@ class VendorServiceContractController extends Controller
     private function setAttributesNurse(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
-        $attributes['nurse_license'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->doctor_license);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['nurse_license'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->doctor_license);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -491,10 +525,10 @@ class VendorServiceContractController extends Controller
     private function setAttributesSecurity(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
-        $attributes['security_service_certification'] = $request->doctor_license;//$this->fileService->convertPdfToText($request->doctor_license);
-        $attributes['security_guard_license'] = $request->security_guard_license;//$this->fileService->convertPdfToText($request->security_guard_license);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['security_service_certification'] = $request->doctor_license; //$this->fileService->convertPdfToText($request->doctor_license);
+        $attributes['security_guard_license'] = $request->security_guard_license; //$this->fileService->convertPdfToText($request->security_guard_license);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -514,8 +548,8 @@ class VendorServiceContractController extends Controller
     private function setAttributesSubContractor(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
@@ -535,8 +569,8 @@ class VendorServiceContractController extends Controller
     private function setAttributesTransportation(Request $request)
     {
         $attributes['sub_type_contract_id'] = $request->sub_type_contract_id;
-        $attributes['quotation'] = $request->quotation;//$this->fileService->convertPdfToText($request->quotation);
-        $attributes['coparation_sheet'] = $request->coparation_sheet;//$this->fileService->convertPdfToText($request->coparation_sheet);
+        $attributes['quotation'] = $request->quotation; //$this->fileService->convertPdfToText($request->quotation);
+        $attributes['coparation_sheet'] = $request->coparation_sheet; //$this->fileService->convertPdfToText($request->coparation_sheet);
         $attributes['comercial_term_id'] = null;
         $attributes['payment_term_id'] = null;
 
