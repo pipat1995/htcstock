@@ -42,10 +42,10 @@ class ContractRequestController extends Controller
         try {
             if (Auth::user()->department->name === 'Legal') {
                 $contracts = $this->contractRequestService->all();
-            }else{
+            } else {
                 $contracts = $this->contractRequestService->getByCreated();
             }
-            
+
             return \view('legal.ContractRequestForm.index')->with(['contracts' => $contracts]);
         } catch (\Throwable $th) {
             throw $th;
@@ -96,7 +96,6 @@ class ContractRequestController extends Controller
         }
         DB::commit();
         return $this->redirectContractByAgreement($contractRequest);
-        
     }
 
     /**
@@ -138,7 +137,7 @@ class ContractRequestController extends Controller
     public function update(StoreContractRequest $request, $id)
     {
         $attributes = $request->except(['_token', '_method']);
-        
+
         DB::beginTransaction();
         try {
             $contractRequest = $this->contractRequestService->find($id);
@@ -155,7 +154,6 @@ class ContractRequestController extends Controller
         }
         DB::commit();
         return $this->redirectContractByAgreement($contractRequest);
-        
     }
 
     /**
@@ -211,7 +209,7 @@ class ContractRequestController extends Controller
         }
     }
 
-    
+
     public function uploadFile(Request $request)
     {
         // max 20 MB.
@@ -220,17 +218,17 @@ class ContractRequestController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return \response()->json($validator->messages(),400);
+            return \response()->json($validator->messages(), 400);
         }
-        $segments = explode('/', \substr(url()->previous(),strlen($request->root())));
+        $segments = explode('/', \substr(url()->previous(), strlen($request->root())));
         $path = Storage::disk('public')->put(
-            $segments[1].'/'.$segments[2],
+            $segments[1] . '/' . $segments[2],
             $request->file('file'),
         );
         return \response()->json(['path' => $path]);
     }
 
-    
+
     /**
      * Create pdf stream.
      * @param  int  $id
@@ -240,12 +238,112 @@ class ContractRequestController extends Controller
     {
         try {
             $contract = $this->contractRequestService->find($id);
-            // \dd($contract->checkedBy->department->name);
+            // \dd($contract->legalContractDest);
+            if ($contract->legalContractDest->value_of_contract) {
+                $contract->legalContractDest->value_of_contract = explode(",", $contract->legalContractDest->value_of_contract);
+            }
+            $pdf = $this->loadViewContractByAgreement($contract);
         } catch (\Throwable $th) {
             throw $th;
         }
-        $pdf = PDF::loadView('legal.ContractRequestForm.WorkServiceContract.pdf',['contract' => $contract]);
+
         return $pdf->stream();
-        // return \view('legal.ContractRequestForm.WorkServiceContract.pdf');
+    }
+
+    /**
+     * loadView by agreement pdf stream.
+     * @param  LegalContract  $contractRequest
+     * @return \Illuminate\Http\Response
+     */
+    public function loadViewContractByAgreement(LegalContract $contractRequest)
+    {
+        try {
+            $agreements = $this->agreementService->dropdownAgreement();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        switch ($contractRequest->agreement_id) {
+            case $agreements[0]->id:
+                return PDF::loadView('legal.ContractRequestForm.WorkServiceContract.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[1]->id:
+                return PDF::loadView('legal.ContractRequestForm.PurchaseEquipment.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[2]->id:
+                return PDF::loadView('legal.ContractRequestForm.PurchaseEquipmentInstall.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[3]->id:
+                return PDF::loadView('legal.ContractRequestForm.Mould.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[4]->id:
+                return PDF::loadView('legal.ContractRequestForm.Scrap.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[5]->id:
+                return $this->pdfSubtypeContract($contractRequest);
+                break;
+            case $agreements[6]->id:
+                return PDF::loadView('legal.ContractRequestForm.LeaseContract.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[7]->id:
+                return PDF::loadView('legal.ContractRequestForm.ProjectBasedAgreement.pdf', ['contract' => $contractRequest]);
+                break;
+            case $agreements[8]->id:
+                return PDF::loadView('legal.ContractRequestForm.MarketingAgreement.pdf', ['contract' => $contractRequest]);
+                break;
+            default:
+                return \abort(404);
+                break;
+        }
+    }
+
+    /**
+     * loadView by SubtypeContract pdf stream.
+     * @param  LegalContract  $contractRequest
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfSubtypeContract(LegalContract $contractRequest)
+    {
+        switch ($contractRequest->legalContractDest->legalSubtypeContract->slug) {
+            case 'bus-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-bus-contract', ['contract' => $contractRequest]);
+                break;
+            case 'cleaning-contract':
+                // \dd();
+                $attribs = $contractRequest->legalContractDest->legalComercialTerm->attributesToArray();
+                $total = array_reduce(array_keys($attribs),function($accumulator,$key) use ($attribs){
+                    if ($key === 'road' || $key === 'building' || $key === 'toilet' || $key === 'canteen'
+                    || $key === 'washing' || $key === 'water' || $key === 'mowing' || $key === 'general') {
+                        return $accumulator += $attribs[$key];
+                    }
+                    return $accumulator;
+                },0);
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-cleaning-contract', ['contract' => $contractRequest, 'total' => $total]);
+                break;
+            case 'cook-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-cook-contract', ['contract' => $contractRequest]);
+                break;
+            case 'doctor-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-doctor-contract', ['contract' => $contractRequest]);
+                break;
+            case 'nurse-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-nurse-contract', ['contract' => $contractRequest]);
+                break;
+            case 'security-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-security-contract', ['contract' => $contractRequest]);
+                break;
+            case 'subcontractor-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-subcontractor-contract', ['contract' => $contractRequest]);
+                break;
+            case 'transportation-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-transportation-contract', ['contract' => $contractRequest]);
+                break;
+            case 'it-contract':
+                return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-it-contract', ['contract' => $contractRequest]);
+                break;
+            default:
+                return \abort(404);
+                break;
+        }
     }
 }

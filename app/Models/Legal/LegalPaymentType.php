@@ -14,4 +14,9 @@ class LegalPaymentType extends Model
     protected $fillable = [
         'name', 'agreement_id'
     ];
+
+    public function legalContractDest()
+    {
+        return $this->hasOne(LegalContractDest::class, 'payment_type_id');
+    }
 }

@@ -77,7 +77,7 @@
                             <td>{{$item->legalAgreement->name}}</td>
                             <td><a href="{{route('legal.contract-request.edit',$item->id)}}"
                                     class="btn btn-primary btn-sm float-left">View</a>
-                                <a href="{{route('legal.pdf',$item->id)}}"
+                                <a href="{{route('legal.pdf',$item->id)}}" target="_blank" rel="noopener noreferrer"
                                     class="btn btn-danger btn-sm float-left">PDF</a>
                             </td>
                         </tr>

@@ -29,9 +29,24 @@ class LegalContractDest extends Model
         return $this->belongsTo(LegalComercialTerm::class,'comercial_term_id');
     }
 
+    public function legalComercialList()
+    {
+        return $this->hasMany(LegalComercialList::class,'contract_dests_id');
+    }
+
     public function legalPaymentTerm()
     {
         return $this->belongsTo(LegalPaymentTerm::class,'payment_term_id');
+    }
+
+    public function legalPaymentType()
+    {
+        return $this->belongsTo(LegalPaymentType::class, 'payment_type_id');
+    }
+
+    public function legalSubtypeContract()
+    {
+        return $this->belongsTo(LegalSubtypeContract::class,'sub_type_contract_id');
     }
 
 }

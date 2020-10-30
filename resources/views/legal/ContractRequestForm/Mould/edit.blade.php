@@ -43,8 +43,8 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <span
-                                style="color: red;">*</span> <a
-                                href="{{url('storage/'.$mould->purchase_order)}}" target="_blank"
+                                style="color: red;">*</span> <a href="{{url('storage/'.$mould->purchase_order)}}"
+                                target="_blank"
                                 rel="noopener noreferrer">{{$mould->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             data-name="purchase_order" data-cache="{{substr($mould->purchase_order,9)}}"
@@ -79,8 +79,8 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-6">
                         <label for="validationCoparationFile"><strong>AEC/Coparation Sheet</strong> <span
-                                style="color: red;">*</span> <a
-                                href="{{url('storage/'.$mould->coparation_sheet)}}" target="_blank"
+                                style="color: red;">*</span> <a href="{{url('storage/'.$mould->coparation_sheet)}}"
+                                target="_blank"
                                 rel="noopener noreferrer">{{$mould->coparation_sheet ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control" id="validationCoparationFile"
@@ -100,7 +100,7 @@
                             <a href="{{url('storage/'.$mould->drawing)}}" target="_blank"
                                 rel="noopener noreferrer">{{$mould->drawing ? 'view file' : ""}}</a></label>
 
-                        <input type="file" class="form-control" id="validationCoparationFile" data-name="drawing"
+                        <input type="file" class="form-control" id="validationDrawingFile" data-name="drawing"
                             data-cache="{{substr($mould->drawing,9)}}" onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -125,16 +125,15 @@
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->scope_of_work : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Scope of Work.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationToManufacture"><strong>To Manufacture</strong> </label>
                         <input type="text" class="form-control" id="validationToManufacture" name="to_manufacture"
-                            value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->to_manufacture : ""}}"
-                            required>
+                            value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->to_manufacture : ""}}">
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid To Manufacture.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -142,7 +141,7 @@
                         <input type="text" class="form-control" id="validationOf" name="of"
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->of : ""}}">
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Of.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -150,7 +149,7 @@
                         <input type="text" class="form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->purchase_order_no : ""}}">
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Purchase Order No.
                         </div>
                     </div>
                 </div>
@@ -162,7 +161,7 @@
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->quotation_no : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Quotation No.
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -171,7 +170,7 @@
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Dated.
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -181,7 +180,7 @@
                             value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
-                            Please provide a valid Ivoice No.
+                            Please provide a valid Delivery Date.
                         </div>
                     </div>
                 </div>
@@ -277,9 +276,11 @@
                                     mould.
                                 </span>
                             </li>
-                            <li class="li-none-type"><input type="number"
-                                    value="{{isset($mould->value_of_contract)?$mould->value_of_contract[3]:10}}"
-                                    class="type-contract-input" min="0" max="100" readonly> <span>% of the total value
+                            <li class="li-none-type">
+                                <input type="number"
+                                    value="{{isset($mould->value_of_contract) && count($mould->value_of_contract)>3?$mould->value_of_contract[3]:10}}"
+                                    class="type-contract-input" min="0" max="100" readonly>
+                                <span>% of the total value
                                     of a contract within 30 days after 1-2 years of warranty lapse.
                                 </span>
                             </li>
@@ -298,7 +299,7 @@
                                 <span>% of the total value of a contract within 30 days from the date to be
                                     delivered</span></li>
                             <li class="li-none-type"><input type="number"
-                                    value="{{isset($mould->value_of_contract)?$mould->value_of_contract[3]:10}}"
+                                    value="{{isset($mould->value_of_contract)?$mould->value_of_contract[2]:10}}"
                                     class="type-contract-input" min="0" max="100" readonly> <span>% of the total value
                                     of a contract within 30 days from the date to be delivered
                                 </span>

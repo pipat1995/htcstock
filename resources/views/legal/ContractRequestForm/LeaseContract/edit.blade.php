@@ -70,7 +70,7 @@
                                 rel="noopener noreferrer">{{$leaseContract->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control" id="validationPurchaseOrderFile"
                             onchange="uploadFile(this)" data-name="purchase_order"
-                            data-cache="{{substr($leaseContract->purchase_order,9)}}" required>
+                            data-cache="{{substr($leaseContract->purchase_order,9)}}">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

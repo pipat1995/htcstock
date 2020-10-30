@@ -136,7 +136,7 @@ class MouldController extends Controller
             }
             $mould = $this->contractDescService->find($id);
             $this->contractDescService->update($attributes, $id);
-
+            // \dd($attributes['drawing'],$mould->drawing,$this->contractDescService->find($id)->drawing);
             if ($mould->purchase_order !== $request->purchase_order) {
                 Storage::delete($mould->purchase_order);
             }

@@ -340,7 +340,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationFile"><strong>Quotation</strong> <span
                                     style="color: red;">*</span> <a
-                                    href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
+                                    href="{{asset('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
@@ -1436,6 +1436,17 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        
+                        <div class="col-md-4 mb-4">
+                            <label for="validationNumberOfAgent"><strong>Number of agent</strong> <span
+                                    style="color: red;">*</span></label>
+                            <input type="number" class="form-control" id="validationNumberOfAgent" name="number_of_agent" min="0"
+                                value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_agent: ""}}"
+                                required>
+                            <div class="invalid-feedback">
+                                Please provide a valid Working Day.
+                            </div>
+                        </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
@@ -1616,7 +1627,7 @@
                             <label for="validationThenumberoftruck"><strong>The number of truck</strong><span
                                     style="color: red;">*</span></label>
                             <input type="number" class="form-control" id="validationThenumberoftruck"
-                                name="the_number_of_truck" step="0.01" min="0"
+                                name="the_number_of_truck" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->the_number_of_truck : ""}}"
                                 required>
                             <div class="invalid-feedback">

@@ -178,7 +178,7 @@
                 </div>
                 <hr>
 
-                <span class="badge badge-primary">Purchase list</span>
+                <span class="badge badge-primary">Scrap list</span>
                 <div class="form-row">
                     <table class="table table-bordered" id="table-comercial-lists">
                         <thead>

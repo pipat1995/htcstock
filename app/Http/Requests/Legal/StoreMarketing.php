@@ -25,8 +25,6 @@ class StoreMarketing extends FormRequest
     {
         return [
             'subtype' => 'required',
-            'purchase_order' => 'required',
-            'quotation' => 'required',
             
             'purpose' => 'required',
             'promote_a_product' => 'required',
@@ -50,8 +48,6 @@ class StoreMarketing extends FormRequest
     {
         return [
             'subtype.required' => 'Please enter subtype',
-            'purchase_order.required' => 'Please enter purchase_order',
-            'quotation.required' => 'Please enter quotation',
 
             'purpose.required' => 'Please enter purpose',
             'promote_a_product.required' => 'Please enter promote_a_product',

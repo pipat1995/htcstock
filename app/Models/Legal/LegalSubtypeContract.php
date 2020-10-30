@@ -14,4 +14,9 @@ class LegalSubtypeContract extends Model
     protected $fillable = [
         'name', 'slug', 'agreement_id'
     ];
+
+    public function legalContractDest()
+    {
+        return $this->hasOne(LegalContractDest::class);
+    }
 }

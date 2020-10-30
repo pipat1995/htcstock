@@ -15,4 +15,9 @@ class LegalComercialList extends Model
         'description','unit_price','discount','amount','road','building','toilet',
         'canteen','washing','water','mowing','general','contract_dests_id'
     ];
+
+    public function legalContractDest()
+    {
+        return $this->belongsTo(LegalContractDest::class,'contract_dests_id');
+    }
 }

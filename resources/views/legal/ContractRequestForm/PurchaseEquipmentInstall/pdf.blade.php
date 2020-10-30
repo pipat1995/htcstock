@@ -246,7 +246,7 @@
 
         </table>
 
-        <h4 class="text-center">Hire of Work/Service Contract</h4>
+        <h4 class="text-center">Purchase Equipment and Installation</h4>
         <table style="width: 95%; margin: 0 auto;">
             <tbody>
                 <tr>
@@ -268,9 +268,9 @@
                         <font><input type="checkbox"
                                 {{$contract->legalContractDest->coparation_sheet ? "checked" : ""}}></font>
                     </td>
-                    <td class="text-rigth" style="width: 10%;">Work Plan :</td>
+                    <td class="text-rigth" style="width: 10%;">BOQ :</td>
                     <td>
-                        <font><input type="checkbox" {{$contract->legalContractDest->work_plan ? "checked" : ""}}>
+                        <font><input type="checkbox" {{$contract->legalContractDest->boq ? "checked" : ""}}>
                         </font>
                     </td>
                 </tr>
@@ -316,16 +316,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="text-rigth">Contract period :</td>
+                    <td colspan="2" class="text-rigth">Delivery Date :</td>
                     <td colspan="2" style="padding-left: 1%;">
                         <font class="underline">
-                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}
-                        </font>
-                    </td>
-                    <td class="text-rigth">Untill:</td>
-                    <td colspan="4" style="padding-left: 1%;">
-                        <font class="underline">
-                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}
+                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}
                         </font>
                     </td>
                 </tr>
@@ -373,25 +367,23 @@
         <table style="width: 95%; margin: 0 auto;">
 
             @if (isset($contract->legalContractDest->payment_type_id))
-            @if ($contract->legalContractDest->payment_type_id == 1)
             <tr>
                 <td style="width: 13%;" class="text-center">
                     <h5 class="underline">Payment Terms</h5>
                 </td>
                 <td style="width: 5%;" class="text-center">
                     <font class="underline">
-                        {{$contract->legalContractDest->legalPaymentType->name}}
+                        {{isset($contract->legalContractDest->legalPaymentType) ? $contract->legalContractDest->legalPaymentType->name : ""}}
                     </font>
                 </td>
                 <td style="width: 7%;" class="text-center">
                     <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[0]}}%
+                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[0]:30}}%
                     </font>
                 </td>
                 <td>
-                    <span>of
-                        the total value of a contract within 15 days from the date of signing of the
-                        contract</span>
+                    <span>of the total value of a contract within 15 days from the date of signing of the contract
+                    </span>
                 </td>
             </tr>
             <tr>
@@ -400,81 +392,28 @@
                 </td>
                 <td style="width: 7%;" class="text-center">
                     <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[1]}}%
+                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[1]:60}}%
                     </font>
                 </td>
                 <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of accomplishment and
-                        approval by HTC</span>
+                    <span>of the total value of a contract within 30 days from the date of delivery, inspection and
+                        approval by HTC
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2"></td>
                 <td class="text-center">
                     <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[2]}}%
+                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[2]:10}}%
                     </font>
                 </td>
                 <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of inspection and
-                        approval by HTC
+                    <span>of the total value of a contract within 60 days from the date of the Seller has receipt the
+                        2nd installment as a performance bond
                     </span>
                 </td>
             </tr>
-            @endif
-
-            @if ($contract->legalContractDest->payment_type_id == 2)
-            <tr>
-                <td style="width: 13%;" class="text-center">
-                    <h5 class="underline">Payment Terms</h5>
-                </td>
-                <td style="width: 5%;" class="text-center">
-                    <font class="underline">
-                        {{$contract->legalContractDest->legalPaymentType->name}}
-                    </font>
-                </td>
-                <td style="width: 7%;" class="text-center">
-                    <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[0]}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 15 days from the date of signing of the
-                        contract</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td style="width: 7%;" class="text-center">
-                    <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[1]}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of accomplishment and
-                        approval by HTC</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td class="text-center">
-                    <font class="underline">
-                        {{$contract->legalContractDest->value_of_contract[2]}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of inspection and
-                        approval by HTC
-                    </span>
-                </td>
-            </tr>
-            @endif
-
             @else
             <tr>
                 <td style="width: 13%;" class="text-center">
@@ -491,7 +430,38 @@
                     </font>
                 </td>
                 <td>
+                    <span>of
+                        the total value of a contract within 15 days from the date of signing of the
+                        contract</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
 
+                </td>
+                <td style="width: 7%;" class="text-center">
+                    <font class="underline">
+                        %
+                    </font>
+                </td>
+                <td>
+                    <span>of
+                        the total value of a contract within 30 days from the date of accomplishment and
+                        approval by HTC</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td class="text-center">
+                    <font class="underline">
+                        %
+                    </font>
+                </td>
+                <td>
+                    <span>of
+                        the total value of a contract within 30 days from the date of inspection and
+                        approval by HTC
+                    </span>
                 </td>
             </tr>
             @endif
