@@ -3,7 +3,9 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         let subtype = document.getElementById('validationSubType')
-        changeSubType(subtype)
+        if (subtype) {
+            changeSubType(subtype)
+        }
     })
 
     window.addEventListener('load', function () {

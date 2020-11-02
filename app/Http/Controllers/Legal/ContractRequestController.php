@@ -9,6 +9,8 @@ use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
+use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
+use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Utils\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,13 +26,24 @@ class ContractRequestController extends Controller
     protected $contractRequestService;
     protected $fileService;
     protected $contractDescService;
-    public function __construct(ActionServiceInterface $actionServiceInterface, AgreementServiceInterface $agreementServiceInterface, ContractRequestServiceInterface $contractRequestServiceInterface, FileService $fileService, ContractDescServiceInterface $contractDescServiceInterface)
-    {
+    protected $paymentTypeService;
+    protected $subtypeContractService;
+    public function __construct(
+        ActionServiceInterface $actionServiceInterface,
+        AgreementServiceInterface $agreementServiceInterface,
+        ContractRequestServiceInterface $contractRequestServiceInterface,
+        FileService $fileService,
+        ContractDescServiceInterface $contractDescServiceInterface,
+        PaymentTypeServiceInterface $paymentTypeServiceInterface,
+        SubtypeContractServiceInterface $subtypeContractServiceInterface
+    ) {
         $this->actionService = $actionServiceInterface;
         $this->agreementService = $agreementServiceInterface;
         $this->contractRequestService = $contractRequestServiceInterface;
         $this->fileService = $fileService;
         $this->contractDescService = $contractDescServiceInterface;
+        $this->paymentTypeService = $paymentTypeServiceInterface;
+        $this->subtypeContractService = $subtypeContractServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -106,7 +119,50 @@ class ContractRequestController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $legalContract = $this->contractRequestService->find($id);
+            $contractDest = $this->contractDescService->find($legalContract->legalContractDest->id);
+            $agreements = $this->agreementService->dropdownAgreement();
+            if ($contractDest->value_of_contract) {
+                $contractDest->value_of_contract = explode(",", $contractDest->value_of_contract);
+            }
+            $paymentType = $this->paymentTypeService->dropdownPaymentType($legalContract->agreement_id);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        switch ($legalContract->agreement_id) {
+            case $agreements[0]->id:
+                return \view('legal.ContractRequestForm.WorkServiceContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[1]->id:
+                return \view('legal.ContractRequestForm.PurchaseEquipment.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[2]->id:
+                return \view('legal.ContractRequestForm.PurchaseEquipmentInstall.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[3]->id:
+                return \view('legal.ContractRequestForm.Mould.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[4]->id:
+                return \view('legal.ContractRequestForm.Scrap.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[5]->id:
+                $subtypeContract = $this->subtypeContractService->dropdownSubtypeContract($legalContract->agreement_id);
+                return \view('legal.ContractRequestForm.VendorServiceContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest, 'subtypeContract' => $subtypeContract]);
+                break;
+            case $agreements[6]->id:
+                return \view('legal.ContractRequestForm.LeaseContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[7]->id:
+                return \view('legal.ContractRequestForm.ProjectBasedAgreement.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            case $agreements[8]->id:
+                return \view('legal.ContractRequestForm.MarketingAgreement.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                break;
+            default:
+                \abort(404);
+                break;
+        }
     }
 
     /**
@@ -209,47 +265,6 @@ class ContractRequestController extends Controller
         }
     }
 
-
-    public function uploadFile(Request $request)
-    {
-        // max 20 MB.
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:pdf|max:20480',
-        ]);
-
-        if ($validator->fails()) {
-            return \response()->json($validator->messages(), 400);
-        }
-        $segments = explode('/', \substr(url()->previous(), strlen($request->root())));
-        $path = Storage::disk('public')->put(
-            $segments[1] . '/' . $segments[2],
-            $request->file('file'),
-        );
-        return \response()->json(['path' => $path]);
-    }
-
-
-    /**
-     * Create pdf stream.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function generatePDF($id)
-    {
-        try {
-            $contract = $this->contractRequestService->find($id);
-            // \dd($contract->legalContractDest);
-            if ($contract->legalContractDest->value_of_contract) {
-                $contract->legalContractDest->value_of_contract = explode(",", $contract->legalContractDest->value_of_contract);
-            }
-            $pdf = $this->loadViewContractByAgreement($contract);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-
-        return $pdf->stream();
-    }
-
     /**
      * loadView by agreement pdf stream.
      * @param  LegalContract  $contractRequest
@@ -311,13 +326,15 @@ class ContractRequestController extends Controller
             case 'cleaning-contract':
                 // \dd();
                 $attribs = $contractRequest->legalContractDest->legalComercialTerm->attributesToArray();
-                $total = array_reduce(array_keys($attribs),function($accumulator,$key) use ($attribs){
-                    if ($key === 'road' || $key === 'building' || $key === 'toilet' || $key === 'canteen'
-                    || $key === 'washing' || $key === 'water' || $key === 'mowing' || $key === 'general') {
+                $total = array_reduce(array_keys($attribs), function ($accumulator, $key) use ($attribs) {
+                    if (
+                        $key === 'road' || $key === 'building' || $key === 'toilet' || $key === 'canteen'
+                        || $key === 'washing' || $key === 'water' || $key === 'mowing' || $key === 'general'
+                    ) {
                         return $accumulator += $attribs[$key];
                     }
                     return $accumulator;
-                },0);
+                }, 0);
                 return PDF::loadView('legal.ContractRequestForm.VendorServiceContract.pdf-cleaning-contract', ['contract' => $contractRequest, 'total' => $total]);
                 break;
             case 'cook-contract':
@@ -345,5 +362,46 @@ class ContractRequestController extends Controller
                 return \abort(404);
                 break;
         }
+    }
+
+
+    public function uploadFile(Request $request)
+    {
+        // max 20 MB.
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:pdf|max:20480',
+        ]);
+
+        if ($validator->fails()) {
+            return \response()->json($validator->messages(), 400);
+        }
+        $segments = explode('/', \substr(url()->previous(), strlen($request->root())));
+        $path = Storage::disk('public')->put(
+            $segments[1] . '/' . $segments[2],
+            $request->file('file'),
+        );
+        return \response()->json(['path' => $path]);
+    }
+
+
+    /**
+     * Create pdf stream.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF($id)
+    {
+        try {
+            $contract = $this->contractRequestService->find($id);
+            // \dd($contract->legalContractDest);
+            if ($contract->legalContractDest->value_of_contract) {
+                $contract->legalContractDest->value_of_contract = explode(",", $contract->legalContractDest->value_of_contract);
+            }
+            $pdf = $this->loadViewContractByAgreement($contract);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $pdf->stream();
     }
 }

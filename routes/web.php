@@ -21,7 +21,7 @@ Route::get('clear-all', function () {
     return Artisan::output();
 });
 
-Route::get('language/{locale}', [App\Http\Controllers\LocalizationController::class,'language'])->name('switch.language');
+Route::get('language/{locale}', [App\Http\Controllers\LocalizationController::class, 'language'])->name('switch.language');
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,7 +30,7 @@ Auth::routes(['verify' => true, 'register' => false]);
 
 // Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('updateusers', [App\Http\Controllers\Admin\UsersController::class,'updateusers'])->name('users.updateusers');
+    Route::get('updateusers', [App\Http\Controllers\Admin\UsersController::class, 'updateusers'])->name('users.updateusers');
     Route::resource('users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit']]);
     Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);
     Route::resource('roles', 'RoleController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);
@@ -63,22 +63,21 @@ Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(
 // Legal
 Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
-    Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-    Route::post('uploadfile','ContractRequestController@uploadFile')->name('uploadfile');
-    Route::get('contract/{id}/pdf','ContractRequestController@generatePDF')->name('pdf');
+    Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit','show', 'update']]);
+    Route::post('uploadfile', 'ContractRequestController@uploadFile')->name('uploadfile');
+    Route::get('contract/{id}/pdf', 'ContractRequestController@generatePDF')->name('pdf');
     // Route::get('view/pdf','ContractRequestController@generatePDF')->name('pdf');
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
-        Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('mould', 'MouldController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('scrap', 'ScrapController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('vendorservicecontract', 'VendorServiceContractController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index','create', 'edit', 'update']]);
-        Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index','create', 'edit', 'update']]);
+        Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index', 'create', 'edit', 'show', 'update']]);
+        Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index', 'create', 'edit', 'update']]);
+        Route::resource('purchaseequipmentinstall', 'PurchaseEquipmentInstallController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('mould', 'MouldController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('scrap', 'ScrapController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('vendorservicecontract', 'VendorServiceContractController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('leasecontract', 'LeaseContractController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('projectbasedagreement', 'ProjectBasedAgreementController', ['only' => ['index', 'create', 'edit','show', 'update']]);
+        Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index', 'create', 'edit','show', 'update']]);
 
-        Route::resource('comerciallists','ComercialListsController',['only' => ['store', 'edit', 'destroy']]);
-
+        Route::resource('comerciallists', 'ComercialListsController', ['only' => ['store', 'edit', 'destroy']]);
     });
 });

@@ -17,9 +17,15 @@
         displayFileName(workPlanFile)
 
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
+
         // Payment Terms
-        changeType(contractType)
+        if (contractType) {
+            changeType(contractType)
+        }
+
         // warranty
         calMonthToYear(warranty)
     })
@@ -75,4 +81,3 @@ var setValueOfContract = (e) => {
 
     document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value}`
 }
-

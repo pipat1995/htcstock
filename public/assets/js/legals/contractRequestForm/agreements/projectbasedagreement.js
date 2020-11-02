@@ -16,7 +16,9 @@
         displayFileName(workPlanFile)
 
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
 
         calMonthToYear(warranty)
 

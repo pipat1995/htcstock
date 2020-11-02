@@ -22,7 +22,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>CONTRACT REQUEST FORM 
+            <div>CONTRACT REQUEST FORM
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -151,6 +151,8 @@
                         </div>
                     </div>
                 </div>
+                <a class="btn btn-primary float-rigth" style="color: white !important; margin-top: 5px" type="button"
+                    href="{{url()->previous()}}">Back</a>
                 <button class="btn btn-primary float-right" type="submit" style="margin-top: 5px">Next</button>
             </form>
         </div>

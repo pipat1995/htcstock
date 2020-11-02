@@ -16,9 +16,13 @@
         displayFileName(coparationFile)
         displayFileName(boqFile)
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
         // Payment Terms
-        changeType(contractType)
+        if (contractType) {
+            changeType(contractType)
+        }
         // warranty
         calMonthToYear(warranty)
 

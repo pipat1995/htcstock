@@ -15,9 +15,13 @@
         displayFileName(coparationFile)
 
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
         // Payment Terms
-        changeType(contractType)
+        if (contractType) {
+            changeType(contractType)
+        }
 
     })
 
@@ -63,7 +67,6 @@ var changeContractValue = (e) => {
     enterNoSubmit(e)
 }
 var setValueOfContract = (e) => {
-    console.log(e);
     if (e) {
         let el = e.children[0].children
         let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value)

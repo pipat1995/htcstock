@@ -154,8 +154,8 @@ class WorkServiceContractController extends Controller
             throw $th;
         }
         DB::commit();
-        // return \redirect()->route('legal.contract-request.workservicecontract.edit', $id);
-        return \redirect()->route('legal.contract-request.index');
+        return \redirect()->route('legal.contract-request.show', $workServiceContract->legalContract->id);
+        // return \redirect()->route('legal.contract-request.index');
     }
 
     /**

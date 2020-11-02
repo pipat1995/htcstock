@@ -17,9 +17,13 @@
         displayFileName(factoryPermissionFile)
         displayFileName(wastePermissionFile)
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
         // Payment Terms
-        changeType(contractType)
+        if (contractType) {
+            changeType(contractType)
+        }
 
     })
 

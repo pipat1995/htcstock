@@ -17,9 +17,13 @@
         displayFileName(coparationFile)
         displayFileName(drawingFile)
         // Comercial Terms
-        comercialLists(contract.value)
+        if (contract) {
+            comercialLists(contract.value)
+        }
         // Payment Terms
-        changeType(contractType)
+        if (contractType) {
+            changeType(contractType)
+        }
         // warranty
         calMonthToYear(warranty)
 
@@ -71,11 +75,11 @@ var changeContractValue = (e) => {
 }
 var setValueOfContract = (e) => {
     let el = e.children[0].children
-    if (el.length>3) {
-        let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value) -  parseInt(el[2].children[0].value)
-    el[3].children[0].value = total
-    document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value},${el[3].children[0].value}`
-    }else{
+    if (el.length > 3) {
+        let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value) - parseInt(el[2].children[0].value)
+        el[3].children[0].value = total
+        document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value},${el[3].children[0].value}`
+    } else {
         let total = 100 - parseInt(el[0].children[0].value) - parseInt(el[1].children[0].value)
         el[2].children[0].value = total
         document.getElementsByName('value_of_contract')[0].value = `${el[0].children[0].value},${el[1].children[0].value},${el[2].children[0].value}`
