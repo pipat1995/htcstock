@@ -171,10 +171,6 @@
         </table>
     </div>
 
-    {{-- <div class="footer">
-        Page <span class="pagenum"></span>
-    </div> --}}
-
     <div class="content">
         <table style="width: 95%; margin: 0 auto;">
             <tbody>
@@ -246,7 +242,7 @@
 
         </table>
 
-        <h4 class="text-center">Hire of Work/Service Contract</h4>
+        <h4 class="text-center">Advertisement and Marketing Agreement</h4>
         <table style="width: 95%; margin: 0 auto;">
             <tbody>
                 <tr>
@@ -263,33 +259,23 @@
                         <font><input type="checkbox" {{$contract->legalContractDest->quotation ? "checked" : ""}}>
                         </font>
                     </td>
-                    <td class="text-rigth" style="width: 20%;">AEC/Coparation Sheet :</td>
-                    <td>
-                        <font><input type="checkbox"
-                                {{$contract->legalContractDest->coparation_sheet ? "checked" : ""}}></font>
-                    </td>
-                    <td class="text-rigth" style="width: 10%;">Work Plan :</td>
-                    <td>
-                        <font><input type="checkbox" {{$contract->legalContractDest->work_plan ? "checked" : ""}}>
-                        </font>
-                    </td>
                 </tr>
                 <tr>
                     <td class="text-center">
                         <h5 class="underline">Comercial Terms</h5>
                     </td>
-                    <td class="text-rigth">Scope of Work :</td>
+                    <td class="text-rigth">Purpose :</td>
                     <td colspan="7" style="padding-left: 1%;">
                         <font class="underline">
-                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->scope_of_work : ""}}
+                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->purpose : ""}}
                         </font>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="text-rigth">Location :</td>
+                    <td colspan="2" class="text-rigth">Promote a product :</td>
                     <td colspan="7" style="padding-left: 1%;">
                         <font class="underline">
-                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->location : ""}}
+                            {{isset($contract->legalContractDest->legalComercialTerm) ? $contract->legalContractDest->legalComercialTerm->promote_a_product : ""}}
                         </font>
                     </td>
                 </tr>
@@ -375,62 +361,14 @@
                 <td style="width: 13%;" class="text-center">
                     <h5 class="underline">Payment Terms</h5>
                 </td>
-                <td style="width: 5%;" class="text-center">
+                <td rowspan="2">
                     <font class="underline">
-                        {{isset($contract->legalContractDest->legalPaymentType) ? $contract->legalContractDest->legalPaymentType->name : ""}}
+                        {{isset($contract->legalContractDest->legalPaymentTerm) ? $contract->legalContractDest->legalPaymentTerm->detail_payment_term : ""}}
                     </font>
-                </td>
-                <td style="width: 7%;" class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[0]:30}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 15 days from the date of signing of the
-                        contract</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-
-                </td>
-                <td style="width: 7%;" class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[1]:60}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of accomplishment and
-                        approval by HTC</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[2]:10}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of inspection and
-                        approval by HTC
-                    </span>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="text-center">
-                    <h5 class="underline">Warranty</h5>
-                </td>
-                <td colspan="3">
-                    <font class="underline">{{$contract->legalContractDest->warranty}}</font>
                 </td>
             </tr>
         </table>
-
+        
         <div class="location">
             <h3 class="text-center" style="margin-top: 10%">LOCATION INFORMATION</h3>
             <table style="width: 95%; margin: 0 auto;">

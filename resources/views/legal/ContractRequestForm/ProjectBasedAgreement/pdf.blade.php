@@ -375,58 +375,19 @@
                 <td style="width: 13%;" class="text-center">
                     <h5 class="underline">Payment Terms</h5>
                 </td>
-                <td style="width: 5%;" class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->legalPaymentType) ? $contract->legalContractDest->legalPaymentType->name : ""}}
-                    </font>
-                </td>
-                <td style="width: 7%;" class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[0]:30}}%
-                    </font>
-                </td>
                 <td>
-                    <span>of
-                        the total value of a contract within 15 days from the date of signing of the
-                        contract</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-
-                </td>
-                <td style="width: 7%;" class="text-center">
                     <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[1]:60}}%
+                        {{isset($contract->legalContractDest->legalPaymentTerm) ? $contract->legalContractDest->legalPaymentTerm->detail_payment_term : ""}}
                     </font>
                 </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of accomplishment and
-                        approval by HTC</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td class="text-center">
-                    <font class="underline">
-                        {{isset($contract->legalContractDest->value_of_contract)?$contract->legalContractDest->value_of_contract[2]:10}}%
-                    </font>
-                </td>
-                <td>
-                    <span>of
-                        the total value of a contract within 30 days from the date of inspection and
-                        approval by HTC
-                    </span>
-                </td>
-            </tr>
+                
 
             <tr>
                 <td class="text-center">
                     <h5 class="underline">Warranty</h5>
                 </td>
                 <td colspan="3">
-                    <font class="underline">{{$contract->legalContractDest->warranty}}</font>
+                    <font class="underline">{{$contract->legalContractDest->warranty}} Month</font>
                 </td>
             </tr>
         </table>

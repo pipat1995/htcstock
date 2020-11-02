@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +66,7 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
     Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
     Route::post('uploadfile','ContractRequestController@uploadFile')->name('uploadfile');
     Route::get('contract/{id}/pdf','ContractRequestController@generatePDF')->name('pdf');
+    // Route::get('view/pdf','ContractRequestController@generatePDF')->name('pdf');
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
         Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index','create', 'edit', 'update']]);
         Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index','create', 'edit', 'update']]);
@@ -80,6 +80,5 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
 
         Route::resource('comerciallists','ComercialListsController',['only' => ['store', 'edit', 'destroy']]);
 
-        
     });
 });

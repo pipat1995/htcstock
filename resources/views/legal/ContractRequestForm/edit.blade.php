@@ -22,7 +22,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>CONTRACT REQUEST FORM
+            <div>CONTRACT REQUEST FORM 
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
