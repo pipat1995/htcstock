@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationQty">จำนวน</label>
+                        <label for="validationQty">จำนวน </label>
                         <input type="number" class="form-control" id="validationQty" name="qty" value="" min="1"
                             oninput="quantity(this)" required>
                         <div class="valid-feedback">
@@ -105,6 +105,13 @@
                             Please choose a IR No.
                         </div>
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationIrDate">IR Date.</label>
+                        <input type="date" class="form-control" id="validationIrDate" name="ir_date" value="" required>
+                        <div class="invalid-feedback">
+                            Please choose a IR Date.
+                        </div>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
@@ -115,7 +122,7 @@
                 <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>Submit form</button>
             </form>
             <script src="{{asset('assets\js\transactions\buy.js')}}" defer></script>
-            
+
         </div>
     </div>
 </div>

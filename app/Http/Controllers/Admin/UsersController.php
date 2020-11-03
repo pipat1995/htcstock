@@ -104,8 +104,8 @@ class UsersController extends Controller
         try {
             // denies คือ !=
             // allows คือ ==
-            // ตรวจสอบ Role Gate::denies('for-superadmin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
-            if (Gate::denies('for-superadmin')) {
+            // ตรวจสอบ Role Gate::denies('super-admin') จาก AuthServiceProvider ถ้าไม่ใช้ Admin 
+            if (Gate::denies('super-admin')) {
                 return \redirect()->route('admin.users.index');
             }
             if ($this->userService->delete($id)) {

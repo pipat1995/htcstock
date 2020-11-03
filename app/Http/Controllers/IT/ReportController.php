@@ -69,7 +69,7 @@ class ReportController extends Controller
                     $transactions->where('access_id', $request->access_id);
                 }
             }
-            $transactions->orderBy('quantity', 'desc');
+            $transactions->orderBy('quantity', 'asc');
             return \view('it.reports.stocks', \compact('formSearch'))->with([
                 'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
                 'accessories' => $this->accessories

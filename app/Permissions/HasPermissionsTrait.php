@@ -37,14 +37,14 @@ trait HasPermissionsTrait
 
     public function hasPermissionTo($permission)
     {
-
         return $this->hasPermissionThroughRole($permission) || $this->hasPermission($permission);
     }
 
     public function hasPermissionThroughRole($permission)
     {
-
         foreach ($permission->roles as $role) {
+            // $this->roles คือ roles ของ auth->user
+            // ใน $this->roles มี $role ไหม
             if ($this->roles->contains($role)) {
                 return true;
             }
@@ -54,7 +54,6 @@ trait HasPermissionsTrait
 
     public function hasRole(...$roles)
     {
-
         foreach ($roles as $role) {
             if ($this->roles->contains('slug', $role)) {
                 return true;
@@ -75,7 +74,8 @@ trait HasPermissionsTrait
     }
     protected function hasPermission($permission)
     {
-
+        // \dd($this->permissions, 'sdf');
+        // auth->user มี permission ไหม
         return (bool) $this->permissions->where('slug', $permission->slug)->count();
     }
 

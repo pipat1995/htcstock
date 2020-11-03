@@ -76,7 +76,8 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Table with hover</h5>
-        <a href="{{route('it.generateAccessoriesPDF')}}" class="card-subtitle mb-2 btn btn-warning float-right">PDF</a>
+        <a href="{{route('it.generateAccessoriesPDF')}}" target="_blank"
+        rel="noopener noreferrer" class="card-subtitle mb-2 btn btn-warning float-right">PDF</a>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>

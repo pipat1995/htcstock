@@ -66,6 +66,11 @@
                     </div>
                 </div>
             </form>
+            <script>
+                if (document.getElementById("validationSCreated_at").value) {
+                    document.getElementById("validationECreated_at").readOnly = false;
+                }
+            </script>
             <script src="{{asset('assets\js\transactions\lendings.js')}}" defer></script>
         </div>
     </div>

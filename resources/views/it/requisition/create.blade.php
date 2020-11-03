@@ -35,7 +35,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="validationAccess_id" class="">อุปกรณ์</label>
                         <select name="access_id" id="validationAccess_id" class="form-control" onchange="checkQtyAccess(this)" required >
                             <option value="">--เลือก--</option>

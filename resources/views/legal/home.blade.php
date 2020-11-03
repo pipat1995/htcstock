@@ -229,7 +229,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="../images/avatars/4.jpg"
+                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/4.jpg')}}"
                                                     alt="">
                                             </div>
                                         </div>
@@ -257,7 +257,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="../images/avatars/3.jpg"
+                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/3.jpg')}}"
                                                     alt="">
                                             </div>
                                         </div>
@@ -285,7 +285,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="../images/avatars/2.jpg"
+                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/2.jpg')}}"
                                                     alt="">
                                             </div>
                                         </div>
@@ -313,7 +313,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="../images/avatars/1.jpg"
+                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/1.jpg')}}"
                                                     alt=""></div>
                                         </div>
                                         <div class="widget-content-left flex2">

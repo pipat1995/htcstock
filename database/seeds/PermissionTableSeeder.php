@@ -14,93 +14,174 @@ class PermissionTableSeeder extends Seeder
     {
         $permissions = [
             [
-                'id' => '1',
                 'name' => 'Create Buy',
                 'slug' => 'create-buy',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '2',
                 'name' => 'Edit Buy',
                 'slug' => 'edit-buy',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '3',
                 'name' => 'Show Buy',
                 'slug' => 'show-buy',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '4',
                 'name' => 'Delete Buy',
                 'slug' => 'delete-buy',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '5',
                 'name' => 'Create Lend',
                 'slug' => 'create-lend',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '6',
                 'name' => 'Edit Lend',
                 'slug' => 'edit-lend',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '7',
                 'name' => 'Show Lend',
                 'slug' => 'show-lend',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '8',
                 'name' => 'Delete Lend',
                 'slug' => 'delete-lend',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '9',
                 'name' => 'Create Requisition',
                 'slug' => 'create-requisition',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '10',
                 'name' => 'Edit Requisition',
                 'slug' => 'edit-requisition',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '11',
                 'name' => 'Show Requisition',
                 'slug' => 'show-requisition',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
             ],
             [
-                'id' => '12',
                 'name' => 'Delete Requisition',
                 'slug' => 'delete-requisition',
-                'created_at' => now(),
-                'updated_at' => now(),
+                
+            ],
+// ------------------------------ Legal --------------------------------
+            [
+                'name' => 'Create Legal Contract',
+                'slug' => 'create-legal-contract',
+                
+            ],
+            [
+                'name' => 'Edit Legal Contract',
+                'slug' => 'edit-legal-contract',
+                
+            ],
+            [
+                'name' => 'Show Legal Contract',
+                'slug' => 'show-legal-contract',
+                
+            ],
+            [
+                'name' => 'Delete Legal Contract',
+                'slug' => 'delete-legal-contract',
+                
+            ],
+
+            [
+                'name' => 'Create Legal Contract Destcription',
+                'slug' => 'create-legal-contract-destcription',
+                
+            ],
+            [
+                'name' => 'Edit Legal Contract Destcription',
+                'slug' => 'edit-legal-contract-destcription',
+                
+            ],
+            [
+                'name' => 'Show Legal Contract Destcription',
+                'slug' => 'show-legal-contract-destcription',
+                
+            ],
+            [
+                'name' => 'Delete Legal Contract Destcription',
+                'slug' => 'delete-legal-contract-destcription',
+                
+            ],
+
+            [
+                'name' => 'Create Legal Comercial Terms',
+                'slug' => 'create-legal-comercial-terms',
+                
+            ],
+            [
+                'name' => 'Edit Legal Comercial Terms',
+                'slug' => 'edit-legal-comercial-terms',
+                
+            ],
+            [
+                'name' => 'Show Legal Comercial Terms',
+                'slug' => 'show-legal-comercial-terms',
+                
+            ],
+            [
+                'name' => 'Delete Legal Comercial Terms',
+                'slug' => 'delete-legal-comercial-terms',
+                
+            ],
+
+            [
+                'name' => 'Create Legal Comercial Lists',
+                'slug' => 'create-legal-comercial-lists',
+                
+            ],
+            [
+                'name' => 'Edit Legal Comercial Lists',
+                'slug' => 'edit-legal-comercial-lists',
+                
+            ],
+            [
+                'name' => 'Show Legal Comercial Lists',
+                'slug' => 'show-legal-comercial-lists',
+                
+            ],
+            [
+                'name' => 'Delete Legal Comercial Lists',
+                'slug' => 'delete-legal-comercial-lists',
+                
+            ],
+
+            [
+                'name' => 'Create Legal Payment Terms',
+                'slug' => 'create-legal-payment-terms',
+                
+            ],
+            [
+                'name' => 'Edit Legal Payment Terms',
+                'slug' => 'edit-legal-payment-terms',
+                
+            ],
+            [
+                'name' => 'Show Legal Payment Terms',
+                'slug' => 'show-legal-payment-terms',
+                
+            ],
+            [
+                'name' => 'Delete Legal Payment Terms',
+                'slug' => 'delete-legal-payment-terms',
+                
             ],
         ];
 
         foreach ($permissions as $key => $value) {
-            Permission::insert($value);
+            Permission::firstOrCreate($value);
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
-use App\Helpers\Helper;
+use Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\RequisitionFormSearch;
 use App\Http\Requests\IT\RequisitionFormRequest;

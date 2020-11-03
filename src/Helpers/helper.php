@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Helpers;
 
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;

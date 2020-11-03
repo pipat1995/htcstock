@@ -72,8 +72,8 @@
                             <td>
                                 <a href="{{route('admin.users.edit',$user->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                {{-- @can('for-superadmin') เรียกใช้จาก AuthServiceProvider --}}
-                                @can('for-superadmin')
+                                {{-- @can('super-admin') เรียกใช้จาก AuthServiceProvider --}}
+                                @can('super-admin')
                                 <form action="{{route('admin.users.destroy',$user->id)}}" method="post"
                                     class="float-left">
                                     @csrf

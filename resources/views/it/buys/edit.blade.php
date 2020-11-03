@@ -36,8 +36,8 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">แบบฟอร์มการซื้อ</h5>
-            <form class="needs-validation" novalidate action="{{route('it.buy.update',$transaction->id)}}"
-                method="POST" enctype="multipart/form-data">
+            <form class="needs-validation" novalidate action="{{route('it.buy.update',$transaction->id)}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -65,8 +65,8 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationUnitCost">UnitCost</label>
-                        <input type="number" class="form-control" id="validationUnitCost" name="unit_cost" value="{{$transaction->unit_cost}}"
-                            required>
+                        <input type="number" class="form-control" id="validationUnitCost" name="unit_cost"
+                            value="{{$transaction->unit_cost}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid UnitCost.
                         </div>
@@ -105,6 +105,14 @@
                             value="{{$transaction->ir_no}}" placeholder="123456789">
                         <div class="invalid-feedback">
                             Please choose a IR No.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationIrDate">IR Date.</label>
+                        <input type="date" class="form-control" id="validationIrDate" name="ir_date"
+                            value="{{ isset($transaction->ir_date) ? $transaction->ir_date->format('Y-m-d') : ""}}">
+                        <div class="invalid-feedback">
+                            Please choose a IR Date.
                         </div>
                     </div>
                 </div>

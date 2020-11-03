@@ -71,7 +71,7 @@
                             <td>
                                 <a href="{{route('admin.permissions.edit',$permission->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                @can('for-superadmin')
+                                @can('super-admin')
                                 <form action="{{route('admin.permissions.destroy',$permission->id)}}" method="post"
                                     class="float-left">
                                     @csrf

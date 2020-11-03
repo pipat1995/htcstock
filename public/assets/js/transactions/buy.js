@@ -13,9 +13,7 @@
         validationForm(forms)
 
 
-        if (document.getElementById("validationSCreated_at").value) {
-            document.getElementById("validationECreated_at").readOnly = false;
-        }
+        
     }, false);
 })();
 
@@ -28,23 +26,32 @@ function quantity(e) {
 }
 
 function checkQtyAccess(e) {
-    getAccessoriesId(e.value).then(res => {
-        if (res.qty > 0) {
-            maxQty = res.qty
-            document.getElementById('validationQty').value = maxQty
-            $(':button[type="submit"]').prop('disabled', false)
-        } else {
-            document.getElementById('validationQty').value = null
-            $(':button[type="submit"]').prop('disabled', true)
-        }
-        document.getElementById('validationQty').max = maxQty
-    })
+    var inputNumber = document.getElementById('validationQty')
+    if (e.value) {
+        getAccessoriesId(e.value).then(res => {
+            if (res.qty > 0) {
+                // inputNumber.value = res.qty
+                inputNumber.offsetParent.children[0].innerHTML = `จำนวน มีอยู่ <span class="badge badge-secondary">${res.qty}</span>`
+                $(':button[type="submit"]').prop('disabled', false)
+            } else {
+                inputNumber.offsetParent.children[0].innerHTML = `จำนวน มีอยู่ <span class="badge badge-secondary">${0}</span>`
+                // inputNumber.value = 0
+                inputNumber.max = 0
+                $(':button[type="submit"]').prop('disabled', true)
+            }
+        })
+    } else {
+        document.getElementById('validationQty').value = 0
+        $(':button[type="submit"]').prop('disabled', true)
+        document.getElementById('validationQty').max = 0
+    }
+
 }
 
-function changeValue(e){
+function changeValue(e) {
     if (e.value) {
         document.getElementById("validationECreated_at").readOnly = false;
-    } else{
+    } else {
         document.getElementById("validationECreated_at").readOnly = true;
     }
 }

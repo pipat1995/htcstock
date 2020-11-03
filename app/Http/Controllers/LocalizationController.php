@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class LocalizationController extends Controller
 {
@@ -18,8 +20,10 @@ class LocalizationController extends Controller
         if (!in_array($locale, ['en', 'th'])) {
             abort(400);
         }
-        App::setLocale($locale);
-        session()->put('locale', $locale);
+        $user = User::find(Auth::id());
+        $user->locale = $locale;
+        $user->save();
+        App::setLocale($user->locale);
         return redirect()->back();
     }
 

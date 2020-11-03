@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\IT;
 
 use App\Enum\TransactionTypeEnum;
-use App\Helpers\Helper;
+use Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\BudgetFormSearch;
 use App\Http\Requests\IT\BudgetFormRequest;
@@ -75,7 +75,7 @@ class BudgetController extends Controller
         try {
 
             $budget = $this->budgetService->find($id);
-            $datas = $this->transactionsService->transactionType(TransactionTypeEnum::B)->whereMonth('created_at', $budget->month)->whereYear('created_at', $budget->year)->get();
+            $datas = $this->transactionsService->transactionType(TransactionTypeEnum::B)->whereMonth('ir_date', $budget->month)->whereYear('ir_date', $budget->year)->get();
             
             $tempAmt = 0;
             $amountTotal = 0;

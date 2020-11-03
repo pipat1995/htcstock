@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Enum\UserEnum;
 use App\Models\IT\Permission;
+use App\Models\IT\Role;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -41,6 +42,11 @@ class AuthServiceProvider extends ServiceProvider
         });
         
         try {
+            Role::get()->map(function ($role) {
+                Gate::define($role->slug, function ($user) use ($role) {
+                    return $user->hasRole($role);
+                });
+            });
             Permission::get()->map(function ($permission) {
                 Gate::define($permission->slug, function ($user) use ($permission) {
                     return $user->hasPermissionTo($permission);

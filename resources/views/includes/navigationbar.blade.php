@@ -69,9 +69,9 @@
 
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item {{Session::get('locale') === 'en' ? 'active' : ''}}"
+                        <a class="dropdown-item {{Auth::user()->locale === 'en' ? 'active' : ''}}"
                             href="{{route('switch.language','en')}}">{{ __('navigation.english') }}</a>
-                        <a class="dropdown-item {{Session::get('locale') === 'th' ? 'active' : ''}}"
+                        <a class="dropdown-item {{Auth::user()->locale === 'th' ? 'active' : ''}}"
                             href="{{route('switch.language','th')}}">{{ __('navigation.thailand') }}
                         </a>
                     </div>
