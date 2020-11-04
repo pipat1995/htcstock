@@ -1,6 +1,7 @@
 function validationForm(forms) {
     Array.prototype.filter.call(forms, function (form) {
         form.addEventListener('submit', function (event) {
+            console.log(form.checkValidity());
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();

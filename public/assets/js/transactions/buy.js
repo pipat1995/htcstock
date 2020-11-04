@@ -11,9 +11,6 @@
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         validationForm(forms)
-
-
-        
     }, false);
 })();
 
@@ -36,15 +33,11 @@ function checkQtyAccess(e) {
             } else {
                 inputNumber.offsetParent.children[0].innerHTML = `จำนวน มีอยู่ <span class="badge badge-secondary">${0}</span>`
                 // inputNumber.value = 0
-                inputNumber.max = 0
+                // inputNumber.max = 0
                 $(':button[type="submit"]').prop('disabled', true)
             }
         })
-    } else {
-        document.getElementById('validationQty').value = 0
-        $(':button[type="submit"]').prop('disabled', true)
-        document.getElementById('validationQty').max = 0
-    }
+    } 
 
 }
 
