@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('clear-all', function () {
+Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
     // echo Artisan::output();
     return Artisan::output();
-});
+})->name('optimize-clear');
 
 Route::get('language/{locale}', [App\Http\Controllers\LocalizationController::class, 'language'])->name('switch.language');
 
@@ -79,5 +79,11 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
         Route::resource('marketingagreement', 'MarketingAgreementController', ['only' => ['index', 'create', 'edit','show', 'update']]);
 
         Route::resource('comerciallists', 'ComercialListsController', ['only' => ['store', 'edit', 'destroy']]);
+    });
+
+    Route::namespace('AdminManagement')->prefix('adminmanagement')->name('adminmanagement.')->group(function () {
+        Route::resource('approval','ApprovalController',['only' => ['index', 'create', 'edit', 'show', 'update','store','destroy']]);
+        Route::put('approval/{id}/level/up','ApprovalController@levelUp')->name('approval.levelup');
+        Route::put('approval/{id}/level/down','ApprovalController@levelDown')->name('approval.leveldown');
     });
 });

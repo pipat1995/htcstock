@@ -40,76 +40,57 @@
                         Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="{{route('legal.contract-request.index')}}" class="{{Helper::isActive('legal/contract-request*')}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Contract Request Form
-                    </a>
-                </li>
-                {{-- <li>
-                    <a href="{{route('admin.roles.index')}}" class="{{Helper::isActive('admin/roles*')}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Role
-                    </a>
-                </li> --}}
-                {{-- <li>
-                    <a href="{{route('admin.permissions.index')}}" class="{{Helper::isActive('admin/permissions*')}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Permissions
-                    </a>
-                </li> --}}
-                {{-- <li class="app-sidebar__heading">การทำงาน</li>
-                <li class="{{Helper::isActive('it/accessories/*')}}">
-                <a href="#" class="{{Helper::isActive('it/accessories/*')}}">
-                    <i class="metismenu-icon pe-7s-diamond"></i>
-                    อุปกรณ์
-                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/accessories/buy/list')}}">
-                            <i class="metismenu-icon"></i>
-                            ซื้อ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('it.requisition.index')}}"
-                            class="{{Helper::isActive('it/accessories/requisition/list')}}">
-                            <i class="metismenu-icon"></i>
-                            เบิก
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('it.lendings.index')}}"
-                            class="{{Helper::isActive('it/accessories/lendings/list')}}">
-                            <i class="metismenu-icon"></i>
-                            ยืม-คืน
-                        </a>
-                    </li>
-                </ul>
-                </li>
-                <li class="{{Helper::isActive('it/check/*')}}">
-                    <a href="#" class="{{Helper::isActive('it/check/*')}}">
-                        <i class="metismenu-icon pe-7s-car"></i>
-                        ตรวจสอบ
+                <li class="app-sidebar__heading">Contract</li>
+                <li class="{{Helper::isActive('legal/contract-request*')}}">
+                    <a href="#" class="{{Helper::isActive('legal/contract-request*')}}">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Contract-Request
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('it.check.transactions_list')}}"
-                                class="{{Helper::isActive('it/check/transactions')}}">
-                                <i class="metismenu-icon">
-                                </i>ประวัติการทำงาน
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('it.check.stocks_list')}}" class="{{Helper::isActive('it/check/stocks') }}">
-                                <i class="metismenu-icon">
-                                </i>คลัง
+                            <a href="{{route('legal.contract-request.index')}}" class="{{Helper::isActive('legal/contract-request')}}">
+                                <i class="metismenu-icon"></i>
+                                Contract Request Form
                             </a>
                         </li>
                     </ul>
+                </li>
+                {{-- <li>
+                    <a href="{{route('legal.contract-request.index')}}"
+                        class="{{Helper::isActive('legal/contract-request*')}}">
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Contract Request Form
+                    </a>
                 </li> --}}
+                {{-- <li>
+                    <a href="{{route('admin.roles.index')}}" class="{{Helper::isActive('admin/roles*')}}">
+                <i class="metismenu-icon pe-7s-rocket"></i>
+                Role
+                </a>
+                </li> --}}
+                {{-- <li>
+                    <a href="{{route('admin.permissions.index')}}" class="{{Helper::isActive('admin/permissions*')}}">
+                <i class="metismenu-icon pe-7s-rocket"></i>
+                Permissions
+                </a>
+                </li> --}}
+                <li class="app-sidebar__heading">AdminManagement</li>
+                <li class="{{Helper::isActive('legal/adminmanagement/*')}}">
+                    <a href="#" class="{{Helper::isActive('legal/adminmanagement/*')}}">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Approvals
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('legal.adminmanagement.approval.index')}}" class="{{Helper::isActive('legal/adminmanagement/approval')}}">
+                                <i class="metismenu-icon"></i>
+                                ApprovalManagement
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

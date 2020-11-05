@@ -101,6 +101,8 @@
                                         class="dropdown-item">การจัดการงบประมาณ</a>
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">อัปเดตข้อมูลผู้ใช้</a>
+                                    <a href="{{ route('optimize-clear') }}" tabindex="0"
+                                        class="dropdown-item">optimize-clear</a>
                                     @endcan
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>

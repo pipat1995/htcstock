@@ -13,7 +13,7 @@ class LegalContract extends Model
      * @var array
      */
     protected $fillable = [
-        'action_id', 'agreement_id', 'company_name', 'company_cer', 'representative', 'representative_cer', 'address',
+        'status', 'action_id', 'agreement_id', 'company_name', 'company_cer', 'representative', 'representative_cer', 'address',
         'contract_dest_id', 'requestor_by', 'checked_by', 'created_by'
     ];
     protected static function boot()

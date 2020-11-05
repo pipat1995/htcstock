@@ -4,18 +4,21 @@ namespace App\Providers;
 
 use App\Services\IT\Interfaces\AccessoriesServiceInterface;
 use App\Services\IT\Interfaces\BudgetServiceInterface;
+use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\PermissionsServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use App\Services\IT\Service\AccessoriesService;
 use App\Services\IT\Service\BudgetService;
+use App\Services\IT\Service\DepartmentService;
 use App\Services\IT\Service\PermissionsService;
 use App\Services\IT\Service\RoleService;
 use App\Services\IT\Service\TransactionsService;
 use App\Services\IT\Service\UserService;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
+use App\Services\Legal\Interfaces\ApprovalServiceInterface;
 use App\Services\Legal\Interfaces\ComercialListsServiceInterface;
 use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
@@ -25,6 +28,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Legal\Service\ActionService;
 use App\Services\Legal\Service\AgreementService;
+use App\Services\Legal\Service\ApprovalService;
 use App\Services\Legal\Service\ComercialListsService;
 use App\Services\Legal\Service\ComercialTermService;
 use App\Services\Legal\Service\ContractDescService;
@@ -74,5 +78,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ComercialTermServiceInterface::class,ComercialTermService::class);
         $this->app->bind(SubtypeContractServiceInterface::class,SubtypeContractService::class);
         $this->app->bind(PaymentTermServiceInterface::class,PaymentTermService::class);
+        $this->app->bind(ApprovalServiceInterface::class,ApprovalService::class);
+        $this->app->bind(DepartmentServiceInterface::class,DepartmentService::class);
     }
 }
