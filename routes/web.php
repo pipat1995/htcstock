@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
     // echo Artisan::output();
-    return Artisan::output();
+    return redirect()->back();
 })->name('optimize-clear');
 
 Route::get('language/{locale}', [App\Http\Controllers\LocalizationController::class, 'language'])->name('switch.language');
@@ -61,12 +61,14 @@ Route::namespace('Accounts')->prefix('accounts')->name('accounts.')->middleware(
 
 
 // Legal
+Route::get('legal/approval/verify/{id}/{contract}','Auth\LoginController@authenticatedById')->name('legal.approval.verify');
 Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
+
     Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit','show', 'update']]);
     Route::post('uploadfile', 'ContractRequestController@uploadFile')->name('uploadfile');
     Route::get('contract/{id}/pdf', 'ContractRequestController@generatePDF')->name('pdf');
-    // Route::get('view/pdf','ContractRequestController@generatePDF')->name('pdf');
+    Route::post('contract-request/{id}/approval','ContractRequestController@approvalContract')->name('contract.approval');
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {
         Route::resource('workservicecontract', 'WorkServiceContractController', ['only' => ['index', 'create', 'edit', 'show', 'update']]);
         Route::resource('purchaseequipment', 'PurchaseEquipmentController', ['only' => ['index', 'create', 'edit', 'update']]);
@@ -87,3 +89,4 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
         Route::put('approval/{id}/level/down','ApprovalController@levelDown')->name('approval.leveldown');
     });
 });
+

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Legal;
 
+use App\Enum\ApprovalEnum;
+use App\Enum\ContractEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Legal\StoreContractRequest;
+use App\Mail\Legal\ContractApproval;
+use App\Models\Legal\LegalApprovalDetail;
 use App\Models\Legal\LegalContract;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
+use App\Services\Legal\Interfaces\ApprovalDetailServiceInterface;
+use App\Services\Legal\Interfaces\ApprovalServiceInterface;
 use App\Services\Legal\Interfaces\ContractDescServiceInterface;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
 use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
@@ -16,9 +22,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use PHPUnit\Framework\Constraint\IsTrue;
 
 class ContractRequestController extends Controller
 {
@@ -29,6 +40,8 @@ class ContractRequestController extends Controller
     protected $contractDescService;
     protected $paymentTypeService;
     protected $subtypeContractService;
+    protected $approvalService;
+    protected $approvalDetailService;
     public function __construct(
         ActionServiceInterface $actionServiceInterface,
         AgreementServiceInterface $agreementServiceInterface,
@@ -36,7 +49,9 @@ class ContractRequestController extends Controller
         FileService $fileService,
         ContractDescServiceInterface $contractDescServiceInterface,
         PaymentTypeServiceInterface $paymentTypeServiceInterface,
-        SubtypeContractServiceInterface $subtypeContractServiceInterface
+        SubtypeContractServiceInterface $subtypeContractServiceInterface,
+        ApprovalServiceInterface $approvalServiceInterface,
+        ApprovalDetailServiceInterface $approvalDetailServiceInterface
     ) {
         $this->actionService = $actionServiceInterface;
         $this->agreementService = $agreementServiceInterface;
@@ -45,6 +60,8 @@ class ContractRequestController extends Controller
         $this->contractDescService = $contractDescServiceInterface;
         $this->paymentTypeService = $paymentTypeServiceInterface;
         $this->subtypeContractService = $subtypeContractServiceInterface;
+        $this->approvalService = $approvalServiceInterface;
+        $this->approvalDetailService = $approvalDetailServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -128,37 +145,89 @@ class ContractRequestController extends Controller
                 $contractDest->value_of_contract = explode(",", $contractDest->value_of_contract);
             }
             $paymentType = $this->paymentTypeService->dropdownPaymentType($legalContract->agreement_id);
+
+            $levelApproval = $this->approvalService->approvalByDepartment($legalContract->createdBy->department->id);
+            $approvalList = [];
+            foreach ($levelApproval as $key => $value) {
+                \array_push($approvalList,$value->user_id);
+            }
+            $read = array_search(\auth()->id(),$approvalList,\false);
+            if (\hash_equals($legalContract->status, ContractEnum::R)) {
+                $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 1);
+            } else if (\hash_equals($legalContract->status, ContractEnum::CK)) {
+                $last = $this->approvalDetailService->approvalByLevel($legalContract, 2);
+                if ($last->status) {
+                    $approvalDetail = $last;
+                }else{
+                    $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 1);
+                }
+                
+            } else if (\hash_equals($legalContract->status, ContractEnum::P)) {
+                $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 2);
+            } else {
+                $approvalDetail = null;
+            }
         } catch (\Throwable $th) {
             throw $th;
         }
         switch ($legalContract->agreement_id) {
             case $agreements[0]->id:
-                return \view('legal.ContractRequestForm.WorkServiceContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.WorkServiceContract.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('read'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[1]->id:
-                return \view('legal.ContractRequestForm.PurchaseEquipment.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.PurchaseEquipment.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[2]->id:
-                return \view('legal.ContractRequestForm.PurchaseEquipmentInstall.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.PurchaseEquipmentInstall.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[3]->id:
-                return \view('legal.ContractRequestForm.Mould.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.Mould.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[4]->id:
-                return \view('legal.ContractRequestForm.Scrap.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.Scrap.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[5]->id:
                 $subtypeContract = $this->subtypeContractService->dropdownSubtypeContract($legalContract->agreement_id);
-                return \view('legal.ContractRequestForm.VendorServiceContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest, 'subtypeContract' => $subtypeContract]);
+                return \view('legal.ContractRequestForm.VendorServiceContract.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('subtypeContract'));
                 break;
             case $agreements[6]->id:
-                return \view('legal.ContractRequestForm.LeaseContract.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.LeaseContract.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[7]->id:
-                return \view('legal.ContractRequestForm.ProjectBasedAgreement.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.ProjectBasedAgreement.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             case $agreements[8]->id:
-                return \view('legal.ContractRequestForm.MarketingAgreement.view')->with(['legalContract' => $legalContract, 'paymentType' => $paymentType, 'contractDest' => $contractDest]);
+                return \view('legal.ContractRequestForm.MarketingAgreement.view')
+                    ->with(\compact('legalContract'))
+                    ->with(\compact('contractDest'))
+                    ->with(\compact('paymentType'));
                 break;
             default:
                 \abort(404);
@@ -223,6 +292,109 @@ class ContractRequestController extends Controller
     {
         //
     }
+
+    /**
+     * Approval contract the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approvalContract(Request $request, $id)
+    {
+        // Permission
+        $attributes = $request->except(['_token', '_method']);
+        DB::beginTransaction();
+        try {
+            $contractRequest = $this->contractRequestService->find($id);
+            $levelApproval = $this->approvalService->approvalByDepartment($contractRequest->createdBy->department->id);
+            
+            // \dd($levelApproval,$approvalDetail);
+            // if ($approvalDetail->count() < 1) {
+            //     Session::flash('error',  'There is no approval list.');
+            //     return \redirect()->back();
+            // }else{
+                if (\hash_equals($contractRequest->status, ContractEnum::R)) {
+                    $userApproval = $this->processRequest($attributes, $contractRequest, $levelApproval);
+                } else if (\hash_equals($contractRequest->status, ContractEnum::CK)) {
+                    $request->validate([
+                        'status' => Rule::in(ApprovalEnum::$types),
+                        'comment' => 'required',
+                    ]);
+                    $userApproval = $this->processChecking($attributes, $contractRequest);
+                } else if (\hash_equals($contractRequest->status, ContractEnum::P)) {
+                    $request->validate([
+                        'status' => Rule::in(ApprovalEnum::$types),
+                        'comment' => 'required',
+                    ]);
+                    $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contractRequest);
+                    $userApproval = $this->processProviding($attributes, $contractRequest, $approvalDetail->first());
+                }
+                // \dd($contractRequest);
+                Mail::to($userApproval->email)->send(new ContractApproval($contractRequest, $userApproval));
+                $contractRequest->save();
+            // }
+            
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        Session::flash('success',  'Send email approval');
+        return \redirect()->back();
+    }
+
+    private  function processRequest(array $attributes, LegalContract $contract, Collection $levelApproval)
+    {
+        if (!isset($attributes['status'])) {
+            foreach ($levelApproval as $value) {
+                $this->approvalDetailService->create(['user_id' => $value->user_id, 'contract_id' => $contract->id, 'levels' => $value->levels]);
+            }
+        }
+        $contract->status = ContractEnum::CK;
+        return $levelApproval->where("levels", 1)->first()->user;
+    }
+
+    private function processChecking(array $attributes, LegalContract $contract)
+    {
+        $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contract);
+        if (\hash_equals($attributes['status'], ApprovalEnum::R)) {
+            $approvalDetail->status = ApprovalEnum::R;
+            $approvalDetail->comment = $attributes['comment'];
+            $contract->status = ContractEnum::R;
+            $userApproval = $contract->createdBy;
+
+            // ส่งแจ้ง Eddy แจ้งเฉยๆไม่ต้องกดเข้ามาดู
+        }
+        if (\hash_equals($attributes['status'], ApprovalEnum::A)) {
+            $approvalDetail->status = ApprovalEnum::A;
+            $approvalDetail->comment = $attributes['comment'];
+            $contract->status = ContractEnum::P;
+            $userApproval =  $this->approvalDetailService->approvalByLevel($contract, 2)->user;
+        }
+        $approvalDetail->save();
+        return $userApproval;
+    }
+
+    private function processProviding(array $attributes, LegalContract $contract)
+    {
+        $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contract);
+        if (\hash_equals($attributes['status'], ApprovalEnum::R)) {
+            $approvalDetail->status = ApprovalEnum::R;
+            $approvalDetail->comment = $attributes['comment'];
+            $contract->status = ContractEnum::CK;
+            $userApproval = $this->approvalDetailService->approvalByLevel($contract, 1)->user;
+        }
+        if (\hash_equals($attributes['status'], ApprovalEnum::A)) {
+            $approvalDetail->status = ApprovalEnum::A;
+            $approvalDetail->comment = $attributes['comment'];
+            $contract->status = ContractEnum::CP;
+            $userApproval = $contract->createdBy;
+        }
+        $approvalDetail->save();
+        return $userApproval;
+    }
+
 
     public function redirectContractByAgreement(LegalContract $contractRequest)
     {
@@ -383,7 +555,6 @@ class ContractRequestController extends Controller
         );
         return \response()->json(['path' => $path]);
     }
-
 
     /**
      * Create pdf stream.

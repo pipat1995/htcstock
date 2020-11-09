@@ -13,7 +13,7 @@ class LegalContract extends Model
      * @var array
      */
     protected $fillable = [
-        'status', 'action_id', 'agreement_id', 'company_name', 'company_cer', 'representative', 'representative_cer', 'address',
+        'status','comment', 'action_id', 'agreement_id', 'company_name', 'company_cer', 'representative', 'representative_cer', 'address',
         'contract_dest_id', 'requestor_by', 'checked_by', 'created_by'
     ];
     protected static function boot()
@@ -54,5 +54,10 @@ class LegalContract extends Model
     public function createdBy()
     {
         return $this->belongsTo(\App\User::class, 'created_by');
+    }
+
+    public function approvalDetail()
+    {
+        return $this->hasOne(LegalApprovalDetail::class,);
     }
 }

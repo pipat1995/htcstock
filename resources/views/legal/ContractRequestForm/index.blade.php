@@ -3,6 +3,8 @@
 @include('includes.legal_sidebar');
 @stop
 @section('content')
+<!-- Back to top button -->
+<a id="btnontop"></a>
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -66,6 +68,7 @@
                             <th>Full name (Company’s, Person’s) </th>
                             <th>Legal Representative </th>
                             <th>Legal Agreement </th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -76,6 +79,7 @@
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
                             <td>{{$item->legalAgreement->name}}</td>
+                            <td><span class="badge badge-primary">{{$item->status}}</span></td>
                             <td><a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
                                     title="view contract" data-placement="bottom"
                                     class="btn btn-success btn-sm float-left ml-1"><i class="fa fa-eye"

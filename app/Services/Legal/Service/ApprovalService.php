@@ -14,7 +14,7 @@ class ApprovalService extends BaseService implements ApprovalServiceInterface
     /**
      * UserService constructor.
      *
-     * @param LeaglApproval $model
+     * @param LegalApproval $model
      */
     public function __construct(LegalApproval $model)
     {

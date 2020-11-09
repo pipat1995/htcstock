@@ -69,4 +69,10 @@ class LoginController extends Controller
             return \redirect()->route('welcome');
         }
     }
+
+    public function authenticatedById($id,$contract)
+    {
+        Auth::loginUsingId($id);
+        return \redirect()->route('legal.contract-request.show',$contract);
+    }
 }

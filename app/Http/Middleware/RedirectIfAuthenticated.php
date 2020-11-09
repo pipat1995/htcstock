@@ -19,6 +19,12 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            if ($request->route()->getName() === 'legal.approval.verify') {
+                Auth::guard()->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return \redirect()->route('legal.approval.verify', $request->route()->parameters);
+            }
             return redirect(RouteServiceProvider::HOME);
         }
 

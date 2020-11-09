@@ -6,6 +6,8 @@
 @include('includes.legal_sidebar');
 @stop
 @section('content')
+<!-- Back to top button -->
+<a id="btnontop"></a>
 
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -14,18 +16,16 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Hire of Work/Service Contract
+            <div>Hire of Work/Service Contract <span class="badge badge-primary">{{$legalContract->status}}</span>
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
-            <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-dark">
-                <i class="fa fa-star"></i>
-            </button>
+
             <div class="d-inline-block">
+
             </div>
         </div>
     </div>
@@ -343,11 +343,44 @@
                     </div>
                 </div>
                 <hr>
-                <a class="btn btn-dark float-rigth" style="color: white !important; margin-top: 5px" type="button"
-                    href="{{url()->previous()}}">Back</a>
-                <button class="btn btn-success float-right" type="submit" style="margin-top: 5px"
-                    disabled>Confirm</button>
             </form>
+            <form id="approval-contract-form" action="{{route('legal.contract.approval',$legalContract->id)}}"
+                method="POST">
+                @csrf
+                {{-- {{dd($isApprove)}} --}}
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationWarranty"><strong>Status</strong></label>
+                        <select name="status" id="status" class="form-control" style="cursor: pointer"
+                            {{$read === false ?'readonly disabled':''}}>
+                            @if (isset($approvalDetail))
+                            <option value="">Choouse...</option>
+                            <option value="reject" {{$approvalDetail->status === 'reject' ? 'selected' : ''}}>Reject
+                            </option>
+                            <option value="approval" {{$approvalDetail->status === 'approval' ? 'selected' : ''}}>
+                                Approval</option>
+                            @else
+                            <option value="">Choouse...</option>
+                            <option value="reject">Reject</option>
+                            <option value="approval">Approval</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-12">
+                        <label for="validationWarranty"><strong>Comment</strong></label>
+                        <textarea class="form-control" name="comment" rows="5"
+                            {{$read === false ? 'readonly':''}}>{{isset($approvalDetail->comment)?$approvalDetail->comment:""}}</textarea>
+                    </div>
+                </div>
+            </form>
+            <hr>
+
+
+            <a class="btn-shadow mr-3 btn btn-dark" type="button" href="{{url()->previous()}}">Back</a>
+            <button class="mr-3 btn btn-success" type="submit" onclick="event.preventDefault();
+            document.getElementById('approval-contract-form').submit();">Submit</button>
         </div>
     </div>
 </div>

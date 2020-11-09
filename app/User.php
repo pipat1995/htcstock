@@ -5,6 +5,7 @@ namespace App;
 use App\Models\IT\Department;
 use App\Models\IT\Transactions;
 use App\Models\Legal\LegalApproval;
+use App\Models\Legal\LegalApprovalDetail;
 use App\Models\Legal\LegalContract;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -76,5 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function legalApprove()
     {
         return $this->hasMany(LegalApproval::class);
+    }
+
+    public function approvalDetail()
+    {
+        return $this->hasMany(LegalApprovalDetail::class);
     }
 }

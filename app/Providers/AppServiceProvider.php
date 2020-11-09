@@ -18,6 +18,7 @@ use App\Services\IT\Service\TransactionsService;
 use App\Services\IT\Service\UserService;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
+use App\Services\Legal\Interfaces\ApprovalDetailServiceInterface;
 use App\Services\Legal\Interfaces\ApprovalServiceInterface;
 use App\Services\Legal\Interfaces\ComercialListsServiceInterface;
 use App\Services\Legal\Interfaces\ComercialTermServiceInterface;
@@ -28,6 +29,7 @@ use App\Services\Legal\Interfaces\PaymentTypeServiceInterface;
 use App\Services\Legal\Interfaces\SubtypeContractServiceInterface;
 use App\Services\Legal\Service\ActionService;
 use App\Services\Legal\Service\AgreementService;
+use App\Services\Legal\Service\ApprovalDetailService;
 use App\Services\Legal\Service\ApprovalService;
 use App\Services\Legal\Service\ComercialListsService;
 use App\Services\Legal\Service\ComercialTermService;
@@ -80,5 +82,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PaymentTermServiceInterface::class,PaymentTermService::class);
         $this->app->bind(ApprovalServiceInterface::class,ApprovalService::class);
         $this->app->bind(DepartmentServiceInterface::class,DepartmentService::class);
+        $this->app->bind(ApprovalDetailServiceInterface::class,ApprovalDetailService::class);
     }
 }
