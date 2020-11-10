@@ -9,8 +9,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                </i>
+                <i class="fa fa-gavel icon-gradient bg-happy-fisher"> </i>
             </div>
             <div>Legal Contract
                 <div class="page-title-subheading">This is an example dashboard created using
@@ -19,10 +18,6 @@
             </div>
         </div>
         <div class="page-title-actions">
-            {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-dark">
-                <i class="fa fa-star"></i>
-            </button> --}}
             <div class="d-inline-block">
                 <a href="{{route('legal.contract-request.create')}}" class="btn-shadow btn btn-info"
                     data-toggle="tooltip" title="create contract" data-placement="bottom">
@@ -79,15 +74,29 @@
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
                             <td>{{$item->legalAgreement->name}}</td>
-                            <td><span class="badge badge-primary">{{$item->status}}</span></td>
+                            @if ($item->status === 'request')
+                            <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'checking')
+                            <td><span class="badge badge-pill badge-info">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'providing')
+                            <td><span class="badge badge-pill badge-warning">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'complete')
+                            <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
+                            @endif
+
                             <td><a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
                                     title="view contract" data-placement="bottom"
                                     class="btn btn-success btn-sm float-left ml-1"><i class="fa fa-eye"
                                         aria-hidden="true"></i></a>
+                                @if ($item->status === 'request')
                                 <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
                                     title="edit contract" data-placement="bottom"
                                     class="btn btn-primary btn-sm float-left ml-1"><i class="fa fa-pencil-square-o"
                                         aria-hidden="true"></i></a>
+                                @endif
                                 <a href="{{route('legal.pdf',$item->id)}}" data-toggle="tooltip"
                                     title="view contract PDF" data-placement="bottom" target="_blank"
                                     rel="noopener noreferrer" class="btn btn-danger btn-sm float-left ml-1"><i

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Legal;
 use App\Enum\ApprovalEnum;
 use App\Enum\ContractEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Legal\StoreApprovalContract;
 use App\Http\Requests\Legal\StoreContractRequest;
 use App\Mail\Legal\ContractApproval;
-use App\Models\Legal\LegalApprovalDetail;
 use App\Models\Legal\LegalContract;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use PHPUnit\Framework\Constraint\IsTrue;
 
 class ContractRequestController extends Controller
 {
@@ -146,27 +145,13 @@ class ContractRequestController extends Controller
             }
             $paymentType = $this->paymentTypeService->dropdownPaymentType($legalContract->agreement_id);
 
-            $levelApproval = $this->approvalService->approvalByDepartment($legalContract->createdBy->department->id);
+            $levelApproval = $this->approvalService->approvalByDepartment($legalContract->createdBy->department);
             $approvalList = [];
             foreach ($levelApproval as $key => $value) {
-                \array_push($approvalList,$value->user_id);
+                \array_push($approvalList, $value->user_id);
             }
-            $read = array_search(\auth()->id(),$approvalList,\false);
-            if (\hash_equals($legalContract->status, ContractEnum::R)) {
-                $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 1);
-            } else if (\hash_equals($legalContract->status, ContractEnum::CK)) {
-                $last = $this->approvalDetailService->approvalByLevel($legalContract, 2);
-                if ($last->status) {
-                    $approvalDetail = $last;
-                }else{
-                    $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 1);
-                }
-                
-            } else if (\hash_equals($legalContract->status, ContractEnum::P)) {
-                $approvalDetail = $this->approvalDetailService->approvalByLevel($legalContract, 2);
-            } else {
-                $approvalDetail = null;
-            }
+            $permission = array_search(\auth()->id(), $approvalList, \false) === false ? 'Read' : 'Write';
+            $approvalDetail = $this->approvalDetailService->byContract($legalContract);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -176,32 +161,40 @@ class ContractRequestController extends Controller
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
                     ->with(\compact('paymentType'))
-                    ->with(\compact('read'))
+                    ->with(\compact('permission'))
                     ->with(\compact('approvalDetail'));
                 break;
             case $agreements[1]->id:
                 return \view('legal.ContractRequestForm.PurchaseEquipment.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[2]->id:
                 return \view('legal.ContractRequestForm.PurchaseEquipmentInstall.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[3]->id:
                 return \view('legal.ContractRequestForm.Mould.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[4]->id:
                 return \view('legal.ContractRequestForm.Scrap.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[5]->id:
                 $subtypeContract = $this->subtypeContractService->dropdownSubtypeContract($legalContract->agreement_id);
@@ -209,25 +202,33 @@ class ContractRequestController extends Controller
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
                     ->with(\compact('paymentType'))
-                    ->with(\compact('subtypeContract'));
+                    ->with(\compact('subtypeContract'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[6]->id:
                 return \view('legal.ContractRequestForm.LeaseContract.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[7]->id:
                 return \view('legal.ContractRequestForm.ProjectBasedAgreement.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             case $agreements[8]->id:
                 return \view('legal.ContractRequestForm.MarketingAgreement.view')
                     ->with(\compact('legalContract'))
                     ->with(\compact('contractDest'))
-                    ->with(\compact('paymentType'));
+                    ->with(\compact('paymentType'))
+                    ->with(\compact('permission'))
+                    ->with(\compact('approvalDetail'));
                 break;
             default:
                 \abort(404);
@@ -300,41 +301,31 @@ class ContractRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function approvalContract(Request $request, $id)
+    public function approvalContract(StoreApprovalContract $request, $id)
     {
         // Permission
         $attributes = $request->except(['_token', '_method']);
         DB::beginTransaction();
         try {
             $contractRequest = $this->contractRequestService->find($id);
-            $levelApproval = $this->approvalService->approvalByDepartment($contractRequest->createdBy->department->id);
-            
-            // \dd($levelApproval,$approvalDetail);
-            // if ($approvalDetail->count() < 1) {
-            //     Session::flash('error',  'There is no approval list.');
-            //     return \redirect()->back();
-            // }else{
-                if (\hash_equals($contractRequest->status, ContractEnum::R)) {
-                    $userApproval = $this->processRequest($attributes, $contractRequest, $levelApproval);
-                } else if (\hash_equals($contractRequest->status, ContractEnum::CK)) {
-                    $request->validate([
-                        'status' => Rule::in(ApprovalEnum::$types),
-                        'comment' => 'required',
-                    ]);
-                    $userApproval = $this->processChecking($attributes, $contractRequest);
-                } else if (\hash_equals($contractRequest->status, ContractEnum::P)) {
-                    $request->validate([
-                        'status' => Rule::in(ApprovalEnum::$types),
-                        'comment' => 'required',
-                    ]);
-                    $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contractRequest);
-                    $userApproval = $this->processProviding($attributes, $contractRequest, $approvalDetail->first());
-                }
-                // \dd($contractRequest);
-                Mail::to($userApproval->email)->send(new ContractApproval($contractRequest, $userApproval));
-                $contractRequest->save();
-            // }
-            
+            $levelApproval = $this->approvalService->approvalByDepartment($contractRequest->createdBy->department);
+
+            if (\hash_equals($contractRequest->status, ContractEnum::R)) {
+                $userApproval = $this->processRequest($contractRequest, $levelApproval);
+            } else if (\hash_equals($contractRequest->status, ContractEnum::CK)) {
+                $request->validate([
+                    'status' => Rule::in(ApprovalEnum::$types),
+                    'comment' => 'required',
+                ]);
+                $userApproval = $this->processChecking($attributes, $contractRequest, $levelApproval);
+            } else if (\hash_equals($contractRequest->status, ContractEnum::P)) {
+                $request->validate([
+                    'status' => Rule::in(ApprovalEnum::$types),
+                    'comment' => 'required',
+                ]);
+                $userApproval = $this->processProviding($attributes, $contractRequest, $levelApproval);
+            }
+            Mail::to($userApproval->email)->send(new ContractApproval($contractRequest, $userApproval));
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
@@ -344,20 +335,18 @@ class ContractRequestController extends Controller
         return \redirect()->back();
     }
 
-    private  function processRequest(array $attributes, LegalContract $contract, Collection $levelApproval)
+    private  function processRequest(LegalContract $contract, Collection $levelApproval)
     {
-        if (!isset($attributes['status'])) {
-            foreach ($levelApproval as $value) {
-                $this->approvalDetailService->create(['user_id' => $value->user_id, 'contract_id' => $contract->id, 'levels' => $value->levels]);
-            }
-        }
+        $approvalDetail = $this->approvalDetailService->create(['user_id' => \auth()->id(), 'contract_id' => $contract->id, 'levels' => 0]);
         $contract->status = ContractEnum::CK;
-        return $levelApproval->where("levels", 1)->first()->user;
+        $approvalDetail->save();
+        $contract->save();
+        return $levelApproval->where('levels', 1)->first()->user;
     }
 
-    private function processChecking(array $attributes, LegalContract $contract)
+    private function processChecking(array $attributes, LegalContract $contract, Collection $levelApproval)
     {
-        $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contract);
+        $approvalDetail = $this->approvalDetailService->create(['user_id' => \auth()->id(), 'contract_id' => $contract->id, 'levels' => 1]);
         if (\hash_equals($attributes['status'], ApprovalEnum::R)) {
             $approvalDetail->status = ApprovalEnum::R;
             $approvalDetail->comment = $attributes['comment'];
@@ -370,20 +359,21 @@ class ContractRequestController extends Controller
             $approvalDetail->status = ApprovalEnum::A;
             $approvalDetail->comment = $attributes['comment'];
             $contract->status = ContractEnum::P;
-            $userApproval =  $this->approvalDetailService->approvalByLevel($contract, 2)->user;
+            $userApproval =  $levelApproval->where('levels', 2)->first()->user;
         }
         $approvalDetail->save();
+        $contract->save();
         return $userApproval;
     }
 
-    private function processProviding(array $attributes, LegalContract $contract)
+    private function processProviding(array $attributes, LegalContract $contract,Collection $levelApproval)
     {
-        $approvalDetail = $this->approvalDetailService->userActive(\auth()->user(), $contract);
+        $approvalDetail = $this->approvalDetailService->create(['user_id' => \auth()->id(), 'contract_id' => $contract->id, 'levels' => 2]);
         if (\hash_equals($attributes['status'], ApprovalEnum::R)) {
             $approvalDetail->status = ApprovalEnum::R;
             $approvalDetail->comment = $attributes['comment'];
             $contract->status = ContractEnum::CK;
-            $userApproval = $this->approvalDetailService->approvalByLevel($contract, 1)->user;
+            $userApproval = $levelApproval->where('levels', 1)->first()->user;
         }
         if (\hash_equals($attributes['status'], ApprovalEnum::A)) {
             $approvalDetail->status = ApprovalEnum::A;
@@ -392,6 +382,7 @@ class ContractRequestController extends Controller
             $userApproval = $contract->createdBy;
         }
         $approvalDetail->save();
+        $contract->save();
         return $userApproval;
     }
 

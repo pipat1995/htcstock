@@ -57,5 +57,8 @@ class AuthServiceProvider extends ServiceProvider
             report($th);
             return false;
         }
+
+        // Legal permission
+        
     }
 }

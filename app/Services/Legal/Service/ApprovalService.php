@@ -2,6 +2,7 @@
 
 namespace App\Services\Legal\Service;
 
+use App\Models\IT\Department;
 use App\Models\Legal\LegalApproval;
 use App\Services\BaseService;
 use App\Services\Legal\Interfaces\ApprovalServiceInterface;
@@ -30,10 +31,10 @@ class ApprovalService extends BaseService implements ApprovalServiceInterface
         }
     }
 
-    public function approvalByDepartment(int $id): Collection
+    public function approvalByDepartment(Department $department): Collection
     {
         try {
-            return LegalApproval::where('department_id', $id)->orderBy('levels', 'asc')->get();
+            return LegalApproval::where('department_id', $department->id)->orderBy('levels', 'asc')->get();
         } catch (\Throwable $th) {
             throw $th;
         }

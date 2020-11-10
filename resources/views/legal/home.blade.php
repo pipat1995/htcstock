@@ -7,8 +7,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                </i>
+                <i class="pe-7s-monitor icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>Analytics Dashboard
                 <div class="page-title-subheading">This is an example dashboard created using
@@ -66,62 +65,6 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-midnight-bloom">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">รายการยืม/คืน</div>
-                    <div class="widget-subheading">Last year expenses</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>#</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;" id="{{route('it.lendings.index')}}"
-                onclick="redirext(this)">
-                <div class="widget-content-left">
-                    <div class="widget-heading">รายการยังไม่คืน</div>
-                    <div class="widget-subheading">The item is not returned yet.</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white" style="cursor: pointer;"
-                id="{{route('it.requisition.index')}}" onclick="redirext(this)">
-                <div class="widget-content-left">
-                    <div class="widget-heading">รายการเบิก</div>
-                    <div class="widget-subheading">Withdrawal list</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-premium-dark">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Products Sold</div>
-                    <div class="widget-subheading">Revenue streams</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-warning"><span>$14M</span></div>
                 </div>
             </div>
         </div>
@@ -229,8 +172,8 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/4.jpg')}}"
-                                                    alt="">
+                                                <img width="40" class="rounded-circle"
+                                                    src="{{asset('assets/images/avatars/4.jpg')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="widget-content-left flex2">
@@ -257,8 +200,8 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/3.jpg')}}"
-                                                    alt="">
+                                                <img width="40" class="rounded-circle"
+                                                    src="{{asset('assets/images/avatars/3.jpg')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="widget-content-left flex2">
@@ -285,8 +228,8 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/2.jpg')}}"
-                                                    alt="">
+                                                <img width="40" class="rounded-circle"
+                                                    src="{{asset('assets/images/avatars/2.jpg')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="widget-content-left flex2">
@@ -313,8 +256,8 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="{{asset('assets/images/avatars/1.jpg')}}"
-                                                    alt=""></div>
+                                                <img width="40" class="rounded-circle"
+                                                    src="{{asset('assets/images/avatars/1.jpg')}}" alt=""></div>
                                         </div>
                                         <div class="widget-content-left flex2">
                                             <div class="widget-heading">Vinnie Wagstaff</div>
@@ -434,10 +377,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function redirext(e) {
-        window.location.href = e.id
-    }
-</script>
 @endsection

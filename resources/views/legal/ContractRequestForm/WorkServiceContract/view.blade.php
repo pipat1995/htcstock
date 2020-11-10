@@ -8,7 +8,6 @@
 @section('content')
 <!-- Back to top button -->
 <a id="btnontop"></a>
-
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -344,36 +343,62 @@
                 </div>
                 <hr>
             </form>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">step approval</h5>
+            <button class="accordion">Approval Info</button>
+            <div class="panel">
+                <div class="table-responsive">
+                    <table class="mb-0 table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Status</th>
+                                <th>Comment</th>
+                                <th>Create Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @isset($approvalDetail)
+                            @foreach ($approvalDetail as $key => $item)
+                            <tr>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$item->user->name}}</td>
+                                <td>{{$item->status}}</td>
+                                <td>{{$item->comment}}</td>
+                                <td>{{$item->created_at}}</td>
+                            </tr>
+                            @endforeach
+                            @endisset
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <form id="approval-contract-form" action="{{route('legal.contract.approval',$legalContract->id)}}"
                 method="POST">
                 @csrf
-                {{-- {{dd($isApprove)}} --}}
+                @if ($permission === 'Write')
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationWarranty"><strong>Status</strong></label>
-                        <select name="status" id="status" class="form-control" style="cursor: pointer"
-                            {{$read === false ?'readonly disabled':''}}>
-                            @if (isset($approvalDetail))
-                            <option value="">Choouse...</option>
-                            <option value="reject" {{$approvalDetail->status === 'reject' ? 'selected' : ''}}>Reject
-                            </option>
-                            <option value="approval" {{$approvalDetail->status === 'approval' ? 'selected' : ''}}>
-                                Approval</option>
-                            @else
+                        <label for="validationStatus"><strong>Status</strong></label>
+                        <select name="status" id="status" class="form-control" style="cursor: pointer">
                             <option value="">Choouse...</option>
                             <option value="reject">Reject</option>
                             <option value="approval">Approval</option>
-                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
-                        <label for="validationWarranty"><strong>Comment</strong></label>
-                        <textarea class="form-control" name="comment" rows="5"
-                            {{$read === false ? 'readonly':''}}>{{isset($approvalDetail->comment)?$approvalDetail->comment:""}}</textarea>
+                        <label for="validationComment"><strong>Comment</strong></label>
+                        <textarea class="form-control" name="comment" rows="5"></textarea>
                     </div>
                 </div>
+                @endif
             </form>
             <hr>
 

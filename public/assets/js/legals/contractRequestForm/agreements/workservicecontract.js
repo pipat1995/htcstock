@@ -33,11 +33,10 @@
     window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         // document.getElementById('validationDate').value = new Date().toDateInputValue();
-        var forms = document.getElementsByClassName('needs-validation');
+        let forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         validationForm(forms)
     }, false);
-
 })();
 
 var changeType = (e) => {

@@ -69,4 +69,13 @@ class ApprovalDetailService extends BaseService implements ApprovalDetailService
             throw $th;
         }
     }
+
+    public function contractLastTime(LegalContract $contract)
+    {
+        try {
+            return LegalApprovalDetail::where('contract_id', $contract->id)->orderBy('updated_at', 'desc')->first();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

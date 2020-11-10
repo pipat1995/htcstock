@@ -21,4 +21,5 @@ interface ApprovalDetailServiceInterface
 
     public function userActive(User $user,LegalContract $contract): Model;
     public function approvalByLevel(LegalContract $contract,int $levels);
+    public function contractLastTime(LegalContract $contract);
 }
