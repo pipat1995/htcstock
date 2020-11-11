@@ -7,7 +7,14 @@
         // Supporting Documents
         displayFileName(companyFile)
         displayFileName(RepresenFile)
-
+        $(".js-select-status-multiple").select2({
+            placeholder: 'Select status',
+            allowClear: true
+        });
+        $(".js-select-agreements-multiple").select2({
+            placeholder: 'Select agreements',
+            allowClear: true
+        });
     })
 
     window.addEventListener('load', function () {

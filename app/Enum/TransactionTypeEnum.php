@@ -10,4 +10,6 @@ abstract class TransactionTypeEnum extends BasicEnum
     const CL = 'CancelLend';
     const R = 'Requisition';
     const CR = 'CancelRequisition';
+
+    
 }

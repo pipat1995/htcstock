@@ -34,8 +34,23 @@
         <div class="card-body">
             <form action="{{route('legal.contract-request.index')}}" method="GET">
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <input type="text" class="form-control" id="validationSearch" name="search" value="">
+                    <div class="col-md-2 mb-2">
+                        <select class="form-control js-select-status-multiple" name="status[]" multiple>
+                            @isset($status)
+                            @foreach ($status as $item)
+                            <option value="{{$item}}" @if($selectedStatus->contains($item)) selected @endif>{{$item}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <select class="form-control js-select-agreements-multiple" name="agreement[]" multiple>
+                            @isset($agreements)
+                            @foreach ($agreements as $item)
+                            <option value="{{$item->id}}" @if($selectedAgree->contains($item->id)) selected @endif>{{$item->name}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <button class="btn-shadow btn btn-info" type="submit" data-toggle="tooltip"

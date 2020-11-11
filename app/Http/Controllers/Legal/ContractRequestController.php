@@ -67,16 +67,15 @@ class ContractRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            if (Auth::user()->department->name === 'Legal') {
-                $contracts = $this->contractRequestService->all();
-            } else {
-                $contracts = $this->contractRequestService->getByCreated();
-            }
-
-            return \view('legal.ContractRequestForm.index')->with(['contracts' => $contracts]);
+            $status = [ContractEnum::R, ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
+            $agreements = $this->agreementService->dropdownAgreement();
+            $contracts = $this->contractRequestService->filter($request);
+            $selectedStatus = collect($request->status);
+            $selectedAgree = collect($request->agreement);
+            return \view('legal.ContractRequestForm.index',\compact('contracts','status','agreements','selectedStatus','selectedAgree'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -366,7 +365,7 @@ class ContractRequestController extends Controller
         return $userApproval;
     }
 
-    private function processProviding(array $attributes, LegalContract $contract,Collection $levelApproval)
+    private function processProviding(array $attributes, LegalContract $contract, Collection $levelApproval)
     {
         $approvalDetail = $this->approvalDetailService->create(['user_id' => \auth()->id(), 'contract_id' => $contract->id, 'levels' => 2]);
         if (\hash_equals($attributes['status'], ApprovalEnum::R)) {

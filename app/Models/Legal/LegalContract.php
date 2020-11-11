@@ -2,7 +2,9 @@
 
 namespace App\Models\Legal;
 
+use App\Http\Filters\Legal\ContractFilter;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class LegalContract extends Model
@@ -58,6 +60,11 @@ class LegalContract extends Model
 
     public function approvalDetail()
     {
-        return $this->hasOne(LegalApprovalDetail::class,);
+        return $this->hasOne(LegalApprovalDetail::class);
+    }
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new ContractFilter($request))->filter($builder);
     }
 }

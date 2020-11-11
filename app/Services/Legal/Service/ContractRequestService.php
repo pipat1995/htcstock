@@ -4,6 +4,7 @@ namespace App\Services\Legal\Service;
 use App\Models\Legal\LegalContract;
 use App\Services\BaseService;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ContractRequestService extends BaseService implements ContractRequestServiceInterface
@@ -34,5 +35,10 @@ class ContractRequestService extends BaseService implements ContractRequestServi
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function filter(Request $request)
+    {
+        return LegalContract::filter($request)->paginate(10);
     }
 }
