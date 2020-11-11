@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 class LoginController extends Controller
 {
@@ -61,18 +62,27 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function authenticated(Request $request)
+    protected function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return \redirect()->route('welcome');
-        }
+        $input = $request->except(['_token']);
+        $this->validate($request, [
+            'username'    => 'required',
+            'password' => 'required',
+        ]);
+
+        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $credentials = array($fieldType => $input['username'], 'password' => $input['password']);
+        if (Auth::attempt($credentials))
+            return \redirect()->route('welcome')->with('alert-success', 'You are now logged in.');
+
+        $errors = new MessageBag(['password' => ['Email and/or password invalid.'],'username' => ['']]);
+        return \redirect()->back()->withErrors($errors)->withInput($input);
+
     }
 
-    public function authenticatedById($id,$contract)
+    public function authenticatedById($id, $contract)
     {
         Auth::loginUsingId($id);
-        return \redirect()->route('legal.contract-request.show',$contract);
+        return \redirect()->route('legal.contract-request.show', $contract);
     }
 }
