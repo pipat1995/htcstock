@@ -292,7 +292,7 @@
                 </div>
                 <a class="btn btn-primary float-rigth" style="color: white !important; margin-top: 5px" type="button"
                     href="{{route('legal.contract-request.edit',$projectBased->legalcontract->id)}}">Back</a>
-                <button class="btn btn-primary float-right" type="submit" style="margin-top: 5px">Next</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 5px">Next</button>
             </form>
         </div>
     </div>
