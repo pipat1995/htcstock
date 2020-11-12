@@ -39,6 +39,6 @@ class ContractRequestService extends BaseService implements ContractRequestServi
 
     public function filter(Request $request)
     {
-        return LegalContract::filter($request)->paginate(10);
+        return LegalContract::filter($request)->where('trash',false)->paginate(10);
     }
 }

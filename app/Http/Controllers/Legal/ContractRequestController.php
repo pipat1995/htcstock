@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -76,7 +77,7 @@ class ContractRequestController extends Controller
             $selectedStatus = collect($request->status);
             $selectedAgree = collect($request->agreement);
             $query = $request->all();
-            return \view('legal.ContractRequestForm.index',\compact('contracts','status','agreements','selectedStatus','selectedAgree','query'));
+            return \view('legal.ContractRequestForm.index', \compact('contracts', 'status', 'agreements', 'selectedStatus', 'selectedAgree', 'query'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -291,7 +292,16 @@ class ContractRequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $this->contractRequestService->update(['trash' => true], $id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        Session::flash('success',  ' has been delete');
+        DB::commit();
+        return \redirect()->back();
     }
 
     /**
@@ -539,11 +549,17 @@ class ContractRequestController extends Controller
         if ($validator->fails()) {
             return \response()->json($validator->messages(), 400);
         }
+        $date =  new Carbon();
         $segments = explode('/', \substr(url()->previous(), strlen($request->root())));
-        $path = Storage::disk('public')->put(
-            $segments[1] . '/' . $segments[2],
-            $request->file('file'),
-        );
+        try {
+            $path = Storage::disk('public')->put(
+                $segments[1] . '/' . $segments[2] . '/' . $date->isoFormat('YYYYMD'),
+                $request->file('file'),
+            );
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
         return \response()->json(['path' => $path]);
     }
 

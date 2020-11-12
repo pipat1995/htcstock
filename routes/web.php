@@ -65,7 +65,7 @@ Route::get('legal/approval/verify/{id}/{contract}', 'Auth\LoginController@authen
 Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
 
-    Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'show', 'update']]);
+    Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'show', 'update','destroy']]);
     Route::post('uploadfile', 'ContractRequestController@uploadFile')->name('uploadfile');
     Route::get('contract/{id}/pdf', 'ContractRequestController@generatePDF')->name('pdf');
     Route::post('contract-request/{id}/approval', 'ContractRequestController@approvalContract')->name('contract.approval');

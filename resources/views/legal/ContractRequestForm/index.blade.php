@@ -65,6 +65,25 @@
                 </div>
             </form>
             <script src="{{asset('assets\js\legals\contractRequestForm\create.js')}}"></script>
+            <script>
+                function destroy(id) {
+                    // console.log(document.getElementById('destroy-form'+id));
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('destroy-form'+id).submit();
+                        }
+                    })
+                }
+            </script>
         </div>
     </div>
 </div>
@@ -73,10 +92,10 @@
         <div class="card-body">
             <h5 class="card-title">Table with hover</h5>
             <div class="table-responsive">
-                <table class="mb-0 table table-hover">
+                <table class="mb-0 table table-hover table-sm table-bordered">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>#</th>
                             <th>Full name (Company’s, Person’s) </th>
                             <th>Legal Representative </th>
                             <th>Legal Agreement </th>
@@ -89,19 +108,27 @@
                             <td>
                                 <a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
                                     title="view contract" data-placement="bottom"
-                                    class="btn btn-success btn-sm float-left ml-1"><i class="fa fa-eye"
+                                    class="btn btn-success btn-sm float-center ml-1"><i class="fa fa-eye"
                                         aria-hidden="true"></i></a>
                                 @if ($item->status === 'request')
                                 <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
                                     title="edit contract" data-placement="bottom"
-                                    class="btn btn-primary btn-sm float-left ml-1"><i class="fa fa-pencil-square-o"
+                                    class="btn btn-primary btn-sm float-center ml-1"><i class="fa fa-pencil-square-o"
                                         aria-hidden="true"></i></a>
                                 @endif
                                 <a href="{{route('legal.pdf',$item->id)}}" data-toggle="tooltip"
                                     title="view contract PDF" data-placement="bottom" target="_blank"
-                                    rel="noopener noreferrer" class="btn btn-danger btn-sm float-left ml-1"><i
+                                    rel="noopener noreferrer" class="btn btn-warning btn-sm float-center ml-1"><i
                                         class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </a>
+                                <button data-toggle="tooltip" title="delete contract" data-placement="bottom"
+                                    rel="noopener noreferrer" class="btn btn-danger btn-sm float-center ml-1"
+                                    onclick="destroy({{$item->id}})"><i class="pe-7s-trash"> </i></button>
+                                <form id="destroy-form{{$item->id}}" action="{{route('legal.contract-request.destroy',$item->id)}}"
+                                    method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </td>
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
