@@ -4,19 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Menu It NavigationBar Language Lines
+    | Authentication Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used during menu it navigationbar for various
+    | The following language lines are used during authentication for various
     | messages that we need to display to the user. You are free to modify
     | these language lines according to your application's requirements.
     |
     */
 
-    'language' => 'Language',
-    'english' => 'English',
-    'thailand' => 'Thailand',
-    'logout' => 'Logout',
-    'profile' => 'Profile'
+    'failed' => 'These credentials do not match our records.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

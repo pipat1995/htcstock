@@ -72,12 +72,12 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $credentials = array($fieldType => $input['username'], 'password' => $input['password']);
-        if (Auth::attempt($credentials))
+        if (Auth::attempt($credentials)) {
             return \redirect()->route('welcome')->with('alert-success', 'You are now logged in.');
+        }
 
-        $errors = new MessageBag(['password' => ['Email and/or password invalid.'],'username' => ['']]);
+        $errors = new MessageBag(['password' => ['Email and/or password invalid.'], 'username' => ['']]);
         return \redirect()->back()->withErrors($errors)->withInput($input);
-
     }
 
     public function authenticatedById($id, $contract)

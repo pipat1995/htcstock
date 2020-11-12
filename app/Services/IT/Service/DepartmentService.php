@@ -6,6 +6,7 @@ use App\Models\IT\Department;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class DepartmentService extends BaseService implements DepartmentServiceInterface
 {
@@ -23,6 +24,15 @@ class DepartmentService extends BaseService implements DepartmentServiceInterfac
     {
         try {
             return Department::query();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function dropdown(): Collection
+    {
+        try {
+            return Department::all();
         } catch (\Throwable $th) {
             throw $th;
         }

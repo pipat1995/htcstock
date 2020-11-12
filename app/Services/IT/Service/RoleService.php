@@ -6,6 +6,8 @@ use App\Models\IT\Role;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class RoleService extends BaseService implements RoleServiceInterface
 {
@@ -37,5 +39,20 @@ class RoleService extends BaseService implements RoleServiceInterface
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    
+    public function dropdown(): Collection
+    {
+        try {
+            return Role::all();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function filter(Request $request)
+    {
+        return Role::filter($request)->paginate(10);
     }
 }

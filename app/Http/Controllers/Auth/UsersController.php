@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
@@ -12,6 +13,7 @@ class UsersController extends Controller
     private $userService;
     public function __construct(UserServiceInterface $userServiceInterface)
     {
+        
         $this->userService = $userServiceInterface;
     }
     /**
@@ -62,15 +64,16 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         try {
-            return \view('me.index')->with([
-                'user' => $this->userService->find($id)
-            ]);
+            $user = $this->userService->find($id);
         } catch (\Throwable $th) {
             throw $th;
         }
+        return \view('me.index')->with([
+            'user' => $user
+        ]);
     }
 
     /**
@@ -86,15 +89,17 @@ class UsersController extends Controller
             $user = $this->userService->find($id);
             $user->name = $request->name;
             $user->email = $request->email;
-            if (Auth::user()->id == $user->id && $this->userService->update($user->attributesToArray(), $id)) {
+            $user->phone = $request->phone;
+            if (Auth::user()->id == $user->id) {
+                $user->save();
                 $request->session()->flash('success', $user->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \back();
         } catch (\Throwable $th) {
             throw $th;
         }
+        return \back();
     }
 
     /**

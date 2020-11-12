@@ -26,7 +26,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    เพิ่ม</a>
+                    Add</a>
             </div>
         </div>
     </div>
@@ -36,20 +36,39 @@
     <div class="card-body">
         <form action="#" method="GET">
             <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="search">Search</label>
-                    <input type="text" class="form-control" id="search" name="search" value="">
+                <div class="col-md-2 mb-2">
+                    <label for="role">Role</label>
+                    <select class="form-control js-select-role-multiple" name="role[]" multiple>
+                        @isset($dropdown)
+                        @foreach ($dropdown as $item)
+                        <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected
+                            @endif>{{$item->name}}</option>
+                        @endforeach
+                        @endisset
+                    </select>
                 </div>
 
                 <div class="col-md-2 mb-2">
                     <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
-                            <i class="fa fa-business-time fa-w-20"></i>
+                            <i class="fa fa-fw" aria-hidden="true" title="Copy to use search"></i>
                         </span>
-                        ค้นหา</button>
+                        Search</button>
                 </div>
             </div>
         </form>
+        <script>
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    $(".js-select-role-multiple").select2({
+                        placeholder: 'Select role',
+                        allowClear: true
+                    });
+                }, false);
+            })();
+        </script>
     </div>
 </div>
 {{-- </div> --}}
@@ -88,7 +107,7 @@
                     </tbody>
                 </table>
             </div>
-            {{-- {{ $roles->links() }} --}}
+            {{ $roles->appends($query)->links() }}
         </div>
     </div>
 </div>

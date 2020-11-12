@@ -2,7 +2,9 @@
 
 namespace App\Models\IT;
 
+use App\Http\Filters\IT\RoleManagementFilter;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -16,6 +18,10 @@ class Role extends Model
       'name', 'slug'
    ];
 
+   public function scopeFilter(Builder $builder, $request)
+   {
+       return (new RoleManagementFilter($request))->filter($builder);
+   }
    public function permissions()
    {
 

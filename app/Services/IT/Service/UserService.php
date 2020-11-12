@@ -7,6 +7,7 @@ use App\Services\IT\Interfaces\UserServiceInterface;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class UserService extends BaseService implements UserServiceInterface
 {
@@ -47,5 +48,10 @@ class UserService extends BaseService implements UserServiceInterface
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function filter(Request $request)
+    {
+        return User::filter($request)->paginate(10);
     }
 }

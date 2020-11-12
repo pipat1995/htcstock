@@ -37,12 +37,14 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Helpers\\": "src/Helpers"
+            "App\\": "app/"
         },
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/helper.php"
         ]
     },
     "autoload-dev": {

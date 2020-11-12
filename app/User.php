@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Http\Filters\IT\UserFilter;
+use App\Http\Filters\IT\UserManagementFilter;
 use App\Models\IT\Department;
 use App\Models\IT\Transactions;
 use App\Models\Legal\LegalApproval;
@@ -9,6 +11,7 @@ use App\Models\Legal\LegalApprovalDetail;
 use App\Models\Legal\LegalContract;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -42,6 +45,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new UserManagementFilter($request))->filter($builder);
+    }
 
     public function transaction()
     {

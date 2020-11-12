@@ -15,6 +15,8 @@ return [
 
     'language' => 'ภาษา',
     'english' => 'อังกฤษ',
-    'thailand' => 'ไทย'
+    'thailand' => 'ไทย',
+    'logout' => 'ออกจากระบบ',
+    'profile' => 'โปรไฟล์'
 
 ];

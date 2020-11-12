@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
+use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -13,12 +14,17 @@ use Illuminate\Support\Facades\Http;
 
 class UsersController extends Controller
 {
-    private $userService;
-    private $rolesService;
-    public function __construct(UserServiceInterface $userServiceInterface, RoleServiceInterface $rolesServiceInterface)
-    {
+    protected $userService;
+    protected $rolesService;
+    protected $departmentService;
+    public function __construct(
+        UserServiceInterface $userServiceInterface,
+        RoleServiceInterface $rolesServiceInterface,
+        DepartmentServiceInterface $departmentServiceInterface
+    ) {
         $this->userService = $userServiceInterface;
         $this->rolesService = $rolesServiceInterface;
+        $this->departmentService = $departmentServiceInterface;
     }
 
     /**
@@ -29,19 +35,17 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         try {
-            $users = $this->userService->all();
-            $formSearch = new UserFormSearch();
-            if ($request->all()) {
-                $formSearch->search = $request->search;
-                $users->where('name', 'like', '%' . $formSearch->search . '%')
-                    ->orWhere('username', 'like', '%' . $formSearch->search . '%')
-                    ->orWhere('email', 'like', '%' . $formSearch->search . '%');
-            }
-            // \dd($users->get()[0]->department);
-            return \view('admin.users.index', \compact('formSearch'))->with(['users' => $users->paginate(10)->appends((array) $formSearch)]);
+            $users = $this->userService->filter($request);
+            $departments = $this->departmentService->dropdown();
+            $roles = $this->rolesService->dropdown();
+            $query = $request->all();
+            $search = $request->search;
+            $selectedDept = \collect($request->department);
+            $selectedRole = \collect($request->user_role);
         } catch (\Throwable $th) {
             throw $th;
         }
+        return \view('admin.users.index', \compact('users', 'departments','roles', 'search', 'selectedDept','selectedRole','query'));
     }
 
     /**

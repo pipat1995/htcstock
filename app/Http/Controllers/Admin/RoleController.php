@@ -20,11 +20,14 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $roles = $this->rolesService->all()->get();
-            return \view('admin.roles.index')->with('roles',$roles);
+            $roles = $this->rolesService->filter($request);
+            $dropdown = $this->rolesService->dropdown();
+            $selectedRole = collect($request->role);
+            $query = $request->all();
+            return \view('admin.roles.index',\compact('roles','selectedRole','dropdown','query'));
         } catch (\Throwable $th) {
             throw $th;
         }

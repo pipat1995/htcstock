@@ -65,13 +65,13 @@
                     <a id="navbarDropdown" class="nav-link" href="javascript:void(0);" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i
                             class="nav-link-icon fa fa-globe"></i>
-                        {{ __('navigation.language') }}
+                        {{ __('navigation.language') }} {{ App::getLocale() }}
 
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item {{Auth::user()->locale === 'en' ? 'active' : ''}}"
+                        <a class="dropdown-item "
                             href="{{route('switch.language','en')}}">{{ __('navigation.english') }}</a>
-                        <a class="dropdown-item {{Auth::user()->locale === 'th' ? 'active' : ''}}"
+                        <a class="dropdown-item "
                             href="{{route('switch.language','th')}}">{{ __('navigation.thailand') }}
                         </a>
                     </div>
@@ -93,7 +93,7 @@
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
                                     <a href="{{ route('me.user.edit',Auth::user()->id) }}" tabindex="0"
-                                        class="dropdown-item">โปรไฟล์</a>
+                                        class="dropdown-item">{{ __('navigation.profile') }}</a>
                                     @can('for-superadmin-admin')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
                                         class="dropdown-item">การจัดการผู้ใช้</a>
@@ -111,7 +111,7 @@
 
                                     <button type="button" href="{{ route('logout') }}" tabindex="0"
                                         class="dropdown-item" onclick="event.preventDefault(); localStorage.clear();
-                                            document.getElementById('logout-form').submit();">ออกจากระบบ</button>
+                                            document.getElementById('logout-form').submit();">{{ __('navigation.logout') }}</button>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf
