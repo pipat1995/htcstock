@@ -38,7 +38,8 @@
                         <select class="form-control js-select-status-multiple" name="status[]" multiple>
                             @isset($status)
                             @foreach ($status as $item)
-                            <option value="{{$item}}" @if($selectedStatus->contains($item)) selected @endif>{{$item}}</option>
+                            <option value="{{$item}}" @if($selectedStatus->contains($item)) selected @endif>{{$item}}
+                            </option>
                             @endforeach
                             @endisset
                         </select>
@@ -47,7 +48,8 @@
                         <select class="form-control js-select-agreements-multiple" name="agreement[]" multiple>
                             @isset($agreements)
                             @foreach ($agreements as $item)
-                            <option value="{{$item->id}}" @if($selectedAgree->contains($item->id)) selected @endif>{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if($selectedAgree->contains($item->id)) selected
+                                @endif>{{$item->name}}</option>
                             @endforeach
                             @endisset
                         </select>
@@ -74,35 +76,18 @@
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th></th>
                             <th>Full name (Company’s, Person’s) </th>
                             <th>Legal Representative </th>
                             <th>Legal Agreement </th>
                             <th>Status</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($contracts as $key => $item)
                         <tr>
-                            <th scope="row">{{$key+1}}</th>
-                            <td>{{$item->company_name}}</td>
-                            <td>{{$item->representative}}</td>
-                            <td>{{$item->legalAgreement->name}}</td>
-                            @if ($item->status === 'request')
-                            <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'checking')
-                            <td><span class="badge badge-pill badge-info">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'providing')
-                            <td><span class="badge badge-pill badge-warning">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'complete')
-                            <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
-                            @endif
-
-                            <td><a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
+                            <td>
+                                <a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
                                     title="view contract" data-placement="bottom"
                                     class="btn btn-success btn-sm float-left ml-1"><i class="fa fa-eye"
                                         aria-hidden="true"></i></a>
@@ -118,12 +103,27 @@
                                         class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </a>
                             </td>
+                            <td>{{$item->company_name}}</td>
+                            <td>{{$item->representative}}</td>
+                            <td>{{$item->legalAgreement->name}}</td>
+                            @if ($item->status === 'request')
+                            <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'checking')
+                            <td><span class="badge badge-pill badge-info">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'providing')
+                            <td><span class="badge badge-pill badge-warning">{{$item->status}}</span></td>
+                            @endif
+                            @if ($item->status === 'complete')
+                            <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            {{ $contracts->links() }}
+            {{ $contracts->appends($query)->links() }}
         </div>
     </div>
 </div>

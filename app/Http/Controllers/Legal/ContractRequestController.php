@@ -75,7 +75,8 @@ class ContractRequestController extends Controller
             $contracts = $this->contractRequestService->filter($request);
             $selectedStatus = collect($request->status);
             $selectedAgree = collect($request->agreement);
-            return \view('legal.ContractRequestForm.index',\compact('contracts','status','agreements','selectedStatus','selectedAgree'));
+            $query = $request->all();
+            return \view('legal.ContractRequestForm.index',\compact('contracts','status','agreements','selectedStatus','selectedAgree','query'));
         } catch (\Throwable $th) {
             throw $th;
         }

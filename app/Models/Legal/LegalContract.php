@@ -3,6 +3,7 @@
 namespace App\Models\Legal;
 
 use App\Http\Filters\Legal\ContractFilter;
+use App\Http\Filters\Legal\ContractRequestFilter;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -65,6 +66,6 @@ class LegalContract extends Model
 
     public function scopeFilter(Builder $builder, $request)
     {
-        return (new ContractFilter($request))->filter($builder);
+        return (new ContractRequestFilter($request))->filter($builder);
     }
 }

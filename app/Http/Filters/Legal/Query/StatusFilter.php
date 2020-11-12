@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Filters\Legal;
+namespace App\Http\Filters\Legal\Query;
 
 class StatusFilter
 {
