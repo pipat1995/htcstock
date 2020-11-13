@@ -292,6 +292,20 @@ class ContractRequestController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $contract = $this->contractRequestService->find($id);
+            if (!\hash_equals($contract->status, ContractEnum::R)) {
+                Session::flash('error',  ' Not in a state of deletion.');
+                return \redirect()->back();
+            }
+            if (!\hash_equals((string) $contract->created_by, (string) \auth()->id())) {
+                Session::flash('error',  ' Cannot delete another user`s contract.');
+                return \redirect()->back();
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
         DB::beginTransaction();
         try {
             $this->contractRequestService->update(['trash' => true], $id);

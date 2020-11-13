@@ -90,7 +90,7 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">Contract item</h5>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover table-sm table-bordered">
                     <thead>
@@ -110,25 +110,28 @@
                                     title="view contract" data-placement="bottom"
                                     class="btn btn-success btn-sm float-center ml-1"><i class="fa fa-eye"
                                         aria-hidden="true"></i></a>
-                                @if ($item->status === 'request')
-                                <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
-                                    title="edit contract" data-placement="bottom"
-                                    class="btn btn-primary btn-sm float-center ml-1"><i class="fa fa-pencil-square-o"
-                                        aria-hidden="true"></i></a>
-                                @endif
                                 <a href="{{route('legal.pdf',$item->id)}}" data-toggle="tooltip"
                                     title="view contract PDF" data-placement="bottom" target="_blank"
                                     rel="noopener noreferrer" class="btn btn-warning btn-sm float-center ml-1"><i
                                         class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </a>
+
+                                @if ($item->status === 'request')
+                                <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
+                                    title="edit contract" data-placement="bottom"
+                                    class="btn btn-primary btn-sm float-center ml-1"><i class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i></a>
+
                                 <button data-toggle="tooltip" title="delete contract" data-placement="bottom"
                                     rel="noopener noreferrer" class="btn btn-danger btn-sm float-center ml-1"
                                     onclick="destroy({{$item->id}})"><i class="pe-7s-trash"> </i></button>
-                                <form id="destroy-form{{$item->id}}" action="{{route('legal.contract-request.destroy',$item->id)}}"
-                                    method="POST" style="display: none;">
+                                <form id="destroy-form{{$item->id}}"
+                                    action="{{route('legal.contract-request.destroy',$item->id)}}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
+                                @endif
                             </td>
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
