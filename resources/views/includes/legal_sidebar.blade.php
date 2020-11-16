@@ -49,7 +49,8 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('legal.contract-request.index')}}" class="{{Helper::isActive('legal/contract-request')}}">
+                            <a href="{{route('legal.contract-request.index')}}"
+                                class="{{Helper::isActive('legal/contract-request')}}">
                                 <i class="metismenu-icon"></i>
                                 Contract Request Form
                             </a>
@@ -58,10 +59,10 @@
                 </li>
                 {{-- <li>
                     <a href="{{route('legal.contract-request.index')}}"
-                        class="{{Helper::isActive('legal/contract-request*')}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Contract Request Form
-                    </a>
+                class="{{Helper::isActive('legal/contract-request*')}}">
+                <i class="metismenu-icon pe-7s-rocket"></i>
+                Contract Request Form
+                </a>
                 </li> --}}
                 {{-- <li>
                     <a href="{{route('admin.roles.index')}}" class="{{Helper::isActive('admin/roles*')}}">
@@ -75,6 +76,7 @@
                 Permissions
                 </a>
                 </li> --}}
+                @can('for-superadmin')
                 <li class="app-sidebar__heading">AdminManagement</li>
                 <li class="{{Helper::isActive('legal/adminmanagement/*')}}">
                     <a href="#" class="{{Helper::isActive('legal/adminmanagement/*')}}">
@@ -84,13 +86,15 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('legal.adminmanagement.approval.index')}}" class="{{Helper::isActive('legal/adminmanagement/approval')}}">
+                            <a href="{{route('legal.adminmanagement.approval.index')}}"
+                                class="{{Helper::isActive('legal/adminmanagement/approval')}}">
                                 <i class="metismenu-icon"></i>
                                 ApprovalManagement
                             </a>
                         </li>
                     </ul>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>
