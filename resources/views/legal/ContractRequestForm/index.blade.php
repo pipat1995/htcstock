@@ -19,12 +19,15 @@
         </div>
         <div class="page-title-actions">
             <div class="d-inline-block">
+                @can('create', Auth::user())
                 <a href="{{route('legal.contract-request.create')}}" class="btn-shadow btn btn-info"
                     data-toggle="tooltip" title="create contract" data-placement="bottom">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </span>
                     Create</a>
+                @endcan
+
             </div>
         </div>
     </div>
@@ -103,6 +106,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($contracts)
                         @foreach ($contracts as $key => $item)
                         <tr>
                             <td>
@@ -115,16 +119,15 @@
                                     rel="noopener noreferrer" class="btn btn-warning btn-sm float-center ml-1"><i
                                         class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </a>
-
-                                @if ($item->status === 'request')
+                                @if (Auth::user()->can('delete', $item) && Auth::user()->can('update', $item))
                                 <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
                                     title="edit contract" data-placement="bottom"
                                     class="btn btn-primary btn-sm float-center ml-1"><i class="fa fa-pencil-square-o"
                                         aria-hidden="true"></i></a>
-
-                                <button data-toggle="tooltip" title="delete contract" data-placement="bottom"
-                                    rel="noopener noreferrer" class="btn btn-danger btn-sm float-center ml-1"
-                                    onclick="destroy({{$item->id}})"><i class="pe-7s-trash"> </i></button>
+                                <a data-toggle="tooltip" title="delete contract" data-placement="bottom"
+                                    rel="noopener noreferrer" style="color: white;"
+                                    class="btn btn-danger btn-sm float-center ml-1" onclick="destroy({{$item->id}})"><i
+                                        class="pe-7s-trash"> </i></a>
                                 <form id="destroy-form{{$item->id}}"
                                     action="{{route('legal.contract-request.destroy',$item->id)}}" method="POST"
                                     style="display: none;">
@@ -136,24 +139,24 @@
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->representative}}</td>
                             <td>{{$item->legalAgreement->name}}</td>
-                            @if ($item->status === 'request')
+                            @can('isRequest', $item)
                             <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'checking')
+                            @elsecan('isChecking', $item)
                             <td><span class="badge badge-pill badge-info">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'providing')
+                            @elsecan('isProviding', $item)
                             <td><span class="badge badge-pill badge-warning">{{$item->status}}</span></td>
-                            @endif
-                            @if ($item->status === 'complete')
+                            @elsecan('isComplete', $item)
                             <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
-                            @endif
+                            @endcan
                         </tr>
                         @endforeach
+                        @endisset
                     </tbody>
                 </table>
             </div>
+            @isset($contracts)
             {{ $contracts->appends($query)->links() }}
+            @endisset
         </div>
     </div>
 </div>

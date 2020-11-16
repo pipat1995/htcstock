@@ -24,8 +24,6 @@ use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -586,7 +584,6 @@ class ContractRequestController extends Controller
     {
         try {
             $contract = $this->contractRequestService->find($id);
-            // \dd($contract->legalContractDest);
             if ($contract->legalContractDest->value_of_contract) {
                 $contract->legalContractDest->value_of_contract = explode(",", $contract->legalContractDest->value_of_contract);
             }
