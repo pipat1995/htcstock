@@ -43,7 +43,7 @@ class LegalContractPolicy
      */
     public function create(User $user)
     {
-        return Gate::allows('create-legal-contract');
+        return $user->can('user-legal');
     }
 
     /**

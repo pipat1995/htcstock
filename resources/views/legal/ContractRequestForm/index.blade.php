@@ -19,15 +19,14 @@
         </div>
         <div class="page-title-actions">
             <div class="d-inline-block">
-                @can('create', Auth::user())
+                {{-- @if (Auth::user()->can('create')) --}}
                 <a href="{{route('legal.contract-request.create')}}" class="btn-shadow btn btn-info"
                     data-toggle="tooltip" title="create contract" data-placement="bottom">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </span>
                     Create</a>
-                @endcan
-
+                {{-- @endif --}}
             </div>
         </div>
     </div>
