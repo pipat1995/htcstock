@@ -6,6 +6,7 @@ use App\Models\IT\Transactions;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TransactionsService extends BaseService implements TransactionsServiceInterface
@@ -62,5 +63,10 @@ class TransactionsService extends BaseService implements TransactionsServiceInte
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function filter(Request $request)
+    {
+        return Transactions::filter($request)->select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->groupBy('access_id')->orderBy('quantity', 'asc')->paginate(10);
     }
 }

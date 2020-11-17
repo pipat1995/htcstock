@@ -2,6 +2,8 @@
 
 namespace App\Models\IT;
 
+use App\Http\Filters\IT\StockManagementFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Transactions extends Model
@@ -12,7 +14,7 @@ class Transactions extends Model
      * @var array
      */
     protected $fillable = [
-        'access_id', 'qty', 'trans_type', 'trans_by', 'trans_desc', 'ir_no','ir_date', 'po_no', 'invoice_no', 'unit_cost', 'vendor_id', 'ref_no', 'created_by'
+        'access_id', 'qty', 'trans_type', 'trans_by', 'trans_desc', 'ir_no', 'ir_date', 'po_no', 'invoice_no', 'unit_cost', 'vendor_id', 'ref_no', 'created_by'
     ];
 
     protected $dates = ['ir_date'];
@@ -28,5 +30,10 @@ class Transactions extends Model
     public function accessorie()
     {
         return $this->hasOne(Accessories::class, 'access_id', 'access_id');
+    }
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new StockManagementFilter($request))->filter($builder);
     }
 }

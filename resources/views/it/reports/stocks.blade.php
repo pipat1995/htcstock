@@ -41,7 +41,7 @@
                         <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
-                            <option value="{{$item->access_id}}" {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
+                            <option value="{{$item->access_id}}" {{$access_id == $item->access_id ? 'selected' : ''}}>
                                 {{$item->access_name}}</option>
                             @endforeach
                         </select>
@@ -102,7 +102,7 @@
                     </tbody>
                 </table>
             </div>
-            {{ $transactions->links() }}
+            {{ $transactions->appends($query)->links() }}
         </div>
     </div>
 </div>

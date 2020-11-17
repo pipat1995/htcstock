@@ -60,20 +60,12 @@ class ReportController extends Controller
 
     public function reportStocks(Request $request)
     {
+        $query = $request->all();
+        $access_id = $request->access_id;
         try {
-            $formSearch = new TransactionsFormSearch();
-            $transactions = $this->transactionsService->stock();
-            if ($request->all()) {
-                $formSearch->access_id = $request->access_id;
-                if (isset($request->access_id)) {
-                    $transactions->where('access_id', $request->access_id);
-                }
-            }
-            $transactions->orderBy('quantity', 'asc');
-            return \view('it.reports.stocks', \compact('formSearch'))->with([
-                'transactions' => $transactions->paginate(10)->appends((array) $formSearch),
-                'accessories' => $this->accessories
-            ]);
+            $accessories = $this->accessories;
+            $transactions = $this->transactionsService->filter($request);
+            return \view('it.reports.stocks', \compact('transactions', 'accessories', 'query', 'access_id'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -95,9 +87,9 @@ class ReportController extends Controller
     public function generateAccessoriesPDF()
     {
         try {
-            
+
             $accessories = $this->accessoriesService->sumAccessories()->get();
-            $pdf = PDF::loadView('it.reports.pdf', compact('accessories',$accessories));
+            $pdf = PDF::loadView('it.reports.pdf', compact('accessories', $accessories));
             return $pdf->stream();
         } catch (\Throwable $th) {
             throw $th;

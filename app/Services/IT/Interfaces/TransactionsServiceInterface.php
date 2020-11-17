@@ -4,6 +4,7 @@ namespace App\Services\IT\Interfaces;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 interface TransactionsServiceInterface
 {
@@ -11,8 +12,9 @@ interface TransactionsServiceInterface
     public function transactionType(String $type): Builder;
     public function find(int $id): Model;
     public function create(array $attributes): Model;
-    public function update(array $attributes,int $id): bool;
+    public function update(array $attributes, int $id): bool;
     public function stock(): Builder;
     public function quantityAccessorie(int $id);
     public function getAccessoriesType(String $type);
+    public function filter(Request $request);
 }
