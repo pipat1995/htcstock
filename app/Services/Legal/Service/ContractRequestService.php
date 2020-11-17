@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Services\Legal\Service;
 
+use App\Enum\ContractEnum;
 use App\Models\Legal\LegalContract;
 use App\Services\BaseService;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +34,7 @@ class ContractRequestService extends BaseService implements ContractRequestServi
     public function getByCreated()
     {
         try {
-            return LegalContract::where('created_by',Auth::id())->orderBy('created_at', 'desc')->paginate(10);
+            return LegalContract::where('created_by', Auth::id())->orderBy('created_at', 'desc')->paginate(10);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -39,6 +42,33 @@ class ContractRequestService extends BaseService implements ContractRequestServi
 
     public function filter(Request $request)
     {
-        return LegalContract::filter($request)->where('trash',false)->orderBy('created_at', 'desc')->paginate(10);
+        return LegalContract::filter($request)->where('trash', false)->orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    public function totalpromised(): int
+    {
+        try {
+            return LegalContract::where('trash',false)->count();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function ownpromised(User $user): int
+    {
+        try {
+            return LegalContract::where(['trash'=>false,'created_by' => $user->id])->count();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function statusPromised(string $status): int
+    {
+        try {
+            return LegalContract::where(['trash'=>false,'status' => $status])->count();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

@@ -36,14 +36,14 @@
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
                     <a href="{{route('legal.dashboard')}}" class="{{Helper::isActive('legal/dashboard*')}}">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        <i class="metismenu-icon pe-7s-monitor"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Contract</li>
                 <li class="{{Helper::isActive('legal/contract-request*')}}">
                     <a href="#" class="{{Helper::isActive('legal/contract-request*')}}">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-hammer"></i>
                         Contract-Request
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>

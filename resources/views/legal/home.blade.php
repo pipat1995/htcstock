@@ -20,7 +20,7 @@
                 class="btn-shadow mr-3 btn btn-dark">
                 <i class="fa fa-star"></i>
             </button>
-            <div class="d-inline-block dropdown">
+            {{-- <div class="d-inline-block dropdown">
                 <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     class="btn-shadow dropdown-toggle btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
@@ -66,7 +66,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -76,11 +76,11 @@
             <div class="widget-content-outer">
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Orders</div>
-                        <div class="widget-subheading">Last year expenses</div>
+                        <div class="widget-heading">All contract</div>
+                        <div class="widget-subheading">สัญญา ทั้งหมด</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-success">1896</div>
+                        <div class="widget-numbers text-success">{{$allPromised}}</div>
                     </div>
                 </div>
             </div>
@@ -91,11 +91,11 @@
             <div class="widget-content-outer">
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Products Sold</div>
-                        <div class="widget-subheading">Revenue streams</div>
+                        <div class="widget-heading">Own promise</div>
+                        <div class="widget-subheading">สัญญา ที่สร้าง</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning">$3M</div>
+                        <div class="widget-numbers text-warning">{{$ownPromise}}</div>
                     </div>
                 </div>
             </div>
@@ -106,8 +106,8 @@
             <div class="widget-content-outer">
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Followers</div>
-                        <div class="widget-subheading">People Interested</div>
+                        <div class="widget-heading">Don't know what to show</div>
+                        <div class="widget-subheading">-----------</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-danger">45,9%</div>
@@ -142,7 +142,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Active Users
@@ -286,69 +286,25 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="row">
     <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
+        <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
             <div class="widget-content">
                 <div class="widget-content-outer">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
+                            <div class="widget-numbers mt-0 fsize-3 text-primary">{{$request}}%</div>
                         </div>
                         <div class="widget-content-right w-100">
                             <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="{{$request}}"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$request}}%;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Income Target</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Expenses Target</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Spendings Target</div>
+                        <div class="text-muted opacity-6">Request</div>
                     </div>
                 </div>
             </div>
@@ -360,17 +316,61 @@
                 <div class="widget-content-outer">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
+                            <div class="widget-numbers mt-0 fsize-3 text-info">{{$checking}}%</div>
                         </div>
                         <div class="widget-content-right w-100">
                             <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
+                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="{{$checking}}"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$checking}}%;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Totals Target</div>
+                        <div class="text-muted opacity-6">Checking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-warning">{{$providing}}%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="{{$providing}}"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$providing}}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Providing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-success">{{$complete}}%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{$complete}}"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$complete}}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Complete</div>
                     </div>
                 </div>
             </div>
