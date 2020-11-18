@@ -19,5 +19,7 @@ interface ContractRequestServiceInterface
     public function totalpromised(): int;
     public function ownpromised(User $user): int;
     public function statusPromised(string $status): int;
+    public function notRequest(string $request);
+    public function filterForAdmin(Request $request);
 
 }

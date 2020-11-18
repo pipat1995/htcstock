@@ -21,4 +21,5 @@ interface UserServiceInterface
 
     public function dropdownUser(): Collection;
     public function filter(Request $request);
+    public function email(string $email);
 }

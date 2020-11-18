@@ -113,11 +113,7 @@
                                     title="view contract" data-placement="bottom"
                                     class="btn btn-success btn-sm float-center ml-1"><i class="fa fa-eye"
                                         aria-hidden="true"></i></a>
-                                <a href="{{route('legal.pdf',$item->id)}}" data-toggle="tooltip"
-                                    title="view contract PDF" data-placement="bottom" target="_blank"
-                                    rel="noopener noreferrer" class="btn btn-warning btn-sm float-center ml-1"><i
-                                        class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                </a>
+
                                 @if (Auth::user()->can('delete', $item) && Auth::user()->can('update', $item))
                                 <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
                                     title="edit contract" data-placement="bottom"

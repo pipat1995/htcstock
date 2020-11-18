@@ -54,4 +54,13 @@ class UserService extends BaseService implements UserServiceInterface
     {
         return User::filter($request)->paginate(10);
     }
+
+    public function email(string $email)
+    {
+        try {
+            return User::where('email',$email)->first();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

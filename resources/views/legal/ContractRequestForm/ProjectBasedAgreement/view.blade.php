@@ -22,7 +22,10 @@
             </div>
         </div>
         <div class="page-title-actions">
-            <a class="btn-shadow mr-3 btn btn-dark" type="button" href="{{url()->previous()}}">Back</a>
+            <a style="color: white" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                class="btn-shadow mr-3 btn btn-dark" href="{{route('legal.pdf',$legalContract->id)}}">
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            </a>
             <div class="d-inline-block">
             </div>
         </div>
@@ -296,8 +299,8 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">step approval</h5>
-            <button class="accordion">Approval Info</button>
-            <div class="panel">
+            <button class="accordion active">Approval Info</button>
+            <div class="panel" style="max-height: 100%">
                 <div class="table-responsive">
                     <table class="mb-0 table table-hover table-sm">
                         <thead>
@@ -306,7 +309,7 @@
                                 <th>User</th>
                                 <th>Status</th>
                                 <th>Comment</th>
-                                <th>Create Time</th>
+                                <th>Status change</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -314,7 +317,7 @@
                             @foreach ($approvalDetail as $key => $item)
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
-                                <td>{{$item->user->name}}</td>
+                                <td>{{$item->user->name}} {{$item->user->email}}</td>
                                 <td>{{$item->status}}</td>
                                 <td>{{$item->comment}}</td>
                                 <td>{{$item->created_at}}</td>

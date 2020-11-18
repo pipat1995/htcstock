@@ -42,7 +42,16 @@ class ContractRequestService extends BaseService implements ContractRequestServi
 
     public function filter(Request $request)
     {
-        return LegalContract::filter($request)->where('trash', false)->orderBy('created_at', 'desc')->paginate(10);
+        return LegalContract::filter($request)->where('trash', false)->orderBy('created_at', 'desc')
+        // ->get();
+        ->paginate(10);
+    }
+
+    public function filterForAdmin(Request $request)
+    {
+        return LegalContract::filter($request)->where('trash', false)->orderBy('created_at', 'desc')
+        ->get();
+        // ->paginate(10);
     }
 
     public function totalpromised(): int
@@ -67,6 +76,15 @@ class ContractRequestService extends BaseService implements ContractRequestServi
     {
         try {
             return LegalContract::where(['trash'=>false,'status' => $status])->count();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function notRequest(string $request)
+    {
+        try {
+            return LegalContract::whereNotIn('status',[$request])->get();
         } catch (\Throwable $th) {
             throw $th;
         }

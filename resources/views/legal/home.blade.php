@@ -142,7 +142,74 @@
         </div>
     </div>
 </div>
-{{-- <div class="row">
+@can('for-adminlegal')
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <form action="#" method="GET">
+                    <div class="form-row">
+                        <div class="col-md-2 mb-2">
+                            <select class="form-control js-select-status-multiple" name="status[]" multiple>
+                                @isset($status)
+                                @foreach ($status as $item)
+                                <option value="{{$item}}" @if($selectedStatus->contains($item)) selected
+                                    @endif>{{$item}}
+                                </option>
+                                @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <select class="form-control js-select-agreements-multiple" name="agreement[]" multiple>
+                                @isset($agreements)
+                                @foreach ($agreements as $item)
+                                <option value="{{$item->id}}" @if($selectedAgree->contains($item->id)) selected
+                                    @endif>{{$item->name}}</option>
+                                @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn-shadow btn btn-info" type="submit" data-toggle="tooltip"
+                                title="search contract" data-placement="bottom">
+                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                </span>
+                                Search</button>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    (function () {
+                        'use strict';
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            $(".js-select-status-multiple").select2({
+                                placeholder: 'Select status',
+                                allowClear: true
+                            });
+                            $(".js-select-agreements-multiple").select2({
+                                placeholder: 'Select agreements',
+                                allowClear: true
+                            });
+                        })
+
+                        window.addEventListener('load', function () {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            // let forms = document.getElementsByClassName('needs-validation');
+                            // Loop over them and prevent submission
+                            // validationForm(forms)
+                        }, false);
+
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+@isset($contracts)
+<div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Active Users
@@ -157,136 +224,69 @@
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Name</th>
-                            <th class="text-center">City</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Actions</th>
+                            <th>#</th>
+                            <th>Full name (Company’s, Person’s) </th>
+                            <th>Legal Representative </th>
+                            <th>Legal Agreement </th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+
+                        @foreach ($contracts as $key => $item)
                         <tr>
-                            <td class="text-center text-muted">#345</td>
                             <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle"
-                                                    src="{{asset('assets/images/avatars/4.jpg')}}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">John Doe</div>
-                                            <div class="widget-subheading opacity-7">Web Developer
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="{{route('legal.contract-request.show',$item->id)}}" data-toggle="tooltip"
+                                    title="view contract" data-placement="bottom"
+                                    class="btn btn-success btn-sm float-center ml-1"><i class="fa fa-eye"
+                                        aria-hidden="true"></i></a>
+
+                                @if (Auth::user()->can('delete', $item) && Auth::user()->can('update', $item))
+                                <a href="{{route('legal.contract-request.edit',$item->id)}}" data-toggle="tooltip"
+                                    title="edit contract" data-placement="bottom"
+                                    class="btn btn-primary btn-sm float-center ml-1"><i class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i></a>
+                                <a data-toggle="tooltip" title="delete contract" data-placement="bottom"
+                                    rel="noopener noreferrer" style="color: white;"
+                                    class="btn btn-danger btn-sm float-center ml-1" onclick="destroy({{$item->id}})"><i
+                                        class="pe-7s-trash"> </i></a>
+                                <form id="destroy-form{{$item->id}}"
+                                    action="{{route('legal.contract-request.destroy',$item->id)}}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                @endif
                             </td>
-                            <td class="text-center">Madrid</td>
-                            <td class="text-center">
-                                <div class="badge badge-warning">Pending</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-1"
-                                    class="btn btn-primary btn-sm">Details</button>
-                            </td>
+                            <td>{{$item->company_name}}</td>
+                            <td>{{$item->representative}}</td>
+                            <td>{{$item->legalAgreement->name}}</td>
+                            @can('isRequest', $item)
+                            <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
+                            @elsecan('isChecking', $item)
+                            <td><span class="badge badge-pill badge-info">{{$item->status}}</span></td>
+                            @elsecan('isProviding', $item)
+                            <td><span class="badge badge-pill badge-warning">{{$item->status}}</span></td>
+                            @elsecan('isComplete', $item)
+                            <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
+                            @endcan
                         </tr>
-                        <tr>
-                            <td class="text-center text-muted">#347</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle"
-                                                    src="{{asset('assets/images/avatars/3.jpg')}}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Ruben Tillman</div>
-                                            <div class="widget-subheading opacity-7">Etiam sit amet
-                                                orci eget</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Berlin</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Completed</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-2"
-                                    class="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">#321</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle"
-                                                    src="{{asset('assets/images/avatars/2.jpg')}}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Elliot Huber</div>
-                                            <div class="widget-subheading opacity-7">Lorem ipsum
-                                                dolor sic</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">London</td>
-                            <td class="text-center">
-                                <div class="badge badge-danger">In Progress</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-3"
-                                    class="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">#55</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle"
-                                                    src="{{asset('assets/images/avatars/1.jpg')}}" alt=""></div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Vinnie Wagstaff</div>
-                                            <div class="widget-subheading opacity-7">UI Designer
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Amsterdam</td>
-                            <td class="text-center">
-                                <div class="badge badge-info">On Hold</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-4"
-                                    class="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="d-block text-center card-footer">
                 <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
-                        class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                        class="pe-7s-trash btn-icon-wrapper">
+                    </i></button>
                 <button class="btn-wide btn btn-success">Save</button>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+@endisset
+@endcan
+
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">

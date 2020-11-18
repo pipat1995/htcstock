@@ -4,25 +4,45 @@ namespace App\Http\Controllers\Legal;
 
 use App\Enum\ContractEnum;
 use App\Http\Controllers\Controller;
+use App\Services\IT\Interfaces\UserServiceInterface;
+use App\Services\Legal\Interfaces\AgreementServiceInterface;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
     protected $contractRequestService;
+    protected $userService;
+    protected $agreementService;
     public function __construct(
-        ContractRequestServiceInterface $contractRequestServiceInterface
+        ContractRequestServiceInterface $contractRequestServiceInterface,
+        UserServiceInterface $userServiceInterface,
+        AgreementServiceInterface $agreementServiceInterface
     ) {
         $this->contractRequestService = $contractRequestServiceInterface;
+        $this->userService = $userServiceInterface;
+        $this->agreementService = $agreementServiceInterface;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $selectedStatus = collect($request->status);
+        $selectedAgree = collect($request->agreement);
+        $status = [ContractEnum::R, ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
+        // $query = $request->all();
         try {
+            // if (Gate::allows('for-adminlegal') || Gate::allows('for-superadmin')) {
+                
+            // } else {
+            //     $contracts = null;
+            // }
+            $contracts = $this->contractRequestService->filterForAdmin($request);
+            $agreements = $this->agreementService->dropdownAgreement();
             $allPromised = $this->contractRequestService->totalpromised();
             $ownPromise = $this->contractRequestService->ownpromised(\auth()->user());
             $request = $this->contractRequestService->statusPromised(ContractEnum::R);
@@ -36,8 +56,8 @@ class HomeController extends Controller
         $checking = ($checking / $allPromised) * 100;
         $providing = ($providing / $allPromised) * 100;
         $complete = ($complete / $allPromised) * 100;
-        // \dd($request);
-        return \view('legal.home', \compact('allPromised', 'ownPromise', 'request', 'checking', 'providing', 'complete'));
+        return \view('legal.home', \compact('allPromised', 'ownPromise', 'request', 'checking', 'providing', 
+        'complete', 'contracts', 'status', 'selectedStatus', 'selectedAgree','agreements'));
     }
 
     /**
