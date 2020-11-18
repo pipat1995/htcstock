@@ -49,7 +49,7 @@ class ContractRequestService extends BaseService implements ContractRequestServi
 
     public function filterForAdmin(Request $request)
     {
-        return LegalContract::filter($request)->where('trash', false)->orderBy('created_at', 'desc')
+        return LegalContract::filter($request)->where('status','<>','request')->where('trash', false)->orderBy('created_at', 'desc')
         ->get();
         // ->paginate(10);
     }

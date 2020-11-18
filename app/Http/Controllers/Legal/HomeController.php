@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $selectedStatus = collect($request->status);
         $selectedAgree = collect($request->agreement);
-        $status = [ContractEnum::R, ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
+        $status = [ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
         // $query = $request->all();
         try {
             // if (Gate::allows('for-adminlegal') || Gate::allows('for-superadmin')) {

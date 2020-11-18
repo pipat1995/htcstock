@@ -189,6 +189,8 @@
                                 placeholder: 'Select status',
                                 allowClear: true
                             });
+                            // $(".js-select-status-multiple").val('request')
+                            // $('.js-select-status-multiple').trigger('change');
                             $(".js-select-agreements-multiple").select2({
                                 placeholder: 'Select agreements',
                                 allowClear: true
