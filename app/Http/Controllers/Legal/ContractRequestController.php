@@ -327,6 +327,9 @@ class ContractRequestController extends Controller
     {
         // Permission
         $attributes = $request->except(['_token', '_method']);
+        if (!isset($request->comment)) {
+            $attributes['comment'] = null;
+        }
         DB::beginTransaction();
         try {
             $contractRequest = $this->contractRequestService->find($id);
@@ -337,13 +340,13 @@ class ContractRequestController extends Controller
             } else if (\hash_equals($contractRequest->status, ContractEnum::CK)) {
                 $request->validate([
                     'status' => Rule::in(ApprovalEnum::$types),
-                    'comment' => 'required',
+                    // 'comment' => 'required',
                 ]);
                 $userApproval = $this->processChecking($attributes, $contractRequest, $levelApproval);
             } else if (\hash_equals($contractRequest->status, ContractEnum::P)) {
                 $request->validate([
                     'status' => Rule::in(ApprovalEnum::$types),
-                    'comment' => 'required',
+                    // 'comment' => 'required',
                 ]);
                 $userApproval = $this->processProviding($attributes, $contractRequest, $levelApproval);
 

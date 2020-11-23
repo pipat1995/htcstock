@@ -5,7 +5,7 @@ Step approval contract request.
 {{$user->email}}
 
 @component('mail::button', ['url' => route('legal.approval.verify',[$user->id,$contract->id])])
-Go to Request Contract
+Go to Contract
 @endcomponent
 
 Thanks,<br>
