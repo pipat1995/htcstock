@@ -331,10 +331,6 @@
                     </div>
                 </div>
                 <hr>
-                <a class="btn btn-dark float-rigth" style="color: white !important; margin-top: 5px" type="button"
-                    href="{{url()->previous()}}">Back</a>
-                <button class="btn btn-success float-right" type="submit" style="margin-top: 5px"
-                    disabled>Confirm</button>
             </form>
         </div>
     </div>
