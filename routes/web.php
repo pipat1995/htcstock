@@ -30,7 +30,7 @@ Auth::routes(['verify' => true, 'register' => false]);
 
 // Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('updateusers', [App\Http\Controllers\Admin\UsersController::class, 'updateusers'])->name('users.updateusers');
+    Route::get('updateusers', 'UsersController@updateusers')->name('users.updateusers');
     Route::resource('users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit']]);
     Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);
     Route::resource('roles', 'RoleController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);

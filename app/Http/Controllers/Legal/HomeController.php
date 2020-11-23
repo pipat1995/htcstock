@@ -52,10 +52,10 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        $request = ($request / $allPromised) * 100;
-        $checking = ($checking / $allPromised) * 100;
-        $providing = ($providing / $allPromised) * 100;
-        $complete = ($complete / $allPromised) * 100;
+        $request = round(($request / $allPromised) * 100,1);
+        $checking = round(($checking / $allPromised) * 100,1);
+        $providing = round(($providing / $allPromised) * 100,1);
+        $complete = round(($complete / $allPromised) * 100,1);
         return \view('legal.home', \compact('allPromised', 'ownPromise', 'request', 'checking', 'providing', 
         'complete', 'contracts', 'status', 'selectedStatus', 'selectedAgree','agreements'));
     }

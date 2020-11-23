@@ -346,6 +346,9 @@ class ContractRequestController extends Controller
                     'comment' => 'required',
                 ]);
                 $userApproval = $this->processProviding($attributes, $contractRequest, $levelApproval);
+
+                $alertReturn = $levelApproval->where('levels', 1)->first()->user;
+                Mail::to($alertReturn->email)->send(new ContractApproval($contractRequest, $alertReturn));
             }
             Mail::to($userApproval->email)->send(new ContractApproval($contractRequest, $userApproval));
         } catch (\Throwable $th) {
