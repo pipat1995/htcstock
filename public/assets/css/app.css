@@ -11069,8 +11069,10 @@ button,
 }
 
 .app-header__logo .logo-src {
-    height: 23px;
-    width: 97px;
+    height: 32px;
+    width: 105px;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
     background: url(../images/newhaier.png)
 }
 

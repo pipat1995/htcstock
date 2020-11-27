@@ -49,16 +49,6 @@
                             Looks good!
                         </div>
                     </div>
-                    {{-- <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">วันที่</label>
-                        <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at" value="{{$formSearch->s_created_at}}"
-                            oninput="changeValue(this)">
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">ถึง วันที่</label>
-                        <input type="date" class="form-control" id="validationECreated_at" name="e_created_at" value="{{$formSearch->e_created_at}}"
-                            readonly>
-                    </div> --}}
                     <div class="col-md-2 mb-2">
                         <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
                             <span class="btn-icon-wrapper pr-2 opacity-7">

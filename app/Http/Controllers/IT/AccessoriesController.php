@@ -27,15 +27,12 @@ class AccessoriesController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->all();
+        $selectedAccessorys = collect($request->accessory);
         try {
-            $formSearch = new AccessFormSearch();
-            $accessories = $this->accessoriesService->all();
-            if ($request->has('search')) {
-                $formSearch->search = $request->search;
-                $accessories->where('access_name', 'like', '%' . $formSearch->search . '%');
-            }
-            return \view('it.accessorie.list', \compact('formSearch'))
-                ->with('accessories', $accessories->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch));
+            $accessories = $this->accessoriesService->filter($request);
+            $accessorys = $this->accessoriesService->dropdown();
+            return \view('it.accessorie.list', \compact('accessories','query','selectedAccessorys','accessorys'));
         } catch (\Throwable $th) {
             throw $th;
         }

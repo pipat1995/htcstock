@@ -2,6 +2,8 @@
 
 namespace App\Models\IT;
 
+use App\Http\Filters\IT\AccessoriesManagementFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Accessories extends Model
@@ -24,5 +26,10 @@ class Accessories extends Model
     public function transaction()
     {
         return $this->belongsTo(Transactions::class, 'access_id', 'access_id');
+    }
+    
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new AccessoriesManagementFilter($request))->filter($builder);
     }
 }

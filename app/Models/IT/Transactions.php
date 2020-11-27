@@ -2,7 +2,7 @@
 
 namespace App\Models\IT;
 
-use App\Http\Filters\IT\StockManagementFilter;
+use App\Http\Filters\IT\TransactionManagementFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,6 +34,6 @@ class Transactions extends Model
 
     public function scopeFilter(Builder $builder, $request)
     {
-        return (new StockManagementFilter($request))->filter($builder);
+        return (new TransactionManagementFilter($request))->filter($builder);
     }
 }

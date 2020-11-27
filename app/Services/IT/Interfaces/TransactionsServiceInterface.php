@@ -17,4 +17,6 @@ interface TransactionsServiceInterface
     public function quantityAccessorie(int $id);
     public function getAccessoriesType(String $type);
     public function filter(Request $request);
+    public function filterForBuy(Request $request);
+    public function filterForRequest(Request $request);
 }

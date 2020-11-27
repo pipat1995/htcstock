@@ -2,6 +2,7 @@
 
 namespace App\Services\IT\Service;
 
+use App\Enum\TransactionTypeEnum;
 use App\Models\IT\Transactions;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
@@ -68,5 +69,14 @@ class TransactionsService extends BaseService implements TransactionsServiceInte
     public function filter(Request $request)
     {
         return Transactions::filter($request)->select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->groupBy('access_id')->orderBy('quantity', 'asc')->paginate(10);
+    }
+
+    public function filterForBuy(Request $request)
+    {
+        return Transactions::filter($request)->whereIn('trans_type', [TransactionTypeEnum::B])->whereNull('ref_no')->orderBy('created_at', 'desc')->paginate(10);
+    }
+    public function filterForRequest(Request $request)
+    {
+        return Transactions::filter($request)->whereIn('trans_type', [TransactionTypeEnum::R])->whereNull('ref_no')->orderBy('created_at', 'desc')->paginate(10);
     }
 }

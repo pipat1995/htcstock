@@ -37,40 +37,17 @@ class BuyTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $formSearch = new BuyFormSearch();
+
+        $query = $request->all();
+        $selectedAccessorys = collect($request->accessory);
+        $ir_no = $request->ir_no;
+        $po_no = $request->po_no;
+        $start_at = $request->start_at;
+        $end_at = $request->end_at;
         try {
-            $transactions = $this->transactionsService->transactionType(TransactionTypeEnum::B);
-            if ($request->all()) {
-                $formSearch->access_id = $request->access_id;
-                $formSearch->ir_no = $request->ir_no;
-                $formSearch->po_no = $request->po_no;
-                $formSearch->s_created_at = $request->s_created_at;
-                $formSearch->e_created_at = $request->e_created_at;
-                if (isset($request->access_id)) {
-                    $transactions->where('access_id', $formSearch->access_id);
-                }
-                if (isset($request->ir_no)) {
-                    $transactions->where('ir_no', 'like', '%' . $formSearch->ir_no . '%');
-                }
-                if (isset($request->po_no)) {
-                    $transactions->where('po_no', 'like', '%' . $formSearch->po_no . '%');
-                }
-                if (isset($request->s_created_at)) {
-                    $s_date = new DateTime($request->s_created_at);
-                    if (isset($request->e_created_at)) {
-                        $e_date = new DateTime($request->e_created_at);
-                        $e_date->add(new DateInterval('P1D'));
-                        $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $e_date->format('Y-m-d H:i:s')]);
-                    } else {
-                        $new_s_date = new DateTime($request->s_created_at);
-                        $new_s_date->add(new DateInterval('P1D'));
-                        $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $new_s_date->format('Y-m-d H:i:s')]);
-                    }
-                }
-            }
-            $accessories = $this->accessoriesService->all()->get();
-            $datas = $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch);
-            return \view('it.buys.list', \compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
+            $accessorys = $this->accessoriesService->dropdown();
+            $transactions = $this->transactionsService->filterForBuy($request);
+            return \view('it.buys.list', \compact('selectedAccessorys', 'accessorys', 'transactions', 'ir_no', 'po_no', 'start_at', 'end_at', 'query'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -104,7 +81,7 @@ class BuyTransactionController extends Controller
             if (!$create) {
                 $request->session()->flash('error', 'error create!');
                 return \back();
-            } 
+            }
             $request->session()->flash('success',  ' has been create');
             return \redirect()->route('it.buy.index');
         } catch (\Throwable $th) {

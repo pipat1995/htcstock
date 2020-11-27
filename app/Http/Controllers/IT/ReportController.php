@@ -20,7 +20,7 @@ class ReportController extends Controller
     {
         $this->transactionsService = $transactionsServiceInterface;
         $this->accessoriesService = $accessoriesServiceInterface;
-        $this->accessories = $this->accessoriesService->all()->get();
+        $this->accessories = $this->accessoriesService->dropdown();
     }
 
     public function reportTransactions(Request $request)

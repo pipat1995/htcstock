@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    .select2-selection__rendered li {
+        margin: 6px 0px 4px;
+    }
+</style>
+@endsection
 @section('sidebar')
 @include('includes.it_sidebar');
 @stop
@@ -34,32 +41,30 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form action="{{route('it.accessories.index')}}" method="GET">
+            <form action="#" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        {{-- <label for="validationSearch">เลข IR</label> --}}
-                        <input type="text" class="form-control" id="validationSearch" name="search"
-                            value="{{$formSearch->search}}">
+                        <select class="form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]" multiple>
+                            @isset($accessorys)
+                            @foreach ($accessorys as $item)
+                            <option value="{{$item->access_id}}" @if($selectedAccessorys->contains($item->access_id))
+                                selected @endif>{{$item->access_name}}
+                            </option>
+                            @endforeach
+                            @endisset
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <button class="btn-shadow btn btn-info" type="submit">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
-                                <i class="fa fa-business-time fa-w-20"></i>
+                                <i class="fa fa-search-plus" aria-hidden="true"></i>
                             </span>
-                            ค้นหา</button>
+                            Search</button>
                     </div>
                 </div>
             </form>
             <script>
-                (function () {
-                    'use strict';
-                    window.addEventListener('load', function () {
-                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    }, false);
-                })();
-
                 function destroy(id) {
-                    // console.log(document.getElementById('destroy-form'+id));
                     event.preventDefault();
                     Swal.fire({
                         title: 'Are you sure? '+id,
@@ -74,9 +79,9 @@
                             document.getElementById('destroy-form'+id).submit();
                         }
                     })
-                    // document.getElementById('destroy-form').submit();
                 }
             </script>
+            <script src="{{asset('assets\js\transactions\accessorie.js')}}" defer></script>
         </div>
     </div>
 </div>
@@ -95,6 +100,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($accessories)
                         @foreach ($accessories as $key => $item)
                         <tr>
                             <th scope="row">{{$key+1}}</th>
@@ -114,12 +120,14 @@
                             </td>
 
                         </tr>
-
                         @endforeach
+                        @endisset
                     </tbody>
                 </table>
             </div>
-            {{ $accessories->links() }}
+            @isset($accessories)
+            {{ $accessories->appends($query)->links() }}
+            @endisset
         </div>
     </div>
 </div>

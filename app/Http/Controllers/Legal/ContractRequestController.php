@@ -68,13 +68,15 @@ class ContractRequestController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->all();
+        $status = [ContractEnum::R, ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
+        $selectedStatus = collect($request->status);
+        $selectedAgree = collect($request->agreement);
         try {
-            $status = [ContractEnum::R, ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
+
             $agreements = $this->agreementService->dropdownAgreement();
             $contracts = $this->contractRequestService->filter($request);
-            $selectedStatus = collect($request->status);
-            $selectedAgree = collect($request->agreement);
-            $query = $request->all();
+
             return \view('legal.ContractRequestForm.index', \compact('contracts', 'status', 'agreements', 'selectedStatus', 'selectedAgree', 'query'));
         } catch (\Throwable $th) {
             throw $th;

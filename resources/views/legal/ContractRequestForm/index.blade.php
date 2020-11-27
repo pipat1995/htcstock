@@ -19,14 +19,12 @@
         </div>
         <div class="page-title-actions">
             <div class="d-inline-block">
-                {{-- @if (Auth::user()->can('create')) --}}
                 <a href="{{route('legal.contract-request.create')}}" class="btn-shadow btn btn-info"
                     data-toggle="tooltip" title="create contract" data-placement="bottom">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </span>
                     Create</a>
-                {{-- @endif --}}
             </div>
         </div>
     </div>
@@ -69,7 +67,6 @@
             <script src="{{asset('assets\js\legals\contractRequestForm\create.js')}}"></script>
             <script>
                 function destroy(id) {
-                    // console.log(document.getElementById('destroy-form'+id));
                     event.preventDefault();
                     Swal.fire({
                         title: 'Are you sure?',

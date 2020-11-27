@@ -39,24 +39,35 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationAccess_id" class="">อุปกรณ์</label>
-                            <select name="access_id" id="validationAccess_id" class="form-control">
+                            {{-- <select name="access_id" id="validationAccess_id" class="form-control">
                                 <option value="">--เลือก--</option>
                                 @foreach ($accessories as $item)
                                 <option value="{{$item->access_id}}"
-                                    {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
-                                    {{$item->access_name}}</option>
+                            {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
+                            {{$item->access_name}}</option>
+                            @endforeach
+                            </select> --}}
+                            <select class="form-control js-select-accessory-multiple" style="width: 100%"
+                                name="accessory[]" multiple>
+                                @isset($accessorys)
+                                @foreach ($accessorys as $item)
+                                <option value="{{$item->access_id}}" @if($selectedAccessorys->
+                                    contains($item->access_id))
+                                    selected @endif>{{$item->access_name}}
+                                </option>
                                 @endforeach
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCreated_at">วันที่</label>
-                            <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at"
-                                value="{{$formSearch->s_created_at}}" oninput="changeValue(this)">
+                            <input type="date" class="form-control" id="validationSCreated_at" name="start_at"
+                                value="{{$start_at}}" oninput="changeValue(this)">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCreated_at">ถึง วันที่</label>
-                            <input type="date" class="form-control" id="validationECreated_at" name="e_created_at"
-                                value="{{$formSearch->e_created_at}}" readonly>
+                            <input type="date" class="form-control" id="validationECreated_at" name="end_at"
+                                value="{{$end_at}}" readonly>
                         </div>
                         <div class="col-md-2 mb-2">
                             <button class="btn-shadow btn btn-info" type="submit" style="margin-top: 30px">
@@ -95,6 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @isset($transactions)
                             @foreach ($transactions as $key => $item)
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
@@ -106,10 +118,13 @@
                                             class="btn btn-primary btn-sm float-left">ข้อมูล</button></a></td>
                             </tr>
                             @endforeach
+                            @endisset
                         </tbody>
                     </table>
                 </div>
-                {{ $transactions->links() }}
+                @isset($transactions)
+                {{ $transactions->appends($query)->links() }}
+                @endisset
             </div>
         </div>
     </div>
