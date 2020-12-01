@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\FormSearches\UserFormSearch;
+use App\Models\IT\Role;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
@@ -45,7 +48,7 @@ class UsersController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('admin.users.index', \compact('users', 'departments','roles', 'search', 'selectedDept','selectedRole','query'));
+        return \view('admin.users.index', \compact('users', 'departments', 'roles', 'search', 'selectedDept', 'selectedRole', 'query'));
     }
 
     /**
@@ -82,7 +85,7 @@ class UsersController extends Controller
             'name' => 'required',
             'roles' => 'required|nullable',
         ]);
-
+        DB::beginTransaction();
         try {
             $user = $this->userService->find($id);
             if ($this->userService->update(['name' => $request->name], $id)) {
@@ -93,8 +96,11 @@ class UsersController extends Controller
             }
             return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
+        DB::commit();
+        return \redirect()->route('admin.users.index');
     }
 
     /**
@@ -105,6 +111,7 @@ class UsersController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
             // denies คือ !=
             // allows คือ ==
@@ -117,29 +124,34 @@ class UsersController extends Controller
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
+        DB::commit();
+        return \redirect()->route('admin.users.index');
     }
 
     public function updateusers(Request $request)
     {
+        DB::beginTransaction();
         try {
             if (Gate::denies('for-superadmin-admin')) {
                 return back();
             }
             $username = [];
-            $users = $this->userService->all()->get();
-            foreach ($users as $key => $value) {
+            $users = User::all();
+            foreach ($users as $value) {
                 \array_push($username, $value->username);
             }
-            $results = Http::get(ENV('USERS_UPDATE'), ['usernames' => $username])->json();
+            $results = Http::retry(2, 100)->get(ENV('USERS_UPDATE'), ['usernames' => $username])->json();
+
             if (count($results) <= 0) {
                 $request->session()->flash('success', 'has been update user');
                 return back();
             }
-            $role = $this->rolesService->all()->where('name', 'user')->first();
+
+            $role = Role::where('name', 'user')->first();
             foreach ($results as $key => $value) {
                 $user = $this->userService->create([
                     'name' => $value['name'],
@@ -154,9 +166,12 @@ class UsersController extends Controller
                 $user->roles()->attach($role);
             }
             $request->session()->flash('success', 'has been update user');
-            return back();
+            
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
+        DB::commit();
+        return back();
     }
 }
