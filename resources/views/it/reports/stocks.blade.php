@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>รายการคลัง
+            <div>{{ __('itstock.stock.stock') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -37,7 +37,7 @@
             <form action="{{route('it.check.stocks_list')}}" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <label for="validationAccess_id" class="">{{ __('itstock.stock.equipment') }}</label>
                         <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
@@ -54,7 +54,7 @@
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
-                            ค้นหา</button>
+                            {{ __('itstock.stock.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -65,16 +65,16 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">{{ __('itstock.stock.stock') }}</h5>
         <a href="{{route('it.generateAccessoriesPDF')}}" target="_blank"
-        rel="noopener noreferrer" class="card-subtitle mb-2 btn btn-warning float-right">PDF</a>
+        rel="noopener noreferrer" class="card-subtitle mb-2 btn btn-warning float-right">{{ __('itstock.stock.print') }}</a>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>จำนวน</th>
+                            <th>{{ __('itstock.stock.equipment') }}</th>
+                            <th>{{ __('itstock.stock.number') }}</th>
                             {{-- <th>วันที่</th>
                             <th>สร้างโดย</th> --}}
                         </tr>

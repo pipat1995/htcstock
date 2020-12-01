@@ -10,7 +10,7 @@
                 <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
                 </i>
             </div>
-            <div>Budgets Management
+            <div>{{ __('itstock.budget.budget-manage') }}
                 {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
                         applications.
                     </div> --}}
@@ -26,7 +26,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    เพิ่ม</a>
+                    {{ __('itstock.budget.add') }}</a>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                 <form action="#" method="GET">
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
-                            <label for="month">Month</label>
+                            <label for="month">{{ __('itstock.budget.month') }}</label>
                             <select class="form-control" name="month" id="month">
                                 <option value="">--เลือก--</option>
                                 @foreach ($months as $key => $item)
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="year">Year</label>
+                            <label for="year">{{ __('itstock.budget.year') }}</label>
                             <select class="form-control" name="year" id="year">
                                 <option value="">--เลือก--</option>
                                 @foreach (range( date('Y'), $earliest_year ) as $i)
@@ -61,7 +61,7 @@
                                 <span class="btn-icon-wrapper pr-2 opacity-7">
                                     <i class="fa fa-business-time fa-w-20"></i>
                                 </span>
-                                ค้นหา</button>
+                                {{ __('itstock.budget.search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -82,21 +82,21 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Budgets</h5>
+                <h5 class="card-title">{{ __('itstock.budget.budget-manage') }}</h5>
                 <table class="mb-0 table table-hover" id="table-budgets">
                     <thead>
                         <tr>
                             <th width="150px">#</th>
-                            <th>Budget</th>
-                            <th>Month</th>
-                            <th>Year</th>
+                            <th>{{ __('itstock.budget.budget') }}</th>
+                            <th>{{ __('itstock.budget.month') }}</th>
+                            <th>{{ __('itstock.budget.year') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($budgets as $key => $budget)
                         <tr>
                             <td><a href="{{route('it.budgets.edit',$budget->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">Edit</button></a></td>
+                                        class="btn btn-primary btn-sm float-left">{{ __('itstock.budget.detail') }}</button></a></td>
                             <td>{{Helper::convertToTHB($budget->budgets_of_month)}}
                             </td>
                             <td>{{ date("F", mktime(0, 0, 0, $budget->month, 1)) }}</td>

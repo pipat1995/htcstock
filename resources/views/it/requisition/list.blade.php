@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>รายการเบิก
+            <div>{{ __('itstock.requisition-accessorie.drawdown-list') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -26,7 +26,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    เบิก</a>
+                    {{ __('itstock.requisition-accessorie.requisition') }}</a>
             </div>
         </div>
     </div>
@@ -38,15 +38,7 @@
                 <form action="{{route('it.requisition.index')}}" method="GET">
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="validationAccess_id" class="">อุปกรณ์</label>
-                            {{-- <select name="access_id" id="validationAccess_id" class="form-control">
-                                <option value="">--เลือก--</option>
-                                @foreach ($accessories as $item)
-                                <option value="{{$item->access_id}}"
-                            {{$formSearch->access_id == $item->access_id ? 'selected' : ''}}>
-                            {{$item->access_name}}</option>
-                            @endforeach
-                            </select> --}}
+                            <label for="validationAccess_id" class="">{{ __('itstock.requisition-accessorie.equipment') }}</label>
                             <select class="form-control js-select-accessory-multiple" style="width: 100%"
                                 name="accessory[]" multiple>
                                 @isset($accessorys)
@@ -60,12 +52,12 @@
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validationCreated_at">วันที่</label>
+                            <label for="validationCreated_at">{{ __('itstock.requisition-accessorie.a-date') }}</label>
                             <input type="date" class="form-control" id="validationSCreated_at" name="start_at"
                                 value="{{$start_at}}" oninput="changeValue(this)">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="validationCreated_at">ถึง วันที่</label>
+                            <label for="validationCreated_at">{{ __('itstock.requisition-accessorie.up-to-date') }}</label>
                             <input type="date" class="form-control" id="validationECreated_at" name="end_at"
                                 value="{{$end_at}}" readonly>
                         </div>
@@ -74,7 +66,7 @@
                                 <span class="btn-icon-wrapper pr-2 opacity-7">
                                     <i class="fa fa-business-time fa-w-20"></i>
                                 </span>
-                                ค้นหา</button>
+                                {{ __('itstock.requisition-accessorie.search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -92,16 +84,16 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Table with hover</h5>
+                <h5 class="card-title">{{ __('itstock.requisition-accessorie.drawdown-list') }}</h5>
                 <div class="table-responsive">
                     <table class="mb-0 table table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>อุปกรณ์</th>
-                                <th>จำนวน</th>
-                                <th>ผู้เบิก</th>
-                                <th>วันที่</th>
+                                <th>{{ __('itstock.requisition-accessorie.equipment') }}</th>
+                                <th>{{ __('itstock.requisition-accessorie.number') }}</th>
+                                <th>{{ __('itstock.requisition-accessorie.request-creator-name') }}</th>
+                                <th>{{ __('itstock.requisition-accessorie.a-date') }}</th>
                                 <th>#</th>
                             </tr>
                         </thead>
@@ -115,7 +107,7 @@
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->created_at}}</td>
                                 <td><a href="{{route('it.requisition.edit',$item->id)}}"><button type="button"
-                                            class="btn btn-primary btn-sm float-left">ข้อมูล</button></a></td>
+                                            class="btn btn-primary btn-sm float-left">{{ __('itstock.requisition-accessorie.detail') }}</button></a></td>
                             </tr>
                             @endforeach
                             @endisset

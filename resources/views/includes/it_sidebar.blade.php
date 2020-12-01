@@ -82,7 +82,7 @@
                 <li class="{{Helper::isActive('it/check/*')}}">
                     <a href="#" class="{{Helper::isActive('it/check/*')}}">
                         <i class="metismenu-icon pe-7s-car"></i>
-                        ตรวจสอบ
+                        {{ __('itsidebar.check') }}
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
@@ -90,14 +90,14 @@
                             <a href="{{route('it.check.transactions_list')}}"
                                 class="{{Helper::isActive('it/check/transactions')}}">
                                 <i class="metismenu-icon">
-                                </i>ประวัติการทำงาน
+                                </i>{{ __('itsidebar.history') }}
                             </a>
                         </li>
                         <li>
                             <a href="{{route('it.check.stocks_list')}}"
                                 class="{{Helper::isActive('it/check/stocks') }}">
                                 <i class="metismenu-icon">
-                                </i>คลัง
+                                </i>{{ __('itsidebar.stock') }}
                             </a>
                         </li>
 

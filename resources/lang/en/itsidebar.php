@@ -22,4 +22,8 @@ return [
     'requisition' => 'Requisition Accessorie',
     'lend' => 'Lend Accessorie',
 
+    'check' => 'Check System',
+    'history' => 'Work history',
+    'stock' => 'Stock'
+
 ];

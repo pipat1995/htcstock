@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>รายการอุปกรณ์
+            <div>{{ __('itstock.work-history.transaction-history') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -37,7 +37,7 @@
             <form action="{{route('it.check.transactions_list')}}" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <label for="validationAccess_id" class="">{{ __('itstock.work-history.equipment') }}</label>
                         <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
@@ -50,12 +50,12 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.work-history.a-date') }}</label>
                         <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at" value="{{$formSearch->s_created_at}}"
                             oninput="changeValue(this)">
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">ถึง วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.work-history.up-to-date') }}</label>
                         <input type="date" class="form-control" id="validationECreated_at" name="e_created_at" value="{{$formSearch->e_created_at}}"
                             readonly>
                     </div>
@@ -64,7 +64,7 @@
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
-                            ค้นหา</button>
+                            {{ __('itstock.work-history.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -75,17 +75,17 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">{{ __('itstock.work-history.transaction-history') }}</h5>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>สถานะ</th>
-                            <th>จำนวน</th>
-                            <th>วันที่</th>
-                            <th>สร้างโดย</th>
+                            <th>{{ __('itstock.work-history.equipment') }}</th>
+                            <th>{{ __('itstock.work-history.status') }}</th>
+                            <th>{{ __('itstock.work-history.number') }}</th>
+                            <th>{{ __('itstock.work-history.a-date') }}</th>
+                            <th>{{ __('itstock.work-history.create-by') }}</th>
                         </tr>
                     </thead>
                     <tbody>

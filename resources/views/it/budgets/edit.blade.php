@@ -10,7 +10,7 @@
                 <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
                 </i>
             </div>
-            <div>Budget Management
+            <div>{{ __('itstock.budget.budget-manage') }}
                 {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
                         applications.
                     </div> --}}
@@ -43,14 +43,14 @@
                     @method('PUT')
                     <div class="form-row">
                         <div class="col-md-9 mb-3">
-                            <label for="validationBudgetsOfMonth">Budget/Monthe</label>
+                            <label for="validationBudgetsOfMonth">{{ __('itstock.budget.budget-month') }}</label>
                             {{-- <input type="number" name="test"> --}}
                             <input type="number" class="form-control" id="budgets_of_month" name="budgets_of_month"
                                 min="1" value="{{$budget->budgets_of_month}}">
                         </div>
                         <div class="col-md-3 mb-3">
                             <button class="btn-shadow btn btn-primary" type="submit" style="margin-top: 30px">
-                                Submit form</button>
+                                {{ __('itstock.budget.submit-form') }}</button>
                         </div>
                     </div>
                 </form>
@@ -75,15 +75,15 @@
                 <table class="mb-0 table table-hover" id="table-budgets-transaction">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>IR.No</th>
-                            <th>InvtID</th>
-                            <th>Part Name</th>
-                            <th>UN</th>
-                            <th>Quantity</th>
-                            <th>unit_cost</th>
-                            <th>Amount</th>
-                            <th>Acc.Amt</th>
+                            <th>{{ __('itstock.budget.a-date') }}</th>
+                            <th>{{ __('itstock.budget.ir-no') }}</th>
+                            <th>{{ __('itstock.budget.invoice') }}</th>
+                            <th>{{ __('itstock.budget.equipment') }}</th>
+                            <th>{{ __('itstock.budget.unit') }}</th>
+                            <th>{{ __('itstock.budget.quantity') }}</th>
+                            <th>{{ __('itstock.budget.unit-cost') }}</th>
+                            <th>{{ __('itstock.budget.amount') }}</th>
+                            <th>{{ __('itstock.budget.accumulate-amount') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,22 +107,22 @@
                         </tr>
                         <tr>
                             <td colspan="7"></td>
-                            <td style="text-align: left">Remain Budget</td>
+                            <td style="text-align: left">{{ __('itstock.budget.remain-budget') }}</td>
                             <td>{{Helper::convertToTHB($remainBudget)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
-                            <td style="text-align: left">Grand total budget</td>
+                            <td style="text-align: left">{{ __('itstock.budget.grand-total-budget') }}</td>
                             <td>{{Helper::convertToTHB($budget->budgets_of_month)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
-                            <td style="text-align: left">Total used budge</td>
+                            <td style="text-align: left">{{ __('itstock.budget.total-used-budge') }}</td>
                             <td>{{Helper::convertToTHB($amountTotal)}}</td>
                         </tr>
                         <tr>
                             <td colspan="7"></td>
-                            <td style="text-align: left">Total remain budget</td>
+                            <td style="text-align: left">{{ __('itstock.budget.total-remain-budget') }}</td>
                             <td>{{Helper::convertToTHB($remainBudget)}}</td>
                         </tr>
                     </tbody>

@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Analytics Dashboard
+            <div>{{ __('itstock.dashboard.analytics-dashboard') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -76,7 +76,7 @@
         <div class="card mb-3 widget-content bg-midnight-bloom">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">รายการยืม/คืน</div>
+                    <div class="widget-heading">{{ __('itstock.dashboard.loan') }}</div>
                     <div class="widget-subheading">Last year expenses</div>
                 </div>
                 <div class="widget-content-right">
@@ -90,7 +90,7 @@
             <div class="widget-content-wrapper text-white" style="cursor: pointer;"
                 id="{{route('it.lendings.index')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
-                    <div class="widget-heading">รายการยังไม่คืน</div>
+                    <div class="widget-heading">{{ __('itstock.dashboard.items-not-yet-returned') }}</div>
                     <div class="widget-subheading">The item is not returned yet.</div>
                 </div>
                 <div class="widget-content-right">
@@ -104,7 +104,7 @@
             <div class="widget-content-wrapper text-white" style="cursor: pointer;"
                 id="{{route('it.requisition.index')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
-                    <div class="widget-heading">รายการเบิก</div>
+                    <div class="widget-heading">{{ __('itstock.dashboard.drawdown-list') }}</div>
                     <div class="widget-subheading">Withdrawal list</div>
                 </div>
                 <div class="widget-content-right">

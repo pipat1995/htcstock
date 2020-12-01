@@ -65,8 +65,7 @@
                     <a id="navbarDropdown" class="nav-link" href="javascript:void(0);" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i
                             class="nav-link-icon fa fa-globe"></i>
-                        {{ __('navigation.language') }} {{ App::getLocale() }}
-
+                        {{ __('navigation.language') }}
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item "
@@ -96,13 +95,13 @@
                                         class="dropdown-item">{{ __('navigation.profile') }}</a>
                                     @can('for-superadmin-admin')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
-                                        class="dropdown-item">การจัดการผู้ใช้</a>
+                                        class="dropdown-item">{{ __('navigation.manage users') }}</a>
                                     <a href="{{ route('it.budgets.index') }}" tabindex="0"
-                                        class="dropdown-item">การจัดการงบประมาณ</a>
+                                        class="dropdown-item">{{ __('navigation.budgets manage') }}</a>
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
-                                        class="dropdown-item">อัปเดตข้อมูลผู้ใช้</a>
+                                        class="dropdown-item">{{ __('navigation.update user') }}</a>
                                     <a href="{{ route('optimize-clear') }}" tabindex="0"
-                                        class="dropdown-item">optimize-clear</a>
+                                        class="dropdown-item">{{ __('navigation.optimize-system') }}</a>
                                     @endcan
                                     {{-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
@@ -110,7 +109,8 @@
                                     <div tabindex="-1" class="dropdown-divider"></div>
 
                                     <button type="button" href="{{ route('logout') }}" tabindex="0"
-                                        class="dropdown-item" onclick="event.preventDefault(); localStorage.clear();
+                                        class="dropdown-item"
+                                        onclick="event.preventDefault(); localStorage.clear();
                                             document.getElementById('logout-form').submit();">{{ __('navigation.logout') }}</button>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">

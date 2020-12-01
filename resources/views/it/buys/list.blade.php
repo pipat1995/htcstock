@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>รายการซื้อ
+            <div>{{ __('itstock.buy-accessorie.purchase-list') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -26,7 +26,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    Buy</a>
+                    {{ __('itstock.buy-accessorie.buy') }}</a>
                 {{-- <button type="button" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
@@ -81,7 +81,7 @@
             <form action="#" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
-                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <label for="validationAccess_id" class="">{{ __('itstock.buy-accessorie.equipment') }}</label>
                         <select class="form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]"
                             multiple>
                             @isset($accessorys)
@@ -94,20 +94,20 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="validationIr_no">เลข IR</label>
+                        <label for="validationIr_no">{{ __('itstock.buy-accessorie.ir-no') }}</label>
                         <input type="text" class="form-control" id="validationIr_no" name="ir_no" value="{{$ir_no}}">
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="validationPo_no">เลข PO</label>
+                        <label for="validationPo_no">{{ __('itstock.buy-accessorie.po-no') }}</label>
                         <input type="text" class="form-control" id="validationPo_no" name="po_no" value="{{$po_no}}">
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="validationCreated_at">วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.buy-accessorie.a-date') }}</label>
                         <input type="date" class="form-control" id="validationSCreated_at" name="start_at"
                             oninput="changeValue(this)" value="{{$start_at}}">
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="validationCreated_at">ถึง วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.buy-accessorie.up-to-date') }}</label>
                         <input type="date" class="form-control" id="validationECreated_at" name="end_at"
                             value="{{$end_at}}" readonly>
                     </div>
@@ -118,7 +118,7 @@
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-search-plus" aria-hidden="true"></i>
                             </span>
-                            Search</button>
+                            {{ __('itstock.buy-accessorie.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -134,18 +134,18 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">{{ __('itstock.buy-accessorie.purchase-list') }}</h5>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>จำนวน</th>
-                            <th>เลข IR</th>
-                            <th>เลข PO</th>
-                            <th>ผู้ซื้อ</th>
-                            <th>วันที่</th>
+                            <th>{{ __('itstock.buy-accessorie.equipment') }}</th>
+                            <th>{{ __('itstock.buy-accessorie.number') }}</th>
+                            <th>{{ __('itstock.buy-accessorie.ir-no') }}</th>
+                            <th>{{ __('itstock.buy-accessorie.po-no') }}</th>
+                            <th>{{ __('itstock.buy-accessorie.buyer') }}</th>
+                            <th>{{ __('itstock.buy-accessorie.a-date') }}</th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -161,7 +161,7 @@
                             <td>{{$item->user->name}}</td>
                             <td>{{$item->created_at}}</td>
                             <td><a href="{{route('it.buy.edit',$item->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">ข้อมูล</button></a></td>
+                                        class="btn btn-primary btn-sm float-left">{{ __('itstock.buy-accessorie.detail') }}</button></a></td>
                         </tr>
                         @endforeach
                         @endisset

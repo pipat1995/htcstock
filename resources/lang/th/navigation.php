@@ -17,6 +17,15 @@ return [
     'english' => 'อังกฤษ',
     'thailand' => 'ไทย',
     'logout' => 'ออกจากระบบ',
-    'profile' => 'โปรไฟล์'
+    'profile' => 'โปรไฟล์',
+
+    /**
+     * Admin
+    */
+
+    'manage users' => 'จัดการผู้ใช้',
+    'budgets manage' => 'การจัดการงบประมาณ',
+    'update user' => 'อัปเดตข้อมูลผู้ใช้',
+    'optimize-system' => 'ระบบเพิ่มประสิทธิภาพ'
 
 ];

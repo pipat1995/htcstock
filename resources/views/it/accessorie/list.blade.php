@@ -17,7 +17,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>จัดการอุปกรณ์
+            <div>{{ __('itstock.manage-accessorie.manage-devices') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -33,7 +33,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    เพิ่ม</a>
+                    {{ __('itstock.manage-accessorie.add') }}</a>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-search-plus" aria-hidden="true"></i>
                             </span>
-                            Search</button>
+                            {{ __('itstock.manage-accessorie.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -88,14 +88,14 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">{{ __('itstock.manage-accessorie.equipment-list') }}</h5>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>Unit</th>
+                            <th>{{ __('itstock.manage-accessorie.name') }}</th>
+                            <th>{{ __('itstock.manage-accessorie.unit') }}</th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -106,11 +106,11 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->access_name}}</td>
                             <td>{{$item->unit}}</td>
-                            <td><a href="{{route('it.accessories.edit',$item->access_id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">ข้อมูล</button></a>
+                            <td><a href="{{route('it.accessories.edit',$item->access_id)}}" ><button type="button"
+                                        class="btn btn-primary btn-sm float-center mr-1">{{ __('itstock.manage-accessorie.detail') }}</button></a>
 
-                                <button type="button" class="btn btn-danger btn-sm float-left"
-                                    onclick="destroy({{$item->access_id}})">ลบ</button>
+                                <button type="button" class="btn btn-danger btn-sm float-center"
+                                    onclick="destroy({{$item->access_id}})">{{ __('itstock.manage-accessorie.delete') }}</button>
                                 <form id="destroy-form{{$item->access_id}}"
                                     action="{{route('it.accessories.destroy',$item->access_id)}}" method="POST"
                                     style="display: none;">
@@ -118,7 +118,6 @@
                                     @method('DELETE')
                                 </form>
                             </td>
-
                         </tr>
                         @endforeach
                         @endisset

@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>การซื้อ
+            <div>{{ __('itstock.buy-accessorie.purchase') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -35,13 +35,13 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">แบบฟอร์มการซื้อ</h5>
+            <h5 class="card-title">{{ __('itstock.buy-accessorie.purchase-form') }}</h5>
             <form class="needs-validation" novalidate action="{{route('it.buy.store')}}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <label for="validationAccess_id" class="">{{ __('itstock.buy-accessorie.equipment') }}</label>
                         <select name="access_id" id="validationAccess_id" class="form-control"
                             onchange="checkQtyAccess(this)" required>
                             <option value="">--เลือก--</option>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationQty">จำนวน </label>
+                        <label for="validationQty">{{ __('itstock.buy-accessorie.quantity') }}</label>
                         <input type="number" class="form-control" id="validationQty" name="qty" value="" min="1"
                             oninput="quantity(this)" required>
                         <div class="valid-feedback">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationUnitCost">UnitCost</label>
+                        <label for="validationUnitCost">{{ __('itstock.buy-accessorie.unit-cost') }}</label>
                         <input type="number" class="form-control" id="validationUnitCost" name="unit_cost" value=""
                             required>
                         <div class="invalid-feedback">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationPonumber">PO No.</label>
+                        <label for="validationPonumber">{{ __('itstock.buy-accessorie.po-no') }}</label>
                         <input type="text" class="form-control" id="validationPonumber" name="po_no" value=""
                             placeholder="12345678" required>
                         <div class="invalid-feedback">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationinvoice">Ivoice No.</label>
+                        <label for="validationinvoice">{{ __('itstock.buy-accessorie.invoice') }}</label>
                         <input type="text" class="form-control" id="validationinvoice" name="invoice_no" value=""
                             placeholder="12345678" required>
                         <div class="invalid-feedback">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationVendor">Vendor</label>
+                        <label for="validationVendor">{{ __('itstock.buy-accessorie.vendor') }}</label>
                         <input type="text" class="form-control" id="validationVendor" name="vendor_id" value=""
                             placeholder="Vendor" required>
                         <div class="invalid-feedback">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationIrnumber">IR No.</label>
+                        <label for="validationIrnumber">{{ __('itstock.buy-accessorie.ir-no') }}</label>
                         <input type="text" class="form-control" id="validationIrnumber" name="ir_no" value=""
                             placeholder="123456789" required>
                         <div class="invalid-feedback">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationIrDate">IR Date.</label>
+                        <label for="validationIrDate">{{ __('itstock.buy-accessorie.ir-date') }}</label>
                         <input type="date" class="form-control" id="validationIrDate" name="ir_date" value="" required>
                         <div class="invalid-feedback">
                             Please choose a IR Date.
@@ -115,11 +115,11 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
-                        <label for="trans_desc">Description</label>
+                        <label for="trans_desc">{{ __('itstock.buy-accessorie.remark') }}</label>
                         <textarea name="trans_desc" id="trans_desc" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>Submit form</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>{{ __('itstock.buy-accessorie.submit-form') }}</button>
             </form>
             <script src="{{asset('assets\js\transactions\buy.js')}}" defer></script>
 

@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>รายการยืม คืน
+            <div>{{ __('itstock.lendings-accessorie.borrow-list') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -26,7 +26,7 @@
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    ยืม</a>
+                    {{ __('itstock.lendings-accessorie.lend') }}</a>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <form action="{{route('it.lendings.index')}}" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationAccess_id" class="">อุปกรณ์</label>
+                        <label for="validationAccess_id" class="">{{ __('itstock.lendings-accessorie.equipment') }}</label>
                         <select name="access_id" id="validationAccess_id" class="form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
@@ -48,12 +48,12 @@
                         </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.lendings-accessorie.a-date') }}</label>
                         <input type="date" class="form-control" id="validationSCreated_at" name="s_created_at"
                             value="{{$formSearch->s_created_at}}" oninput="changeValue(this)">
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationCreated_at">ถึง วันที่</label>
+                        <label for="validationCreated_at">{{ __('itstock.lendings-accessorie.up-to-date') }}</label>
                         <input type="date" class="form-control" id="validationECreated_at" name="e_created_at"
                             value="{{$formSearch->e_created_at}}" readonly>
                     </div>
@@ -62,7 +62,7 @@
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
-                            ค้นหา</button>
+                            {{ __('itstock.lendings-accessorie.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -78,16 +78,16 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Table with hover</h5>
+            <h5 class="card-title">{{ __('itstock.lendings-accessorie.borrow-list') }}</h5>
             <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>อุปกรณ์</th>
-                            <th>จำนวน</th>
-                            <th>ผู้ยืม</th>
-                            <th>วันที่</th>
+                            <th>{{ __('itstock.lendings-accessorie.equipment') }}</th>
+                            <th>{{ __('itstock.lendings-accessorie.number') }}</th>
+                            <th>{{ __('itstock.lendings-accessorie.people-borrow') }}</th>
+                            <th>{{ __('itstock.lendings-accessorie.a-date') }}</th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -100,7 +100,7 @@
                             <td>{{$item->user->name}}</td>
                             <td>{{$item->created_at}}</td>
                             <td><a href="{{route('it.lendings.edit',$item->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">ข้อมูล</button></a></td>
+                                        class="btn btn-primary btn-sm float-left">{{ __('itstock.lendings-accessorie.detail') }}</button></a></td>
                         </tr>
                         @endforeach
                     </tbody>

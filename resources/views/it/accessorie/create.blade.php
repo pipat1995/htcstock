@@ -10,7 +10,7 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>จัดการอุปกรณ์
+            <div>{{ __('itstock.manage-accessorie.add-equipment') }}
                 <div class="page-title-subheading">This is an example dashboard created using
                     build-in elements and components.
                 </div>
@@ -35,13 +35,13 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">แบบฟอร์มอุปกรณ์</h5>
+            <h5 class="card-title">{{ __('itstock.manage-accessorie.equipment-form') }}</h5>
             <form class="needs-validation" novalidate action="{{route('it.accessories.store')}}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationAccess_name">Name</label>
+                        <label for="validationAccess_name">{{ __('itstock.manage-accessorie.name') }}</label>
                         <input type="text" class="form-control" id="validationAccess_name" name="access_name"
                             value="" required>
                         <div class="invalid-feedback">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationUnit">Unit</label>
+                        <label for="validationUnit">{{ __('itstock.manage-accessorie.unit') }}</label>
                         <input type="text" class="form-control" id="validationUnit" name="unit"
                             value="" required>
                         <div class="invalid-feedback">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px">Submit form</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 5px">{{ __('itstock.manage-accessorie.submit-form') }}</button>
             </form>
             <script src="{{asset('assets\js\transactions\accessorie.js')}}"></script>
         </div>

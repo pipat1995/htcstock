@@ -17,6 +17,15 @@ return [
     'english' => 'English',
     'thailand' => 'Thailand',
     'logout' => 'Logout',
-    'profile' => 'Profile'
+    'profile' => 'Profile',
+
+    /**
+     * Admin
+    */
+
+    'manage users' => 'Manage Users',
+    'budgets manage' => 'Budgets Management',
+    'update user' => 'Update user information',
+    'optimize-system' => 'Optimize-system'
 
 ];
