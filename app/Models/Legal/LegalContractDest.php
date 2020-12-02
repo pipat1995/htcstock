@@ -26,7 +26,7 @@ class LegalContractDest extends Model
 
     public function legalComercialTerm()
     {
-        return $this->belongsTo(LegalComercialTerm::class,'comercial_term_id');
+        return $this->belongsTo(LegalComercialTerm::class,'comercial_term_id')->withDefault();
     }
 
     public function legalComercialList()
@@ -36,17 +36,17 @@ class LegalContractDest extends Model
 
     public function legalPaymentTerm()
     {
-        return $this->belongsTo(LegalPaymentTerm::class,'payment_term_id');
+        return $this->belongsTo(LegalPaymentTerm::class,'payment_term_id')->withDefault();
     }
 
     public function legalPaymentType()
     {
-        return $this->belongsTo(LegalPaymentType::class, 'payment_type_id');
+        return $this->belongsTo(LegalPaymentType::class, 'payment_type_id')->withDefault();
     }
 
     public function legalSubtypeContract()
     {
-        return $this->belongsTo(LegalSubtypeContract::class,'sub_type_contract_id');
+        return $this->belongsTo(LegalSubtypeContract::class,'sub_type_contract_id')->withDefault();
     }
 
 }

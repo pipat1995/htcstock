@@ -21,11 +21,15 @@ class Department extends Model
      * @var string
      */
     protected $primaryKey = 'id';
-    
+
+    // ITSTOCK
     public function users()
     {
         return $this->hasMany(\App\User::class, 'department_id');
     }
+
+
+    // Legal
     public function legalApprove()
     {
         return $this->hasMany(LegalApproval::class);

@@ -18,6 +18,6 @@ class LegalComercialList extends Model
 
     public function legalContractDest()
     {
-        return $this->belongsTo(LegalContractDest::class,'contract_dests_id');
+        return $this->belongsTo(LegalContractDest::class,'contract_dests_id')->withDefault();
     }
 }

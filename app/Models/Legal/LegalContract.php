@@ -2,7 +2,6 @@
 
 namespace App\Models\Legal;
 
-use App\Http\Filters\Legal\ContractFilter;
 use App\Http\Filters\Legal\ContractRequestFilter;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,32 +35,32 @@ class LegalContract extends Model
 
     public function legalAction()
     {
-        return $this->belongsTo(legalAction::class, 'action_id');
+        return $this->belongsTo(legalAction::class, 'action_id')->withDefault();
     }
 
     public function legalAgreement()
     {
-        return $this->belongsTo(LegalAgreement::class, 'agreement_id');
+        return $this->belongsTo(LegalAgreement::class, 'agreement_id')->withDefault();
     }
 
     public function legalContractDest()
     {
-        return $this->belongsTo(LegalContractDest::class, 'contract_dest_id');
+        return $this->belongsTo(LegalContractDest::class, 'contract_dest_id')->withDefault();
     }
 
     public function requestorBy()
     {
-        return $this->belongsTo(\App\User::class, 'requestor_by');
+        return $this->belongsTo(\App\User::class, 'requestor_by')->withDefault();
     }
 
     public function checkedBy()
     {
-        return $this->belongsTo(\App\User::class, 'checked_by');
+        return $this->belongsTo(\App\User::class, 'checked_by')->withDefault();
     }
 
     public function createdBy()
     {
-        return $this->belongsTo(\App\User::class, 'created_by');
+        return $this->belongsTo(\App\User::class, 'created_by')->withDefault();
     }
 
     public function approvalDetail()

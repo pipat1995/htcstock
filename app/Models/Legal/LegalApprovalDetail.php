@@ -25,11 +25,11 @@ class LegalApprovalDetail extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
     public function contract()
     {
-        return $this->belongsTo(LegalContract::class, 'contract_id');
+        return $this->belongsTo(LegalContract::class, 'contract_id')->withDefault();
     }
 }

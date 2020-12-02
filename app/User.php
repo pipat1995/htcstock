@@ -51,20 +51,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return (new UserManagementFilter($request))->filter($builder);
     }
 
+    // ITSTOCK
     public function transaction()
     {
-        return $this->belongsTo(Transactions::class, 'trans_by');
+        return $this->belongsTo(Transactions::class, 'trans_by')->withDefault();
     }
 
     public function createdTransaction()
     {
-        return $this->belongsTo(Transactions::class, 'created_by');
+        return $this->belongsTo(Transactions::class, 'created_by')->withDefault();
     }
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id');
+        return $this->belongsTo(Department::class, 'department_id')->withDefault();
     }
+
 
     // Legal
     public function requestorContract()

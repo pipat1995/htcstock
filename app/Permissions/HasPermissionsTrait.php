@@ -22,7 +22,6 @@ trait HasPermissionsTrait
 
     public function withdrawPermissionsTo(...$permissions)
     {
-
         $permissions = $this->getAllPermissions($permissions);
         $this->permissions()->detach($permissions);
         return $this;
@@ -64,12 +63,10 @@ trait HasPermissionsTrait
 
     public function roles()
     {
-
         return $this->belongsToMany(Role::class, 'user_role');
     }
     public function permissions()
     {
-
         return $this->belongsToMany(Permission::class, 'user_permission');
     }
     protected function hasPermission($permission)
@@ -81,7 +78,6 @@ trait HasPermissionsTrait
 
     protected function getAllPermissions(array $permissions)
     {
-
         return Permission::whereIn('slug', $permissions)->get();
     }
 }

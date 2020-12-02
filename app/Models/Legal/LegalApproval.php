@@ -19,11 +19,11 @@ class LegalApproval extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'contract_id');
+        return $this->belongsTo(Department::class, 'contract_id')->withDefault();
     }
 }

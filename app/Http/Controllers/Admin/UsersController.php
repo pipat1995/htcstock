@@ -45,6 +45,7 @@ class UsersController extends Controller
             $search = $request->search;
             $selectedDept = \collect($request->department);
             $selectedRole = \collect($request->user_role);
+            // \dd($users);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -94,13 +95,12 @@ class UsersController extends Controller
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
-            return \redirect()->route('admin.users.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
         DB::commit();
-        return \redirect()->route('admin.users.index');
+        return \redirect()->back();
     }
 
     /**
@@ -166,7 +166,6 @@ class UsersController extends Controller
                 $user->roles()->attach($role);
             }
             $request->session()->flash('success', 'has been update user');
-            
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

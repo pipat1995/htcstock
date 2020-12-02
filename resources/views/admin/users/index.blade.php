@@ -11,9 +11,6 @@
                 </i>
             </div>
             <div>Users Management
-                {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
-                        applications.
-                    </div> --}}
             </div>
         </div>
     </div>
@@ -32,7 +29,8 @@
                         <select class="form-control js-select-department-multiple" name="department[]" multiple>
                             @isset($departments)
                             @foreach ($departments as $item)
-                            <option value="{{$item->id}}" @if($selectedDept->contains($item->id)) selected @endif>{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if($selectedDept->contains($item->id)) selected
+                                @endif>{{$item->name}}</option>
                             @endforeach
                             @endisset
                         </select>
@@ -42,7 +40,8 @@
                         <select class="form-control js-select-role-multiple" name="user_role[]" multiple>
                             @isset($roles)
                             @foreach ($roles as $item)
-                            <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected @endif>{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected
+                                @endif>{{$item->name}}</option>
                             @endforeach
                             @endisset
                         </select>
@@ -83,12 +82,12 @@
                 <table class="mb-0 table table-hover" id="table-users">
                     <thead>
                         <tr>
-                            <th width="150px">action</th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Dept</th>
+                            <th>Department</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,29 +95,25 @@
                         @foreach ($users as $user)
                         <tr>
                             <td>
-                                <a href="{{route('admin.users.edit',$user->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                {{-- @can('super-admin') เรียกใช้จาก AuthServiceProvider --}}
-                                @can('super-admin')
-                                <form action="{{route('admin.users.destroy',$user->id)}}" method="post"
-                                    class="float-left">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-warning btn-sm">Delete</button>
-                                </form>
-                                @endcan
-
-
+                                <a href="{{route('admin.users.edit',$user->id)}}">
+                                    <button type="button" class="btn btn-primary btn-sm float-center">Edit</button>
+                                </a>
                             </td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{$user->email}}</td>
                             <td>
-                                {{-- <div class="badge badge-warning"> --}}
-                                {{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}
-                                {{-- </div> --}}
+                                @if ($user->roles()->get()->pluck('name'))
+                                @foreach ($user->roles()->get()->pluck('name') as $item)
+                                <div class="badge badge-warning">{{$item}}</div>
+                                @endforeach
+                                @endif
                             </td>
-                            <td>{{$user->department->name}}</td>
+                            <td>
+                                {{-- @if ($user->department) --}}
+                                {{ $user->department->name}}
+                                {{-- @endif --}}
+                            </td>
                         </tr>
                         @endforeach
                         @endisset

@@ -90,7 +90,8 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                        <a class="btn btn-warning mr-2" type="button" href="{{url()->previous()}}">Back</a>
+                        <button type="submit" class="btn btn-primary">Update</button>
                 </form>
                 <script src="{{asset('assets\js\admin\user.js')}}"></script>
             </div>

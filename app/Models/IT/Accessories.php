@@ -25,7 +25,7 @@ class Accessories extends Model
 
     public function transaction()
     {
-        return $this->belongsTo(Transactions::class, 'access_id', 'access_id');
+        return $this->belongsTo(Transactions::class, 'access_id', 'access_id')->withDefault();
     }
     
     public function scopeFilter(Builder $builder, $request)

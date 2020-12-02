@@ -30,13 +30,11 @@ class Role extends Model
 
    public function users()
    {
-
       return $this->belongsToMany(User::class, 'user_role');
    }
 
    public function hasPermission($permission)
    {
-
       return (bool) $this->permissions->where('slug', $permission->slug)->count();
    }
 }
