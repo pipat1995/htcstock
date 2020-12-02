@@ -9,3 +9,6 @@ php artisan db:seed --class=LegalSubtypeContractTableSeeder
 
 php artisan storage:link
 
+php artisan log-viewer:publish
+
+LOG_CHANNEL=daily

@@ -25,7 +25,7 @@ Route::get('optimize-clear', function () {
 Route::get('language/{locale}', 'LocalizationController@language')->name('switch.language');
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome')->middleware(['auth']);
 Auth::routes(['verify' => true, 'register' => false]);
 
 // Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',

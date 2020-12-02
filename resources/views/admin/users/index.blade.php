@@ -110,9 +110,7 @@
                                 @endif
                             </td>
                             <td>
-                                {{-- @if ($user->department) --}}
                                 {{ $user->department->name}}
-                                {{-- @endif --}}
                             </td>
                         </tr>
                         @endforeach

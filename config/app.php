@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         // Barryvdh\Debugbar\ServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         /*
          * Application Service Providers...
          */
