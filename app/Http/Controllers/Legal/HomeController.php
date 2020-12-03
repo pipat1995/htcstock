@@ -31,33 +31,51 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $requestCal = 0;
+        $checking = 0;
+        $providing = 0;
+        $complete = 0;
         $selectedStatus = collect($request->status);
         $selectedAgree = collect($request->agreement);
         $status = [ContractEnum::CK, ContractEnum::P, ContractEnum::CP];
         // $query = $request->all();
         try {
-            // if (Gate::allows('for-adminlegal') || Gate::allows('for-superadmin')) {
-                
-            // } else {
-            //     $contracts = null;
-            // }
-            $contracts = $this->contractRequestService->filterForAdmin($request);
+            if (Gate::allows('for-adminlegal') || Gate::allows('for-superadmin')) {
+                $contracts = $this->contractRequestService->filterForAdmin($request);
+            } else {
+                $contracts = null;
+            }
             $agreements = $this->agreementService->dropdownAgreement();
             $allPromised = $this->contractRequestService->totalpromised();
             $ownPromise = $this->contractRequestService->ownpromised(\auth()->user());
-            $request = $this->contractRequestService->statusPromised(ContractEnum::R);
+            $requestSum = $this->contractRequestService->statusPromised(ContractEnum::R);
             $checking = $this->contractRequestService->statusPromised(ContractEnum::CK);
             $providing = $this->contractRequestService->statusPromised(ContractEnum::P);
             $complete = $this->contractRequestService->statusPromised(ContractEnum::CP);
         } catch (\Throwable $th) {
             throw $th;
         }
-        $request = round(($request / $allPromised) * 100,1);
-        $checking = round(($checking / $allPromised) * 100,1);
-        $providing = round(($providing / $allPromised) * 100,1);
-        $complete = round(($complete / $allPromised) * 100,1);
-        return \view('legal.home', \compact('allPromised', 'ownPromise', 'request', 'checking', 'providing', 
-        'complete', 'contracts', 'status', 'selectedStatus', 'selectedAgree','agreements'));
+        
+        if ($allPromised > 0) {
+            $requestCal = round(($requestSum / $allPromised) * 100, 1);
+            $checking = round(($checking / $allPromised) * 100, 1);
+            $providing = round(($providing / $allPromised) * 100, 1);
+            $complete = round(($complete / $allPromised) * 100, 1);
+        }
+
+        return \view('legal.home', \compact(
+            'allPromised',
+            'ownPromise',
+            'requestCal',
+            'checking',
+            'providing',
+            'complete',
+            'contracts',
+            'status',
+            'selectedStatus',
+            'selectedAgree',
+            'agreements'
+        ));
     }
 
     /**

@@ -296,12 +296,12 @@
                 <div class="widget-content-outer">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-primary">{{$request}}%</div>
+                            <div class="widget-numbers mt-0 fsize-3 text-primary">{{$requestCal}}%</div>
                         </div>
                         <div class="widget-content-right w-100">
                             <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="{{$request}}"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$request}}%;"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="{{$requestCal}}"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: {{$requestCal}}%;"></div>
                             </div>
                         </div>
                     </div>
