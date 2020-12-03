@@ -7,6 +7,11 @@
             placeholder: 'Select ......',
             allowClear: true
         });
+        $("#validationAccess_id").select2({
+            placeholder: 'Select ......',
+            allowClear: true
+        });
+
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         validationForm(forms)
@@ -36,7 +41,7 @@ function checkQtyAccess(e) {
                 $(':button[type="submit"]').prop('disabled', true)
             }
         })
-    } 
+    }
 
 }
 
