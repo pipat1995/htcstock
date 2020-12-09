@@ -66,7 +66,7 @@ class TransactionsService extends BaseService implements TransactionsServiceInte
         }
     }
 
-    public function filterStock(Request $request)
+    public function filterForStock(Request $request)
     {
         return Transactions::filter($request)->select('access_id', DB::raw('sum(qty) as quantity'))->groupBy('access_id')->groupBy('access_id')->orderBy('quantity', 'asc')->paginate(10);
     }

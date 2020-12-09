@@ -44,7 +44,7 @@ class ReportController extends Controller
         $access_id = $request->access_id;
         try {
             $accessories = $this->accessories;
-            $transactions = $this->transactionsService->filterStock($request);
+            $transactions = $this->transactionsService->filterForStock($request);
             return \view('it.reports.stocks', \compact('transactions', 'accessories', 'query', 'access_id'));
         } catch (\Throwable $th) {
             throw $th;

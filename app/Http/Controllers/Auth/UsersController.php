@@ -13,7 +13,6 @@ class UsersController extends Controller
     private $userService;
     public function __construct(UserServiceInterface $userServiceInterface)
     {
-        
         $this->userService = $userServiceInterface;
     }
     /**

@@ -43,27 +43,6 @@ class RequisitionTransactionController extends Controller
         try {
             $accessorys = $this->accessoriesService->dropdown();
             $transactions = $this->transactionsService->filterForRequest($request);
-            // if ($request->all()) {
-            //     $formSearch->access_id = $request->access_id;
-            //     $formSearch->s_created_at = $request->s_created_at;
-            //     $formSearch->e_created_at = $request->e_created_at;
-            //     if (isset($request->access_id)) {
-            //         $transactions->where('access_id', $request->access_id);
-            //     }
-            //     if (isset($request->s_created_at)) {
-            //         $s_date = new DateTime($request->s_created_at);
-            //         if (isset($request->e_created_at)) {
-            //             $e_date = new DateTime($request->e_created_at);
-            //             $e_date->add(new DateInterval('P1D'));
-            //             $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $e_date->format('Y-m-d H:i:s')]);
-            //         } else {
-            //             $new_s_date = new DateTime($request->s_created_at);
-            //             $new_s_date->add(new DateInterval('P1D'));
-            //             $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $new_s_date->format('Y-m-d H:i:s')]);
-            //         }
-            //     }
-            // }
-            // $accessories = $this->accessoriesService->all()->get();
             return \view('it.requisition.list', \compact('query','selectedAccessorys','start_at','end_at','accessorys','transactions'));
         } catch (\Throwable $th) {
             throw $th;
