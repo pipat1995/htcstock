@@ -15,8 +15,9 @@ class CreateSystemsTable extends Migration
     {
         Schema::create('system', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45);
-            $table->string('slug',45);
+            $table->string('name',45)->unique();
+            $table->string('slug',45)->unique();
+            $table->string('icon',45)->nullable();
             $table->timestamps();
         });
     }

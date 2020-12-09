@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,25 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('optimize-clear', function () {
-    Artisan::call('optimize:clear');
-    // echo Artisan::output();
-    return redirect()->back();
-})->name('optimize-clear');
-
-Route::get('language/{locale}', 'LocalizationController@language')->name('switch.language');
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome')->middleware(['auth']);
 Auth::routes(['verify' => true, 'register' => false]);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('optimize-clear', function () {
+        Artisan::call('optimize:clear');
+        return redirect()->back();
+    })->name('optimize-clear');
+
+    Route::get('language/{locale}', 'LocalizationController@language')->name('switch.language');
+    Route::get('/', 'HomeController@index')->name('welcome');
+    Route::get('/systemset/{name}', 'HomeController@systemset')->name('system-set');
+
+    Route::namespace('Auth')->prefix('me')->name('me.')->group(function () {
+        Route::resource('user', 'UsersController', ['only' => ['edit', 'update']]);
+    });
+});
+
 
 // Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('updateusers', 'UsersController@updateusers')->name('users.updateusers');
-    // Route::resource('users', 'UsersController', ['only' => ['index', 'destroy', 'update', 'edit']]);
-    // Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);
-    // Route::resource('roles', 'RoleController', ['only' => ['index', 'edit', 'create', 'store', 'update', 'destroy']]);
-
     Route::resources([
         'users' => 'UsersController',
         'permissions' => 'PermissionsController',
@@ -42,9 +42,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     ]);
 });
 
-Route::namespace('Auth')->prefix('me')->name('me.')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('user', 'UsersController', ['only' => ['edit', 'update']]);
-});
+
 // IT
 Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');

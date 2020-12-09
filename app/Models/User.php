@@ -50,6 +50,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return (new UserManagementFilter($request))->filter($builder);
     }
 
+    public function systems()
+    {
+        return $this->belongsToMany(System::class,'users_has_systems','user_id','system_id');
+    }
+
     // ITSTOCK
     public function transaction()
     {
