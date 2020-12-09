@@ -5,7 +5,11 @@
 (function () {
     'use strict';
     window.addEventListener('load', function () {
-        $('#validationAccess_id').select2();
+        // $('#validationAccess_id').select2();
+        $(".js-select-accessory-multiple").select2({
+            placeholder: 'Select ......',
+            allowClear: true
+        });
         $('#validationTrans_by').select2();
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');

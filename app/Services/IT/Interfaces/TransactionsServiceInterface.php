@@ -16,7 +16,9 @@ interface TransactionsServiceInterface
     public function stock(): Builder;
     public function quantityAccessorie(int $id);
     public function getAccessoriesType(String $type);
-    public function filter(Request $request);
+    public function filterStock(Request $request);
     public function filterForBuy(Request $request);
     public function filterForRequest(Request $request);
+    public function filterForLending(Request $request);
+    public function filterForHistory(Request $request);
 }

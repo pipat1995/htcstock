@@ -36,32 +36,14 @@ class LendingsTransactionController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->all();
+        $selectedAccessorys = collect($request->accessory);
+        $start_at = $request->start_at;
+        $end_at = $request->end_at;
         try {
-            $transactions = $this->transactionsService->transactionType(TransactionTypeEnum::L);
-            $formSearch = new LendingsFormSearch();
-            if ($request->all()) {
-                $formSearch->access_id = $request->access_id;
-                $formSearch->s_created_at = $request->s_created_at;
-                $formSearch->e_created_at = $request->e_created_at;
-                if (isset($request->access_id)) {
-                    $transactions->where('access_id', $request->access_id);
-                }
-                if (isset($request->s_created_at)) {
-                    $s_date = new DateTime($request->s_created_at);
-                    if (isset($request->e_created_at)) {
-                        $e_date = new DateTime($request->e_created_at);
-                        $e_date->add(new DateInterval('P1D'));
-                        $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $e_date->format('Y-m-d H:i:s')]);
-                    } else {
-                        $new_s_date = new DateTime($request->s_created_at);
-                        $new_s_date->add(new DateInterval('P1D'));
-                        $transactions->whereBetween('created_at', [$s_date->format('Y-m-d H:i:s'), $new_s_date->format('Y-m-d H:i:s')]);
-                    }
-                }
-            }
-            $datas = $transactions->orderBy('created_at', 'desc')->paginate(10)->appends((array) $formSearch);
-            $accessories = $this->accessoriesService->all()->get();
-            return \view('it.lendings.list',\compact('formSearch'))->with('transactions', $datas)->with('accessories', $accessories);
+            $accessorys = $this->accessoriesService->dropdown();
+            $transactions = $this->transactionsService->filterForLending($request);
+            return \view('it.lendings.list', \compact('selectedAccessorys', 'accessorys', 'transactions', 'start_at', 'end_at', 'query'));
         } catch (\Throwable $th) {
             throw $th;
         }
