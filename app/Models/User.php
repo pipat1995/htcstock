@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Http\Filters\IT\UserFilter;
 use App\Http\Filters\IT\UserManagementFilter;
 use App\Models\IT\Department;
 use App\Models\IT\Transactions;

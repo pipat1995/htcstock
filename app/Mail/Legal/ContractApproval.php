@@ -3,7 +3,7 @@
 namespace App\Mail\Legal;
 
 use App\Models\Legal\LegalContract;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;

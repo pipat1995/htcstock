@@ -4,7 +4,7 @@ namespace App\Services\IT\Service;
 
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\UserServiceInterface;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;

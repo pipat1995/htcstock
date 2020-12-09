@@ -3,7 +3,7 @@
 namespace App\Services\Legal\Interfaces;
 
 use App\Models\Legal\LegalContract;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

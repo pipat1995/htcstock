@@ -2,7 +2,7 @@
 
 namespace App\Models\IT;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model

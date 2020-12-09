@@ -2,7 +2,7 @@
 
 use App\Models\IT\Department;
 use App\Models\Legal\LegalApproval;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ApprovalTableSeeder extends Seeder

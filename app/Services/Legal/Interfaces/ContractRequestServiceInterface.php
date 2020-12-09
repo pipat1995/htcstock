@@ -2,7 +2,7 @@
 
 namespace App\Services\Legal\Interfaces;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 

@@ -3,7 +3,7 @@
 namespace App\Models\IT;
 
 use App\Http\Filters\IT\RoleManagementFilter;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 

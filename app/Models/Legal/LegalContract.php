@@ -3,7 +3,7 @@
 namespace App\Models\Legal;
 
 use App\Http\Filters\Legal\ContractRequestFilter;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,17 +50,17 @@ class LegalContract extends Model
 
     public function requestorBy()
     {
-        return $this->belongsTo(\App\User::class, 'requestor_by')->withDefault();
+        return $this->belongsTo(\App\Models\User::class, 'requestor_by')->withDefault();
     }
 
     public function checkedBy()
     {
-        return $this->belongsTo(\App\User::class, 'checked_by')->withDefault();
+        return $this->belongsTo(\App\Models\User::class, 'checked_by')->withDefault();
     }
 
     public function createdBy()
     {
-        return $this->belongsTo(\App\User::class, 'created_by')->withDefault();
+        return $this->belongsTo(\App\Models\User::class, 'created_by')->withDefault();
     }
 
     public function approvalDetail()

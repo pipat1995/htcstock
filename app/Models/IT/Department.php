@@ -25,7 +25,7 @@ class Department extends Model
     // ITSTOCK
     public function users()
     {
-        return $this->hasMany(\App\User::class, 'department_id');
+        return $this->hasMany(\App\Models\User::class, 'department_id');
     }
 
 

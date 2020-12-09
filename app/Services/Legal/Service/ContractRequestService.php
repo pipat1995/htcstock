@@ -2,11 +2,10 @@
 
 namespace App\Services\Legal\Service;
 
-use App\Enum\ContractEnum;
 use App\Models\Legal\LegalContract;
 use App\Services\BaseService;
 use App\Services\Legal\Interfaces\ContractRequestServiceInterface;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
