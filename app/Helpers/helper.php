@@ -2,8 +2,10 @@
 
 namespace Helpers;
 
+use App\Models\System;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+
 class Helper
 {
     public static function changeDateFormate($date, $date_format)
@@ -32,8 +34,8 @@ class Helper
 
     public static function convertQty($qty)
     {
-        if (substr($qty,0,1) === "-") {
-            return substr($qty,1);
+        if (substr($qty, 0, 1) === "-") {
+            return substr($qty, 1);
         }
         return $qty;
     }

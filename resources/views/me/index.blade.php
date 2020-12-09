@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar')
-@include('includes.it_sidebar');
+@include('includes.sidebar.legal');
 @stop
 
 @section('content')
@@ -13,24 +13,10 @@
                 </i>
             </div>
             <div>User Account
-                {{-- <div class="page-title-subheading">Tables are the backbone of almost all web
-                        applications.
-                    </div> --}}
             </div>
         </div>
         <div class="page-title-actions">
-            {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-dark">
-                <i class="fa fa-star"></i>
-            </button> --}}
             <div class="d-inline-block">
-                {{-- <button type="button" data-toggle="modal" data-target="#accessoriesModal"
-                    class="btn-shadow  btn btn-info" data-param="">
-                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                        <i class="fa fa-business-time fa-w-20"></i>
-                    </span>
-                    เพิ่ม
-                </button> --}}
             </div>
         </div>
     </div>

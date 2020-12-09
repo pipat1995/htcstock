@@ -69,7 +69,22 @@
                 </div>
             </div>
             <div class="u-expanded-width-xs u-list u-repeater u-list-1">
-                <div style="cursor: pointer;" onclick="goTo('it/dashboard')"
+                @isset($systems)
+                @foreach ($systems as $item)
+                
+                <div style="cursor: pointer;" onclick="goTo('systemset/{{$item->slug}}')"
+                    class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-1">
+                    <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+
+                        <i class="{{$item->icon}}" aria-hidden="true" style="margin: auto"></i>
+                        <h5 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-3"
+                            style="margin: auto">
+                            {{$item->name}}</h5>
+                    </div>
+                </div>
+                @endforeach
+                @endisset
+                {{-- <div style="cursor: pointer;" onclick="goTo('it/dashboard')"
                     class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-1">
                     <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
 
@@ -88,7 +103,7 @@
                             style="margin: auto">CONTRACT LEGAL
                         </h5>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div style="cursor: pointer;"
                     class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-3">
                     <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-4">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('sidebar')
-@include('includes.legal_sidebar');
+@include('includes.sidebar.legal');
 @stop
 @section('content')
 <!-- Back to top button -->

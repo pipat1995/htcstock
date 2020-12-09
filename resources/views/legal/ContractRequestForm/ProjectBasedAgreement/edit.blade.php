@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/legals/projectbasedagreement.css')}}">
 @endsection
 @section('sidebar')
-@include('includes.legal_sidebar');
+@include('includes.sidebar.legal');
 @stop
 @section('content')
 <!-- Back to top button -->
