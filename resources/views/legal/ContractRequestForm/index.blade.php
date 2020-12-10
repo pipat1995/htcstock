@@ -35,7 +35,7 @@
             <form action="{{route('legal.contract-request.index')}}" method="GET">
                 <div class="form-row">
                     <div class="col-md-2 mb-2">
-                        <select class="form-control js-select-status-multiple" name="status[]" multiple>
+                        <select class="form-control-sm form-control js-select-status-multiple" name="status[]" multiple>
                             @isset($status)
                             @foreach ($status as $item)
                             <option value="{{$item}}" @if($selectedStatus->contains($item)) selected @endif>{{$item}}
@@ -45,7 +45,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-2">
-                        <select class="form-control js-select-agreements-multiple" name="agreement[]" multiple>
+                        <select class="form-control-sm form-control js-select-agreements-multiple" name="agreement[]" multiple>
                             @isset($agreements)
                             @foreach ($agreements as $item)
                             <option value="{{$item->id}}" @if($selectedAgree->contains($item->id)) selected

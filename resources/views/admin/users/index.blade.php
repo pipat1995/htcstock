@@ -22,11 +22,11 @@
                 <div class="form-row">
                     <div class="col-md-2 mb-2">
                         <label for="search">Search</label>
-                        <input type="text" class="form-control" id="search" name="search" value="{{$search}}">
+                        <input type="text" class="form-control-sm form-control" id="search" name="search" value="{{$search}}">
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="department">Department</label>
-                        <select class="form-control js-select-department-multiple" name="department[]" multiple>
+                        <select class="form-control-sm form-control js-select-department-multiple" name="department[]" multiple>
                             @isset($departments)
                             @foreach ($departments as $item)
                             <option value="{{$item->id}}" @if($selectedDept->contains($item->id)) selected
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="role">Role</label>
-                        <select class="form-control js-select-role-multiple" name="user_role[]" multiple>
+                        <select class="form-control-sm form-control js-select-role-multiple" name="user_role[]" multiple>
                             @isset($roles)
                             @foreach ($roles as $item)
                             <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected

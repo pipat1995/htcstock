@@ -49,7 +49,7 @@
                                 href="{{url('storage/'.$scrap->quotation)}}" target="_blank"
                                 rel="noopener noreferrer">{{$scrap->quotation ? 'view file' : ""}}</a></label>
 
-                        <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                             data-cache="{{substr($scrap->quotation,9)}}" onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -66,7 +66,7 @@
                                 href="{{url('storage/'.$scrap->coparation_sheet)}}" target="_blank"
                                 rel="noopener noreferrer">{{$scrap->coparation_sheet ? 'view file' : ""}}</a></label>
 
-                        <input type="file" class="form-control" id="validationCoparationFile"
+                        <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                             data-name="coparation_sheet" data-cache="{{substr($scrap->coparation_sheet,9)}}"
                             onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
@@ -86,7 +86,7 @@
                                 href="{{url('storage/'.$scrap->factory_permission)}}" target="_blank"
                                 rel="noopener noreferrer">{{$scrap->factory_permission ? 'view file' : ""}}</a></label>
 
-                        <input type="file" class="form-control" id="validationFactoryPermission"
+                        <input type="file" class="form-control-sm form-control" id="validationFactoryPermission"
                             data-name="factory_permission" data-cache="{{substr($scrap->factory_permission,9)}}"
                             onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
@@ -105,7 +105,7 @@
                                 href="{{url('storage/'.$scrap->waste_permission)}}" target="_blank"
                                 rel="noopener noreferrer">{{$scrap->waste_permission ? 'view file' : ""}}</a></label>
 
-                        <input type="file" class="form-control" id="validationWastePermission"
+                        <input type="file" class="form-control-sm form-control" id="validationWastePermission"
                             data-name="waste_permission" data-cache="{{substr($scrap->waste_permission,9)}}"
                             onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
@@ -127,7 +127,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationScope"><strong>Scope of Work</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                        <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->scope_of_work : ""}}"
                             required>
 
@@ -138,7 +138,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationLocation"><strong>Location</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationLocation" name="location"
+                        <input type="text" class="form-control-sm form-control" id="validationLocation" name="location"
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->location : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -150,7 +150,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                        <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->quotation_no : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDated" name="dated"
+                        <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -169,7 +169,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationDeliveryDate"><strong>Delivery Date</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDeliveryDate" name="delivery_date"
+                        <input type="date" class="form-control-sm form-control" id="validationDeliveryDate" name="delivery_date"
                             value="{{isset($scrap->legalComercialTerm) ? $scrap->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -194,22 +194,22 @@
                                 <td> <button type="button" class="btn btn-warning" onclick="createRow()">Create</button>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="validationDescription"
+                                    <input type="text" class="form-control-sm form-control" id="validationDescription"
                                         name="description" min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationUnitPrice" name="unit_price"
+                                    <input type="number" class="form-control-sm form-control" id="validationUnitPrice" name="unit_price"
                                         min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationDiscount" name="discount"
+                                    <input type="number" class="form-control-sm form-control" id="validationDiscount" name="discount"
                                         min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationAmount" name="amount"
+                                    <input type="number" class="form-control-sm form-control" id="validationAmount" name="amount"
                                         min="0" step=0.01>
                                 </td>
-                                <input type="hidden" class="form-control" id="validationContractDestsId"
+                                <input type="hidden" class="form-control-sm form-control" id="validationContractDestsId"
                                     name="contract_dests_id" value="{{$scrap->id}}">
                             </tr>
                         </thead>
@@ -234,7 +234,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationContractType"><strong>Contract Type</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="payment_type_id" id="validationContractType" class="form-control"
+                        <select name="payment_type_id" id="validationContractType" class="form-control-sm form-control"
                             onchange="changeType(this)" required>
                             <option value="">Shoose....</option>
                             @isset($paymentType)

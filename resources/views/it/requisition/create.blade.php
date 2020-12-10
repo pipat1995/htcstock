@@ -37,7 +37,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationAccess_id" class="">{{ __('itstock.requisition-accessorie.equipment') }}</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control" onchange="checkQtyAccess(this)" required >
+                        <select name="access_id" id="validationAccess_id" class="form-control-sm form-control" onchange="checkQtyAccess(this)" required >
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}">{{$item->access_name}}</option>
@@ -49,14 +49,14 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">{{ __('itstock.requisition-accessorie.quantity') }}</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty" value="" min="1" oninput="quantity(this)" required>
+                        <input type="number" class="form-control-sm form-control" id="validationQty" name="qty" value="" min="1" oninput="quantity(this)" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTrans_by" class="">{{ __('itstock.requisition-accessorie.requisition-by') }}</label>
-                        <select name="trans_by" id="validationTrans_by" class="form-control" required>
+                        <select name="trans_by" id="validationTrans_by" class="form-control-sm form-control" required>
                             <option value="">--เลือก--</option>
                             @foreach ($users as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
@@ -70,7 +70,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="trans_desc">{{ __('itstock.requisition-accessorie.remark') }}</label>
-                        <textarea name="trans_desc" id="trans_desc" class="form-control" rows="3"></textarea>
+                        <textarea name="trans_desc" id="trans_desc" class="form-control-sm form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>{{ __('itstock.requisition-accessorie.submit-form') }}</button>

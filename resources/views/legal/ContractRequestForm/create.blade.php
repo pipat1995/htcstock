@@ -52,7 +52,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationAcction"><strong>Action</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="action_id" id="validationAcction" class="form-control" required>
+                        <select name="action_id" id="validationAcction" class="form-control-sm form-control" required>
                             <option value="">Shoose....</option>
                             @isset($actions)
                             @foreach ($actions as $action)
@@ -67,7 +67,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationAgreements"><strong>General Agreements</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="agreement_id" id="validationAgreements" class="form-control" required>
+                        <select name="agreement_id" id="validationAgreements" class="form-control-sm form-control" required>
                             <option value="">Shoose....</option>
                             @isset($agreements)
                             @foreach ($agreements as $agreement)
@@ -85,7 +85,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationCompanyName" name="company_name" required>
+                        <input type="text" class="form-control-sm form-control" id="validationCompanyName" name="company_name" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
@@ -95,7 +95,7 @@
                                 style="color: red;">*</span><a href=""
                                 target="_blank"
                                 rel="noopener noreferrer"></a></label>
-                        <input type="file" class="form-control" id="validationCompanyCertificate"
+                        <input type="file" class="form-control-sm form-control" id="validationCompanyCertificate"
                             data-name="company_cer" onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -111,7 +111,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresentative"><strong>Legal Representative</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationRepresentative" name="representative"
+                        <input type="text" class="form-control-sm form-control" id="validationRepresentative" name="representative"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
@@ -122,7 +122,7 @@
                                 style="color: red;">*</span> <a href=""
                                 target="_blank"
                                 rel="noopener noreferrer"></a></label>
-                        <input type="file" class="form-control" id="validationRepresen" data-name="representative_cer"
+                        <input type="file" class="form-control-sm form-control" id="validationRepresen" data-name="representative_cer"
                             onchange="uploadFile(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -138,7 +138,7 @@
                     <div class="col-md-12 mb-12">
                         <label for="validationAddress"><strong>Address</strong> <span
                                 style="color: red;">*</span></label>
-                        <textarea class="form-control" name="address" id="validationAddress" rows="4"
+                        <textarea class="form-control-sm form-control" name="address" id="validationAddress" rows="4"
                             required></textarea>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.

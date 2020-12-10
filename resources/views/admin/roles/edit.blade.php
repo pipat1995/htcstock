@@ -46,7 +46,7 @@
                             class="col-md-3 col-form-label text-md-right">{{ __('Name') }}</label>
                         <div class="col-md-4">
                             <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror"
+                                class="form-control-sm form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{$role->name}}"  required autocomplete="name"
                                 autofocus>
 
@@ -62,7 +62,7 @@
                             class="col-md-3 col-form-label text-md-right">{{ __('Permissions') }}</label>
                         <div class="col-md-4 mb-3">
                             <select name="permission_name[]" id="validationPermission_name"
-                                class="form-control role-select2" multiple="multiple" required>
+                                class="form-control-sm form-control role-select2" multiple="multiple" required>
                                 <option value="">--เลือก--</option>
                                 @foreach ($permissions as $permission)
                                 <option value="{{$permission->id}}" {{$role->permissions->pluck('id')->contains($permission->id)? "selected" : "" }} >{{$permission->name}}</option>

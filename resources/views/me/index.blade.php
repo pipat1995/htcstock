@@ -32,7 +32,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Name') }}</label>
                         <div class="col-md-3">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                            <input id="name" type="text" class="form-control-sm form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                             @error('name')
@@ -46,7 +46,7 @@
                             class="col-md-1 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-3">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            <input id="email" type="email" class="form-control-sm form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ $user->email }}" required autocomplete="email" readonly>
 
                             @error('email')
@@ -62,7 +62,7 @@
                         <label for="phone" class="col-md-1 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                         <div class="col-md-3">
-                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                            <input id="phone" type="text" class="form-control-sm form-control @error('phone') is-invalid @enderror"
                                 name="phone" value="{{ $user->phone }}" required autocomplete="phone">
 
                             @error('phone')

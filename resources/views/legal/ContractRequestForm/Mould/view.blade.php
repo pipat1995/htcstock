@@ -43,12 +43,12 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationAcction"><strong>Action</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" value="{{$legalContract->LegalAction->name}}" readonly>
+                        <input type="text" class="form-control-sm form-control" value="{{$legalContract->LegalAction->name}}" readonly>
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationAgreements"><strong>General Agreements</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" value="{{$legalContract->legalAgreement->name}}"
+                        <input type="text" class="form-control-sm form-control" value="{{$legalContract->legalAgreement->name}}"
                             readonly>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" value="{{$legalContract->company_name}}" readonly>
+                        <input type="text" class="form-control-sm form-control" value="{{$legalContract->company_name}}" readonly>
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
@@ -73,7 +73,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresentative"><strong>Legal Representative</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" value="{{$legalContract->representative}}" readonly>
+                        <input type="text" class="form-control-sm form-control" value="{{$legalContract->representative}}" readonly>
                     </div>
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresen"><strong>Representative Certificate</strong> <span
@@ -88,7 +88,7 @@
                     <div class="col-md-12 mb-12">
                         <label for="validationAddress"><strong>Address</strong> <span
                                 style="color: red;">*</span></label>
-                        <textarea class="form-control" rows="4" readonly>{{$legalContract->address}}</textarea>
+                        <textarea class="form-control-sm form-control" rows="4" readonly>{{$legalContract->address}}</textarea>
                     </div>
                 </div>
                 {{-- end head --}}
@@ -139,7 +139,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationScope"><strong>Scope of Work</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                        <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                             readonly>
                         <div>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationToManufacture"><strong>To Manufacture</strong> </label>
-                        <input type="text" class="form-control" id="validationToManufacture" name="to_manufacture"
+                        <input type="text" class="form-control-sm form-control" id="validationToManufacture" name="to_manufacture"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->to_manufacture : ""}}">
                         <div>
                             Please provide a valid To Manufacture.
@@ -156,7 +156,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationOf"><strong>Of</strong></label>
-                        <input type="text" class="form-control" id="validationOf" name="of"
+                        <input type="text" class="form-control-sm form-control" id="validationOf" name="of"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->of : ""}}">
                         <div>
                             Please provide a valid Of.
@@ -164,7 +164,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong></label>
-                        <input type="text" class="form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
+                        <input type="text" class="form-control-sm form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->purchase_order_no : ""}}">
                         <div>
                             Please provide a valid Purchase Order No.
@@ -175,7 +175,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                        <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                             readonly>
                         <div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDated" name="dated"
+                        <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             readonly>
                         <div>
@@ -194,7 +194,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationDeliveryDate"><strong>Delivery Date</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDeliveryDate" name="delivery_date"
+                        <input type="date" class="form-control-sm form-control" id="validationDeliveryDate" name="delivery_date"
                             value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             readonly>
                         <div>
@@ -247,7 +247,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationContractType"><strong>Contract Type</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="payment_type_id" id="validationContractType" class="form-control"
+                        <select name="payment_type_id" id="validationContractType" class="form-control-sm form-control"
                             onchange="changeType(this)" readonly disabled>
                             <option value="">Shoose....</option>
                             @isset($paymentType)
@@ -321,12 +321,12 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationWarranty"><strong>Month</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="number" class="form-control" id="validationWarranty" name="warranty" min="0"
+                        <input type="number" class="form-control-sm form-control" id="validationWarranty" name="warranty" min="0"
                             step="1" value="{{$contractDest->warranty}}" onchange="calMonthToYear(this)" readonly>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationWarrantyForYear"><strong>Year</strong></label>
-                        <input type="number" class="form-control" id="validationWarrantyForYear" min="0.1" step="0.1"
+                        <input type="number" class="form-control-sm form-control" id="validationWarrantyForYear" min="0.1" step="0.1"
                             value="" readonly>
                     </div>
                 </div>
@@ -375,7 +375,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationStatus"><strong>Status</strong></label>
-                        <select name="status" id="status" class="form-control" style="cursor: pointer">
+                        <select name="status" id="status" class="form-control-sm form-control" style="cursor: pointer">
                             <option value="">Choouse...</option>
                             <option value="reject">Reject</option>
                             <option value="approval">Approval</option>
@@ -385,7 +385,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationComment"><strong>Comment</strong></label>
-                        <textarea class="form-control" name="comment" rows="5"></textarea>
+                        <textarea class="form-control-sm form-control" name="comment" rows="5"></textarea>
                     </div>
                 </div>
                 @endif

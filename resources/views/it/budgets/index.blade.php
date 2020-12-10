@@ -39,7 +39,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="month">{{ __('itstock.budget.month') }}</label>
-                            <select class="form-control" name="month" id="month">
+                            <select class="form-control-sm form-control" name="month" id="month">
                                 <option value="">--เลือก--</option>
                                 @foreach ($months as $key => $item)
                                 <option value="{{$key}}" {{$formSearch->month == $key ? 'selected' : ''}}>{{$item}}
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="year">{{ __('itstock.budget.year') }}</label>
-                            <select class="form-control" name="year" id="year">
+                            <select class="form-control-sm form-control" name="year" id="year">
                                 <option value="">--เลือก--</option>
                                 @foreach (range( date('Y'), $earliest_year ) as $i)
                                 <option value="{{$i}}" {{$formSearch->month == $i ? 'selected' : ''}}>{{$i}}</option>

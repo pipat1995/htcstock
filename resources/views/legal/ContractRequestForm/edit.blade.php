@@ -52,7 +52,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationAcction"><strong>Action</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="action_id" id="validationAcction" class="form-control" required>
+                        <select name="action_id" id="validationAcction" class="form-control-sm form-control" required>
                             <option value="">Shoose....</option>
                             @isset($actions)
                             @foreach ($actions as $action)
@@ -68,7 +68,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationAgreements"><strong>General Agreements</strong> <span
                                 style="color: red;">*</span></label>
-                        <select name="agreement_id" id="validationAgreements" class="form-control" required>
+                        <select name="agreement_id" id="validationAgreements" class="form-control-sm form-control" required>
                             <option value="">Shoose....</option>
                             @isset($agreements)
                             @foreach ($agreements as $agreement)
@@ -88,7 +88,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationCompanyName" name="company_name"
+                        <input type="text" class="form-control-sm form-control" id="validationCompanyName" name="company_name"
                             value="{{$contract->company_name}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
@@ -99,7 +99,7 @@
                                 style="color: red;">*</span> <a href="{{url('storage/'.$contract->company_cer)}}"
                                 target="_blank"
                                 rel="noopener noreferrer">{{$contract->company_cer ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationCompanyCertificate"
+                        <input type="file" class="form-control-sm form-control" id="validationCompanyCertificate"
                             onchange="uploadFile(this)" data-name="company_cer"
                             data-cache="{{substr($contract->company_cer,9)}}" required>
                         <div class="mb-3 progress hide-contract">
@@ -116,7 +116,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationRepresentative"><strong>Legal Representative</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationRepresentative" name="representative"
+                        <input type="text" class="form-control-sm form-control" id="validationRepresentative" name="representative"
                             value="{{$contract->representative}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
@@ -127,7 +127,7 @@
                                 style="color: red;">*</span><a href="{{url('storage/'.$contract->representative_cer)}}"
                                 target="_blank"
                                 rel="noopener noreferrer">{{$contract->representative_cer ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationRepresen" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationRepresen" onchange="uploadFile(this)"
                             data-name="representative_cer" data-cache="{{substr($contract->representative_cer,9)}}"
                             required>
                         <div class="mb-3 progress hide-contract">
@@ -145,7 +145,7 @@
                     <div class="col-md-12 mb-12">
                         <label for="validationAddress"><strong>Address</strong> <span
                                 style="color: red;">*</span></label>
-                        <textarea class="form-control" name="address" id="validationAddress" rows="4"
+                        <textarea class="form-control-sm form-control" name="address" id="validationAddress" rows="4"
                             required> {{$contract->address}}</textarea>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.

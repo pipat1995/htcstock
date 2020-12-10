@@ -44,7 +44,7 @@
             <form action="#" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <select class="form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]" multiple>
+                        <select class="form-control-sm form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]" multiple>
                             @isset($accessorys)
                             @foreach ($accessorys as $item)
                             <option value="{{$item->access_id}}" @if($selectedAccessorys->contains($item->access_id))

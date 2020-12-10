@@ -38,7 +38,7 @@
             <div class="form-row">
                 <div class="col-md-2 mb-2">
                     <label for="role">Role</label>
-                    <select class="form-control js-select-role-multiple" name="role[]" multiple>
+                    <select class="form-control-sm form-control js-select-role-multiple" name="role[]" multiple>
                         @isset($dropdown)
                         @foreach ($dropdown as $item)
                         <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected

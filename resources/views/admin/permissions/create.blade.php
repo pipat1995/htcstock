@@ -45,7 +45,7 @@
                             class="col-md-3 col-form-label text-md-right">{{ __('Name') }}</label>
                         <div class="col-md-4">
                             <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror"
+                                class="form-control-sm form-control @error('name') is-invalid @enderror"
                                 name="name" value=""  required autocomplete="name"
                                 autofocus>
 

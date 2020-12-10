@@ -6,7 +6,7 @@
     <img class="mb-4" src="{{asset('assets/images/newhaier.png')}}" alt="LOGO">
     {{-- <h1 class="h3 mb-3 font-weight-normal">{{ __('Login') }}</h1> --}}
     <label for="inputEmail" class="sr-only">{{ __('Email or username') }}</label>
-    <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username"
+    <input id="username" type="username" class="form-control-sm form-control @error('username') is-invalid @enderror" name="username"
         value="{{ old('username') }}" placeholder="{{ __('Email or username') }}" required autocomplete="username"
         autofocus>
     @error('username')
@@ -16,7 +16,7 @@
     @enderror
 
     <label for="inputPassword" class="sr-only">{{ __('Password') }}</label>
-    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+    <input id="password" type="password" class="form-control-sm form-control @error('password') is-invalid @enderror" name="password"
         placeholder="{{ __('Password') }}" required autocomplete="current-password">
 
     @error('password')

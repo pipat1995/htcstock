@@ -38,7 +38,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
                         <label for="validationAccess_id" class="">{{ __('itstock.buy-accessorie.equipment') }}</label>
-                        <select class="form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]"
+                        <select class="form-control-sm form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]"
                             multiple>
                             @isset($accessorys)
                             @foreach ($accessorys as $item)
@@ -51,20 +51,20 @@
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="validationIr_no">{{ __('itstock.buy-accessorie.ir-no') }}</label>
-                        <input type="text" class="form-control" id="validationIr_no" name="ir_no" value="{{$ir_no}}">
+                        <input type="text" class="form-control-sm form-control" id="validationIr_no" name="ir_no" value="{{$ir_no}}">
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="validationPo_no">{{ __('itstock.buy-accessorie.po-no') }}</label>
-                        <input type="text" class="form-control" id="validationPo_no" name="po_no" value="{{$po_no}}">
+                        <input type="text" class="form-control-sm form-control" id="validationPo_no" name="po_no" value="{{$po_no}}">
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="validationCreated_at">{{ __('itstock.buy-accessorie.a-date') }}</label>
-                        <input type="date" class="form-control" id="validationSCreated_at" name="start_at"
+                        <input type="date" class="form-control-sm form-control" id="validationSCreated_at" name="start_at"
                             oninput="changeValue(this)" value="{{$start_at}}">
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="validationCreated_at">{{ __('itstock.buy-accessorie.up-to-date') }}</label>
-                        <input type="date" class="form-control" id="validationECreated_at" name="end_at"
+                        <input type="date" class="form-control-sm form-control" id="validationECreated_at" name="end_at"
                             value="{{$end_at}}" readonly>
                     </div>
                 </div>

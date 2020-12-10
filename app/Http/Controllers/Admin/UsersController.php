@@ -63,13 +63,14 @@ class UsersController extends Controller
             if (Gate::denies('for-superadmin-admin')) {
                 return \redirect()->route('admin.users.index');
             }
-            return \view('admin.users.edit')->with([
-                'user' => $this->userService->find($id),
-                'roles' => $this->rolesService->all()->get()
-            ]);
+            $user = $this->userService->find($id);
+            $userRoles = $user->roles()->get();
+            $userSystems = $user->systems()->get();
+            $roles = $this->rolesService->dropdown();
         } catch (\Throwable $th) {
             throw $th;
         }
+        return \view('admin.users.edit',\compact('user','roles','userRoles','userSystems'));
     }
 
     /**

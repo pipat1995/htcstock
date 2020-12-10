@@ -39,7 +39,7 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="validationSubType"><strong></strong> </label>
-                    <select id="validationSubType" class="form-control" name="subtype" onchange="changeSubType(this)"
+                    <select id="validationSubType" class="form-control-sm form-control" name="subtype" onchange="changeSubType(this)"
                         required>
                         <option data-id="">Shoose....</option>
                         @isset($subtypeContract)
@@ -72,7 +72,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile"
                                 onchange="uploadFile(this)" data-cache="{{substr($vendorservice->quotation,9)}}"
                                 data-name="quotation" required>
                             <div class="mb-3 progress hide-contract">
@@ -89,7 +89,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -107,7 +107,7 @@
                                 <span style="color: red;">*</span> <a
                                 href="{{url('storage/'.$vendorservice->transportation_permission)}}" target="_blank"
                                 rel="noopener noreferrer">{{$vendorservice->transportation_permission ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationTransportationPermission"
+                            <input type="file" class="form-control-sm form-control" id="validationTransportationPermission"
                                 data-name="transportation_permission" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->transportation_permission,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -127,7 +127,7 @@
                                 <span style="color: red;">*</span> <a
                                 href="{{url('storage/'.$vendorservice->vehicle_registration_certificate)}}" target="_blank"
                                 rel="noopener noreferrer">{{$vendorservice->vehicle_registration_certificate ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationVehicleRegistration"
+                            <input type="file" class="form-control-sm form-control" id="validationVehicleRegistration"
                                 data-name="vehicle_registration_certificate" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->vehicle_registration_certificate,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -145,7 +145,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->route)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->route ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationRoute" onchange="uploadFile(this)"
+                            <input type="file" class="form-control-sm form-control" id="validationRoute" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->route,9)}}" data-name="route" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -161,7 +161,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->insurance)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->insurance ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationInsurance" onchange="uploadFile(this)"
+                            <input type="file" class="form-control-sm form-control" id="validationInsurance" onchange="uploadFile(this)"
                                 data-cache="{{substr($vendorservice->insurance,9)}}" data-name="insurance" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -179,7 +179,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->driver_license)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->driver_license ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationDriverLicense"
+                            <input type="file" class="form-control-sm form-control" id="validationDriverLicense"
                                 onchange="uploadFile(this)" data-cache="{{substr($vendorservice->driver_license,9)}}"
                                 data-name="driver_license" required>
                             <div class="mb-3 progress hide-contract">
@@ -201,7 +201,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -211,7 +211,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationLocation"><strong>Location</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationLocation" name="location"
+                            <input type="text" class="form-control-sm form-control" id="validationLocation" name="location"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->location : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -221,7 +221,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -233,7 +233,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -243,7 +243,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -253,7 +253,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -269,7 +269,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationMonthly"><strong>Monthly</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" step="0.1"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" step="0.1"
                                 min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
@@ -280,7 +280,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRouteChange"><strong>Route Change</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationRouteChange" name="route_change"
+                            <input type="number" class="form-control-sm form-control" id="validationRouteChange" name="route_change"
                                 step="0.1" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->route_change : ""}}"
                                 required>
@@ -290,7 +290,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="payment_ot" step="0.1"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="payment_ot" step="0.1"
                                 min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->payment_ot : ""}}"
                                 required>
@@ -301,7 +301,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
+                            <input type="number" class="form-control-sm form-control" id="validationHolidayPay" name="holiday_pay"
                                 step="0.1" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->holiday_pay : ""}}"
                                 required>
@@ -312,7 +312,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationOTDriver"><strong>OT driver</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOTDriver" name="ot_driver"
+                            <input type="number" class="form-control-sm form-control" id="validationOTDriver" name="ot_driver"
                                 step="0.1" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->ot_driver : ""}}"
                                 required>
@@ -344,7 +344,7 @@
                                     href="{{asset('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -361,7 +361,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -383,7 +383,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -393,7 +393,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -403,7 +403,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -415,7 +415,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -425,7 +425,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -437,7 +437,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -447,7 +447,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -459,7 +459,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationRoad"><strong>Road</strong> </label>
-                            <input type="number" class="form-control" id="validationRoad" name="road" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationRoad" name="road" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->road : 0}}"
                                 required>
@@ -469,7 +469,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationBuilding"><strong>Building</strong></label>
-                            <input type="number" class="form-control" id="validationBuilding" name="building" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationBuilding" name="building" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->building : 0}}"
                                 required>
@@ -479,7 +479,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationToilet"><strong>Toilet</strong></label>
-                            <input type="number" class="form-control" id="validationToilet" name="toilet" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationToilet" name="toilet" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->toilet : 0}}"
                                 required>
@@ -489,7 +489,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCanteen"><strong>Canteen</strong></label>
-                            <input type="number" class="form-control" id="validationCanteen" name="canteen" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationCanteen" name="canteen" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->canteen : 0}}"
                                 required>
@@ -501,7 +501,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationWashing"><strong>Washing</strong></label>
-                            <input type="number" class="form-control" id="validationWashing" name="washing" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationWashing" name="washing" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->washing : 0}}"
                                 required>
@@ -511,7 +511,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationWater"><strong>Water</strong></label>
-                            <input type="number" class="form-control" id="validationWater" name="water" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationWater" name="water" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->water : 0}}"
                                 required>
@@ -521,7 +521,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationMowing"><strong>Mowing</strong></label>
-                            <input type="number" class="form-control" id="validationMowing" name="mowing" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMowing" name="mowing" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->mowing : 0}}"
                                 required>
@@ -531,7 +531,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationGeneral"><strong>General</strong></label>
-                            <input type="number" class="form-control" id="validationGeneral" name="general" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationGeneral" name="general" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->general : 0}}"
                                 required>
@@ -543,7 +543,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="Total"><strong>Total</strong></label>
-                            <input type="number" class="form-control" id="total" value="0" readonly>
+                            <input type="number" class="form-control-sm form-control" id="total" value="0" readonly>
                         </div>
                     </div>
 
@@ -555,7 +555,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -564,7 +564,7 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="payment_ot" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="payment_ot" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->payment_ot : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -574,7 +574,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
+                            <input type="number" class="form-control-sm form-control" id="validationHolidayPay" name="holiday_pay"
                                 min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->holiday_pay : ""}}"
                                 required>
@@ -604,7 +604,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -621,7 +621,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -643,7 +643,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -653,7 +653,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -663,7 +663,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -675,7 +675,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -685,7 +685,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -695,7 +695,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfCook"><strong>Number of cook</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfCook" name="number_of_cook"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfCook" name="number_of_cook"
                                 min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_cook : ""}}"
                                 required>
@@ -708,7 +708,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -718,7 +718,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -727,7 +727,7 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="comercial_ot" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="comercial_ot" min="0"
                                 step="0.1"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->comercial_ot : ""}}"
                                 required>
@@ -744,7 +744,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -754,7 +754,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationOtherExpense"><strong>Other Expense</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationOtherExpense" name="other_expense"
+                            <input type="text" class="form-control-sm form-control" id="validationOtherExpense" name="other_expense"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->other_expense : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -783,7 +783,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -800,7 +800,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -819,7 +819,7 @@
                                     href="{{url('storage/'.$vendorservice->doctor_license)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->doctor_license ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationDoctorLicense"
+                            <input type="file" class="form-control-sm form-control" id="validationDoctorLicense"
                                 onchange="uploadFile(this)" data-name="doctor_license"
                                 data-cache="{{substr($vendorservice->doctor_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -841,7 +841,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -851,7 +851,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -861,7 +861,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -873,7 +873,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -883,7 +883,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -893,7 +893,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfDoctor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfDoctor"
                                 name="number_of_doctor" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_doctor : ""}}"
                                 required>
@@ -906,7 +906,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -916,7 +916,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -932,7 +932,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -961,7 +961,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -978,7 +978,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -997,7 +997,7 @@
                                     href="{{url('storage/'.$vendorservice->nurse_license)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->nurse_license ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationNurseLicense"
+                            <input type="file" class="form-control-sm form-control" id="validationNurseLicense"
                                 onchange="uploadFile(this)" data-name="nurse_license"
                                 data-cache="{{substr($vendorservice->nurse_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1019,7 +1019,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1029,7 +1029,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1039,7 +1039,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1051,7 +1051,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1061,7 +1061,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1071,7 +1071,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfDoctor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfDoctor"
                                 name="number_of_doctor" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_doctor : ""}}"
                                 required>
@@ -1084,7 +1084,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1094,7 +1094,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1110,7 +1110,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1139,7 +1139,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -1156,7 +1156,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1175,7 +1175,7 @@
                                     href="{{url('storage/'.$vendorservice->security_service_certification)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->security_service_certification ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationSecurityService"
+                            <input type="file" class="form-control-sm form-control" id="validationSecurityService"
                                 onchange="uploadFile(this)" data-name="security_service_certification"
                                 data-cache="{{substr($vendorservice->security_service_certification,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1194,7 +1194,7 @@
                                     href="{{url('storage/'.$vendorservice->security_guard_license)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->security_guard_license ? 'view file' : ""}}</a></label>
 
-                            <input type="file" class="form-control" id="validationSecurityGuardLicense"
+                            <input type="file" class="form-control-sm form-control" id="validationSecurityGuardLicense"
                                 onchange="uploadFile(this)" data-name="security_guard_license"
                                 data-cache="{{substr($vendorservice->security_guard_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1216,7 +1216,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1226,7 +1226,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1236,7 +1236,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1248,7 +1248,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1258,7 +1258,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1268,7 +1268,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfSercurityGuard"><strong>Number of sercurity guard</strong>
                                 <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfSercurityGuard"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfSercurityGuard"
                                 name="number_of_sercurity_guard" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_sercurity_guard : ""}}"
                                 required>
@@ -1281,7 +1281,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1291,7 +1291,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1307,7 +1307,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->monthly : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1336,7 +1336,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -1353,7 +1353,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1375,7 +1375,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1385,7 +1385,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1395,7 +1395,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1407,7 +1407,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1417,7 +1417,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1427,7 +1427,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfSubcontractor"><strong>Number of subcontractor</strong>
                                 <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfSubcontractor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfSubcontractor"
                                 name="number_of_subcontractor" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_subcontractor : ""}}"
                                 required>
@@ -1441,7 +1441,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfAgent"><strong>Number of agent</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfAgent" name="number_of_agent" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfAgent" name="number_of_agent" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->number_of_agent: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1451,7 +1451,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1461,7 +1461,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time: ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1477,7 +1477,7 @@
                         <div class="col-md-12 mb-12">
                             <label for="validationDetailPaymentTerm"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <textarea class="form-control" name="detail_payment_term" id="validationDetailPaymentTerm"
+                            <textarea class="form-control-sm form-control" name="detail_payment_term" id="validationDetailPaymentTerm"
                                 rows="4" required>
                                         {{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->detail_payment_term : ""}}
                                     </textarea>
@@ -1507,7 +1507,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationQuotationFile" data-name="quotation"
+                            <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
                                 data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
@@ -1524,7 +1524,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control" id="validationCoparationFile"
+                            <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                                 onchange="uploadFile(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
@@ -1546,7 +1546,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->scope_of_work : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1558,7 +1558,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->quotation_no : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1568,7 +1568,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1578,14 +1578,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 required>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1597,7 +1597,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRoute"><strong>Route</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationRoute" name="route"
+                            <input type="text" class="form-control-sm form-control" id="validationRoute" name="route"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->route : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1606,7 +1606,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationTo"><strong>To</strong> <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationTo" name="to"
+                            <input type="text" class="form-control-sm form-control" id="validationTo" name="to"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->to : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1616,7 +1616,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationDryContainerSize"><strong>Dry Container Size</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationDryContainerSize"
+                            <input type="number" class="form-control-sm form-control" id="validationDryContainerSize"
                                 name="dry_container_size" step="0.01" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->dry_container_size : ""}}"
                                 required>
@@ -1627,7 +1627,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationThenumberoftruck"><strong>The number of truck</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationThenumberoftruck"
+                            <input type="number" class="form-control-sm form-control" id="validationThenumberoftruck"
                                 name="the_number_of_truck" min="0"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->the_number_of_truck : ""}}"
                                 required>
@@ -1640,7 +1640,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_day : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1650,7 +1650,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($vendorservice->legalComercialTerm) ? $vendorservice->legalComercialTerm->working_time : ""}}"
                                 required>
                             <div class="invalid-feedback">
@@ -1667,7 +1667,7 @@
                             <label for="validationPriceOfService"><strong>Price of service</strong><span
                                     style="color: red;">*</span></label>
 
-                            <textarea class="form-control" name="price_of_service" id="validationPriceOfService"
+                            <textarea class="form-control-sm form-control" name="price_of_service" id="validationPriceOfService"
                                 rows="4"
                                 required>{{isset($vendorservice->legalPaymentTerm) ? $vendorservice->legalPaymentTerm->price_of_service : ""}}</textarea>
                             <div class="invalid-feedback">

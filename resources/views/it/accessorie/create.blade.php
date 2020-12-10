@@ -42,7 +42,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_name">{{ __('itstock.manage-accessorie.name') }}</label>
-                        <input type="text" class="form-control" id="validationAccess_name" name="access_name"
+                        <input type="text" class="form-control-sm form-control" id="validationAccess_name" name="access_name"
                             value="" required>
                         <div class="invalid-feedback">
                             Please provide a valid Name.
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationUnit">{{ __('itstock.manage-accessorie.unit') }}</label>
-                        <input type="text" class="form-control" id="validationUnit" name="unit"
+                        <input type="text" class="form-control-sm form-control" id="validationUnit" name="unit"
                             value="" required>
                         <div class="invalid-feedback">
                             Please provide a valid Unit.

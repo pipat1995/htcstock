@@ -43,7 +43,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id" class="">{{ __('itstock.buy-accessorie.equipment') }}</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control select2">
+                        <select name="access_id" id="validationAccess_id" class="form-control-sm form-control select2">
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}"
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">{{ __('itstock.buy-accessorie.quantity') }}</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty"
+                        <input type="number" class="form-control-sm form-control" id="validationQty" name="qty"
                             value="{{$transaction->qty}}">
                         <div class="valid-feedback">
                             Looks good!
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationUnitCost">{{ __('itstock.buy-accessorie.unit-cost') }}</label>
-                        <input type="number" class="form-control" id="validationUnitCost" name="unit_cost"
+                        <input type="number" class="form-control-sm form-control" id="validationUnitCost" name="unit_cost"
                             value="{{$transaction->unit_cost}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid UnitCost.
@@ -75,7 +75,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationPonumber">{{ __('itstock.buy-accessorie.po-no') }}</label>
-                        <input type="text" class="form-control" id="validationPonumber" name="po_no"
+                        <input type="text" class="form-control-sm form-control" id="validationPonumber" name="po_no"
                             value="{{$transaction->po_no}}" placeholder="12345678">
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationinvoice">{{ __('itstock.buy-accessorie.invoice') }}</label>
-                        <input type="text" class="form-control" id="validationinvoice" name="invoice_no"
+                        <input type="text" class="form-control-sm form-control" id="validationinvoice" name="invoice_no"
                             value="{{$transaction->invoice_no}}" placeholder="12345678">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationVendor">{{ __('itstock.buy-accessorie.vendor') }}</label>
-                        <input type="text" class="form-control" id="validationVendor" name="vendor_id"
+                        <input type="text" class="form-control-sm form-control" id="validationVendor" name="vendor_id"
                             value="{{$transaction->vendor_id}}" placeholder="Vendor">
                         <div class="invalid-feedback">
                             Please provide a valid Vendor.
@@ -101,7 +101,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationIrnumber">{{ __('itstock.buy-accessorie.ir-no') }}</label>
-                        <input type="text" class="form-control" id="validationIrnumber" name="ir_no"
+                        <input type="text" class="form-control-sm form-control" id="validationIrnumber" name="ir_no"
                             value="{{$transaction->ir_no}}" placeholder="123456789">
                         <div class="invalid-feedback">
                             Please choose a IR No.
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationIrDate">{{ __('itstock.buy-accessorie.ir-date') }}</label>
-                        <input type="date" class="form-control" id="validationIrDate" name="ir_date"
+                        <input type="date" class="form-control-sm form-control" id="validationIrDate" name="ir_date"
                             value="{{ isset($transaction->ir_date) ? $transaction->ir_date->format('Y-m-d') : ""}}">
                         <div class="invalid-feedback">
                             Please choose a IR Date.
@@ -119,7 +119,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="trans_desc">{{ __('itstock.buy-accessorie.remark') }}</label>
-                        <textarea name="trans_desc" id="trans_desc" class="form-control"
+                        <textarea name="trans_desc" id="trans_desc" class="form-control-sm form-control"
                             rows="3">{{$transaction->trans_desc}}</textarea>
                     </div>
                 </div>

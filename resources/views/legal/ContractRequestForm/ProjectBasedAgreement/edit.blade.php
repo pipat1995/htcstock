@@ -45,7 +45,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
                         <label for="validationSubType"><strong></strong> </label>
-                        <select id="validationSubType" class="form-control" name="subtype"
+                        <select id="validationSubType" class="form-control-sm form-control" name="subtype"
                             onchange="changeSubType(this)" required>
                             <option data-id="" value="">Shoose....</option>
                             @isset($subtypeContract)
@@ -69,7 +69,7 @@
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
                                 href="{{url('storage/'.$projectBased->purchase_order)}}" target="_blank"
                                 rel="noopener noreferrer">{{$projectBased->purchase_order ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationPurchaseOrderFile"
+                        <input type="file" class="form-control-sm form-control" id="validationPurchaseOrderFile"
                             onchange="uploadFile(this)" data-name="purchase_order"
                             data-cache="{{substr($projectBased->purchase_order,9)}}">
                         <div class="mb-3 progress hide-contract">
@@ -87,7 +87,7 @@
                                 style="color: red;">*</span> <a href="{{url('storage/'.$projectBased->quotation)}}"
                                 target="_blank"
                                 rel="noopener noreferrer">{{$projectBased->quotation ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationQuotationFile" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFile(this)"
                             data-cache="{{substr($projectBased->quotation,9)}}" data-name="quotation" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -103,7 +103,7 @@
                                 style="color: red;">*</span> <a
                                 href="{{url('storage/'.$projectBased->coparation_sheet)}}" target="_blank"
                                 rel="noopener noreferrer">{{$projectBased->coparation_sheet ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationCoparationFile"
+                        <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                             onchange="uploadFile(this)" data-name="coparation_sheet"
                             data-cache="{{substr($projectBased->coparation_sheet,9)}}" required>
                         <div class="mb-3 progress hide-contract">
@@ -120,7 +120,7 @@
                         <label for="validationWorkPlan"><strong>Work Plan</strong> <a
                                 href="{{url('storage/'.$projectBased->work_plan)}}" target="_blank"
                                 rel="noopener noreferrer">{{$projectBased->work_plan ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationWorkPlan" data-name="work_plan"
+                        <input type="file" class="form-control-sm form-control" id="validationWorkPlan" data-name="work_plan"
                             data-cache="{{substr($projectBased->work_plan,9)}}" onchange="uploadFile(this)">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -141,7 +141,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationScope"><strong>Scope of Work</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                        <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->scope_of_work : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -151,7 +151,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationLocation"><strong>Location</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationLocation" name="location"
+                        <input type="text" class="form-control-sm form-control" id="validationLocation" name="location"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->location : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -161,7 +161,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
+                        <input type="text" class="form-control-sm form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->purchase_order_no : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -173,7 +173,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                        <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->quotation_no : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -182,7 +182,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDated" name="dated"
+                        <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -192,7 +192,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                        <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationUntill" name="untill"
+                        <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                             value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -225,22 +225,22 @@
                                 <td> <button type="button" class="btn btn-warning" onclick="createRow()">Create</button>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="validationDescription"
+                                    <input type="text" class="form-control-sm form-control" id="validationDescription"
                                         name="description" min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationUnitPrice" name="unit_price"
+                                    <input type="number" class="form-control-sm form-control" id="validationUnitPrice" name="unit_price"
                                         min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationDiscount" name="discount"
+                                    <input type="number" class="form-control-sm form-control" id="validationDiscount" name="discount"
                                         min="0" step=0.01>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" id="validationAmount" name="amount"
+                                    <input type="number" class="form-control-sm form-control" id="validationAmount" name="amount"
                                         min="0" step=0.01>
                                 </td>
-                                <input type="hidden" class="form-control" id="validationContractDestsId"
+                                <input type="hidden" class="form-control-sm form-control" id="validationContractDestsId"
                                     name="contract_dests_id" value="{{$projectBased->id}}">
                             </tr>
                         </thead>
@@ -265,7 +265,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationWarranty"></label>
-                        <textarea class="form-control" name="detail_payment_term" id="validationPaymentDescription"
+                        <textarea class="form-control-sm form-control" name="detail_payment_term" id="validationPaymentDescription"
                             rows="3"
                             required>{{isset($projectBased->legalPaymentTerm) ? $projectBased->legalPaymentTerm->detail_payment_term : ""}}</textarea>
                         <div class="invalid-feedback">
@@ -278,7 +278,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationWarranty"><strong>Month</strong> </label>
-                        <input type="number" class="form-control" id="validationWarranty" name="warranty" min="0"
+                        <input type="number" class="form-control-sm form-control" id="validationWarranty" name="warranty" min="0"
                             step="1" value="{{$projectBased->warranty}}" onchange="calMonthToYear(this)">
                         <div class="invalid-feedback">
                             Please provide a valid warranty.
@@ -286,7 +286,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationWarrantyForYear"><strong>Year</strong></label>
-                        <input type="number" class="form-control" id="validationWarrantyForYear" min="0.1" step="0.1"
+                        <input type="number" class="form-control-sm form-control" id="validationWarrantyForYear" min="0.1" step="0.1"
                             value="" readonly>
                     </div>
                 </div>

@@ -39,7 +39,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_id"
                             class="">{{ __('itstock.lendings-accessorie.equipment') }}</label>
-                        <select name="access_id" id="validationAccess_id" class="form-control select2" required>
+                        <select name="access_id" id="validationAccess_id" class="form-control-sm form-control select2" required>
                             <option value="">--เลือก--</option>
                             @foreach ($accessories as $item)
                             <option value="{{$item->access_id}}"
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">{{ __('itstock.lendings-accessorie.quantity') }}</label>
-                        <input type="number" class="form-control" id="validationQty" name="qty"
+                        <input type="number" class="form-control-sm form-control" id="validationQty" name="qty"
                             value="{{substr($transaction->qty, 1)}}" required>
                         <div class="valid-feedback">
                             Looks good!
@@ -62,7 +62,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="validationTrans_by"
                             class="">{{ __('itstock.lendings-accessorie.borrowed-by') }}</label>
-                        <select name="trans_by" id="validationTrans_by" class="form-control select2" required>
+                        <select name="trans_by" id="validationTrans_by" class="form-control-sm form-control select2" required>
                             <option value="">--เลือก--</option>
                             @foreach ($users as $item)
                             <option value="{{$item->id}}" {{$transaction->trans_by == $item->id ? 'selected' : ''}}>
@@ -77,7 +77,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="trans_desc">{{ __('itstock.lendings-accessorie.remark') }}</label>
-                        <textarea name="trans_desc" id="trans_desc" class="form-control"
+                        <textarea name="trans_desc" id="trans_desc" class="form-control-sm form-control"
                             rows="3">{{$transaction->trans_desc}}</textarea>
                     </div>
                 </div>

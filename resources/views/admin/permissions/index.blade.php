@@ -38,7 +38,7 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="search">Search</label>
-                    <input type="text" class="form-control" id="search" name="search" value="">
+                    <input type="text" class="form-control-sm form-control" id="search" name="search" value="">
                 </div>
 
                 <div class="col-md-2 mb-2">

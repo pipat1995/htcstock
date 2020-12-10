@@ -45,7 +45,7 @@
                             class="col-md-3 col-form-label text-md-right">{{ __('itstock.budget.budgets-of-month') }}</label>
                         <div class="col-md-4">
                             <input id="budgets_of_month" type="number"
-                                class="form-control @error('budgets_of_month') is-invalid @enderror"
+                                class="form-control-sm form-control @error('budgets_of_month') is-invalid @enderror"
                                 name="budgets_of_month" value="" min="1" required autocomplete="budgets_of_month"
                                 autofocus>
 
@@ -63,7 +63,7 @@
                     <div class="form-group row">
                         <label for="month" class="col-md-3 col-form-label text-md-right">{{ __('itstock.budget.month') }}</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="month" id="month" required>
+                            <select class="form-control-sm form-control" name="month" id="month" required>
                                 <option value="">--เลือก--</option>
                                 @foreach ($months as $key => $item)
                                 <option value="{{$key}}">{{$item}}
@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <label for="year" class="col-md-3 col-form-label text-md-right">{{ __('itstock.budget.year') }}</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="year" id="year" required>
+                            <select class="form-control-sm form-control" name="year" id="year" required>
                                 <option value="">--เลือก--</option>
                                 @foreach (range( date('Y'), $earliest_year ) as $i)
                                 <option value="{{$i}}">{{$i}}</option>

@@ -45,7 +45,7 @@
                         <div class="col-md-9 mb-3">
                             <label for="validationBudgetsOfMonth">{{ __('itstock.budget.budget-month') }}</label>
                             {{-- <input type="number" name="test"> --}}
-                            <input type="number" class="form-control" id="budgets_of_month" name="budgets_of_month"
+                            <input type="number" class="form-control-sm form-control" id="budgets_of_month" name="budgets_of_month"
                                 min="1" value="{{$budget->budgets_of_month}}">
                         </div>
                         <div class="col-md-3 mb-3">

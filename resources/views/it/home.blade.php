@@ -636,6 +636,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">

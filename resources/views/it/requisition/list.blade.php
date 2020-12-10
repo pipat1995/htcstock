@@ -39,7 +39,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationAccess_id" class="">{{ __('itstock.requisition-accessorie.equipment') }}</label>
-                            <select class="form-control js-select-accessory-multiple" style="width: 100%"
+                            <select class="form-control-sm form-control js-select-accessory-multiple" style="width: 100%"
                                 name="accessory[]" multiple>
                                 @isset($accessorys)
                                 @foreach ($accessorys as $item)
@@ -53,12 +53,12 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCreated_at">{{ __('itstock.requisition-accessorie.a-date') }}</label>
-                            <input type="date" class="form-control" id="validationSCreated_at" name="start_at"
+                            <input type="date" class="form-control-sm form-control" id="validationSCreated_at" name="start_at"
                                 value="{{$start_at}}" oninput="changeValue(this)">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCreated_at">{{ __('itstock.requisition-accessorie.up-to-date') }}</label>
-                            <input type="date" class="form-control" id="validationECreated_at" name="end_at"
+                            <input type="date" class="form-control-sm form-control" id="validationECreated_at" name="end_at"
                                 value="{{$end_at}}" readonly>
                         </div>
                         <div class="col-md-2 mb-2">

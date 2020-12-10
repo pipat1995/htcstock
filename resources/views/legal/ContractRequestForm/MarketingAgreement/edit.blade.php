@@ -44,7 +44,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
                         <label for="validationSubType"><strong></strong> </label>
-                        <select id="validationSubType" class="form-control" name="subtype"
+                        <select id="validationSubType" class="form-control-sm form-control" name="subtype"
                             onchange="changeSubType(this)" required>
                             <option data-id="" value="">Shoose....</option>
                             @isset($subtypeContract)
@@ -68,7 +68,7 @@
                         <label for="validationPurchaseOrderFile"><strong>Purchase Order</strong> <a
                                 href="{{url('storage/'.$marketing->purchase_order)}}" target="_blank"
                                 rel="noopener noreferrer">{{$marketing->purchase_order ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationPurchaseOrderFile"
+                        <input type="file" class="form-control-sm form-control" id="validationPurchaseOrderFile"
                             onchange="uploadFile(this)" data-name="purchase_order"
                             data-cache="{{substr($marketing->purchase_order,9)}}">
                         <div class="mb-3 progress hide-contract">
@@ -84,7 +84,7 @@
                         <label for="validationQuotationFile"><strong>Quotation</strong> <a
                                 href="{{url('storage/'.$marketing->quotation)}}" target="_blank"
                                 rel="noopener noreferrer">{{$marketing->quotation ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control" id="validationQuotationFile" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFile(this)"
                             data-cache="{{substr($marketing->quotation,9)}}" data-name="quotation">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -104,7 +104,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationPurpose"><strong>Purpose</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationPurpose" name="purpose"
+                        <input type="text" class="form-control-sm form-control" id="validationPurpose" name="purpose"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->purpose : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -114,7 +114,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationPromoteProduct"><strong>Promote a product</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationPromoteProduct" name="promote_a_product"
+                        <input type="text" class="form-control-sm form-control" id="validationPromoteProduct" name="promote_a_product"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->promote_a_product : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -124,7 +124,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
+                        <input type="text" class="form-control-sm form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->purchase_order_no : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -136,7 +136,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                        <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->quotation_no : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -145,7 +145,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationDated" name="dated"
+                        <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -155,7 +155,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                 style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                        <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -164,7 +164,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
-                        <input type="date" class="form-control" id="validationUntill" name="untill"
+                        <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                             value="{{isset($marketing->legalComercialTerm) ? $marketing->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
@@ -178,7 +178,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationWarranty"></label>
-                        <textarea class="form-control" name="detail_payment_term" id="validationPaymentDescription"
+                        <textarea class="form-control-sm form-control" name="detail_payment_term" id="validationPaymentDescription"
                             rows="3"
                             required>{{isset($marketing->legalPaymentTerm) ? $marketing->legalPaymentTerm->detail_payment_term : ""}}</textarea>
                         <div class="invalid-feedback">

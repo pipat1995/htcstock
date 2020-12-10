@@ -16,7 +16,7 @@
                     <input type="hidden" name="department_id" id="department_id" value="{{$department->id}}">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Email:</label>
-                        <select name="user_id" id="validationUserId" class="form-control" required>
+                        <select name="user_id" id="validationUserId" class="form-control-sm form-control" required>
                             <option value="">--เลือก--</option>
                             @foreach ($users as $item)
                             <option value="{{$item->id}}">{{$item->email}}</option>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Level:</label>
-                        <input type="number" class="form-control" name="levels"
+                        <input type="number" class="form-control-sm form-control" name="levels"
                             value="{{isset($approvals) ? $approvals->count() + 1 : 1}}" readonly>
                     </div>
                 </form>

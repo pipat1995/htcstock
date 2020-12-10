@@ -39,12 +39,12 @@
             <div class="form-row">
                 <div class="col-md-6 mb-6">
                     <label for="validationAcction"><strong>Action</strong> <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{$legalContract->LegalAction->name}}" readonly>
+                    <input type="text" class="form-control-sm form-control" value="{{$legalContract->LegalAction->name}}" readonly>
                 </div>
                 <div class="col-md-6 mb-6">
                     <label for="validationAgreements"><strong>General Agreements</strong> <span
                             style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{$legalContract->legalAgreement->name}}" readonly>
+                    <input type="text" class="form-control-sm form-control" value="{{$legalContract->legalAgreement->name}}" readonly>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
                 <div class="col-md-6 mb-6">
                     <label for="validationCompanyName"><strong>Full name (Company’s, Person’s)</strong> <span
                             style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{$legalContract->company_name}}" readonly>
+                    <input type="text" class="form-control-sm form-control" value="{{$legalContract->company_name}}" readonly>
                 </div>
                 <div class="col-md-6 mb-6">
                     <label for="validationCompanyCertificate"><strong>Company Certificate</strong> <span
@@ -68,7 +68,7 @@
                 <div class="col-md-6 mb-6">
                     <label for="validationRepresentative"><strong>Legal Representative</strong> <span
                             style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{$legalContract->representative}}" readonly>
+                    <input type="text" class="form-control-sm form-control" value="{{$legalContract->representative}}" readonly>
                 </div>
                 <div class="col-md-6 mb-6">
                     <label for="validationRepresen"><strong>Representative Certificate</strong> <span
@@ -82,7 +82,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationAddress"><strong>Address</strong> <span style="color: red;">*</span></label>
-                    <textarea class="form-control" rows="4" readonly>{{$legalContract->address}}</textarea>
+                    <textarea class="form-control-sm form-control" rows="4" readonly>{{$legalContract->address}}</textarea>
                 </div>
             </div>
             {{-- end head --}}
@@ -91,7 +91,7 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="validationSubType"><strong></strong> </label>
-                    <select id="validationSubType" class="form-control" name="subtype" onchange="changeSubType(this)"
+                    <select id="validationSubType" class="form-control-sm form-control" name="subtype" onchange="changeSubType(this)"
                         readonly disabled>
                         <option data-id="">Shoose....</option>
                         @isset($subtypeContract)
@@ -186,7 +186,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -196,7 +196,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationLocation"><strong>Location</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationLocation" name="location"
+                            <input type="text" class="form-control-sm form-control" id="validationLocation" name="location"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->location : ""}}"
                                 readonly>
                             <div>
@@ -206,7 +206,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -218,7 +218,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -228,7 +228,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -238,7 +238,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -254,7 +254,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationMonthly"><strong>Monthly</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" step="0.1"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" step="0.1"
                                 min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
@@ -265,7 +265,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRouteChange"><strong>Route Change</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationRouteChange" name="route_change"
+                            <input type="number" class="form-control-sm form-control" id="validationRouteChange" name="route_change"
                                 step="0.1" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->route_change : ""}}"
                                 readonly>
@@ -275,7 +275,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="payment_ot" step="0.1"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="payment_ot" step="0.1"
                                 min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->payment_ot : ""}}"
                                 readonly>
@@ -286,7 +286,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
+                            <input type="number" class="form-control-sm form-control" id="validationHolidayPay" name="holiday_pay"
                                 step="0.1" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->holiday_pay : ""}}"
                                 readonly>
@@ -297,7 +297,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationOTDriver"><strong>OT driver</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOTDriver" name="ot_driver"
+                            <input type="number" class="form-control-sm form-control" id="validationOTDriver" name="ot_driver"
                                 step="0.1" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->ot_driver : ""}}"
                                 readonly>
@@ -341,7 +341,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -351,7 +351,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -361,7 +361,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -373,7 +373,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -383,7 +383,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -395,7 +395,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day : ""}}"
                                 readonly>
                             <div>
@@ -405,7 +405,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time : ""}}"
                                 readonly>
                             <div>
@@ -417,7 +417,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationRoad"><strong>Road</strong> </label>
-                            <input type="number" class="form-control" id="validationRoad" name="road" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationRoad" name="road" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->road : 0}}"
                                 readonly>
@@ -427,7 +427,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationBuilding"><strong>Building</strong></label>
-                            <input type="number" class="form-control" id="validationBuilding" name="building" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationBuilding" name="building" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->building : 0}}"
                                 readonly>
@@ -437,7 +437,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationToilet"><strong>Toilet</strong></label>
-                            <input type="number" class="form-control" id="validationToilet" name="toilet" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationToilet" name="toilet" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->toilet : 0}}"
                                 readonly>
@@ -447,7 +447,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCanteen"><strong>Canteen</strong></label>
-                            <input type="number" class="form-control" id="validationCanteen" name="canteen" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationCanteen" name="canteen" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->canteen : 0}}"
                                 readonly>
@@ -459,7 +459,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationWashing"><strong>Washing</strong></label>
-                            <input type="number" class="form-control" id="validationWashing" name="washing" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationWashing" name="washing" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->washing : 0}}"
                                 readonly>
@@ -469,7 +469,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationWater"><strong>Water</strong></label>
-                            <input type="number" class="form-control" id="validationWater" name="water" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationWater" name="water" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->water : 0}}"
                                 readonly>
@@ -479,7 +479,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationMowing"><strong>Mowing</strong></label>
-                            <input type="number" class="form-control" id="validationMowing" name="mowing" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMowing" name="mowing" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->mowing : 0}}"
                                 readonly>
@@ -489,7 +489,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationGeneral"><strong>General</strong></label>
-                            <input type="number" class="form-control" id="validationGeneral" name="general" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationGeneral" name="general" min="0"
                                 onchange="totalOfMaid()"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->general : 0}}"
                                 readonly>
@@ -501,7 +501,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="Total"><strong>Total</strong></label>
-                            <input type="number" class="form-control" id="total" value="0" readonly>
+                            <input type="number" class="form-control-sm form-control" id="total" value="0" readonly>
                         </div>
                     </div>
 
@@ -513,7 +513,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
                             <div>
@@ -522,7 +522,7 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="payment_ot" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="payment_ot" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->payment_ot : ""}}"
                                 readonly>
                             <div>
@@ -532,7 +532,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationHolidayPay"><strong>Holiday Pay</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationHolidayPay" name="holiday_pay"
+                            <input type="number" class="form-control-sm form-control" id="validationHolidayPay" name="holiday_pay"
                                 min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->holiday_pay : ""}}"
                                 readonly>
@@ -576,7 +576,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -586,7 +586,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -596,7 +596,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -608,7 +608,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -618,7 +618,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -628,7 +628,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfCook"><strong>Number of cook</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfCook" name="number_of_cook"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfCook" name="number_of_cook"
                                 min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_cook : ""}}"
                                 readonly>
@@ -641,7 +641,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day: ""}}"
                                 readonly>
                             <div>
@@ -651,7 +651,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time: ""}}"
                                 readonly>
                             <div>
@@ -660,7 +660,7 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="validationOT"><strong>OT</strong> <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationOT" name="comercial_ot" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationOT" name="comercial_ot" min="0"
                                 step="0.1"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->comercial_ot : ""}}"
                                 readonly>
@@ -677,7 +677,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
                             <div>
@@ -687,7 +687,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationOtherExpense"><strong>Other Expense</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationOtherExpense" name="other_expense"
+                            <input type="text" class="form-control-sm form-control" id="validationOtherExpense" name="other_expense"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->other_expense : ""}}"
                                 readonly>
                             <div>
@@ -737,7 +737,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -747,7 +747,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -757,7 +757,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -769,7 +769,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -779,7 +779,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -789,7 +789,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfDoctor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfDoctor"
                                 name="number_of_doctor" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_doctor : ""}}"
                                 readonly>
@@ -802,7 +802,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day: ""}}"
                                 readonly>
                             <div>
@@ -812,7 +812,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time: ""}}"
                                 readonly>
                             <div>
@@ -828,7 +828,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
                             <div>
@@ -879,7 +879,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -889,7 +889,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -899,7 +899,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -911,7 +911,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -921,7 +921,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -931,7 +931,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfDoctor"><strong>Number of doctor</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfDoctor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfDoctor"
                                 name="number_of_doctor" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_doctor : ""}}"
                                 readonly>
@@ -944,7 +944,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day: ""}}"
                                 readonly>
                             <div>
@@ -954,7 +954,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time: ""}}"
                                 readonly>
                             <div>
@@ -970,7 +970,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
                             <div>
@@ -1030,7 +1030,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -1039,7 +1039,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -1049,7 +1049,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1061,7 +1061,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1071,7 +1071,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1081,7 +1081,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfSercurityGuard"><strong>Number of sercurity guard</strong>
                                 <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfSercurityGuard"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfSercurityGuard"
                                 name="number_of_sercurity_guard" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_sercurity_guard : ""}}"
                                 readonly>
@@ -1094,7 +1094,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day: ""}}"
                                 readonly>
                             <div>
@@ -1104,7 +1104,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time: ""}}"
                                 readonly>
                             <div>
@@ -1120,7 +1120,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationMonthly"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationMonthly" name="monthly" min="0"
+                            <input type="number" class="form-control-sm form-control" id="validationMonthly" name="monthly" min="0"
                                 value="{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->monthly : ""}}"
                                 readonly>
                             <div>
@@ -1163,7 +1163,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -1173,7 +1173,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -1183,7 +1183,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1195,7 +1195,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1205,7 +1205,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1215,7 +1215,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfSubcontractor"><strong>Number of subcontractor</strong>
                                 <span style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfSubcontractor"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfSubcontractor"
                                 name="number_of_subcontractor" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_subcontractor : ""}}"
                                 readonly>
@@ -1229,7 +1229,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationNumberOfAgent"><strong>Number of agent</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationNumberOfAgent"
+                            <input type="number" class="form-control-sm form-control" id="validationNumberOfAgent"
                                 name="number_of_agent" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->number_of_agent: ""}}"
                                 readonly>
@@ -1240,7 +1240,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingDay"><strong>Working Day</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day: ""}}"
                                 readonly>
                             <div>
@@ -1250,7 +1250,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationWorkingTime"><strong>Working Time</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time: ""}}"
                                 readonly>
                             <div>
@@ -1266,7 +1266,7 @@
                         <div class="col-md-12 mb-12">
                             <label for="validationDetailPaymentTerm"><strong>Monthly</strong><span
                                     style="color: red;">*</span></label>
-                            <textarea class="form-control" name="detail_payment_term" id="validationDetailPaymentTerm"
+                            <textarea class="form-control-sm form-control" name="detail_payment_term" id="validationDetailPaymentTerm"
                                 rows="4" readonly>
                                         {{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->detail_payment_term : ""}}
                                     </textarea>
@@ -1311,7 +1311,7 @@
                         <div class="col-md-4 mb-4">
                             <label for="validationScope"><strong>Scope of Work</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationScope" name="scope_of_work"
+                            <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->scope_of_work : ""}}"
                                 readonly>
                             <div>
@@ -1323,7 +1323,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationQuotationNo" name="quotation_no"
+                            <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->quotation_no : ""}}"
                                 readonly>
                             <div>
@@ -1333,7 +1333,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationDated"><strong>Dated</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationDated" name="dated"
+                            <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1343,14 +1343,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationContractPeriod" name="contract_period"
+                            <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                                 readonly>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationUntill"><strong>Untill</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="date" class="form-control" id="validationUntill" name="untill"
+                            <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                                 readonly>
                             <div>
@@ -1362,7 +1362,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationRoute"><strong>Route</strong> <span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationRoute" name="route"
+                            <input type="text" class="form-control-sm form-control" id="validationRoute" name="route"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->route : ""}}"
                                 readonly>
                             <div>
@@ -1371,7 +1371,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationTo"><strong>To</strong> <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationTo" name="to"
+                            <input type="text" class="form-control-sm form-control" id="validationTo" name="to"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->to : ""}}"
                                 readonly>
                             <div>
@@ -1381,7 +1381,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationDryContainerSize"><strong>Dry Container Size</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationDryContainerSize"
+                            <input type="number" class="form-control-sm form-control" id="validationDryContainerSize"
                                 name="dry_container_size" step="0.01" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dry_container_size : ""}}"
                                 readonly>
@@ -1392,7 +1392,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationThenumberoftruck"><strong>The number of truck</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="number" class="form-control" id="validationThenumberoftruck"
+                            <input type="number" class="form-control-sm form-control" id="validationThenumberoftruck"
                                 name="the_number_of_truck" min="0"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->the_number_of_truck : ""}}"
                                 readonly>
@@ -1405,7 +1405,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingDay"><strong>Working Day</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingDay" name="working_day"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingDay" name="working_day"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_day : ""}}"
                                 readonly>
                             <div>
@@ -1415,7 +1415,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="validationWorkingTime"><strong>Working Time</strong><span
                                     style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="validationWorkingTime" name="working_time"
+                            <input type="text" class="form-control-sm form-control" id="validationWorkingTime" name="working_time"
                                 value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->working_time : ""}}"
                                 readonly>
                             <div>
@@ -1432,7 +1432,7 @@
                             <label for="validationPriceOfService"><strong>Price of service</strong><span
                                     style="color: red;">*</span></label>
 
-                            <textarea class="form-control" name="price_of_service" id="validationPriceOfService"
+                            <textarea class="form-control-sm form-control" name="price_of_service" id="validationPriceOfService"
                                 rows="4"
                                 readonly>{{isset($contractDest->legalPaymentTerm) ? $contractDest->legalPaymentTerm->price_of_service : ""}}</textarea>
                             <div>
@@ -1485,7 +1485,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationStatus"><strong>Status</strong></label>
-                        <select name="status" id="status" class="form-control" style="cursor: pointer">
+                        <select name="status" id="status" class="form-control-sm form-control" style="cursor: pointer">
                             <option value="">Choouse...</option>
                             <option value="reject">Reject</option>
                             <option value="approval">Approval</option>
@@ -1495,7 +1495,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="validationComment"><strong>Comment</strong></label>
-                        <textarea class="form-control" name="comment" rows="5"></textarea>
+                        <textarea class="form-control-sm form-control" name="comment" rows="5"></textarea>
                     </div>
                 </div>
                 @endif
