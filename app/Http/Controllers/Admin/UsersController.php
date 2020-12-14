@@ -8,6 +8,7 @@ use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use App\Models\User;
+use App\Services\IT\Interfaces\SystemServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -19,14 +20,17 @@ class UsersController extends Controller
     protected $userService;
     protected $rolesService;
     protected $departmentService;
+    protected $systemService;
     public function __construct(
         UserServiceInterface $userServiceInterface,
         RoleServiceInterface $rolesServiceInterface,
-        DepartmentServiceInterface $departmentServiceInterface
+        DepartmentServiceInterface $departmentServiceInterface,
+        SystemServiceInterface $systemServiceInterface
     ) {
         $this->userService = $userServiceInterface;
         $this->rolesService = $rolesServiceInterface;
         $this->departmentService = $departmentServiceInterface;
+        $this->systemService = $systemServiceInterface;
     }
 
     /**
@@ -44,7 +48,6 @@ class UsersController extends Controller
             $search = $request->search;
             $selectedDept = \collect($request->department);
             $selectedRole = \collect($request->user_role);
-            // \dd($users);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -66,11 +69,13 @@ class UsersController extends Controller
             $user = $this->userService->find($id);
             $userRoles = $user->roles()->get();
             $userSystems = $user->systems()->get();
-            $roles = $this->rolesService->dropdown();
+
+            $roles = $this->rolesService->dropdown($user->roles->pluck('slug')->toArray());
+            $systems = $this->systemService->dropdown($user->systems()->pluck('slug')->toArray());
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('admin.users.edit',\compact('user','roles','userRoles','userSystems'));
+        return \view('admin.users.edit', \compact('user', 'roles', 'systems', 'userRoles', 'userSystems'));
     }
 
     /**
@@ -172,5 +177,23 @@ class UsersController extends Controller
         }
         DB::commit();
         return back();
+    }
+
+    public function addrole(Request $request,$id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = $this->userService->find($id);
+            $roles = $this->rolesService->roleIn($request->roles);
+            foreach ($roles as $key => $value) {
+                // $user->roles()->attach($value);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        // \dd($user->roles->toJson());
+        DB::commit();
+        return \response($user->roles->toJson());
     }
 }

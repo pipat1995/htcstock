@@ -40,6 +40,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
         'permissions' => 'PermissionsController',
         'roles' => 'RoleController'
     ]);
+    Route::post('{id}/addrole', 'UsersController@addrole')->name('users.addrole');
 });
 
 

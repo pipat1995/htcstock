@@ -21,15 +21,6 @@ class RoleService extends BaseService implements RoleServiceInterface
         parent::__construct($model);
     }
 
-    public function all(): Builder
-    {
-        try {
-            return Role::whereNotNull('id');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
     public function delete($id): bool
     {
         try {
@@ -42,10 +33,14 @@ class RoleService extends BaseService implements RoleServiceInterface
     }
 
     
-    public function dropdown(): Collection
+    public function dropdown(...$slug): Collection
     {
         try {
-            return Role::all();
+            if ($slug) {
+                return Role::whereNotIn('slug',...$slug)->get();
+            } else {
+                return Role::all();
+            }
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -54,5 +49,14 @@ class RoleService extends BaseService implements RoleServiceInterface
     public function filter(Request $request)
     {
         return Role::filter($request)->paginate(10);
+    }
+
+    public function roleIn(...$slug): Collection
+    {
+        try {
+            return Role::whereIn('slug',...$slug)->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

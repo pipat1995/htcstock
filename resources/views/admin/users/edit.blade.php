@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 @section('sidebar')
 @include('includes.sidebar.admin');
 @stop
+
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -30,8 +32,9 @@
                     <div class="form-group row">
                         <label for="name" class="col-md-3 col-form-label text-md-right">{{ __('Name') }}</label>
                         <div class="col-md-3">
-                            <input id="name" type="text" class="form-control-sm form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ $user->name }}" required autocomplete="name" readonly>
+                            <input id="name" type="text"
+                                class="form-control-sm form-control @error('name') is-invalid @enderror" name="name"
+                                value="{{ $user->name }}" required autocomplete="name" readonly>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -45,8 +48,9 @@
                             class="col-md-3 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-3">
-                            <input id="email" type="email" class="form-control-sm form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ $user->email }}" autocomplete="email" readonly>
+                            <input id="email" type="email"
+                                class="form-control-sm form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ $user->email }}" autocomplete="email" readonly>
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -62,8 +66,9 @@
 
                         <div class="col-md-3">
                             <input id="department" type="text"
-                                class="form-control-sm form-control @error('department') is-invalid @enderror" name="department"
-                                value="{{ $user->department->name }}" autocomplete="department" readonly>
+                                class="form-control-sm form-control @error('department') is-invalid @enderror"
+                                name="department" value="{{ $user->department->name }}" autocomplete="department"
+                                readonly>
 
                             @error('department')
                             <span class="invalid-feedback" role="alert">
@@ -94,7 +99,7 @@
             {{-- <a class="btn btn-warning mr-2" type="button" href="{{url()->previous()}}">Back</a> --}}
             {{-- <button type="submit" class="btn btn-primary">Update</button> --}}
             </form>
-            <script src="{{asset('assets\js\admin\user.js')}}"></script>
+            
         </div>
     </div>
 </div>
@@ -107,13 +112,12 @@
                 <div class="btn-actions-pane-right">
                     <div role="group" class="btn-group-sm btn-group">
                         {{-- <button class="active btn btn-focus">Last Week</button> --}}
-                        <button class="btn btn-focus" data-toggle="modal"
-                        data-target=".bd-system-modal-lg">Add</button>
+                        <button class="btn btn-focus" data-toggle="modal" data-target=".bd-role-modal-lg">Add</button>
                     </div>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="table-role">
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
@@ -124,7 +128,10 @@
                         @isset($userRoles)
                         @foreach ($userRoles as $key => $item)
                         <tr>
-                            <td class="text-center text-muted">{{$key+1}}</td>
+                            <td class="text-center text-muted"><button onclick="deleteRole()"
+                                class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
+                                    class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                        </td>
                             <td class="text-center">
                                 <div class="badge badge-warning">{{$item->name}}</div>
                             </td>
@@ -147,8 +154,7 @@
                 <div class="btn-actions-pane-right">
                     <div role="group" class="btn-group-sm btn-group">
                         {{-- <button class="active btn btn-focus">Last Week</button> --}}
-                        <button class="btn btn-focus" data-toggle="modal"
-                            data-target=".bd-role-modal-lg">Add</button>
+                        <button class="btn btn-focus" data-toggle="modal" data-target=".bd-system-modal-lg">Add</button>
                     </div>
                 </div>
             </div>
@@ -164,7 +170,10 @@
                         @isset($userSystems)
                         @foreach ($userSystems as $key => $item)
                         <tr>
-                            <td class="text-center text-muted">{{$key+1}}</td>
+                            <td class="text-center text-muted"><button onclick="deleteSystem()"
+                                    class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
+                                        class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                            </td>
                             <td class="text-center">
                                 <div class="badge badge-warning">{{$item->name}}</div>
                             </td>
@@ -183,32 +192,6 @@
     </div>
 </div>
 
-<!-- System add user modal -->
-
-<div class="modal fade bd-system-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add system</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-                    eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-                    laoreet rutrum faucibus dolor auctor.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Role add user modal -->
 
 <div class="modal fade bd-role-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -222,10 +205,60 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-                    eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-                    laoreet rutrum faucibus dolor auctor.</p>
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationRole" class="">{{ __('Role') }}</label>
+                            <select class="form-control-sm form-control js-select-role-multiple" style="width: 100%"
+                                name="role[]" multiple>
+                                @isset($roles)
+                                @foreach ($roles as $item)
+                                <option value="{{$item->slug}}">{{$item->name}}
+                                </option>
+                                @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addRole({{$user->id}})">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System add user modal -->
+
+<div class="modal fade bd-system-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add system</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationSystem" class="">{{ __('System') }}</label>
+                            <select class="form-control-sm form-control js-select-system-multiple" style="width: 100%"
+                                name="system[]" multiple>
+                                @isset($systems)
+                                @foreach ($systems as $item)
+                                <option value="{{$item->slug}}">{{$item->name}}
+                                </option>
+                                @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -235,3 +268,7 @@
     </div>
 </div>
 @stop
+
+@section('second-script')
+<script src="{{asset('assets\js\admin\user.js')}}" defer></script>
+@endsection

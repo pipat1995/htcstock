@@ -7,6 +7,7 @@ use App\Services\IT\Interfaces\BudgetServiceInterface;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\PermissionsServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
+use App\Services\IT\Interfaces\SystemServiceInterface;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use App\Services\IT\Service\AccessoriesService;
@@ -14,6 +15,7 @@ use App\Services\IT\Service\BudgetService;
 use App\Services\IT\Service\DepartmentService;
 use App\Services\IT\Service\PermissionsService;
 use App\Services\IT\Service\RoleService;
+use App\Services\IT\Service\SystemService;
 use App\Services\IT\Service\TransactionsService;
 use App\Services\IT\Service\UserService;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
@@ -69,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BudgetServiceInterface::class, BudgetService::class);
         $this->app->bind(RoleServiceInterface::class, RoleService::class);
         $this->app->bind(PermissionsServiceInterface::class, PermissionsService::class);
+        $this->app->bind(SystemServiceInterface::class,SystemService::class);
 
         // Legal
         $this->app->bind(ActionServiceInterface::class, ActionService::class);
