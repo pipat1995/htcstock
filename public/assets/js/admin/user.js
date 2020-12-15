@@ -4,6 +4,29 @@ function addRoleApi(user, roles) {
         roles: roles
     })
 }
+
+function removeRoleApi(user, role) {
+    return axios.delete(`/admin/${user}/removerole`, {
+        data: {
+            role: role
+        }
+    })
+}
+
+function addSystemApi(user, system) {
+    console.log(system);
+    return axios.post(`/admin/${user}/addsystem`, {
+        system: system
+    })
+}
+
+function removeSystemApi(user, system) {
+    return axios.delete(`/admin/${user}/removesystem`, {
+        data: {
+            system: system
+        }
+    })
+}
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict';
@@ -22,34 +45,49 @@ function addRoleApi(user, roles) {
     }, false);
 })();
 
-var tablerole = document.getElementById('table-role')
 
 function addRole(user) {
     addRoleApi(user, $(".js-select-role-multiple").val())
         .then((response) => {
-            console.log(response)
-            clearRow(tablerole.tBodies[0])
-            createRow(tablerole)
+            if (response.status !== 200) {
+                return
+            }
+            location.reload();
         })
         .catch((error) => {
             console.log(error)
         })
 }
 
-function clearRow(bodies) {
-    bodies.parentNode.removeChild(bodies);
+function removeRole(user, role) {
+    console.log(user, role)
+    removeRoleApi(user, role).then(response => {
+        if (response.status !== 200) {
+            return
+        }
+        location.reload();
+    })
 }
 
-function createRow(table) {
-    table.appendChild(document.createElement("TBODY"));
-    // Insert a row at the end of table
-    let newRow = table.tBodies[0].insertRow();
+function addSystem(user) {
+    addSystemApi(user, $(".js-select-system-multiple").val())
+        .then((response) => {
+            if (response.status !== 200) {
+                return
+            }
+            location.reload();
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
 
-    // Insert a cell at the end of the row
-    let newCell = newRow.insertCell();
-
-    // Append a text node to the cell
-    let newText = document.createTextNode('new row');
-    newCell.appendChild(newText);
-    // bodies.appendChild(bodies)
+function removeSystem(user, system) {
+    console.log(user, system)
+    removeSystemApi(user, system).then(response => {
+        if (response.status !== 200) {
+            return
+        }
+        location.reload();
+    })
 }

@@ -15,4 +15,5 @@ interface SystemServiceInterface
     public function create(array $attributes): Model;
     public function dropdown(...$slug): Collection;
     public function filter(Request $request);
+    public function systemIn(...$slug): Collection;
 }

@@ -49,4 +49,13 @@ class SystemService extends BaseService implements SystemServiceInterface
     {
         return System::filter($request)->paginate(10);
     }
+
+    public function systemIn(...$slug): Collection
+    {
+        try {
+            return System::whereIn('slug',...$slug)->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

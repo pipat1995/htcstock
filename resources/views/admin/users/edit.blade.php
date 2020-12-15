@@ -77,29 +77,25 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- <div class="form-group row">
-                        <label for="roles" class="col-md-3 col-form-label text-md-right">{{ __('Role') }}</label>
-                    <div class="col-md-6">
-                        <div class="row">
-                            @foreach ($roles as $role)
-                            <div class="form-check col-md-4" style="margin-top: 10px;">
-                                <input type="checkbox" name="roles[]" id="role{{$role->id}}" value="{{$role->id}}"
-                                    @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
-                                <label>{{$role->name}}</label>
-                            </div>
-                            @endforeach
+                    <div class="form-group row">
+                        <label for="position" class="col-md-3 col-form-label text-md-right">{{ __('Position') }}</label>
+
+                        <div class="col-md-3">
+                            <input id="position" type="text"
+                                class="form-control-sm form-control @error('position') is-invalid @enderror"
+                                name="position" value="" autocomplete="position" readonly>
+
+                            @error('position')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        @error('roles')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
-            </div> --}}
-            {{-- <a class="btn btn-warning mr-2" type="button" href="{{url()->previous()}}">Back</a> --}}
+            <a class="btn btn-warning mr-2" type="button" href="{{url()->previous()}}">Back</a>
             {{-- <button type="submit" class="btn btn-primary">Update</button> --}}
             </form>
-            
+
         </div>
     </div>
 </div>
@@ -128,12 +124,12 @@
                         @isset($userRoles)
                         @foreach ($userRoles as $key => $item)
                         <tr>
-                            <td class="text-center text-muted"><button onclick="deleteRole()"
-                                class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
-                                    class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                        </td>
+                            <td class="text-center text-muted"><button onclick="removeRole({{$user->id}},{{$item->id}})"
+                                    class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
+                                        class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                            </td>
                             <td class="text-center">
-                                <div class="badge badge-warning">{{$item->name}}</div>
+                                <div class="badge">{{$item->name}}</div>
                             </td>
                         </tr>
                         @endforeach
@@ -159,7 +155,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="table-system">
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
@@ -170,7 +166,8 @@
                         @isset($userSystems)
                         @foreach ($userSystems as $key => $item)
                         <tr>
-                            <td class="text-center text-muted"><button onclick="deleteSystem()"
+                            <td class="text-center text-muted"><button
+                                    onclick="removeSystem({{$user->id}},{{$item->id}})"
                                     class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
                                         class="pe-7s-trash btn-icon-wrapper"> </i></button>
                             </td>
@@ -262,7 +259,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="addSystem({{$user->id}})">Save changes</button>
             </div>
         </div>
     </div>

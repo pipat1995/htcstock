@@ -185,15 +185,59 @@ class UsersController extends Controller
         try {
             $user = $this->userService->find($id);
             $roles = $this->rolesService->roleIn($request->roles);
-            foreach ($roles as $key => $value) {
-                // $user->roles()->attach($value);
+            foreach ($roles as $value) {
+                $user->roles()->attach($value);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
-        // \dd($user->roles->toJson());
         DB::commit();
         return \response($user->roles->toJson());
+    }
+
+    public function removerole(Request $request,$id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = $this->userService->find($id);
+            $user->roles()->detach($request->role);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \response($user->roles->toJson());
+    }
+
+    public function addsystem(Request $request,$id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = $this->userService->find($id);
+            $systems = $this->systemService->systemIn($request->system);
+            foreach ($systems as $value) {
+                $user->systems()->attach($value);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \response($user->systems->toJson());
+    }
+
+    public function removesystem(Request $request,$id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = $this->userService->find($id);
+            $user->systems()->detach($request->system);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \response($user->systems->toJson());
     }
 }

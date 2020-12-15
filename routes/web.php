@@ -41,6 +41,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
         'roles' => 'RoleController'
     ]);
     Route::post('{id}/addrole', 'UsersController@addrole')->name('users.addrole');
+    Route::delete('{user}/removerole', 'UsersController@removerole')->name('users.removerole');
+    Route::post('{id}/addsystem', 'UsersController@addsystem')->name('users.addsystem');
+    Route::delete('{user}/removesystem', 'UsersController@removesystem')->name('users.removesystem');
 });
 
 
