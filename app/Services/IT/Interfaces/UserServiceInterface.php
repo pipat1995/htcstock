@@ -19,7 +19,7 @@ interface UserServiceInterface
     
     public function create(array $attributes ): Model;
 
-    public function dropdownUser(): Collection;
+    public function dropdownUser(...$username): Collection;
     public function filter(Request $request);
     public function email(string $email);
 }

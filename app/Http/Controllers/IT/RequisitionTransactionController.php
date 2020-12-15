@@ -57,7 +57,9 @@ class RequisitionTransactionController extends Controller
     public function create()
     {
         try {
-            return \view('it.requisition.create')->with('accessories', $this->accessoriesService->all()->get())->with('users', $this->userService->all()->get());
+            $users = $this->userService->dropdownUser(['70002172','70002515']);
+            $accessories = $this->accessoriesService->dropdown();
+            return \view('it.requisition.create',\compact('users','accessories'));
         } catch (\Throwable $th) {
             throw $th;
         }

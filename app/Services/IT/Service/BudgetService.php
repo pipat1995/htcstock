@@ -6,6 +6,7 @@ use App\Models\IT\Budgets;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\BudgetServiceInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class BudgetService extends BaseService implements BudgetServiceInterface
 {
@@ -35,5 +36,10 @@ class BudgetService extends BaseService implements BudgetServiceInterface
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function filterForBudget(Request $request)
+    {
+        return Budgets::filter($request)->orderBy('created_at', 'desc')->paginate(10);
     }
 }

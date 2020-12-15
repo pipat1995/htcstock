@@ -41,10 +41,14 @@ class UserService extends BaseService implements UserServiceInterface
         }
     }
 
-    public function dropdownUser(): Collection
+    public function dropdownUser(...$username): Collection
     {
         try {
-            return User::all();
+            if ($username) {
+                return User::whereNotIn('username',...$username)->get();
+            } else {
+                return User::all();
+            }
         } catch (\Throwable $th) {
             throw $th;
         }

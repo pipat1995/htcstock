@@ -24,28 +24,14 @@ class BudgetController extends Controller
 
     public function index(Request $request)
     {
+        $query = $request->all();
+        $selectedMonth = $request->month;
+        $selectedYear = $request->year;
+        $months = Helper::getMonth();
+        $earliest_year = 2020;
         try {
-            $budgets = $this->budgetService->all();
-            $formSearch = new BudgetFormSearch();
-            if ($request->all()) {
-                $formSearch->month = $request->month;
-                $formSearch->year = $request->year;
-                if ($formSearch->month) {
-                    $budgets->where('month', $formSearch->month);
-                }
-                if ($formSearch->year) {
-                    $budgets->where('year', $formSearch->year);
-                }
-            }
-            $budgets->orderBy('created_at', 'desc');
-            return \view('it.budgets.index')->with(
-                [
-                    'formSearch' => $formSearch,
-                    'budgets' => $budgets->paginate(10)->appends((array) $formSearch),
-                    'months' => Helper::getMonth(),
-                    'earliest_year' => 2020
-                ]
-            );
+            $budgets = $this->budgetService->filterForBudget($request);
+            return \view('it.budgets.index',\compact('budgets','query','months','earliest_year','selectedMonth','selectedYear'));
         } catch (\Throwable $th) {
             throw $th;
         }

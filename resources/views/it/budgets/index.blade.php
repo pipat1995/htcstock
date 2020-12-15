@@ -42,7 +42,7 @@
                             <select class="form-control-sm form-control" name="month" id="month">
                                 <option value="">--เลือก--</option>
                                 @foreach ($months as $key => $item)
-                                <option value="{{$key}}" {{$formSearch->month == $key ? 'selected' : ''}}>{{$item}}
+                                <option value="{{$key}}" {{$selectedMonth == $key ? 'selected' : ''}}>{{$item}}
                                 </option>
                                 @endforeach
                             </select>
@@ -52,7 +52,7 @@
                             <select class="form-control-sm form-control" name="year" id="year">
                                 <option value="">--เลือก--</option>
                                 @foreach (range( date('Y'), $earliest_year ) as $i)
-                                <option value="{{$i}}" {{$formSearch->month == $i ? 'selected' : ''}}>{{$i}}</option>
+                                <option value="{{$i}}" {{$selectedYear == $i ? 'selected' : ''}}>{{$i}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -93,20 +93,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($budgets)
                         @foreach ($budgets as $key => $budget)
                         <tr>
                             <td><a href="{{route('it.budgets.edit',$budget->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">{{ __('itstock.budget.detail') }}</button></a></td>
+                                        class="btn btn-primary btn-sm float-left">{{ __('itstock.budget.detail') }}</button></a>
+                            </td>
                             <td>{{Helper::convertToTHB($budget->budgets_of_month)}}
                             </td>
                             <td>{{ date("F", mktime(0, 0, 0, $budget->month, 1)) }}</td>
                             <td>{{$budget->year}}</td>
                         </tr>
                         @endforeach
+                        @endisset
+
                     </tbody>
                 </table>
             </div>
-            {{$budgets->links()}}
+            @isset($budgets)
+            {{ $budgets->appends($query)->links() }}
+            @endisset
         </div>
     </div>
 </div>

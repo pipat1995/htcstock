@@ -4,6 +4,7 @@ namespace App\Services\IT\Interfaces;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 interface BudgetServiceInterface
 {
@@ -13,4 +14,5 @@ interface BudgetServiceInterface
 
     public function update(array $attributes, int $id): bool;
     public function hasBudget(String $month, String $year): bool;
+    public function filterForBudget(Request $request);
 }
