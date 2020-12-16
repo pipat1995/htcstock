@@ -168,7 +168,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
-                            value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            value="{{isset($mould->legalComercialTerm->dated) ? $mould->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Dated.
@@ -178,7 +178,7 @@
                         <label for="validationDeliveryDate"><strong>Delivery Date</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDeliveryDate" name="delivery_date"
-                            value="{{isset($mould->legalComercialTerm) ? $mould->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
+                            value="{{isset($mould->legalComercialTerm->delivery_date) ? $mould->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Delivery Date.

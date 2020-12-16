@@ -183,7 +183,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
-                            value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            value="{{isset($projectBased->legalComercialTerm->dated) ? $projectBased->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Dated
@@ -193,7 +193,7 @@
                         <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
-                            value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
+                            value="{{isset($projectBased->legalComercialTerm->contract_period) ? $projectBased->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Contract period.
@@ -202,7 +202,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
-                            value="{{isset($projectBased->legalComercialTerm) ? $projectBased->legalComercialTerm->untill->format('Y-m-d') : ""}}"
+                            value="{{isset($projectBased->legalComercialTerm->untill) ? $projectBased->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Untill.

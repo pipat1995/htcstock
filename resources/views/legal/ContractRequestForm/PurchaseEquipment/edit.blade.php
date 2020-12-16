@@ -146,7 +146,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
-                            value="{{isset($purchaseequipment->legalComercialTerm) ? $purchaseequipment->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            value="{{isset($purchaseequipment->legalComercialTerm->dated) ? $purchaseequipment->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -156,7 +156,7 @@
                         <label for="validationDeliveryDate"><strong>Delivery Date</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDeliveryDate" name="delivery_date"
-                            value="{{isset($purchaseequipment->legalComercialTerm) ? $purchaseequipment->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
+                            value="{{isset($purchaseequipment->legalComercialTerm->delivery_date) ? $purchaseequipment->legalComercialTerm->delivery_date->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.

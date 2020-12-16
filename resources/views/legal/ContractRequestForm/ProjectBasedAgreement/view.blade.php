@@ -193,7 +193,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
-                            value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            value="{{isset($contractDest->legalComercialTerm->dated) ? $contractDest->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             readonly>
                         <div>
                             {{-- Please provide a valid Dated --}}
@@ -203,7 +203,7 @@
                         <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
-                            value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
+                            value="{{isset($contractDest->legalComercialTerm->contract_period) ? $contractDest->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                             readonly>
                         <div>
                             {{-- Please provide a valid Contract period. --}}
@@ -212,7 +212,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
-                            value="{{isset($contractDest->legalComercialTerm) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
+                            value="{{isset($contractDest->legalComercialTerm->untill) ? $contractDest->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                             readonly>
                         <div>
                             {{-- Please provide a valid Untill. --}}

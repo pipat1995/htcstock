@@ -124,7 +124,7 @@
                         <label for="validationScope"><strong>Scope of Work</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="text" class="form-control-sm form-control" id="validationScope" name="scope_of_work"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->scope_of_work : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->scope_of_work : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -134,7 +134,7 @@
                         <label for="validationLocation"><strong>Location</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="text" class="form-control-sm form-control" id="validationLocation" name="location"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->location : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->location : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -143,7 +143,7 @@
                     <div class="col-md-4 mb-4">
                         <label for="validationPurchaseOrderNo"><strong>Purchase Order No.</strong> </label>
                         <input type="text" class="form-control-sm form-control" id="validationPurchaseOrderNo" name="purchase_order_no"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->purchase_order_no : ""}}">
+                            value="{{isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->purchase_order_no : ""}}">
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
@@ -154,7 +154,7 @@
                         <label for="validationQuotationNo"><strong>Quotation No</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="text" class="form-control-sm form-control" id="validationQuotationNo" name="quotation_no"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->quotation_no : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->quotation_no : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -163,7 +163,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationDated"><strong>Dated</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationDated" name="dated"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->dated->format('Y-m-d') : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm->dated) ? $workservicecontract->legalComercialTerm->dated->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -175,7 +175,7 @@
                         <label for="validationContractPeriod"><strong>Contract period</strong> <span
                                 style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationContractPeriod" name="contract_period"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm->contract_period) ? $workservicecontract->legalComercialTerm->contract_period->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
@@ -184,7 +184,7 @@
                     <div class="col-md-6 mb-6">
                         <label for="validationUntill"><strong>Untill</strong> <span style="color: red;">*</span></label>
                         <input type="date" class="form-control-sm form-control" id="validationUntill" name="untill"
-                            value="{{! isset($workservicecontract->legalComercialTerm) ? $workservicecontract->legalComercialTerm->untill->format('Y-m-d') : ""}}"
+                            value="{{isset($workservicecontract->legalComercialTerm->untill) ? $workservicecontract->legalComercialTerm->untill->format('Y-m-d') : ""}}"
                             required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
