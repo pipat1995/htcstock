@@ -19,12 +19,12 @@ class RoleTableSeeder extends Seeder
                 
             ],
             [
-                'name' => 'Admin',
+                'name' => 'Admin IT Stock',
                 'slug' => 'admin',
                 
             ],
             [
-                'name' => 'User',
+                'name' => 'User IT Stock',
                 'slug' => 'user',
                 
             ],

@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
             // AccessoriesTableSeeder::class,
             PermissionTableSeeder::class,
             RoleTableSeeder::class,
+            DepartmentSeeder::class,
             // UsersTableSeeder::class,
             
-            // LegalActionTableSeeder::class,
-            // LegalAgreementTableSeeder::class,
-            // LegalPaymentTypeTableSeeder::class,
-            // LegalSubtypeContractTableSeeder::class
+            LegalActionTableSeeder::class,
+            LegalAgreementTableSeeder::class,
+            LegalPaymentTypeTableSeeder::class,
+            LegalSubtypeContractTableSeeder::class
 
         ]);
     }
