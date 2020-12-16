@@ -2,7 +2,7 @@
 
 namespace App\Services\Legal\Service;
 
-use App\Models\IT\Department;
+use App\Models\Department;
 use App\Models\Legal\LegalApproval;
 use App\Services\BaseService;
 use App\Services\Legal\Interfaces\ApprovalServiceInterface;

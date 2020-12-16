@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\IT\Interfaces\PermissionsServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
-use App\Models\IT\Role;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller

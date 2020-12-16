@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\IT;
+namespace App\Models;
 
 use App\Http\Filters\IT\RoleManagementFilter;
 use App\Models\User;

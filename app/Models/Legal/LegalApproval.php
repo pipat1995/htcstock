@@ -2,7 +2,7 @@
 
 namespace App\Models\Legal;
 
-use App\Models\IT\Department;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 

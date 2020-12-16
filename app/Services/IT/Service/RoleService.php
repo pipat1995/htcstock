@@ -2,10 +2,9 @@
 
 namespace App\Services\IT\Service;
 
-use App\Models\IT\Role;
+use App\Models\Role;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\RoleServiceInterface;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 

@@ -2,7 +2,7 @@
 
 namespace App\Services\IT\Service;
 
-use App\Models\IT\Department;
+use App\Models\Department;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use Illuminate\Database\Eloquent\Builder;

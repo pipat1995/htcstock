@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\IT;
+namespace App\Models;
 
 use App\Models\Legal\LegalApproval;
 use Illuminate\Database\Eloquent\Model;

@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Enum\UserEnum;
-use App\Models\IT\Permission;
-use App\Models\IT\Role;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\Legal\LegalContract;
 use App\Policies\LegalContractPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

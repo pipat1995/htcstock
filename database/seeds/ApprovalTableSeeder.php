@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\IT\Department;
+use App\Models\Department;
 use App\Models\Legal\LegalApproval;
 use App\Models\User;
 use Illuminate\Database\Seeder;

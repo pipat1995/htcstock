@@ -2,7 +2,7 @@
 
 namespace App\Services\IT\Service;
 
-use App\Models\IT\Permission;
+use App\Models\Permission;
 use App\Services\BaseService;
 use App\Services\IT\Interfaces\PermissionsServiceInterface;
 use Illuminate\Database\Eloquent\Builder;

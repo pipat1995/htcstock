@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Http\Filters\IT\UserManagementFilter;
-use App\Models\IT\Department;
+use App\Models\Department;
 use App\Models\IT\Transactions;
 use App\Models\Legal\LegalApproval;
 use App\Models\Legal\LegalApprovalDetail;
