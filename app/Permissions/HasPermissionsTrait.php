@@ -80,4 +80,14 @@ trait HasPermissionsTrait
     {
         return Permission::whereIn('slug', $permissions)->get();
     }
+
+    public function permissionsInRole($permission)
+    {
+        foreach ($this->roles as $key => $value) {
+            if ($value->permissions->contains('slug', $permission)) {
+                return \true;
+            }
+        }
+        return \false;
+    }
 }
