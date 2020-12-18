@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\IT;
 
 use App\Http\Controllers\Controller;
-use App\Http\FormSearches\AccessFormSearch;
 use App\Http\Requests\IT\AccessorieFormRequest;
 use App\Models\IT\Accessories;
 use App\Services\IT\Interfaces\AccessoriesServiceInterface;

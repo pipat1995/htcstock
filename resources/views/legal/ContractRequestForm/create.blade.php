@@ -96,7 +96,7 @@
                                 target="_blank"
                                 rel="noopener noreferrer"></a></label>
                         <input type="file" class="form-control-sm form-control" id="validationCompanyCertificate"
-                            data-name="company_cer" onchange="uploadFile(this)" required>
+                            data-name="company_cer" onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -123,7 +123,7 @@
                                 target="_blank"
                                 rel="noopener noreferrer"></a></label>
                         <input type="file" class="form-control-sm form-control" id="validationRepresen" data-name="representative_cer"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

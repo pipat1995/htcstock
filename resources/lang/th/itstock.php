@@ -30,7 +30,8 @@ return [
         'add-equipment' => 'เพิ่มอุปกรณ์',
         'edit-equipment' => 'แก้ไขอุปกรณ์',
         'equipment-form' => 'แบบฟอร์มอุปกรณ์',
-        'submit-form' => 'ส่งแบบฟอร์ม'
+        'submit-form' => 'ส่งแบบฟอร์ม',
+        'equipment-image' => 'ภาพอุปกรณ์'
     ],
     'buy-accessorie' => [
         'purchase-list' => 'รายการซื้อ',

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Legal;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoreScrap extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreScrap extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('create-legal-contract');
     }
 
     /**

@@ -84,8 +84,10 @@ trait HasPermissionsTrait
     public function permissionsInRole($permission)
     {
         foreach ($this->roles as $key => $value) {
-            if ($value->permissions->contains('slug', $permission)) {
-                return \true;
+            foreach ($value->permissions as $key => $item) {
+                if ($item->slug === $permission->slug) {
+                    return \true;
+                }
             }
         }
         return \false;

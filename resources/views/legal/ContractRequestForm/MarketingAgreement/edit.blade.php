@@ -69,7 +69,7 @@
                                 href="{{url('storage/'.$marketing->purchase_order)}}" target="_blank"
                                 rel="noopener noreferrer">{{$marketing->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationPurchaseOrderFile"
-                            onchange="uploadFile(this)" data-name="purchase_order"
+                            onchange="uploadFileContract(this)" data-name="purchase_order"
                             data-cache="{{substr($marketing->purchase_order,9)}}">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -84,7 +84,7 @@
                         <label for="validationQuotationFile"><strong>Quotation</strong> <a
                                 href="{{url('storage/'.$marketing->quotation)}}" target="_blank"
                                 rel="noopener noreferrer">{{$marketing->quotation ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFileContract(this)"
                             data-cache="{{substr($marketing->quotation,9)}}" data-name="quotation">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"

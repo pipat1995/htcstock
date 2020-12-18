@@ -100,7 +100,7 @@
                                 target="_blank"
                                 rel="noopener noreferrer">{{$contract->company_cer ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationCompanyCertificate"
-                            onchange="uploadFile(this)" data-name="company_cer"
+                            onchange="uploadFileContract(this)" data-name="company_cer"
                             data-cache="{{substr($contract->company_cer,9)}}" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -127,7 +127,7 @@
                                 style="color: red;">*</span><a href="{{url('storage/'.$contract->representative_cer)}}"
                                 target="_blank"
                                 rel="noopener noreferrer">{{$contract->representative_cer ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control-sm form-control" id="validationRepresen" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationRepresen" onchange="uploadFileContract(this)"
                             data-name="representative_cer" data-cache="{{substr($contract->representative_cer,9)}}"
                             required>
                         <div class="mb-3 progress hide-contract">

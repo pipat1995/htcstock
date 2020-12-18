@@ -50,7 +50,7 @@
                                 rel="noopener noreferrer">{{$scrap->quotation ? 'view file' : ""}}</a></label>
 
                         <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                            data-cache="{{substr($scrap->quotation,9)}}" onchange="uploadFile(this)" required>
+                            data-cache="{{substr($scrap->quotation,9)}}" onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -68,7 +68,7 @@
 
                         <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                             data-name="coparation_sheet" data-cache="{{substr($scrap->coparation_sheet,9)}}"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -88,7 +88,7 @@
 
                         <input type="file" class="form-control-sm form-control" id="validationFactoryPermission"
                             data-name="factory_permission" data-cache="{{substr($scrap->factory_permission,9)}}"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -107,7 +107,7 @@
 
                         <input type="file" class="form-control-sm form-control" id="validationWastePermission"
                             data-name="waste_permission" data-cache="{{substr($scrap->waste_permission,9)}}"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

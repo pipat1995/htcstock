@@ -70,7 +70,7 @@
                                 href="{{url('storage/'.$leaseContract->purchase_order)}}" target="_blank"
                                 rel="noopener noreferrer">{{$leaseContract->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationPurchaseOrderFile"
-                            onchange="uploadFile(this)" data-name="purchase_order"
+                            onchange="uploadFileContract(this)" data-name="purchase_order"
                             data-cache="{{substr($leaseContract->purchase_order,9)}}">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -87,7 +87,7 @@
                                 style="color: red;">*</span> <a href="{{url('storage/'.$leaseContract->quotation)}}"
                                 target="_blank"
                                 rel="noopener noreferrer">{{$leaseContract->quotation ? 'view file' : ""}}</a></label>
-                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFile(this)"
+                        <input type="file" class="form-control-sm form-control" id="validationQuotationFile" onchange="uploadFileContract(this)"
                             data-cache="{{substr($leaseContract->quotation,9)}}" data-name="quotation" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -104,7 +104,7 @@
                                 href="{{url('storage/'.$leaseContract->coparation_sheet)}}" target="_blank"
                                 rel="noopener noreferrer">{{$leaseContract->coparation_sheet ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                            onchange="uploadFile(this)" data-name="coparation_sheet"
+                            onchange="uploadFileContract(this)" data-name="coparation_sheet"
                             data-cache="{{substr($leaseContract->coparation_sheet,9)}}" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"

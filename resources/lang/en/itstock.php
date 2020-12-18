@@ -30,7 +30,8 @@ return [
         'add-equipment' => 'Add equipment',
         'edit-equipment' => 'Edit equipment',
         'equipment-form' => 'Equipment form',
-        'submit-form' => 'Submit form'
+        'submit-form' => 'Submit form',
+        'equipment-image' => 'Equipment Image'
     ],
     'buy-accessorie' => [
         'purchase-list' => 'Purchase list',

@@ -559,7 +559,7 @@ class ContractRequestController extends Controller
     }
 
 
-    public function uploadFile(Request $request)
+    public function uploadfilecontract(Request $request)
     {
         // max 20 MB.
         $validator = Validator::make($request->all(), [

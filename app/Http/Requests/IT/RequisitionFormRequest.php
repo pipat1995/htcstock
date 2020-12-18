@@ -3,6 +3,7 @@
 namespace App\Http\Requests\IT;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class RequisitionFormRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class RequisitionFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('create-requisition') || Gate::allows('edit-requisition');
     }
 
     /**

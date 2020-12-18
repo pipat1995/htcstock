@@ -3,6 +3,7 @@
 namespace App\Http\Requests\IT;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class LendingsFormRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class LendingsFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('create-lend') || Gate::allows('edit-lend');
     }
 
     /**

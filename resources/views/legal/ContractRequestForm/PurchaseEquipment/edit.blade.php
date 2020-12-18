@@ -48,7 +48,7 @@
                                 rel="noopener noreferrer">{{$purchaseequipment->purchase_order ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationPurchaseOrderFile"
                             data-name="purchase_order" data-cache="{{substr($purchaseequipment->purchase_order,9)}}"
-                            onchange="uploadFile(this)">
+                            onchange="uploadFileContract(this)">
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -66,7 +66,7 @@
                                 rel="noopener noreferrer">{{$purchaseequipment->quotation ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationQuotationFile"
                             data-cache="{{substr($purchaseequipment->quotation,9)}}" data-name="quotation"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -85,7 +85,7 @@
                                 rel="noopener noreferrer">{{$purchaseequipment->coparation_sheet ? 'view file' : ""}}</a></label>
                         <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
                             data-name="coparation_sheet" data-cache="{{substr($purchaseequipment->coparation_sheet,9)}}"
-                            onchange="uploadFile(this)" required>
+                            onchange="uploadFileContract(this)" required>
                         <div class="mb-3 progress hide-contract">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

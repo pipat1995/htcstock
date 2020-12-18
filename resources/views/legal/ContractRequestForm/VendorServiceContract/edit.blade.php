@@ -73,7 +73,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile"
-                                onchange="uploadFile(this)" data-cache="{{substr($vendorservice->quotation,9)}}"
+                                onchange="uploadFileContract(this)" data-cache="{{substr($vendorservice->quotation,9)}}"
                                 data-name="quotation" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -90,7 +90,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -108,7 +108,7 @@
                                 href="{{url('storage/'.$vendorservice->transportation_permission)}}" target="_blank"
                                 rel="noopener noreferrer">{{$vendorservice->transportation_permission ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationTransportationPermission"
-                                data-name="transportation_permission" onchange="uploadFile(this)"
+                                data-name="transportation_permission" onchange="uploadFileContract(this)"
                                 data-cache="{{substr($vendorservice->transportation_permission,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -128,7 +128,7 @@
                                 href="{{url('storage/'.$vendorservice->vehicle_registration_certificate)}}" target="_blank"
                                 rel="noopener noreferrer">{{$vendorservice->vehicle_registration_certificate ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationVehicleRegistration"
-                                data-name="vehicle_registration_certificate" onchange="uploadFile(this)"
+                                data-name="vehicle_registration_certificate" onchange="uploadFileContract(this)"
                                 data-cache="{{substr($vendorservice->vehicle_registration_certificate,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -145,7 +145,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->route)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->route ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control-sm form-control" id="validationRoute" onchange="uploadFile(this)"
+                            <input type="file" class="form-control-sm form-control" id="validationRoute" onchange="uploadFileContract(this)"
                                 data-cache="{{substr($vendorservice->route,9)}}" data-name="route" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -161,7 +161,7 @@
                                     style="color: red;">*</span> <a
                                     href="{{url('storage/'.$vendorservice->insurance)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->insurance ? 'view file' : ""}}</a></label>
-                            <input type="file" class="form-control-sm form-control" id="validationInsurance" onchange="uploadFile(this)"
+                            <input type="file" class="form-control-sm form-control" id="validationInsurance" onchange="uploadFileContract(this)"
                                 data-cache="{{substr($vendorservice->insurance,9)}}" data-name="insurance" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -180,7 +180,7 @@
                                     href="{{url('storage/'.$vendorservice->driver_license)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->driver_license ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationDriverLicense"
-                                onchange="uploadFile(this)" data-cache="{{substr($vendorservice->driver_license,9)}}"
+                                onchange="uploadFileContract(this)" data-cache="{{substr($vendorservice->driver_license,9)}}"
                                 data-name="driver_license" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -345,7 +345,7 @@
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -362,7 +362,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -605,7 +605,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -622,7 +622,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -784,7 +784,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -801,7 +801,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -820,7 +820,7 @@
                                     rel="noopener noreferrer">{{$vendorservice->doctor_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control-sm form-control" id="validationDoctorLicense"
-                                onchange="uploadFile(this)" data-name="doctor_license"
+                                onchange="uploadFileContract(this)" data-name="doctor_license"
                                 data-cache="{{substr($vendorservice->doctor_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -962,7 +962,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -979,7 +979,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -998,7 +998,7 @@
                                     rel="noopener noreferrer">{{$vendorservice->nurse_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control-sm form-control" id="validationNurseLicense"
-                                onchange="uploadFile(this)" data-name="nurse_license"
+                                onchange="uploadFileContract(this)" data-name="nurse_license"
                                 data-cache="{{substr($vendorservice->nurse_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1140,7 +1140,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1157,7 +1157,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1176,7 +1176,7 @@
                                     rel="noopener noreferrer">{{$vendorservice->security_service_certification ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control-sm form-control" id="validationSecurityService"
-                                onchange="uploadFile(this)" data-name="security_service_certification"
+                                onchange="uploadFileContract(this)" data-name="security_service_certification"
                                 data-cache="{{substr($vendorservice->security_service_certification,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1195,7 +1195,7 @@
                                     rel="noopener noreferrer">{{$vendorservice->security_guard_license ? 'view file' : ""}}</a></label>
 
                             <input type="file" class="form-control-sm form-control" id="validationSecurityGuardLicense"
-                                onchange="uploadFile(this)" data-name="security_guard_license"
+                                onchange="uploadFileContract(this)" data-name="security_guard_license"
                                 data-cache="{{substr($vendorservice->security_guard_license,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1337,7 +1337,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1354,7 +1354,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1508,7 +1508,7 @@
                                     href="{{url('storage/'.$vendorservice->quotation)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->quotation ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationQuotationFile" data-name="quotation"
-                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFile(this)"
+                                data-cache="{{substr($vendorservice->quotation,9)}}" onchange="uploadFileContract(this)"
                                 required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
@@ -1525,7 +1525,7 @@
                                     href="{{url('storage/'.$vendorservice->coparation_sheet)}}" target="_blank"
                                     rel="noopener noreferrer">{{$vendorservice->coparation_sheet ? 'view file' : ""}}</a></label>
                             <input type="file" class="form-control-sm form-control" id="validationCoparationFile"
-                                onchange="uploadFile(this)" data-name="coparation_sheet"
+                                onchange="uploadFileContract(this)" data-name="coparation_sheet"
                                 data-cache="{{substr($vendorservice->coparation_sheet,9)}}" required>
                             <div class="mb-3 progress hide-contract">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"

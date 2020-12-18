@@ -3,6 +3,7 @@
 namespace App\Http\Requests\IT;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class BuyFormRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class BuyFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('create-buy') || Gate::allows('edit-buy');
     }
 
     /**

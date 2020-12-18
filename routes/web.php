@@ -44,6 +44,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     Route::delete('{user}/removerole', 'UsersController@removerole')->name('users.removerole');
     Route::post('{id}/addsystem', 'UsersController@addsystem')->name('users.addsystem');
     Route::delete('{user}/removesystem', 'UsersController@removesystem')->name('users.removesystem');
+    Route::post('uploadfileequipment', 'AccessoriesController@uploadfileequipment')->name('uploadfileequipment');
 });
 
 
@@ -74,7 +75,7 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
 
     Route::resource('contract-request', 'ContractRequestController', ['only' => ['index', 'create', 'store', 'edit', 'show', 'update', 'destroy']]);
-    Route::post('uploadfile', 'ContractRequestController@uploadFile')->name('uploadfile');
+    Route::post('uploadfilecontract', 'ContractRequestController@uploadfilecontract')->name('uploadfilecontract');
     Route::get('contract/{id}/pdf', 'ContractRequestController@generatePDF')->name('pdf');
     Route::post('contract-request/{id}/approval', 'ContractRequestController@approvalContract')->name('contract.approval');
     Route::namespace('ContractRequest')->prefix('contract-request')->name('contract-request.')->group(function () {

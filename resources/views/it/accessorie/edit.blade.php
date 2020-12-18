@@ -1,4 +1,15 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    .hide-progress {
+        display: none;
+    }
+
+    .show-progress {
+        display: block;
+    }
+</style>
+@endsection
 @section('sidebar')
 @include('includes.sidebar.it');
 @stop
@@ -43,13 +54,13 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationAccess_name">{{ __('itstock.manage-accessorie.name') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationAccess_name" name="access_name"
-                            value="{{$accessorie->access_name}}" required>
+                        <input type="text" class="form-control-sm form-control" id="validationAccess_name"
+                            name="access_name" value="{{$accessorie->access_name}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid Name.
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-1 mb-1">
                         <label for="validationUnit">{{ __('itstock.manage-accessorie.unit') }}</label>
                         <input type="text" class="form-control-sm form-control" id="validationUnit" name="unit"
                             value="{{$accessorie->unit}}" required>
@@ -57,11 +68,26 @@
                             Please provide a valid Unit.
                         </div>
                     </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="validationEquipmentImage">{{ __('itstock.manage-accessorie.equipment-image') }}
+                        </label>
+                        <input type="file" class="form-control-sm form-control" id="validationEquipmentImage"
+                            data-name="equipment_image" onchange="uploadFileEquipment(this)" required>
+                        <div class="mb-3 progress hide-progress">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <input type="hidden" type="text" name="equipment_image" value="">
+                        <div class="invalid-feedback">
+                            Please provide a valid Image Equipment.
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px">{{ __('itstock.manage-accessorie.submit-form') }}</button>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 5px">{{ __('itstock.manage-accessorie.submit-form') }}</button>
             </form>
 
-            <script src="{{asset('assets\js\transactions\accessorie.js')}}"></script>
+            <script src="{{asset('assets\js\transactions\accessorie.js')}}" defer></script>
         </div>
     </div>
 </div>
