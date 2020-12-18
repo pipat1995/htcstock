@@ -1,4 +1,15 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    .hide-progress {
+        display: none;
+    }
+
+    .show-progress {
+        display: block;
+    }
+</style>
+@endsection
 @section('sidebar')
 @include('includes.sidebar.it');
 @stop

@@ -130,9 +130,8 @@ var uploadFileEquipment = async e => {
 
     axios.post(uri, data, configUploadProgress)
         .then(res => {
-            console.log(`${window.location.host}/storage/${res.data.path}`);
             e.offsetParent.querySelector(`input[name='${e.dataset.name}']`).value = res.data.path
-            e.offsetParent.offsetParent.querySelector(`img`).src = `${window.location.host}/storage/${res.data.path}`
+            e.offsetParent.offsetParent.querySelector(`img`).src = `${window.location.href.split('/').slice(0, 3).join('/')}/storage/${res.data.path}`
             e.offsetParent.getElementsByClassName('progress-bar')[0].style.width = `100%`
             // e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `100%`
             e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `Success !`
