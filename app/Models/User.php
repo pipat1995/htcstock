@@ -52,8 +52,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function systems()
     {
-        return $this->belongsToMany(System::class,'users_has_systems','user_id','system_id');
+        return $this->belongsToMany(System::class, 'users_has_systems', 'user_id', 'system_id');
     }
+    public function divisions()
+    {
+        return $this->belongsTo(Division::class, 'divisions_id')->withDefault();
+    }
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id')->withDefault();
+    }
+    public function positions()
+    {
+        return $this->belongsTo(Position::class, 'positions_id')->withDefault();
+    }
+
 
     // ITSTOCK
     public function transaction()
@@ -64,11 +77,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function createdTransaction()
     {
         return $this->belongsTo(Transactions::class, 'created_by')->withDefault();
-    }
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id')->withDefault();
     }
 
 

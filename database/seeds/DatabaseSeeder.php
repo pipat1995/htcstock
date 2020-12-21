@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             DepartmentSeeder::class,
             // UsersTableSeeder::class,
-            
+            DivisionSeeder::class,
+            PositionSeeder::class,
+
+
             LegalActionTableSeeder::class,
             LegalAgreementTableSeeder::class,
             LegalPaymentTypeTableSeeder::class,
