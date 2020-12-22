@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Services\IT\Interfaces\AccessoriesServiceInterface;
 use App\Services\IT\Interfaces\BudgetServiceInterface;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
+use App\Services\IT\Interfaces\DivisionServiceInterface;
 use App\Services\IT\Interfaces\PermissionsServiceInterface;
+use App\Services\IT\Interfaces\PositionServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\SystemServiceInterface;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
@@ -13,7 +15,9 @@ use App\Services\IT\Interfaces\UserServiceInterface;
 use App\Services\IT\Service\AccessoriesService;
 use App\Services\IT\Service\BudgetService;
 use App\Services\IT\Service\DepartmentService;
+use App\Services\IT\Service\DivisionService;
 use App\Services\IT\Service\PermissionsService;
+use App\Services\IT\Service\PositionService;
 use App\Services\IT\Service\RoleService;
 use App\Services\IT\Service\SystemService;
 use App\Services\IT\Service\TransactionsService;
@@ -72,6 +76,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RoleServiceInterface::class, RoleService::class);
         $this->app->bind(PermissionsServiceInterface::class, PermissionsService::class);
         $this->app->bind(SystemServiceInterface::class,SystemService::class);
+        $this->app->bind(DivisionServiceInterface::class,DivisionService::class);
+        $this->app->bind(PositionServiceInterface::class,PositionService::class);
 
         // Legal
         $this->app->bind(ActionServiceInterface::class, ActionService::class);

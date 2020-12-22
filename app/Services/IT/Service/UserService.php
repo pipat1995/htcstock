@@ -56,7 +56,7 @@ class UserService extends BaseService implements UserServiceInterface
 
     public function filter(Request $request)
     {
-        return User::filter($request)->paginate(10);
+        return User::filter($request)->orderBy('department_id', 'desc')->paginate(10);
     }
 
     public function email(string $email)

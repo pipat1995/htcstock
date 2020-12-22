@@ -25,11 +25,33 @@
                         <input type="text" class="form-control-sm form-control" id="search" name="search" value="{{$search}}">
                     </div>
                     <div class="col-md-2 mb-2">
+                        <label for="division">Division</label>
+                        <select class="form-control-sm form-control js-select-division-multiple" name="division[]" multiple>
+                            @isset($divisions)
+                            @foreach ($divisions as $item)
+                            <option value="{{$item->id}}" @if($selectedDivision->contains($item->id)) selected
+                                @endif>{{$item->name}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
                         <label for="department">Department</label>
                         <select class="form-control-sm form-control js-select-department-multiple" name="department[]" multiple>
                             @isset($departments)
                             @foreach ($departments as $item)
                             <option value="{{$item->id}}" @if($selectedDept->contains($item->id)) selected
+                                @endif>{{$item->name}}</option>
+                            @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="position">Position</label>
+                        <select class="form-control-sm form-control js-select-position-multiple" name="position[]" multiple>
+                            @isset($positions)
+                            @foreach ($positions as $item)
+                            <option value="{{$item->id}}" @if($selectedPosition->contains($item->id)) selected
                                 @endif>{{$item->name}}</option>
                             @endforeach
                             @endisset
@@ -60,8 +82,16 @@
                     'use strict';
                     window.addEventListener('load', function () {
                         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        $(".js-select-division-multiple").select2({
+                            placeholder: 'Select division',
+                            allowClear: true
+                        });
                         $(".js-select-department-multiple").select2({
                             placeholder: 'Select department',
+                            allowClear: true
+                        });
+                        $(".js-select-position-multiple").select2({
+                            placeholder: 'Select position',
                             allowClear: true
                         });
                         $(".js-select-role-multiple").select2({
@@ -87,7 +117,9 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Division</th>
                             <th>Department</th>
+                            <th>Position</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,7 +142,13 @@
                                 @endif
                             </td>
                             <td>
+                                {{ $user->divisions->name}}
+                            </td>
+                            <td>
                                 {{ $user->department->name}}
+                            </td>
+                            <td>
+                                {{ $user->positions->name}}
                             </td>
                         </tr>
                         @endforeach

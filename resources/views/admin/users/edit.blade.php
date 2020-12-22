@@ -59,7 +59,23 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="division"
+                            class="col-md-3 col-form-label text-md-right">{{ __('Division') }}</label>
 
+                        <div class="col-md-3">
+                            <input id="division" type="text"
+                                class="form-control-sm form-control @error('division') is-invalid @enderror"
+                                name="division" value="{{ $user->divisions->name }}" autocomplete="division"
+                                readonly>
+
+                            @error('division')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="department"
                             class="col-md-3 col-form-label text-md-right">{{ __('Department') }}</label>
@@ -83,7 +99,7 @@
                         <div class="col-md-3">
                             <input id="position" type="text"
                                 class="form-control-sm form-control @error('position') is-invalid @enderror"
-                                name="position" value="" autocomplete="position" readonly>
+                                name="position" value="{{ $user->positions->name }}" autocomplete="position" readonly>
 
                             @error('position')
                             <span class="invalid-feedback" role="alert">

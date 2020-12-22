@@ -8,6 +8,8 @@ use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use App\Models\User;
+use App\Services\IT\Interfaces\DivisionServiceInterface;
+use App\Services\IT\Interfaces\PositionServiceInterface;
 use App\Services\IT\Interfaces\SystemServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,16 +23,22 @@ class UsersController extends Controller
     protected $rolesService;
     protected $departmentService;
     protected $systemService;
+    protected $divisionService;
+    protected $positionService;
     public function __construct(
         UserServiceInterface $userServiceInterface,
         RoleServiceInterface $rolesServiceInterface,
         DepartmentServiceInterface $departmentServiceInterface,
-        SystemServiceInterface $systemServiceInterface
+        SystemServiceInterface $systemServiceInterface,
+        DivisionServiceInterface $divisionServiceInterface,
+        PositionServiceInterface $positionServiceInterface
     ) {
         $this->userService = $userServiceInterface;
         $this->rolesService = $rolesServiceInterface;
         $this->departmentService = $departmentServiceInterface;
         $this->systemService = $systemServiceInterface;
+        $this->divisionService = $divisionServiceInterface;
+        $this->positionService = $positionServiceInterface;
     }
 
     /**
@@ -40,18 +48,22 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->all();
+        $search = $request->search;
+        $selectedDivision = \collect($request->division);
+        $selectedDept = \collect($request->department);
+        $selectedPosition = \collect($request->position);
+        $selectedRole = \collect($request->user_role);
         try {
             $users = $this->userService->filter($request);
+            $divisions = $this->divisionService->dropdown();
             $departments = $this->departmentService->dropdown();
+            $positions = $this->positionService->dropdown();
             $roles = $this->rolesService->dropdown();
-            $query = $request->all();
-            $search = $request->search;
-            $selectedDept = \collect($request->department);
-            $selectedRole = \collect($request->user_role);
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('admin.users.index', \compact('users', 'departments', 'roles', 'search', 'selectedDept', 'selectedRole', 'query'));
+        return \view('admin.users.index', \compact('users', 'divisions', 'departments', 'positions', 'roles', 'search', 'selectedDivision', 'selectedDept', 'selectedPosition', 'selectedRole', 'query'));
     }
 
     /**
@@ -179,7 +191,7 @@ class UsersController extends Controller
         return back();
     }
 
-    public function addrole(Request $request,$id)
+    public function addrole(Request $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -196,7 +208,7 @@ class UsersController extends Controller
         return \response($user->roles->toJson());
     }
 
-    public function removerole(Request $request,$id)
+    public function removerole(Request $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -210,7 +222,7 @@ class UsersController extends Controller
         return \response($user->roles->toJson());
     }
 
-    public function addsystem(Request $request,$id)
+    public function addsystem(Request $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -227,7 +239,7 @@ class UsersController extends Controller
         return \response($user->systems->toJson());
     }
 
-    public function removesystem(Request $request,$id)
+    public function removesystem(Request $request, $id)
     {
         DB::beginTransaction();
         try {
