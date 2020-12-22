@@ -88,7 +88,7 @@
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white" style="cursor: pointer;"
-                id="{{route('it.lendings.index')}}" onclick="redirext(this)">
+                id="{{route('it.equipment.lendings.index')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">{{ __('itstock.dashboard.items-not-yet-returned') }}</div>
                     <div class="widget-subheading">The item is not returned yet.</div>
@@ -102,7 +102,7 @@
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3 widget-content bg-grow-early">
             <div class="widget-content-wrapper text-white" style="cursor: pointer;"
-                id="{{route('it.requisition.index')}}" onclick="redirext(this)">
+                id="{{route('it.equipment.requisition.index')}}" onclick="redirext(this)">
                 <div class="widget-content-left">
                     <div class="widget-heading">{{ __('itstock.dashboard.drawdown-list') }}</div>
                     <div class="widget-subheading">Withdrawal list</div>

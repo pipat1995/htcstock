@@ -80,7 +80,7 @@ class LendingsTransactionController extends Controller
             } else {
                 $request->session()->flash('success',  ' has been create');
             }
-            return \redirect()->route('it.lendings.index');
+            return \redirect()->route('it.equipment.lendings.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -149,7 +149,7 @@ class LendingsTransactionController extends Controller
                     }
                 }
             }
-            return \redirect()->route('it.lendings.index');
+            return \redirect()->route('it.equipment.lendings.index');
         } catch (\Throwable $th) {
             throw $th;
         }

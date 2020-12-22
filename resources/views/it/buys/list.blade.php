@@ -22,7 +22,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="{{route('it.buy.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('it.equipment.buy.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -116,7 +116,7 @@
                             <td>{{$item->po_no}}</td>
                             <td>{{$item->user->name}}</td>
                             <td>{{$item->created_at}}</td>
-                            <td><a href="{{route('it.buy.edit',$item->id)}}"><button type="button"
+                            <td><a href="{{route('it.equipment.buy.edit',$item->id)}}"><button type="button"
                                         class="btn btn-primary btn-sm float-left">{{ __('itstock.buy-accessorie.detail') }}</button></a></td>
                         </tr>
                         @endforeach

@@ -29,7 +29,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                <a href="{{route('it.accessories.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('it.equipment.management.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -106,13 +106,13 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->access_name}}</td>
                             <td>{{$item->unit}}</td>
-                            <td><a href="{{route('it.accessories.edit',$item->access_id)}}" ><button type="button"
+                            <td><a href="{{route('it.equipment.management.edit',$item->access_id)}}" ><button type="button"
                                         class="btn btn-primary btn-sm float-center mr-1">{{ __('itstock.manage-accessorie.detail') }}</button></a>
 
                                 <button type="button" class="btn btn-danger btn-sm float-center"
                                     onclick="destroy({{$item->access_id}})">{{ __('itstock.manage-accessorie.delete') }}</button>
                                 <form id="destroy-form{{$item->access_id}}"
-                                    action="{{route('it.accessories.destroy',$item->access_id)}}" method="POST"
+                                    action="{{route('it.equipment.management.destroy',$item->access_id)}}" method="POST"
                                     style="display: none;">
                                     @csrf
                                     @method('DELETE')

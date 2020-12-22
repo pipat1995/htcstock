@@ -66,7 +66,7 @@ class AccessoriesController extends Controller
                 return \back();
             }
             $request->session()->flash('success', ' has been create success');
-            return \redirect()->route('it.accessories.edit', $isCreate->access_id);
+            return \redirect()->route('it.equipment.management.edit', $isCreate->access_id);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -115,7 +115,7 @@ class AccessoriesController extends Controller
                 return \back();
             }
             $request->session()->flash('success', ' has been update success');
-            return \redirect()->route('it.accessories.edit', $id);
+            return \redirect()->route('it.equipment.management.edit', $id);
         } catch (\Throwable $th) {
             throw $th;
         }

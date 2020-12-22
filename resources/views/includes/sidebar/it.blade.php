@@ -41,8 +41,8 @@
                     </a>
                 </li>
                 <li class="app-sidebar__heading">{{ __('itsidebar.actions') }}</li>
-                <li class="{{Helper::isActive('it/*')}}">
-                    <a href="#" class="{{Helper::isActive('it/*')}}">
+                <li class="{{Helper::isActive('it/equipment*')}}">
+                    <a href="#" class="{{Helper::isActive('it/equipment*')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         {{ __('itsidebar.accessorie') }}
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -50,14 +50,14 @@
                     <ul>
                         @can('for-superadmin-admin')
                         <li>
-                            <a href="{{route('it.accessories.index')}}"
-                                class="{{Helper::isActive('it/manage/accessories*') }}">
+                            <a href="{{route('it.equipment.management.index')}}"
+                                class="{{Helper::isActive('it/equipment/management*') }}">
                                 <i class="metismenu-icon">
                                 </i>{{ __('itsidebar.manage_accessorie') }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.buy.index')}}" class="{{Helper::isActive('it/buy*')}}">
+                            <a href="{{route('it.equipment.buy.index')}}" class="{{Helper::isActive('it/equipment/buy*')}}">
                                 <i class="metismenu-icon"></i>
                                 {{ __('itsidebar.buy') }}
                             </a>
@@ -65,13 +65,13 @@
                         @endcan
 
                         <li>
-                            <a href="{{route('it.requisition.index')}}" class="{{Helper::isActive('it/requisition*')}}">
+                            <a href="{{route('it.equipment.requisition.index')}}" class="{{Helper::isActive('it/equipment/requisition*')}}">
                                 <i class="metismenu-icon"></i>
                                 {{ __('itsidebar.requisition') }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('it.lendings.index')}}" class="{{Helper::isActive('it/lendings*')}}">
+                            <a href="{{route('it.equipment.lendings.index')}}" class="{{Helper::isActive('it/equipment/lendings*')}}">
                                 <i class="metismenu-icon"></i>
                                 {{ __('itsidebar.lend') }}
                             </a>

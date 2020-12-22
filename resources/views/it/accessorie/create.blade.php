@@ -33,7 +33,7 @@
                 <i class="fa fa-star"></i>
             </button>
             <div class="d-inline-block">
-                {{-- <a href="{{route('it.accessories.create')}}" class="btn-shadow btn btn-info">
+                {{-- <a href="{{route('it.equipment.management.create')}}" class="btn-shadow btn btn-info">
                 <span class="btn-icon-wrapper pr-2 opacity-7">
                     <i class="fa fa-business-time fa-w-20"></i>
                 </span>
@@ -47,7 +47,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">{{ __('itstock.manage-accessorie.equipment-form') }}</h5>
-            <form class="needs-validation" novalidate action="{{route('it.accessories.store')}}"
+            <form class="needs-validation" novalidate action="{{route('it.equipment.management.store')}}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
@@ -71,7 +71,7 @@
                         <label for="validationEquipmentImage">{{ __('itstock.manage-accessorie.equipment-image') }}
                         </label>
                         <input type="file" class="form-control-sm form-control" id="validationEquipmentImage"
-                            data-name="equipment_image" onchange="uploadFileEquipment(this)" required>
+                            data-name="equipment_image" onchange="uploadFileEquipment(this)" >
                         <div class="mb-3 progress hide-progress">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>

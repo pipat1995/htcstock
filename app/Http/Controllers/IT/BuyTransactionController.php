@@ -83,7 +83,7 @@ class BuyTransactionController extends Controller
                 return \back();
             }
             $request->session()->flash('success',  ' has been create');
-            return \redirect()->route('it.buy.index');
+            return \redirect()->route('it.equipment.buy.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -157,7 +157,7 @@ class BuyTransactionController extends Controller
                 $request->session()->flash('error', 'ไม่ให้แก้ไข!');
                 return \back();
             }
-            return \redirect()->route('it.buy.index');
+            return \redirect()->route('it.equipment.buy.index');
         } catch (\Throwable $th) {
             throw $th;
         }

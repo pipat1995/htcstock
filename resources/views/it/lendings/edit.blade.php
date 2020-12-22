@@ -31,7 +31,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">{{ __('itstock.lendings-accessorie.loan-form') }}</h5>
-            <form class="needs-validation" novalidate action="{{route('it.lendings.update',$transaction->id)}}"
+            <form class="needs-validation" novalidate action="{{route('it.equipment.lendings.update',$transaction->id)}}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

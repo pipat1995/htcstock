@@ -82,7 +82,7 @@ class RequisitionTransactionController extends Controller
             } else {
                 $request->session()->flash('success',  ' has been create');
             }
-            return \redirect()->route('it.requisition.index');
+            return \redirect()->route('it.equipment.requisition.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -133,7 +133,7 @@ class RequisitionTransactionController extends Controller
 
                 if ($transaction->ref_no) {
                     $request->session()->flash('error', 'รายการเคยยกเลิกแล้ว!');
-                    return \redirect()->route('it.requisition.index');
+                    return \redirect()->route('it.equipment.requisition.index');
                 }
                 $transaction->ref_no = $token;
 
@@ -151,7 +151,7 @@ class RequisitionTransactionController extends Controller
                     }
                 }
             }
-            return \redirect()->route('it.requisition.index');
+            return \redirect()->route('it.equipment.requisition.index');
         } catch (\Throwable $th) {
             throw $th;
         }
