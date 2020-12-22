@@ -37,7 +37,7 @@
     <div class="col-lg-6">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <form class="needs-validation" novalidate action="{{route('it.budgets.update',$budget->id)}}"
+                <form class="needs-validation" novalidate action="{{route('it.check.budgets.update',$budget->id)}}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

@@ -96,8 +96,8 @@
                                     @can('for-superadmin-admin')
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.manage users') }}</a>
-                                    <a href="{{ route('it.budgets.index') }}" tabindex="0"
-                                        class="dropdown-item">{{ __('navigation.budgets manage') }}</a>
+                                    {{-- <a href="{{ route('it.check.budgets.index') }}" tabindex="0"
+                                        class="dropdown-item">{{ __('navigation.budgets manage') }}</a> --}}
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.update user') }}</a>
                                     <a href="{{ route('optimize-clear') }}" tabindex="0"

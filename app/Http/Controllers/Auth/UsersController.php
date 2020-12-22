@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\IT\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -63,7 +62,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
         try {
             $user = $this->userService->find($id);
@@ -84,21 +83,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
-            $user = $this->userService->find($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            if (Auth::user()->id == $user->id) {
-                $user->save();
-                $request->session()->flash('success', $user->name . ' user has been update');
+            if ($this->userService->update($request->except(['_token']), $id)) {
+                $request->session()->flash('success', $request->name . ' user has been update');
             } else {
                 $request->session()->flash('error', 'error flash message!');
             }
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
-        return \back();
+        DB::commit();
+        return \redirect()->back();
     }
 
     /**

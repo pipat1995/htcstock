@@ -51,13 +51,18 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
 // IT
 Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
-    Route::resource('budgets', 'BudgetController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
     Route::resource('buy', 'BuyTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
     Route::resource('requisition', 'RequisitionTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
     Route::resource('lendings', 'LendingsTransactionController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
+
     Route::get('check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');
     Route::get('check/stocks', 'ReportController@reportStocks')->name('check.stocks_list');
+    Route::resource('check/budgets', 'BudgetController', [
+        'only' => ['index', 'create', 'store', 'edit', 'update'], 
+        'names' => ['index' => 'check.budgets.index', 'create' => 'check.budgets.create', 'store' => 'check.budgets.store', 'edit' => 'check.budgets.edit', 'update' => 'check.budgets.update']
+        ]);
+
     Route::get('download/accessories/PDF', 'ReportController@generateAccessoriesPDF')->name('generateAccessoriesPDF');
     Route::resource('manage/accessories', 'AccessoriesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
 });

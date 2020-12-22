@@ -24,6 +24,7 @@ return [
 
     'check' => 'Check System',
     'history' => 'Work history',
-    'stock' => 'Stock'
+    'stock' => 'Stock',
+    'budgets-manage' => 'Budgets Management',
 
 ];

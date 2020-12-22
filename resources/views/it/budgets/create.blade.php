@@ -38,7 +38,7 @@
         <div class="main-card mb-12 card">
             <div class="card-body">
                 <h5 class="card-title">{{ __('itstock.budget.budget-create-form') }}</h5>
-                <form class="needs-validation" novalidate action="{{route('it.budgets.store')}}" method="POST">
+                <form class="needs-validation" novalidate action="{{route('it.check.budgets.store')}}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="budgets_of_month"

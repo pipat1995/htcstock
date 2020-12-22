@@ -100,7 +100,13 @@
                                 </i>{{ __('itsidebar.stock') }}
                             </a>
                         </li>
-
+                        <li>
+                            <a href="{{route('it.check.budgets.index')}}"
+                                class="{{Helper::isActive('it/check/budgets') }}">
+                                <i class="metismenu-icon">
+                                </i>{{ __('itsidebar.budgets-manage') }}
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endcan

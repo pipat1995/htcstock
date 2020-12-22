@@ -91,14 +91,14 @@ class BudgetController extends Controller
         try {
             if ($this->budgetService->hasBudget($request->month, $request->year)) {
                 $request->session()->flash('error', 'มี Budget ของเดือนนี้แล้ว!');
-                return \redirect()->route('it.budgets.index');
+                return \redirect()->route('it.check.budgets.index');
             }
             if ($this->budgetService->create($request->all())) {
                 $request->session()->flash('success', ' Budget create success!');
             } else {
                 $request->session()->flash('error', 'error budget create!');
             }
-            return \redirect()->route('it.budgets.index');
+            return \redirect()->route('it.check.budgets.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -123,7 +123,7 @@ class BudgetController extends Controller
             } else {
                 $request->session()->flash('error', 'error budget update!');
             }
-            return \redirect()->route('it.budgets.index');
+            return \redirect()->route('it.check.budgets.index');
         } catch (\Throwable $th) {
             throw $th;
         }
