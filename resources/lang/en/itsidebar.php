@@ -16,6 +16,9 @@ return [
     'report' => 'Report',
     'dashboard' => 'Dashboard',
     'actions' => 'Actions',
+
+    'all' => 'All',
+
     'accessorie' => 'Accessorie',
     'manage_accessorie' => 'Manage Accessorie',
     'buy' => 'Buy Accessorie',

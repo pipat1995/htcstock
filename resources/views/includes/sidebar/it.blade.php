@@ -76,6 +76,14 @@
                                 {{ __('itsidebar.lend') }}
                             </a>
                         </li>
+                        @can('for-superadmin')
+                        <li>
+                            <a href="{{route('it.equipment.all.index')}}" class="{{Helper::isActive('it/equipment/all*')}}">
+                                <i class="metismenu-icon"></i>
+                                {{ __('itsidebar.all') }}
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </li>
                 @can('for-superadmin-admin')

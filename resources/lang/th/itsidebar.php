@@ -16,6 +16,9 @@ return [
     'report' => 'รายงาน',
     'dashboard' => 'แผงควบคุม',
     'actions' => 'ส่วนการดำเนินการ',
+
+    'all' => 'ทั้งหมด',
+
     'accessorie' => 'อุปกรณ์',
     'manage_accessorie' => 'จัดการอุปกรณ์',
     'buy' => 'ซื้อ อุปกรณ์',
