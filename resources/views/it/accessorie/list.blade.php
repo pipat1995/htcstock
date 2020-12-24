@@ -44,7 +44,8 @@
             <form action="#" method="GET">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <select class="form-control-sm form-control js-select-accessory-multiple" style="width: 100%" name="accessory[]" multiple>
+                        <select class="form-control-sm form-control js-select-accessory-multiple" style="width: 100%"
+                            name="accessory[]" multiple>
                             @isset($accessorys)
                             @foreach ($accessorys as $item)
                             <option value="{{$item->access_id}}" @if($selectedAccessorys->contains($item->access_id))
@@ -89,7 +90,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">{{ __('itstock.manage-accessorie.equipment-list') }}</h5>
-            <div class="table-responsive">
+            {{-- <div class="table-responsive">
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
@@ -106,7 +107,8 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$item->access_name}}</td>
                             <td>{{$item->unit}}</td>
-                            <td><a href="{{route('it.equipment.management.edit',$item->access_id)}}" ><button type="button"
+                            <td><a href="{{route('it.equipment.management.edit',$item->access_id)}}"><button
+                                        type="button"
                                         class="btn btn-primary btn-sm float-center mr-1">{{ __('itstock.manage-accessorie.detail') }}</button></a>
 
                                 <button type="button" class="btn btn-danger btn-sm float-center"
@@ -123,6 +125,39 @@
                         @endisset
                     </tbody>
                 </table>
+            </div> --}}
+            <div class="tab-content">
+                <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+                    <div class="row">
+                        @isset($accessories)
+                        @foreach ($accessories as $item)
+                        <div class="col-md-4">
+                            <div class="main-card mb-3 card"><img width="100%" src="{{url('storage/'.$item->image)}}"
+                                    alt="Card image cap" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$item->access_name}}</h5>
+                                    <h6 class="card-subtitle">{{$item->unit}}</h6>Some quick example text to build on
+                                    the card title
+                                    and make up the bulk of the card's content.
+                                    <a href="{{route('it.equipment.management.edit',$item->access_id)}}"><button
+                                            type="button"
+                                            class="btn btn-secondary btn-sm float-center mr-1">{{ __('itstock.manage-accessorie.detail') }}</button></a>
+
+                                    <button type="button" class="btn btn-danger btn-sm float-center"
+                                        onclick="destroy({{$item->access_id}})">{{ __('itstock.manage-accessorie.delete') }}</button>
+                                    <form id="destroy-form{{$item->access_id}}"
+                                        action="{{route('it.equipment.management.destroy',$item->access_id)}}"
+                                        method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endisset
+                    </div>
+                </div>
             </div>
             @isset($accessories)
             {{ $accessories->appends($query)->links() }}
