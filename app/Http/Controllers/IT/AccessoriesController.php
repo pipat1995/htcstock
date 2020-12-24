@@ -109,6 +109,7 @@ class AccessoriesController extends Controller
     public function update(AccessorieFormRequest $request, $id)
     {
         try {
+            // \dd($request->equipment_image);
             $isUpdate = $this->accessoriesService->update($request->except(['_token', '_method']), $id);
             if (!$isUpdate) {
                 $request->session()->flash('error', ' has been update fail');

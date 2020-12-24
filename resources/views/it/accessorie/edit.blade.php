@@ -73,12 +73,12 @@
                         <label for="validationEquipmentImage">{{ __('itstock.manage-accessorie.equipment-image') }}
                         </label>
                         <input type="file" class="form-control-sm form-control" id="validationEquipmentImage"
-                            data-name="equipment_image" onchange="uploadFileEquipment(this)">
+                            data-name="image" onchange="uploadFileEquipment(this)">
                         <div class="mb-3 progress hide-progress">
                             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100"
                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                         </div>
-                        <input type="hidden" type="text" name="equipment_image" value="">
+                        <input type="hidden" type="text" name="image" value="">
                         <div class="invalid-feedback">
                             Please provide a valid Image Equipment.
                         </div>

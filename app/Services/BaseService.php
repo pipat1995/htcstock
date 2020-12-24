@@ -58,7 +58,6 @@ class BaseService implements BaseServiceInterface
     {
         try {
             $model = $this->model->find($id);
-            // \dd($model,$attributes,$id);
             return $model->update($attributes);
         } catch (\Throwable $th) {
             throw $th;

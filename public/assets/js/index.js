@@ -146,6 +146,7 @@ var uploadFileEquipment = async e => {
                 e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.statusText}`
             }
         })
+        .finally( () => console.log(document.getElementsByName('image')[0]) )
 }
 
 var btn = $('#btnontop');
