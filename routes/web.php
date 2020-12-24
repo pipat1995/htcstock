@@ -84,9 +84,7 @@ Route::namespace('IT')->prefix('it')->name('it.')->middleware(['auth', 'verified
         ]
     );
 
-    Route::get('equipment/all' , function () {
-        return view('it.all.index');
-    })->name('equipment.all.index');
+    Route::get('equipment/all' , 'AccessoriesController@test')->name('equipment.all.index');
 
 
     Route::get('check/transactions', 'ReportController@reportTransactions')->name('check.transactions_list');

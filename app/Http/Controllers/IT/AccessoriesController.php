@@ -37,6 +37,24 @@ class AccessoriesController extends Controller
         }
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function test(Request $request)
+    {
+        $query = $request->all();
+        $selectedAccessorys = collect($request->accessory);
+        try {
+            $accessories = $this->accessoriesService->filter($request);
+            $accessorys = $this->accessoriesService->dropdown();
+            return \view('it.all.index', \compact('accessories', 'query', 'selectedAccessorys', 'accessorys'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
