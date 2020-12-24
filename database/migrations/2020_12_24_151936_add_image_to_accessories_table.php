@@ -13,7 +13,7 @@ class AddImageToAccessoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('Accessories', function (Blueprint $table) {
+        Schema::table('accessories', function (Blueprint $table) {
             $table->text('image')->nullable()->after('unit');
         });
     }
@@ -25,7 +25,7 @@ class AddImageToAccessoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('Accessories', function (Blueprint $table) {
+        Schema::table('accessories', function (Blueprint $table) {
             $table->text('image')->nullable()->after('unit');
         });
     }
