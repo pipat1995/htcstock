@@ -14,7 +14,7 @@
                         <h5 class="card-title">Card title</h5>
                         <h6 class="card-subtitle">Card subtitle</h6>Some quick example text to build on the card title
                         and make up the bulk of the card's content.
-                        <button class="btn btn-secondary">Button</button>
+                        <button class="btn btn-secondary">Button</button><br>
                         {{ url('storage/it/manage/accessories/20201218/test.jpg') }}
                     </div>
                 </div>

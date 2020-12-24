@@ -82,7 +82,6 @@
                         </div>
                     </div>
                     <div class="col-md-5 mb-5">
-                        {{-- <label for="validationUnit">{{ __('itstock.manage-accessorie.unit') }}</label> --}}
                         <img src="" alt="image">
                     </div>
                 </div>

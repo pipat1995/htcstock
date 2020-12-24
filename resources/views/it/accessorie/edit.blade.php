@@ -47,8 +47,9 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">{{ __('itstock.manage-accessorie.equipment-form') }}</h5>
-            <form class="needs-validation" novalidate action="{{route('it.equipment.management.update',$accessorie->access_id)}}"
-                method="POST" enctype="multipart/form-data">
+            <form class="needs-validation" novalidate
+                action="{{route('it.equipment.management.update',$accessorie->access_id)}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -81,6 +82,9 @@
                         <div class="invalid-feedback">
                             Please provide a valid Image Equipment.
                         </div>
+                    </div>
+                    <div class="col-md-5 mb-5">
+                        <img src="{{url('storage/'.$accessorie->image)}}" alt="image">
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit"

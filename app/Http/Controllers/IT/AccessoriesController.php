@@ -31,7 +31,7 @@ class AccessoriesController extends Controller
         try {
             $accessories = $this->accessoriesService->filter($request);
             $accessorys = $this->accessoriesService->dropdown();
-            return \view('it.accessorie.list', \compact('accessories','query','selectedAccessorys','accessorys'));
+            return \view('it.accessorie.list', \compact('accessories', 'query', 'selectedAccessorys', 'accessorys'));
         } catch (\Throwable $th) {
             throw $th;
         }
