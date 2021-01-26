@@ -133,3 +133,9 @@ Route::namespace('Legal')->prefix('legal')->name('legal.')->middleware(['auth', 
         Route::put('approval/{id}/level/down', 'ApprovalController@levelDown')->name('approval.leveldown');
     });
 });
+
+
+// Account
+Route::namespace('KPI')->prefix('kpi')->name('kpi.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('dashboard', 'HomeController@index')->name('dashboard');
+});
