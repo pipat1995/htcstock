@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/self-evaluation*')}}">
+                    <a href="{{route('kpi.self-evaluation.index')}}" class="{{Helper::isActive('kpi/self-evaluation*')}}">
                         <i class="metismenu-icon"></i>
                         Self Evaluation
                     </a>

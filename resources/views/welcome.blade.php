@@ -31,6 +31,8 @@
                 @auth
                 <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-hide-small" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> LOGOUT</a>
+                <a href="{{ url('log-viewer') }}" class="w3-bar-item w3-button w3-hide-small"><i
+                        class="fa fa-industry"></i>LOG-VIEWER</a>
                 @else
                 <a href="{{ route('login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i>
                     LOGIN</a>
@@ -71,7 +73,7 @@
             <div class="u-expanded-width-xs u-list u-repeater u-list-1">
                 @isset($systems)
                 @foreach ($systems as $item)
-                
+
                 <div style="cursor: pointer;" onclick="goTo('systemset/{{$item->slug}}')"
                     class="u-container-style u-list-item u-palette-5-light-2 u-repeater-item u-video-cover u-list-item-1">
                     <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
