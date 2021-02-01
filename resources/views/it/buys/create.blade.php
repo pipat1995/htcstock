@@ -95,7 +95,7 @@
                         <select name="vendor_id" id="validationVendor" class="form-control-sm form-control" required>
                             <option value="">--เลือก--</option>
                             @foreach ($vendorDropdown as $item)
-                            <option value="{{$item->code}}">{{$item->name}}</option>
+                            <option value="{{$item->code}}">{{$item->code}} - {{$item->name}}</option>
                             @endforeach
                         </select>
                         <div class="valid-feedback">
