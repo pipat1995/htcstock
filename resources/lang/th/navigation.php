@@ -26,6 +26,7 @@ return [
     'manage users' => 'จัดการผู้ใช้',
     'budgets manage' => 'การจัดการงบประมาณ',
     'update user' => 'อัปเดตข้อมูลผู้ใช้',
+    'update vendor' => 'อัปเดตข้อมูลผู้ขาย',
     'optimize-system' => 'ระบบเพิ่มประสิทธิภาพ'
 
 ];

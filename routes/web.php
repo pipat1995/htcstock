@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Directory Admin   middleware('can:for-superadmin-admin') เรียกมาจาก AuthServiceProvider for-superadmin-admin 'can:for-superadmin-admin',
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('updateusers', 'UsersController@updateusers')->name('users.updateusers');
+    Route::get('updatevendors', 'VendorController@updatevendor')->name('vendor.updatevendor');
     Route::resources([
         'users' => 'UsersController',
         'permissions' => 'PermissionsController',

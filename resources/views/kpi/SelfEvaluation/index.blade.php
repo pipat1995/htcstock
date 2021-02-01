@@ -82,7 +82,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="staffName">Staff Name</label>
                             <input type="text" class="form-control form-control-sm" id="staffName"
-                                placeholder="Staff Name" value="" required>
+                                placeholder="Staff Name" value="{{Auth::user()->name}}" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -90,7 +90,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="Type">Type</label>
                             <input type="text" class="form-control form-control-sm" id="type" placeholder="Type"
-                                value="" required>
+                                value="" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -99,7 +99,8 @@
                             <label for="Department">Department</label>
                             <div class="input-group">
                                 <input type="text" class="form-control form-control-sm" id="Department"
-                                    placeholder="Department" aria-describedby="inputGroupPrepend" required>
+                                    value="{{Auth::user()->department->name}}" placeholder="Department"
+                                    aria-describedby="inputGroupPrepend" disabled>
                                 <div class="invalid-feedback">
                                     Please choose a username.
                                 </div>
@@ -110,15 +111,14 @@
                         <div class="col-md-4 mb-3">
                             <label for="Position">Position</label>
                             <input type="text" class="form-control form-control-sm" id="Position" placeholder="Position"
-                                required>
+                                value="{{Auth::user()->positions->name}}" disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid city.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="Year">Year</label>
-                            <input type="text" class="form-control form-control-sm" id="Year" placeholder="Year"
-                                required>
+                            <input type="text" class="form-control form-control-sm" id="Year" placeholder="Year">
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
@@ -156,7 +156,7 @@
                             <td>January</td>
                             <td>Approved</td>
                             <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">view
-                            </button></td>
+                                </button></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}
@@ -166,7 +166,7 @@
                             <td>February</td>
                             <td>Ready</td>
                             <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
-                            </button></td>
+                                </button></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}
@@ -176,7 +176,7 @@
                             <td>March</td>
                             <td>Ready</td>
                             <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
-                            </button></td>
+                                </button></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}

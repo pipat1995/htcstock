@@ -100,6 +100,8 @@
                                         class="dropdown-item">{{ __('navigation.budgets manage') }}</a> --}}
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.update user') }}</a>
+                                    <a href="{{ route('admin.vendor.updatevendor') }}" tabindex="0"
+                                        class="dropdown-item">{{ __('navigation.update vendor') }}</a>
                                     <a href="{{ route('optimize-clear') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.optimize-system') }}</a>
                                     @endcan
