@@ -102,17 +102,12 @@ class VendorController extends Controller
                 $request->session()->flash('error', 'has been update vendor no auth');
                 return back();
             }
-
-            $vendorsArray = [];
-            $vendors = Vendor::all();
-            foreach ($vendors as $value) {
-                \array_push($vendorsArray, $value->code);
-            }
-
-            $results = Http::retry(2, 100)->get(ENV('VENDOR_UPDATE'), ['vendorsArray' => $vendorsArray])->json();
-            foreach ($results as $key => $data) {
-               $vendor = Vendor::firstOrNew($data);
-               $vendor->save();
+            $response = Http::retry(2, 100)->get(ENV('VENDOR_UPDATE'))->json();
+            foreach ($response as $data) {
+                $vendor = Vendor::firstOrNew(['code' => $data['code'] ]);
+                $vendor->name = $data['name'];
+                $vendor->address = $data['address'];
+                $vendor->save();
             }
         } catch (\Throwable $th) {
             DB::rollBack();

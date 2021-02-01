@@ -156,26 +156,15 @@ class UsersController extends Controller
             if (Gate::denies('for-superadmin-admin')) {
                 return back();
             }
-            $username = [];
-            $users = User::all();
-            foreach ($users as $value) {
-                \array_push($username, $value->username);
-            }
-            $results = Http::retry(2, 100)->get(ENV('USERS_UPDATE'), ['usernames' => $username])->json();
-
-            if (count($results) <= 0) {
-                $request->session()->flash('success', 'has been update user');
-                return back();
-            }
-
             $role = Role::where('name', 'user')->first();
-            foreach ($results as $key => $value) {
-                $user = $this->userService->create([
-                    'name' => $value['name'],
-                    'username' => $value['username'],
-                    'email' => $value['email'],
-                    'password' => Hash::make(\substr($value['email'], 0, 1) . $value['username'])
-                ]);
+            $response = Http::retry(2, 100)->get(ENV('USERS_UPDATE'))->json();
+
+            foreach ($response as $value) {
+                $user = User::firstOrNew(['username' => $value['username']]);
+                $user->name = $value['name'];
+                $user->email = $value['email'];
+                $user->password = Hash::make(\substr($value['email'], 0, 1) . $value['username']);
+                $user->save();
                 if (!$user) {
                     $request->session()->flash('error', 'error update username' . $value['username']);
                     return back();
