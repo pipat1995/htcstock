@@ -14,7 +14,8 @@ class SelfEvaluationController extends Controller
      */
     public function index()
     {
-        return \view('kpi.SelfEvaluation.index');
+        $start_year = date('Y', strtotime('-10 years'));
+        return \view('kpi.SelfEvaluation.index',\compact('start_year'));
     }
 
     /**

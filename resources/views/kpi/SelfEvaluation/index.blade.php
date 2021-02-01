@@ -118,7 +118,11 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="Year">Year</label>
-                            <input type="text" class="form-control form-control-sm" id="Year" placeholder="Year">
+                            <select name="year" id="validationYear" class="form-control-sm form-control" >
+                                @foreach (range(date('Y'), $start_year) as $year)
+                                <option value="{{$year}}">{{$year}}</option>
+                                @endforeach
+                            </select>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
@@ -155,7 +159,8 @@
                             <th scope="row">1</th>
                             <td>January</td>
                             <td>Approved</td>
-                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">view
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}"
+                                    class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">view
                                 </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
@@ -165,7 +170,8 @@
                             <th scope="row">2</th>
                             <td>February</td>
                             <td>Ready</td>
-                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}"
+                                    class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
                                 </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
@@ -175,7 +181,8 @@
                             <th scope="row">3</th>
                             <td>March</td>
                             <td>Ready</td>
-                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}"
+                                    class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
                                 </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
