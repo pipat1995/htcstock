@@ -49,6 +49,19 @@ class BaseService implements BaseServiceInterface
         }
     }
 
+        /**
+     * @param $code
+     * @return Model
+     */
+    public function findStr(string $code): Model
+    {
+        try {
+            return $this->model->find($code);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     /**
      * @param array $attributes
      *
@@ -64,10 +77,34 @@ class BaseService implements BaseServiceInterface
         }
     }
 
+        /**
+     * @param array $attributes
+     *
+     * @return bool
+     */
+    public function updateStr(array $attributes, string $code): bool
+    {
+        try {
+            $model = $this->model->find($code);
+            return $model->update($attributes);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public function destroy(int $id)
     {
         try {
             return $this->model->destroy($id);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroyStr(string $code)
+    {
+        try {
+            return $this->model->destroy($code);
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -36,8 +36,8 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">{{ __('itstock.buy-accessorie.purchase-form') }}</h5>
-            <form class="needs-validation" novalidate action="{{route('it.equipment.buy.update',$transaction->id)}}" method="POST"
-                enctype="multipart/form-data">
+            <form class="needs-validation" novalidate action="{{route('it.equipment.buy.update',$transaction->id)}}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -65,8 +65,8 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationUnitCost">{{ __('itstock.buy-accessorie.unit-cost') }}</label>
-                        <input type="number" class="form-control-sm form-control" id="validationUnitCost" name="unit_cost"
-                            value="{{$transaction->unit_cost}}" required>
+                        <input type="number" class="form-control-sm form-control" id="validationUnitCost"
+                            name="unit_cost" value="{{$transaction->unit_cost}}" required>
                         <div class="invalid-feedback">
                             Please provide a valid UnitCost.
                         </div>
@@ -91,8 +91,15 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationVendor">{{ __('itstock.buy-accessorie.vendor') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationVendor" name="vendor_id"
-                            value="{{$transaction->vendor_id}}" placeholder="Vendor">
+                        <select name="vendor_id" id="validationVendor" class="form-control-sm form-control" required>
+                            <option value="">--เลือก--</option>
+                            @foreach ($vendorDropdown as $item)
+                            <option value="{{$item->code}}" {{$item->code == $transaction->vendor_id ? 'selected' : ''}}>{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                         <div class="invalid-feedback">
                             Please provide a valid Vendor.
                         </div>
@@ -135,7 +142,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px">{{ __('itstock.buy-accessorie.submit-form') }}</button>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 5px">{{ __('itstock.buy-accessorie.submit-form') }}</button>
             </form>
             <script src="{{asset('assets\js\transactions\buy.js')}}"></script>
         </div>

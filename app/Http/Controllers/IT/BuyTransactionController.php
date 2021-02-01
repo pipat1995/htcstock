@@ -5,13 +5,11 @@ namespace App\Http\Controllers\IT;
 use App\Enum\TransactionTypeEnum;
 use Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\FormSearches\BuyFormSearch;
 use App\Http\Requests\IT\BuyFormRequest;
 use App\Services\IT\Interfaces\AccessoriesServiceInterface;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
-use DateInterval;
-use DateTime;
+use App\Services\IT\Interfaces\VendorServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,14 +18,17 @@ class BuyTransactionController extends Controller
     protected $accessoriesService;
     protected $transactionsService;
     protected $userService;
+    protected $vendorService;
     public function __construct(
         AccessoriesServiceInterface $accessoriesServiceInterface,
         TransactionsServiceInterface $transactionsServiceInterface,
-        UserServiceInterface $userServiceInterface
+        UserServiceInterface $userServiceInterface,
+        VendorServiceInterface $vendorServiceInterface
     ) {
         $this->accessoriesService = $accessoriesServiceInterface;
         $this->transactionsService = $transactionsServiceInterface;
         $this->userService = $userServiceInterface;
+        $this->vendorService = $vendorServiceInterface;
     }
 
     /**
@@ -61,7 +62,9 @@ class BuyTransactionController extends Controller
     public function create()
     {
         try {
-            return \view('it.buys.create')->with('accessories', $this->accessoriesService->all()->get());
+            $accessories = $this->accessoriesService->all()->get();
+            $vendorDropdown = $this->vendorService->dropdown();
+            return \view('it.buys.create', \compact('accessories', 'vendorDropdown'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -82,11 +85,11 @@ class BuyTransactionController extends Controller
                 $request->session()->flash('error', 'error create!');
                 return \back();
             }
-            $request->session()->flash('success',  ' has been create');
-            return \redirect()->route('it.equipment.buy.index');
         } catch (\Throwable $th) {
             throw $th;
         }
+        $request->session()->flash('success',  ' has been create');
+        return \redirect()->route('it.equipment.buy.index');
     }
 
     /**
@@ -110,8 +113,9 @@ class BuyTransactionController extends Controller
     {
         try {
             $accessories = $this->accessoriesService->all()->get();
+            $vendorDropdown = $this->vendorService->dropdown();
             $transaction = $this->transactionsService->find($id);
-            return \view('it.buys.edit')->with('transaction', $transaction)->with('accessories', $accessories);
+            return \view('it.buys.edit',\compact('accessories','vendorDropdown','transaction'));
         } catch (\Throwable $th) {
             throw $th;
         }

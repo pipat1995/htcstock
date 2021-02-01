@@ -52,19 +52,22 @@
                         <div class="valid-feedback">
                             Looks good!
                         </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid Equipment.
+                        </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationQty">{{ __('itstock.buy-accessorie.quantity') }}</label>
-                        <input type="number" class="form-control-sm form-control" id="validationQty" name="qty" value="" min="1"
-                            oninput="quantity(this)" required>
+                        <input type="number" class="form-control-sm form-control" id="validationQty" name="qty" value=""
+                            min="1" oninput="quantity(this)" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationUnitCost">{{ __('itstock.buy-accessorie.unit-cost') }}</label>
-                        <input type="number" class="form-control-sm form-control" id="validationUnitCost" name="unit_cost" value=""
-                            required>
+                        <input type="number" class="form-control-sm form-control" id="validationUnitCost"
+                            name="unit_cost" value="" required>
                         <div class="invalid-feedback">
                             Please provide a valid UnitCost.
                         </div>
@@ -73,24 +76,31 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationPonumber">{{ __('itstock.buy-accessorie.po-no') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationPonumber" name="po_no" value=""
-                            placeholder="12345678" required>
+                        <input type="text" class="form-control-sm form-control" id="validationPonumber" name="po_no"
+                            value="" placeholder="12345678" required>
                         <div class="invalid-feedback">
                             Please provide a valid PO No.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationinvoice">{{ __('itstock.buy-accessorie.invoice') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationinvoice" name="invoice_no" value=""
-                            placeholder="12345678" required>
+                        <input type="text" class="form-control-sm form-control" id="validationinvoice" name="invoice_no"
+                            value="" placeholder="12345678" required>
                         <div class="invalid-feedback">
                             Please provide a valid Ivoice No.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationVendor">{{ __('itstock.buy-accessorie.vendor') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationVendor" name="vendor_id" value=""
-                            placeholder="Vendor" required>
+                        <select name="vendor_id" id="validationVendor" class="form-control-sm form-control" required>
+                            <option value="">--เลือก--</option>
+                            @foreach ($vendorDropdown as $item)
+                            <option value="{{$item->code}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                         <div class="invalid-feedback">
                             Please provide a valid Vendor.
                         </div>
@@ -99,15 +109,16 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationIrnumber">{{ __('itstock.buy-accessorie.ir-no') }}</label>
-                        <input type="text" class="form-control-sm form-control" id="validationIrnumber" name="ir_no" value=""
-                            placeholder="123456789" required>
+                        <input type="text" class="form-control-sm form-control" id="validationIrnumber" name="ir_no"
+                            value="" placeholder="123456789" required>
                         <div class="invalid-feedback">
                             Please choose a IR No.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationIrDate">{{ __('itstock.buy-accessorie.ir-date') }}</label>
-                        <input type="date" class="form-control-sm form-control" id="validationIrDate" name="ir_date" value="" required>
+                        <input type="date" class="form-control-sm form-control" id="validationIrDate" name="ir_date"
+                            value="" required>
                         <div class="invalid-feedback">
                             Please choose a IR Date.
                         </div>
@@ -116,10 +127,12 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-12">
                         <label for="trans_desc">{{ __('itstock.buy-accessorie.remark') }}</label>
-                        <textarea name="trans_desc" id="trans_desc" class="form-control-sm form-control" rows="3"></textarea>
+                        <textarea name="trans_desc" id="trans_desc" class="form-control-sm form-control"
+                            rows="3"></textarea>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit" style="margin-top: 5px" disabled>{{ __('itstock.buy-accessorie.submit-form') }}</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 5px"
+                    disabled>{{ __('itstock.buy-accessorie.submit-form') }}</button>
             </form>
             <script src="{{asset('assets\js\transactions\buy.js')}}" defer></script>
 

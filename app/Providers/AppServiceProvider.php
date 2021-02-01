@@ -12,6 +12,7 @@ use App\Services\IT\Interfaces\RoleServiceInterface;
 use App\Services\IT\Interfaces\SystemServiceInterface;
 use App\Services\IT\Interfaces\TransactionsServiceInterface;
 use App\Services\IT\Interfaces\UserServiceInterface;
+use App\Services\IT\Interfaces\VendorServiceInterface;
 use App\Services\IT\Service\AccessoriesService;
 use App\Services\IT\Service\BudgetService;
 use App\Services\IT\Service\DepartmentService;
@@ -22,6 +23,7 @@ use App\Services\IT\Service\RoleService;
 use App\Services\IT\Service\SystemService;
 use App\Services\IT\Service\TransactionsService;
 use App\Services\IT\Service\UserService;
+use App\Services\IT\Service\VendorService;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
 use App\Services\Legal\Interfaces\ApprovalDetailServiceInterface;
@@ -78,6 +80,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SystemServiceInterface::class,SystemService::class);
         $this->app->bind(DivisionServiceInterface::class,DivisionService::class);
         $this->app->bind(PositionServiceInterface::class,PositionService::class);
+        $this->app->bind(VendorServiceInterface::class,VendorService::class);
 
         // Legal
         $this->app->bind(ActionServiceInterface::class, ActionService::class);

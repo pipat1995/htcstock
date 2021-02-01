@@ -8,10 +8,14 @@
             allowClear: true
         });
         $("#validationAccess_id").select2({
-            placeholder: 'Select ......',
+            placeholder: 'Select accessorie ......',
             allowClear: true
         });
-
+        $("#validationVendor").select2({
+            placeholder: 'Select vendor ......',
+            allowClear: true
+        });
+        
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         validationForm(forms)
