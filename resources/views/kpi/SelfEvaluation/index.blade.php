@@ -155,8 +155,8 @@
                             <th scope="row">1</th>
                             <td>January</td>
                             <td>Approved</td>
-                            <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">view
-                                </button></td>
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">view
+                                </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}
@@ -165,8 +165,8 @@
                             <th scope="row">2</th>
                             <td>February</td>
                             <td>Ready</td>
-                            <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
-                                </button></td>
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
+                                </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}
@@ -175,8 +175,8 @@
                             <th scope="row">3</th>
                             <td>March</td>
                             <td>Ready</td>
-                            <td><button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
-                                </button></td>
+                            <td><a href="{{route('kpi.self-evaluation.edit',1)}}" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary">Evaluate
+                                </a></td>
                             {{-- <td>Table cell</td>
                             <td>Table cell</td>
                             <td>Table cell</td> --}}
