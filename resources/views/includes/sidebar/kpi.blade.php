@@ -47,13 +47,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('kpi.rule.index')}}" class="{{Helper::isActive('kpi/rule*')}}">
+                    <a href="{{route('kpi.rule-list.index')}}" class="{{Helper::isActive('kpi/rule-list*')}}">
                         <i class="metismenu-icon"></i>
                         Rule List
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/rule-template*')}}">
+                    <a href="{{route('kpi.rule-template.index')}}" class="{{Helper::isActive('kpi/rule-template*')}}">
                         <i class="metismenu-icon"></i>
                         Rule Template
                     </a>

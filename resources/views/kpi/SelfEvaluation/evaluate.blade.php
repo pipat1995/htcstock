@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        
+
                     </div>
                 </form>
             </div>
@@ -465,9 +465,7 @@
         </div>
         <div class="page-title-actions">
             <button class="mb-2 mr-2 btn btn-primary">Save</button>
-            <div class="d-inline-block dropdown">
-                <button class="mb-2 mr-2 btn btn-success">Submit to Manager</button>
-            </div>
+            <button class="mb-2 mr-2 btn btn-success">Submit to Manager</button>
         </div>
     </div>
 </div>
