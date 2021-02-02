@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/rule-list*')}}">
+                    <a href="{{route('kpi.rule.index')}}" class="{{Helper::isActive('kpi/rule*')}}">
                         <i class="metismenu-icon"></i>
                         Rule List
                     </a>
@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/evaluation-review*')}}">
+                    <a href="{{route('kpi.evaluation-review.index')}}" class="{{Helper::isActive('kpi/evaluation-review*')}}">
                         <i class="metismenu-icon"></i>
                         Evaluation Review
                     </a>
