@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/set-target*')}}">
+                    <a href="{{route('kpi.set-target.index')}}" class="{{Helper::isActive('kpi/set-target*')}}">
                         <i class="metismenu-icon"></i>
                         Set Target
                     </a>
