@@ -36,7 +36,7 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Set Target Search</h5>
+            <h5 class="card-title">Set Actual Search</h5>
             <div class="position-relative form-group">
                 <form class="needs-validation" novalidate>
                     <div class="form-row">
@@ -56,6 +56,14 @@
                             <select id="validationYear" class="form-control-sm form-control">
                                 @foreach (range(date('Y'),$start_year) as $year)
                                 <option value="">{{$year}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-1 mb-1">
+                            <label for="period">Period :</label>
+                            <select id="validationPeriod" class="form-control-sm form-control">
+                                @foreach (range(1,12) as $month)
+                                <option value="{{date('m',mktime(0, 0, 0, $month, 1, 2011))}}">{{date('F',mktime(0, 0, 0, $month, 1, 2011))}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,9 +88,9 @@
                             <th>#</th>
                             <th>Staff Name</th>
                             <th>Jan Target</th>
-                            <th>Feb Target</th>
+                            {{-- <th>Feb Target</th>
                             <th>Mar Target</th>
-                            <th>Q1 Target</th>
+                            <th>Q1 Target</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -90,17 +98,17 @@
                             <th scope="row">1</th>
                             <td>Mr. Pipat</td>
                             <td></td>
+                            {{-- <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td></td> --}}
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Mr. Thanut</td>
                             <td></td>
+                            {{-- <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td></td> --}}
                         </tr>
                     </tbody>
                 </table>

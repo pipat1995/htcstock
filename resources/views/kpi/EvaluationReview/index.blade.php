@@ -109,7 +109,9 @@
                         <div class="col-md-2 mb-3">
                             <label for="period">Period :</label>
                             <select name="period" id="validationPeriod" class="form-control-sm form-control">
-                                <option value="">Period</option>
+                                @foreach (range(1,12) as $month)
+                                <option value="{{date('m',mktime(0, 0, 0, $month, 1, 2011))}}">{{date('F',mktime(0, 0, 0, $month, 1, 2011))}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-2 mb-3">

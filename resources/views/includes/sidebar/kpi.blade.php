@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="{{Helper::isActive('kpi/set-actual*')}}">
+                    <a href="{{route('kpi.set-actual.index')}}" class="{{Helper::isActive('kpi/set-actual*')}}">
                         <i class="metismenu-icon"></i>
                         Set Actual
                     </a>

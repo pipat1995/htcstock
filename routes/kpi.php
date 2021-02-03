@@ -15,4 +15,5 @@ Route::namespace('KPI')->prefix('kpi')->name('kpi.')->middleware(['auth', 'verif
     Route::get('evaluation-form/staff-data/{staff_data}/evaluation/{evaluation_form}/edit', 'EvaluationForm\EvaluationFormController@edit')->name('evaluation-form.edit');
 
     Route::resource('set-target', 'SetTarget\SetTargetController', ['only' => ['index', 'create', 'edit', 'show', 'update', 'store', 'destroy']]);
+    Route::resource('set-actual', 'SetActual\SetActualController', ['only' => ['index', 'create', 'edit', 'show', 'update', 'store', 'destroy']]);
 });
