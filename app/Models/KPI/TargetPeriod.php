@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TargetPeriod extends Model
 {
-    //
+    public $incrementing = false;
+    protected $keyType = 'string';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'code',
+        'name',
+        'year'
+    ];
 }

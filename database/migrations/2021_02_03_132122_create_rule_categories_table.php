@@ -26,6 +26,6 @@ class CreateRuleCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rule_categories');
+        Schema::dropIfExists('kpi_rule_categories');
     }
 }

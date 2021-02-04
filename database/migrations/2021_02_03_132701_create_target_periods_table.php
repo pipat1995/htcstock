@@ -27,6 +27,6 @@ class CreateTargetPeriodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('target_periods');
+        Schema::dropIfExists('kpi_target_periods');
     }
 }

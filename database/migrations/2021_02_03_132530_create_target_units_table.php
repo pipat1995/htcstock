@@ -26,6 +26,6 @@ class CreateTargetUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('target_units');
+        Schema::dropIfExists('kpi_target_units');
     }
 }

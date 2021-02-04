@@ -46,6 +46,6 @@ class CreateEvaluatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluates');
+        Schema::dropIfExists('kpi_evaluates');
     }
 }

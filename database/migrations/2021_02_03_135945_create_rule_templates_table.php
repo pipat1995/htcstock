@@ -35,6 +35,6 @@ class CreateRuleTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rule_templates');
+        Schema::dropIfExists('kpi_rule_templates');
     }
 }

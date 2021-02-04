@@ -33,6 +33,6 @@ class CreateEvaluateDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluate_details');
+        Schema::dropIfExists('kpi_evaluate_details');
     }
 }
