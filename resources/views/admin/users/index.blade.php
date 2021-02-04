@@ -22,11 +22,13 @@
                 <div class="form-row">
                     <div class="col-md-2 mb-2">
                         <label for="search">Search</label>
-                        <input type="text" class="form-control-sm form-control" id="search" name="search" value="{{$search}}">
+                        <input type="text" class="form-control-sm form-control" id="search" name="search"
+                            value="{{$search}}">
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="division">Division</label>
-                        <select class="form-control-sm form-control js-select-division-multiple" name="division[]" multiple>
+                        <select class="form-control-sm form-control js-select-division-multiple" name="division[]"
+                            multiple>
                             @isset($divisions)
                             @foreach ($divisions as $item)
                             <option value="{{$item->id}}" @if($selectedDivision->contains($item->id)) selected
@@ -37,7 +39,8 @@
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="department">Department</label>
-                        <select class="form-control-sm form-control js-select-department-multiple" name="department[]" multiple>
+                        <select class="form-control-sm form-control js-select-department-multiple" name="department[]"
+                            multiple>
                             @isset($departments)
                             @foreach ($departments as $item)
                             <option value="{{$item->id}}" @if($selectedDept->contains($item->id)) selected
@@ -48,7 +51,8 @@
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="position">Position</label>
-                        <select class="form-control-sm form-control js-select-position-multiple" name="position[]" multiple>
+                        <select class="form-control-sm form-control js-select-position-multiple" name="position[]"
+                            multiple>
                             @isset($positions)
                             @foreach ($positions as $item)
                             <option value="{{$item->id}}" @if($selectedPosition->contains($item->id)) selected
@@ -59,7 +63,8 @@
                     </div>
                     <div class="col-md-2 mb-2">
                         <label for="role">Role</label>
-                        <select class="form-control-sm form-control js-select-role-multiple" name="user_role[]" multiple>
+                        <select class="form-control-sm form-control js-select-role-multiple" name="user_role[]"
+                            multiple>
                             @isset($roles)
                             @foreach ($roles as $item)
                             <option value="{{$item->id}}" @if($selectedRole->contains($item->id)) selected
@@ -109,52 +114,54 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Users</h5>
-                <table class="mb-0 table table-hover" id="table-users">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Division</th>
-                            <th>Department</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @isset($users)
-                        @foreach ($users as $user)
-                        <tr>
-                            <td>
-                                <a href="{{route('admin.users.edit',$user->id)}}">
-                                    <button type="button" class="btn btn-primary btn-sm float-center">Edit</button>
-                                </a>
-                            </td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->username}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>
-                                @if ($user->roles()->get()->pluck('name'))
-                                @foreach ($user->roles()->get()->pluck('name') as $item)
-                                <div class="badge badge-warning">{{$item}}</div>
-                                @endforeach
-                                @endif
-                            </td>
-                            <td>
-                                {{ $user->divisions->name}}
-                            </td>
-                            <td>
-                                {{ $user->department->name}}
-                            </td>
-                            <td>
-                                {{ $user->positions->name}}
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endisset
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="mb-0 table table-hover" id="table-users">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Division</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @isset($users)
+                            @foreach ($users as $user)
+                            <tr>
+                                <td>
+                                    <a href="{{route('admin.users.edit',$user->id)}}">
+                                        <button type="button" class="btn btn-primary btn-sm float-center">Edit</button>
+                                    </a>
+                                </td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>
+                                    @if ($user->roles()->get()->pluck('name'))
+                                    @foreach ($user->roles()->get()->pluck('name') as $item)
+                                    <div class="badge badge-warning">{{$item}}</div>
+                                    @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $user->divisions->name}}
+                                </td>
+                                <td>
+                                    {{ $user->department->name}}
+                                </td>
+                                <td>
+                                    {{ $user->positions->name}}
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endisset
+                        </tbody>
+                    </table>
+                </div>
             </div>
             {{ $users->appends($query)->links() }}
         </div>

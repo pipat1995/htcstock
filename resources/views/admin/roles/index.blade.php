@@ -77,35 +77,37 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Roles</h5>
-                <table class="mb-0 table table-hover" id="table-roles">
-                    <thead>
-                        <tr>
-                            <th width="150px">#</th>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $role)
-                        <tr>
-                            <td>
-                                <a href="{{route('admin.roles.edit',$role->id)}}"><button type="button"
-                                        class="btn btn-primary btn-sm float-left">Edit</button></a>
-                                @can('super-admin')
-                                <form action="{{route('admin.roles.destroy',$role->id)}}" method="POST"
-                                    class="float-left">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-warning btn-sm">Delete</button>
-                                </form>
-                                @endcan
+                <div class="table-responsive">
+                    <table class="mb-0 table table-hover" id="table-roles">
+                        <thead>
+                            <tr>
+                                <th width="150px">#</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($roles as $role)
+                            <tr>
+                                <td>
+                                    <a href="{{route('admin.roles.edit',$role->id)}}"><button type="button"
+                                            class="btn btn-primary btn-sm float-left">Edit</button></a>
+                                    @can('super-admin')
+                                    <form action="{{route('admin.roles.destroy',$role->id)}}" method="POST"
+                                        class="float-left">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning btn-sm">Delete</button>
+                                    </form>
+                                    @endcan
 
 
-                            </td>
-                            <td>{{$role->name}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </td>
+                                <td>{{$role->name}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             {{ $roles->appends($query)->links() }}
         </div>
