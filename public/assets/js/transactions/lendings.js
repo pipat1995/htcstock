@@ -5,7 +5,10 @@
 (function () {
     'use strict';
     window.addEventListener('load', function () {
-        // $('#validationAccess_id').select2();
+        $('#validationAccess_id').select2({
+            placeholder: 'Select ......',
+            allowClear: true
+        });
         $(".js-select-accessory-multiple").select2({
             placeholder: 'Select ......',
             allowClear: true
@@ -16,7 +19,7 @@
         // Loop over them and prevent submission
         validationForm(forms)
 
-        
+
     }, false);
 })();
 var maxQty = 0
