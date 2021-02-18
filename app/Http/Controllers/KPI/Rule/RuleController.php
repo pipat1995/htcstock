@@ -62,7 +62,7 @@ class RuleController extends Controller
         $validated = $request->validated();
         try {
             $rule = $this->ruleService->create($validated);
-            \dd($rule);
+            // \dd($rule);
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
