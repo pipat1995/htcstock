@@ -32,42 +32,60 @@
         <div class="card-body">
             <h5 class="card-title">Rule Management</h5>
             <div class="position-relative form-group">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" novalidate action="{{route('kpi.rule-list.store')}}"
+                    method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="ruleCategory">Rule Category :</label>
-                            <select id="validationRuleCategory" class="form-control-sm form-control">
-                                <option value="">Rule Category</option>
+                            <select id="validationRuleCategory" class="form-control-sm form-control" name="category_id"
+                                required>
+                                @isset($category)
+                                @forelse ($category as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @empty
+                                <p>No Rule Category</p>
+                                @endforelse
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="ruleName">Rule Name :</label>
-                            <input type="text" class="form-control form-control-sm" id="ruleName"
-                                placeholder="Rule Name">
+                            <input type="text" class="form-control form-control-sm" id="ruleName" name="name"
+                                placeholder="Rule Name" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="description">Description :</label>
                             <input type="text" class="form-control form-control-sm" id="description"
-                                placeholder="Description">
+                                placeholder="Description" name="description" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="mesurement">Mesurement :</label>
-                            <select id="validationMesurement" class="form-control-sm form-control">
-                                <option value="">Mesurement</option>
+                            <select id="validationMesurement" class="form-control-sm form-control" name="measurement" required>
+                                <option value="mesurement_1">Mesurement 1</option>
+                                <option value="mesurement_2">Mesurement 2</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="targetUnit">Target Unit :</label>
-                            <select id="validationTargetUnit" class="form-control-sm form-control">
-                                <option value="">Target Unit</option>
+                            <select id="validationTargetUnit" class="form-control-sm form-control"
+                                name="target_unit_id" required>
+                                @isset($unit)
+                                @forelse ($unit as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @empty
+                                <p>No Target Unit</p>
+                                @endforelse
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="calculationType">Calculation Type :</label>
                             <select id="validationCalculationType" class="form-control-sm form-control">
-                                <option value="">Calculation Type</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Round Down">Round Down</option>
                             </select>
                         </div>
                     </div>
@@ -81,4 +99,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('second-script')
+<script src="{{asset('assets\js\kpi\rule\create.js')}}" defer></script>
 @endsection

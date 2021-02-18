@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class TargetPeriod extends Model
 {
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $table = 'kpi_target_periods';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'code',
         'name',
         'year'
     ];

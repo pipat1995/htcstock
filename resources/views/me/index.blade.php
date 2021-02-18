@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar')
-@include('includes.sidebar.legal');
+@include('includes.sidebar.profile');
 @stop
 
 @section('content')

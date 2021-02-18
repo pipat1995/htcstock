@@ -21,8 +21,7 @@
                 <i class="fa fa-star"></i>
             </button> --}}
             <div class="d-inline-block dropdown">
-                <a href="{{route('kpi.rule-template.create')}}"
-                    class="btn-shadow btn btn-info">
+                <a href="{{route('kpi.rule-template.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -43,14 +42,26 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="ruleTemplateName">Rule template name :</label>
-                            <select id="ruleTemplateName" class="form-control-sm form-control">
-                                <option value="">Rule template name</option>
+                            <select id="validationRuleTemplate" class="form-control-sm form-control"
+                                name="template_id[]" multiple>
+                                <option value="">-----</option>
+                                @isset($templates)
+                                @foreach ($templates as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="department">Department :</label>
-                            <select id="validationDepartment" class="form-control-sm form-control">
-                                <option value="">Department</option>
+                            <select id="validationDepartment" class="form-control-sm form-control"
+                                name="department_id[]" multiple>
+                                <option value="">-----</option>
+                                @isset($departments)
+                                @foreach ($departments as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -75,34 +86,21 @@
                             <th>Rule Template Name</th>
                             <th>Department</th>
                             <th>#</th>
-                            {{-- <th>Table heading</th>
-                            <th>Table heading</th>
-                            <th>Table heading</th> --}}
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($ruleTemplates)
+                        @foreach ($ruleTemplates as $key => $item)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Seller Target</td>
-                            <td>Sales</td>
-                            <td><a href="{{route('kpi.rule-template.edit',1)}}"
+                            <th scope="row">{{$key+1}}</th>
+                            <td>{{$item->template->name}}</td>
+                            <td>{{$item->template->department->name}}</td>
+                            <td><a href="{{route('kpi.rule-template.edit',$item->id)}}"
                                     class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
                                 </a></td>
-                            {{-- <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td> --}}
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Quality Controll</td>
-                            <td>QC</td>
-                            <td><a href="{{route('kpi.rule-template.edit',1)}}"
-                                    class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
-                                </a></td>
-                            {{-- <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td> --}}
-                        </tr>
+                        @endforeach
+                        @endisset
                     </tbody>
                 </table>
             </div>
@@ -110,4 +108,8 @@
     </div>
 </div>
 
+@endsection
+
+@section('second-script')
+<script src="{{asset('assets\js\kpi\ruleTemplate\index.js')}}" defer></script>
 @endsection

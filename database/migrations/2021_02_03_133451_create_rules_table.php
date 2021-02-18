@@ -16,12 +16,10 @@ class CreateRulesTable extends Migration
         Schema::create('kpi_rules', function (Blueprint $table) {
             $table->id()->comment('id rule');
             $table->string('name',255)->comment('ชื่อ Rule');
-            $table->string('category_code',50)->nullable();
-            $table->foreign('category_code')->references('code')->on('kpi_rule_categories')->comment('Code ของ rule_categories');
+            $table->foreignId('category_id')->nullable()->constrained('kpi_rule_categories')->comment('Code ของ rule_categories');
             $table->string('description',255)->nullable()->comment('คำอธิบาย');
             $table->string('measurement',255)->nullable()->comment('การวัดผล <= หรือ >=');
-            $table->string('target_unit_code',50)->nullable();
-            $table->foreign('target_unit_code')->nullable()->references('code')->on('kpi_target_units')->comment('Code ของ target_units');
+            $table->foreignId('target_unit_id')->nullable()->constrained('kpi_target_units')->comment('Code ของ target_units');
             $table->timestamps();
         });
     }

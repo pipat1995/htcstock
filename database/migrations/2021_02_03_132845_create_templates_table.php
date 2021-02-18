@@ -17,7 +17,7 @@ class CreateTemplatesTable extends Migration
             $table->id();
             $table->string('name',255)->comment('ชื่อ kpi_templates');
             $table->unsignedInteger('department_id')->nullable();
-
+            $table->timestamps();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }

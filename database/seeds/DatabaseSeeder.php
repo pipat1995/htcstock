@@ -11,21 +11,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // KPI
         $this->call([
-            // AccessoriesTableSeeder::class,
-            PermissionTableSeeder::class,
-            RoleTableSeeder::class,
-            DepartmentSeeder::class,
-            // UsersTableSeeder::class,
-            DivisionSeeder::class,
-            PositionSeeder::class,
-
-
-            LegalActionTableSeeder::class,
-            LegalAgreementTableSeeder::class,
-            LegalPaymentTypeTableSeeder::class,
-            LegalSubtypeContractTableSeeder::class
-
+            // RuleCategoryTableSeeder::class,
+            // TargetUnitTableSeeder::class,
+            // TemplateSeeder::class,
+            // TargetPeriodSeeder::class,
+            // RuleSeeder::class,
+            EvaluateSeeder::class,
+            EvaluateDetailSeeder::class
         ]);
+        // $this->call([
+        //     // AccessoriesTableSeeder::class,
+        //     PermissionTableSeeder::class,
+        //     RoleTableSeeder::class,
+        //     DepartmentSeeder::class,
+        //     // UsersTableSeeder::class,
+        //     DivisionSeeder::class,
+        //     PositionSeeder::class,
+
+
+        //     LegalActionTableSeeder::class,
+        //     LegalAgreementTableSeeder::class,
+        //     LegalPaymentTypeTableSeeder::class,
+        //     LegalSubtypeContractTableSeeder::class
+        // ]);
     }
 }

@@ -46,7 +46,7 @@
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <button class="mb-2 mr-2 btn btn-primary mt-4">Search</button>
+                            {{-- <button class="mb-2 mr-2 btn btn-primary mt-4">Search</button> --}}
                         </div>
                     </div>
                 </form>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluateDetail extends Model
 {
+    protected $table = 'kpi_evaluate_details';
     /**
      * The attributes that are mass assignable.
      *

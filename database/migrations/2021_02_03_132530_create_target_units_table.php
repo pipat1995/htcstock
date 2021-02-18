@@ -14,8 +14,9 @@ class CreateTargetUnitsTable extends Migration
     public function up()
     {
         Schema::create('kpi_target_units', function (Blueprint $table) {
-            $table->string('code',50)->unique()->comment('Code ของจำนวนนับของเป้าหมาย');
+            $table->id()->comment('Code ของจำนวนนับของเป้าหมาย');
             $table->string('name',255)->comment('จำนวนนับของเป้าหมาย เช่น % , Day');
+            $table->timestamps();
         });
     }
 

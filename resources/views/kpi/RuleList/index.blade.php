@@ -21,8 +21,7 @@
                 <i class="fa fa-star"></i>
             </button> --}}
             <div class="d-inline-block dropdown">
-                <a href="{{route('kpi.rule-list.create')}}"
-                    class="btn-shadow btn btn-info">
+                <a href="{{route('kpi.rule-list.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -44,12 +43,19 @@
                         <div class="col-md-4 mb-3">
                             <label for="ruleName">Rule Name :</label>
                             <input type="text" class="form-control form-control-sm" id="ruleName"
-                                placeholder="Rule Name">
+                                placeholder="Rule Name" name="name">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="ruleCategory">Rule Category :</label>
-                            <select id="validationRuleCategory" class="form-control-sm form-control">
-                                <option value="">Rule Category</option>
+                            <select id="validationRuleCategory" class="form-control-sm form-control" name="category_id[]" multiple>
+                                <option value="">-----</option>
+                                @isset($category)
+                                @forelse ($category as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @empty
+                                <p>No Rule Category</p>
+                                @endforelse
+                                @endisset
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -74,22 +80,28 @@
                             <th>Rule Name</th>
                             <th>Rule Category</th>
                             <th>#</th>
-                            {{-- <th>Table heading</th>
-                            <th>Table heading</th>
-                            <th>Table heading</th> --}}
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($rules)
+                        @foreach ($rules as $key => $item)
                         <tr>
+                            <th scope="row">{{$key + 1}}</th>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->category->name}}</td>
+                            <td><a href="{{route('kpi.rule-list.edit',$item->id)}}"
+                                    class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
+                                </a></td>
+                        </tr>
+                        @endforeach
+                        @endisset
+                        {{-- <tr>
                             <th scope="row">1</th>
                             <td>Seller Target</td>
                             <td></td>
                             <td><a href="{{route('kpi.rule-list.edit',1)}}"
                                     class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
                                 </a></td>
-                            {{-- <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td> --}}
                         </tr>
                         <tr>
                             <th scope="row">2</th>
@@ -98,15 +110,14 @@
                             <td><a href="{{route('kpi.rule-list.edit',1)}}"
                                     class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
                                 </a></td>
-                            {{-- <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td> --}}
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
+@endsection
+@section('second-script')
+<script src="{{asset('assets\js\kpi\rule\index.js')}}" defer></script>
 @endsection

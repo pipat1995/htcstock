@@ -24,6 +24,16 @@ use App\Services\IT\Service\SystemService;
 use App\Services\IT\Service\TransactionsService;
 use App\Services\IT\Service\UserService;
 use App\Services\IT\Service\VendorService;
+use App\Services\KPI\Interfaces\RuleCategoryServiceInterface;
+use App\Services\KPI\Interfaces\RuleServiceInterface;
+use App\Services\KPI\Interfaces\RuleTemplateServiceInterface;
+use App\Services\KPI\Interfaces\TargetUnitServiceInterface;
+use App\Services\KPI\Interfaces\TemplateServiceInterface;
+use App\Services\KPI\Service\RuleCategoryService;
+use App\Services\KPI\Service\RuleService;
+use App\Services\KPI\Service\RuleTemplateService;
+use App\Services\KPI\Service\TargetUnitService;
+use App\Services\KPI\Service\TemplateService;
 use App\Services\Legal\Interfaces\ActionServiceInterface;
 use App\Services\Legal\Interfaces\AgreementServiceInterface;
 use App\Services\Legal\Interfaces\ApprovalDetailServiceInterface;
@@ -95,5 +105,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ApprovalServiceInterface::class,ApprovalService::class);
         $this->app->bind(DepartmentServiceInterface::class,DepartmentService::class);
         $this->app->bind(ApprovalDetailServiceInterface::class,ApprovalDetailService::class);
+
+        // KPI
+        $this->app->bind(RuleCategoryServiceInterface::class,RuleCategoryService::class);
+        $this->app->bind(TargetUnitServiceInterface::class,TargetUnitService::class);
+        $this->app->bind(RuleServiceInterface::class,RuleService::class);
+        $this->app->bind(RuleTemplateServiceInterface::class,RuleTemplateService::class);
+        $this->app->bind(TemplateServiceInterface::class,TemplateService::class);
     }
 }

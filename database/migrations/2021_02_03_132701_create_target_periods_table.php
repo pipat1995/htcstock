@@ -14,9 +14,10 @@ class CreateTargetPeriodsTable extends Migration
     public function up()
     {
         Schema::create('kpi_target_periods', function (Blueprint $table) {
-            $table->string('code',50)->unique()->comment('Code ของ ช่วงเวลาการประเมิน');
+            $table->id()->comment('Code ของ ช่วงเวลาการประเมิน');
             $table->string('name',255)->comment('ช่วงเวลาการประเมิน เช่น Annual,Jan,Feb,Mar,Q1,');
             $table->string('year',4)->comment('ปี ของ ช่วงเวลาการประเมิน');
+            $table->timestamps();
         });
     }
 

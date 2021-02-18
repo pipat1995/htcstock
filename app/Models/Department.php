@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\KPI\Template;
 use App\Models\Legal\LegalApproval;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,5 +34,10 @@ class Department extends Model
     public function legalApprove()
     {
         return $this->hasMany(LegalApproval::class);
+    }
+
+    public function template()
+    {
+        return $this->hasOne(Template::class)->withDefault();
     }
 }

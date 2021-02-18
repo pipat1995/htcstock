@@ -17,8 +17,7 @@ class CreateEvaluatesTable extends Migration
             $table->id();
             $table->unsignedInteger('user_id')->nullable()->comment('Id ของ users');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('period_code', 50)->nullable()->comment('Code ของ kpi_target_periods');
-            $table->foreign('period_code')->references('code')->on('kpi_target_periods')->onDelete('cascade');
+            $table->foreignId('period_id')->nullable()->constrained('kpi_target_periods')->comment('Id ของ kpi_target_periods');
             $table->unsignedInteger('head_id')->nullable()->comment('Id ของ users head');
             $table->foreign('head_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status', 255)->nullable()->comment('สถานะ การประเมิน');

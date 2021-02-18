@@ -3,18 +3,39 @@
 namespace App\Http\Controllers\KPI\Rule;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KPI\StoreRulePost;
+use App\Http\Requests\KPI\UpdateRulePost;
+use App\Services\KPI\Interfaces\RuleCategoryServiceInterface;
+use App\Services\KPI\Interfaces\RuleServiceInterface;
+use App\Services\KPI\Interfaces\TargetUnitServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RuleController extends Controller
 {
+
+    protected $ruleCategoryService;
+    protected $targetUnitService;
+    protected $ruleService;
+    public function __construct(
+        RuleCategoryServiceInterface $ruleCategoryServiceInterface,
+        TargetUnitServiceInterface $targetUnitServiceInterface,
+        RuleServiceInterface $ruleServiceInterface
+    ) {
+        $this->ruleCategoryService = $ruleCategoryServiceInterface;
+        $this->targetUnitService = $targetUnitServiceInterface;
+        $this->ruleService = $ruleServiceInterface;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return \view('kpi.RuleList.index');
+        $category = $this->ruleCategoryService->dropdownRuleCategory();
+        $rules = $this->ruleService->filter($request);
+        return \view('kpi.RuleList.index', \compact('rules','category'));
     }
 
     /**
@@ -24,7 +45,9 @@ class RuleController extends Controller
      */
     public function create()
     {
-        return \view('kpi.RuleList.create');
+        $category = $this->ruleCategoryService->dropdownRuleCategory();
+        $unit = $this->targetUnitService->dropdownTargetUnit();
+        return \view('kpi.RuleList.create', \compact('category', 'unit'));
     }
 
     /**
@@ -33,9 +56,18 @@ class RuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRulePost $request)
     {
-        //
+        DB::beginTransaction();
+        $validated = $request->validated();
+        try {
+            $rule = $this->ruleService->create($validated);
+            \dd($rule);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
     }
 
     /**
@@ -57,7 +89,14 @@ class RuleController extends Controller
      */
     public function edit($id)
     {
-        return \view('kpi.RuleList.edit');
+        try {
+            $rule = $this->ruleService->find($id);
+            $category = $this->ruleCategoryService->dropdownRuleCategory();
+            $unit = $this->targetUnitService->dropdownTargetUnit();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return \view('kpi.RuleList.edit', \compact('rule', 'category', 'unit'));
     }
 
     /**
@@ -67,9 +106,20 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRulePost $request, $id)
     {
-        //
+        DB::beginTransaction();
+        $validated = $request->validated();
+        try {
+            // \dd($validated);
+            $rule = $this->ruleService->update($validated,$id);
+            // \dd($rule);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \back();
     }
 
     /**
