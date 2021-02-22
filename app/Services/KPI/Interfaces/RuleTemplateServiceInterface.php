@@ -16,6 +16,6 @@ interface RuleTemplateServiceInterface
     public function update(array $attributes, int $id): bool;
     public function destroy(int $id);
 
-    public function dropdownRuleTemplate(): Collection;
+    public function dropdown(): Collection;
     public function filter(Request $request);
 }

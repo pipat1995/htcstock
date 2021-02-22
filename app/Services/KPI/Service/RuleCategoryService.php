@@ -29,7 +29,7 @@ class RuleCategoryService extends BaseService implements RuleCategoryServiceInte
         }
     }
 
-    public function dropdownRuleCategory(): Collection
+    public function dropdown(): Collection
     {
         try {
             return RuleCategory::all();

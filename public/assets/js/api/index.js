@@ -45,3 +45,8 @@ function ISOtoDate(isoString, locale = "en-US") {
     const date = new Date(isoString);
     return new Intl.DateTimeFormat(locale, options).format(date);
 }
+
+
+// api KPI-System
+
+const getRuleDropdown = () => fetch("/kpi/rule-dropdown").then(status).then(json)

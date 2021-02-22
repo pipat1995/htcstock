@@ -29,7 +29,7 @@ class TargetPeriodService extends BaseService implements TargetPeriodServiceInte
         }
     }
 
-    public function dropdownTargetPeriod(): Collection
+    public function dropdown(): Collection
     {
         try {
             return TargetPeriod::all();

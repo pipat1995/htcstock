@@ -29,7 +29,7 @@ class TemplateService extends BaseService implements TemplateServiceInterface
         }
     }
 
-    public function dropdownTemplate(): Collection
+    public function dropdown(): Collection
     {
         try {
             return Template::all();

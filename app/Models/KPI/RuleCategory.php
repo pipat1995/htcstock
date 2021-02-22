@@ -13,7 +13,7 @@ class RuleCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name','description'
     ];
 
     public function rule()

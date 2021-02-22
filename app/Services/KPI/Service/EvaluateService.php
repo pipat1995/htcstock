@@ -29,7 +29,7 @@ class EvaluateService extends BaseService implements EvaluateServiceInterface
         }
     }
 
-    public function dropdownEvaluate(): Collection
+    public function dropdown(): Collection
     {
         try {
             return Evaluate::all();

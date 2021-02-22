@@ -29,7 +29,7 @@ class EvaluateDetailService extends BaseService implements EvaluateDetailService
         }
     }
 
-    public function dropdownEvaluateDetail(): Collection
+    public function dropdown(): Collection
     {
         try {
             return EvaluateDetail::all();

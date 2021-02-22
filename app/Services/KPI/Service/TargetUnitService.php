@@ -29,7 +29,7 @@ class TargetUnitService extends BaseService implements TargetUnitServiceInterfac
         }
     }
 
-    public function dropdownTargetUnit(): Collection
+    public function dropdown(): Collection
     {
         try {
             return TargetUnit::all();

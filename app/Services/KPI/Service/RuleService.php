@@ -30,7 +30,7 @@ class RuleService extends BaseService implements RuleServiceInterface
         }
     }
 
-    public function dropdownRule(): Collection
+    public function dropdown(): Collection
     {
         try {
             return Rule::all();

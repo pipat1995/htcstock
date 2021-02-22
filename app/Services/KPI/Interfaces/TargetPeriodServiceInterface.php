@@ -15,5 +15,5 @@ interface TargetPeriodServiceInterface
     public function update(array $attributes, int $id): bool;
     public function destroy(int $id);
 
-    public function dropdownTargetPeriod(): Collection;
+    public function dropdown(): Collection;
 }

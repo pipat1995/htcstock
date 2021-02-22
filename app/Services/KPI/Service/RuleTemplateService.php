@@ -30,7 +30,7 @@ class RuleTemplateService extends BaseService implements RuleTemplateServiceInte
         }
     }
 
-    public function dropdownRuleTemplate(): Collection
+    public function dropdown(): Collection
     {
         try {
             return RuleTemplate::all();

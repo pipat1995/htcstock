@@ -57,7 +57,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="description">Description :</label>
                             <input type="text" class="form-control form-control-sm" id="description"
-                                placeholder="Description" name="description" required>
+                                placeholder="Description" name="description">
                         </div>
                     </div>
                     <div class="form-row">

@@ -26,37 +26,52 @@
     </div>
 </div>
 {{-- end title  --}}
-
-<div class="col-lg-12">
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">Rule Management</h5>
-            <div class="position-relative form-group">
-                <form class="needs-validation" novalidate>
+<form class="needs-validation" novalidate id="form-template" action="{{route('kpi.rule-template.store')}}" method="POST"
+    enctype="multipart/form-data">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Rule Management</h5>
+                <div class="position-relative form-group">
+                    @csrf
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="ruleTemplateName">Rule template name :</label>
-                            <input type="text" class="form-control form-control-sm" id="ruleTemplateName"
-                                placeholder="Rule template name">
+                            <input type="text" class="form-control form-control-sm" id="ruleTemplateName" name="name"
+                                placeholder="Rule template name" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid Rule template.
+                            </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="department">Department :</label>
-                            <select id="validationDepartment" class="form-control-sm form-control">
-                                <option value="">Department</option>
+                            <select id="validationDepartment" class="form-control-sm form-control" name="department_id"
+                                required>
+                                @isset($departments)
+                                @foreach ($departments as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                                @endisset
                             </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid Department.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            {{-- <button class="mb-2 mr-2 btn btn-primary mt-4">Search</button> --}}
+                            {{-- <button class="mb-2 mr-2 btn btn-primary mt-4" type="submit">Save</button> --}}
                         </div>
                     </div>
-                </form>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-{{-- KPI --}}
-<div class="col-lg-12">
+    {{-- KPI --}}
+    {{-- <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">KPI</h5>
@@ -146,10 +161,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-{{-- Key Task --}}
-<div class="col-lg-12">
+    {{-- Key Task --}}
+    {{-- <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Key Task</h5>
@@ -205,8 +220,8 @@
                         <tr>
                             <th scope="row">
                                 <div class="custom-checkbox custom-control"><input type="checkbox"
-                                    id="exampleCheckboxKeyTask2" class="custom-control-input"><label
-                                    class="custom-control-label" for="exampleCheckboxKeyTask2"></label></div>
+                                        id="exampleCheckboxKeyTask2" class="custom-control-input"><label
+                                        class="custom-control-label" for="exampleCheckboxKeyTask2"></label></div>
                             </th>
                             <td>Rule 2</td>
                             <td></td>
@@ -239,10 +254,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-{{-- OMG --}}
-<div class="col-lg-12">
+    {{-- OMG --}}
+    {{-- <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">OMG</h5>
@@ -279,8 +294,8 @@
                         <tr>
                             <th scope="row">
                                 <div class="custom-checkbox custom-control"><input type="checkbox"
-                                    id="exampleCheckboxOmg1" class="custom-control-input"><label
-                                    class="custom-control-label" for="exampleCheckboxOmg1"></label></div>
+                                        id="exampleCheckboxOmg1" class="custom-control-input"><label
+                                        class="custom-control-label" for="exampleCheckboxOmg1"></label></div>
                             </th>
                             <td>Rule 1</td>
                             <td></td>
@@ -298,8 +313,8 @@
                         <tr>
                             <th scope="row">
                                 <div class="custom-checkbox custom-control"><input type="checkbox"
-                                    id="exampleCheckboxOmg2" class="custom-control-input"><label
-                                    class="custom-control-label" for="exampleCheckboxOmg2"></label></div>
+                                        id="exampleCheckboxOmg2" class="custom-control-input"><label
+                                        class="custom-control-label" for="exampleCheckboxOmg2"></label></div>
                             </th>
                             <td>Rule 2</td>
                             <td></td>
@@ -332,17 +347,23 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-{{-- Button --}}
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-        </div>
-        <div class="page-title-actions">
-            <button class="mb-2 mr-2 btn btn-success">Save</button>
-            <button class="mb-2 mr-2 btn btn-danger">Delete</button>
+    {{-- Button --}}
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+            </div>
+            <div class="page-title-actions">
+                <button class="mb-2 mr-2 btn btn-success" type="submit">Save</button>
+                <button class="mb-2 mr-2 btn btn-danger">Delete</button>
+            </div>
         </div>
     </div>
-</div>
+</form>
+@endsection
+
+
+@section('second-script')
+<script src="{{asset('assets\js\kpi\ruleTemplate\create.js')}}" defer></script>
 @endsection

@@ -3,22 +3,30 @@
 namespace App\Http\Controllers\KPI\RuleTemplate;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KPI\StoreRuleTemplateRequest;
+use App\Models\KPI\RuleCategory;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\KPI\Interfaces\RuleTemplateServiceInterface;
 use App\Services\KPI\Interfaces\TemplateServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RuleTemplateController extends Controller
 {
     protected $ruleTemplateService;
     protected $departmentService;
     protected $templateService;
-    public function __construct(RuleTemplateServiceInterface $ruleTemplateServiceInterface,
-    DepartmentServiceInterface $departmentServiceInterface,
-    TemplateServiceInterface $templateServiceInterface) {
+    protected $categoryService;
+    public function __construct(
+        RuleTemplateServiceInterface $ruleTemplateServiceInterface,
+        DepartmentServiceInterface $departmentServiceInterface,
+        TemplateServiceInterface $templateServiceInterface,
+        RuleCategory $categoryServiceInterface
+    ) {
         $this->ruleTemplateService = $ruleTemplateServiceInterface;
         $this->departmentService = $departmentServiceInterface;
         $this->templateService = $templateServiceInterface;
+        $this->categoryService = $categoryServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -28,10 +36,10 @@ class RuleTemplateController extends Controller
     public function index(Request $request)
     {
         $departments = $this->departmentService->dropdown();
-        $templates = $this->templateService->dropdownTemplate();
+        $templates = $this->templateService->dropdown();
         $ruleTemplates = $this->ruleTemplateService->filter($request);
-        
-        return \view('kpi.RuleTemplate.index',\compact('departments','templates','ruleTemplates'));
+
+        return \view('kpi.RuleTemplate.index', \compact('departments', 'templates', 'ruleTemplates'));
     }
 
     /**
@@ -41,7 +49,8 @@ class RuleTemplateController extends Controller
      */
     public function create()
     {
-        return \view('kpi.RuleTemplate.create');
+        $departments = $this->departmentService->dropdown();
+        return \view('kpi.RuleTemplate.create', \compact('departments'));
     }
 
     /**
@@ -50,9 +59,29 @@ class RuleTemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRuleTemplateRequest $request)
     {
-        //
+        DB::beginTransaction();
+        $fromValue = $request->except(['_token']);
+        try {
+            // insert to kpi_templates return id
+            $template = $this->templateService->create($fromValue);
+            if (!$template) {
+                $request->session()->flash('error', ' has been create template fail');
+                return \back();
+            }
+            $ruleTemplate = $this->ruleTemplateService->create(['template_id' => $template->id]);
+            if (!$ruleTemplate) {
+                $request->session()->flash('error', ' has been create Rule Template fail');
+                return \back();
+            }
+            $request->session()->flash('success', ' has been create success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return \redirect()->route('kpi.rule-template.edit',$ruleTemplate->id);
     }
 
     /**
@@ -74,7 +103,14 @@ class RuleTemplateController extends Controller
      */
     public function edit($id)
     {
-        return \view('kpi.RuleTemplate.edit');
+        try {
+            $category = $this->categoryService->all();
+            $departments = $this->departmentService->dropdown();
+            $ruletemplate = $this->ruleTemplateService->find($id);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return \view('kpi.RuleTemplate.edit',\compact('ruletemplate','departments','category'));
     }
 
     /**
@@ -86,7 +122,6 @@ class RuleTemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**

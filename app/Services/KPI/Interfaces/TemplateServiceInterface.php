@@ -15,5 +15,5 @@ interface TemplateServiceInterface
     public function update(array $attributes, int $id): bool;
     public function destroy(int $id);
 
-    public function dropdownTemplate(): Collection;
+    public function dropdown(): Collection;
 }

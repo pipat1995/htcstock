@@ -33,9 +33,9 @@ class RuleController extends Controller
      */
     public function index(Request $request)
     {
-        $category = $this->ruleCategoryService->dropdownRuleCategory();
+        $category = $this->ruleCategoryService->dropdown();
         $rules = $this->ruleService->filter($request);
-        return \view('kpi.RuleList.index', \compact('rules','category'));
+        return \view('kpi.RuleList.index', \compact('rules', 'category'));
     }
 
     /**
@@ -45,8 +45,8 @@ class RuleController extends Controller
      */
     public function create()
     {
-        $category = $this->ruleCategoryService->dropdownRuleCategory();
-        $unit = $this->targetUnitService->dropdownTargetUnit();
+        $category = $this->ruleCategoryService->dropdown();
+        $unit = $this->targetUnitService->dropdown();
         return \view('kpi.RuleList.create', \compact('category', 'unit'));
     }
 
@@ -59,15 +59,19 @@ class RuleController extends Controller
     public function store(StoreRulePost $request)
     {
         DB::beginTransaction();
-        $validated = $request->validated();
+        $fromValue = $request->except(['_token']);
         try {
-            $rule = $this->ruleService->create($validated);
-            // \dd($rule);
+            if (!$this->ruleService->create($fromValue)) {
+                $request->session()->flash('error', ' has been create fail');
+                return \back();
+            }
+            $request->session()->flash('success', ' has been create success');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
         DB::commit();
+        return \back();
     }
 
     /**
@@ -91,8 +95,8 @@ class RuleController extends Controller
     {
         try {
             $rule = $this->ruleService->find($id);
-            $category = $this->ruleCategoryService->dropdownRuleCategory();
-            $unit = $this->targetUnitService->dropdownTargetUnit();
+            $category = $this->ruleCategoryService->dropdown();
+            $unit = $this->targetUnitService->dropdown();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -112,7 +116,7 @@ class RuleController extends Controller
         $validated = $request->validated();
         try {
             // \dd($validated);
-            $rule = $this->ruleService->update($validated,$id);
+            $rule = $this->ruleService->update($validated, $id);
             // \dd($rule);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -131,5 +135,17 @@ class RuleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Get the Data for dropdown.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dropdown()
+    {
+        $rule = $this->ruleService->dropdown();
+        return response()
+            ->json($rule);
     }
 }

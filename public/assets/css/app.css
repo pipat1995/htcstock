@@ -11199,7 +11199,7 @@ button,
 }
 
 .app-header.header-text-light .app-header__logo .logo-src {
-    background: url(../images/logo.png)
+    background: url(../images/newhaier.png)
 }
 
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner,
@@ -11297,7 +11297,8 @@ button,
 }
 
 .app-header.header-text-dark .app-header__logo .logo-src {
-    background: url(../images/logo-inverse.png)
+    background: url(../images/newhaier.png)
+    /* background: url(../images/logo-inverse.png) */
 }
 
 .app-sidebar {
@@ -11576,7 +11577,7 @@ button,
 }
 
 .app-sidebar.sidebar-text-light .app-header__logo .logo-src {
-    background: url(../images/logo.png)
+    background: url(../images/newhaier.png)
 }
 
 .app-sidebar.sidebar-text-light .app-header__logo .hamburger-inner,

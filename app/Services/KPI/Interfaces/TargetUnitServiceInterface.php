@@ -15,5 +15,5 @@ interface TargetUnitServiceInterface
     public function update(array $attributes, int $id): bool;
     public function destroy(int $id);
 
-    public function dropdownTargetUnit(): Collection;
+    public function dropdown(): Collection;
 }

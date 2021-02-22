@@ -105,6 +105,22 @@
                                 Please provide a valid city.
                             </div>
                         </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="ruleTemplate">Rule Template</label>
+                            <select id="validationRuleTemplate" class="form-control-sm form-control"
+                                name="rule_template_id" required>
+                                @isset($ruletemplates)
+                                @forelse ($ruletemplates as $item)
+                                <option value="{{$item->id}}">{{$item->template_id->template}}</option>
+                                @empty
+                                <p>No Rule Template</p>
+                                @endforelse
+                                @endisset
+                            </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+                        </div>
                     </div>
                     <div class="form-row">
 
