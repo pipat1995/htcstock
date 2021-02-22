@@ -12,6 +12,13 @@ class RuleCategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(RuleCategory::class,10)->create();
+        $categories = [
+            ['name' => 'kpi', 'description' => 'Business Goals - KPI'],
+            ['name' => 'key-task', 'description' => 'Business Goals - Key Task'],
+            ['name' => 'omg', 'description' => 'Organization Management Goal']
+        ];
+        foreach ($categories as $key => $value) {
+            RuleCategory::firstOrCreate($value);
+        }
     }
 }
