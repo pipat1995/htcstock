@@ -16,6 +16,7 @@ class CreateRuleCategoriesTable extends Migration
         Schema::create('kpi_rule_categories', function (Blueprint $table) {
             $table->id()->comment('Code ของ Rule Category');
             $table->string('name',255)->comment('ชื่อ Category');
+            $table->text('Description')->comment('ชื่อเต็ม Category');
             $table->timestamps();
         });
     }
