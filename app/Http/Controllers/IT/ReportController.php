@@ -67,8 +67,8 @@ class ReportController extends Controller
     public function generateAccessoriesPDF()
     {
         try {
-
             $accessories = $this->accessoriesService->sumAccessories()->get();
+            \dd($accessories);
             $pdf = PDF::loadView('it.reports.pdf', compact('accessories', $accessories));
             return $pdf->stream();
         } catch (\Throwable $th) {
