@@ -68,7 +68,11 @@ class ReportController extends Controller
     {
         try {
             $accessories = $this->accessoriesService->sumAccessories()->get();
-            \dd($accessories);
+            
+            foreach ($accessories as $key => $value) {
+                echo \print_r($value);
+            }
+            exit;
             $pdf = PDF::loadView('it.reports.pdf', compact('accessories', $accessories));
             return $pdf->stream();
         } catch (\Throwable $th) {
