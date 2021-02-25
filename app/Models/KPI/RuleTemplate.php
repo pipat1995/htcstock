@@ -2,13 +2,16 @@
 
 namespace App\Models\KPI;
 
-use App\Http\Filters\KPI\RuleTemplateFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class RuleTemplate extends Model
 {
     protected $table = 'kpi_rule_templates';
+    // protected $hidden = ['rules'];
+    // add the rules attribute to the array
+    protected $appends = array('rules');
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,15 +28,29 @@ class RuleTemplate extends Model
         'base_line',
         'max_result'
     ];
-    
-    // service เรียกใช้ Filter
-    public function scopeFilter(Builder $builder, $request)
+    // code for $this->rule attribute
+    public function getRulesAttribute($value)
     {
-        return (new RuleTemplateFilter($request))->filter($builder);
+        $rule = null;
+        if ($this->rule) {
+            $rule = $this->rule;
+        }
+        return $rule;
+    }
+
+    // override the toArray function (called by toJson)
+    public function toArray()
+    {
+        return parent::toArray();
     }
 
     public function template()
     {
         return $this->belongsTo(Template::class, 'template_id')->withDefault();
+    }
+
+    public function rule()
+    {
+        return $this->belongsTo(Rule::class, 'rule_id')->withDefault();
     }
 }

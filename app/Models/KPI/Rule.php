@@ -22,9 +22,35 @@ class Rule extends Model
         'target_unit_id'
     ];
 
+    // protected $hidden = ['category'];
+    // add the rules attribute to the array
+    protected $appends = array('categorys');
+
+    // code for $this->rule attribute
+    public function getCategorysAttribute($value)
+    {
+        $category = null;
+        if ($this->category) {
+            $category = $this->category;
+        }
+        return $category;
+    }
+
+    // override the toArray function (called by toJson)
+    public function toArray()
+    {
+        return parent::toArray();
+    }
+
+
     public function category()
     {
         return $this->belongsTo(RuleCategory::class, 'category_id')->withDefault();
+    }
+
+    public function ruleTemplate()
+    {
+        return $this->hasOne(RuleTemplate::class)->withDefault();
     }
 
     public function targetUnit()

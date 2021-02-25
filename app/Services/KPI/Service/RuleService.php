@@ -30,10 +30,15 @@ class RuleService extends BaseService implements RuleServiceInterface
         }
     }
 
-    public function dropdown(): Collection
+    public function dropdown($group = null): Collection
     {
         try {
-            return Rule::all();
+            if (is_null($group)) {
+                return Rule::all();
+            }else{
+                return Rule::where('category_id',$group)->get();
+            }
+            
         } catch (\Throwable $th) {
             throw $th;
         }

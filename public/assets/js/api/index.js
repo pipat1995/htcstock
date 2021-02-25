@@ -43,10 +43,24 @@ function ISOtoDate(isoString, locale = "en-US") {
         year: "numeric"
     };
     const date = new Date(isoString);
-    return new Intl.DateTimeFormat(locale, options).format(date);
+    return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
 
 // api KPI-System
 
-const getRuleDropdown = () => fetch("/kpi/rule-dropdown").then(status).then(json)
+const getRuleDropdown = (group) => fetch(`/kpi/rule-dropdown/${group.id}`).then(status).then(json)
+
+const postRuleTemplate = (template, form) => axios({
+    method: 'POST',
+    responseType: 'json',
+    url: `/kpi/template/${template.id}/edit/rule-template`,
+    data: form
+})
+
+const getRuleTemplate = template => axios({
+    method: 'GET',
+    responseType: 'json',
+    url: ``
+})
+// axios.post(`/kpi/template/${template.id}/edit/rule-template`,form)

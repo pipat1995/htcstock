@@ -43,6 +43,5 @@ class RuleTemplateService extends BaseService implements RuleTemplateServiceInte
     {
         return RuleTemplate::filter($request)->orderBy('created_at', 'desc')
             ->get();
-        // ->paginate(10);
     }
 }

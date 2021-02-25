@@ -6,6 +6,6 @@ class TemplateWhereIn
 {
     public function filter($builder, $value)
     {
-        return $builder->whereIn('template_id', [...$value]);
+        return $builder->whereIn('id', [...$value]);
     }
 }

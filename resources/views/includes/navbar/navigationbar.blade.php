@@ -97,7 +97,7 @@
                                     <a href="{{ route('admin.users.index') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.manage users') }}</a>
                                     {{-- <a href="{{ route('it.check.budgets.index') }}" tabindex="0"
-                                        class="dropdown-item">{{ __('navigation.budgets manage') }}</a> --}}
+                                    class="dropdown-item">{{ __('navigation.budgets manage') }}</a> --}}
                                     <a href="{{ route('admin.users.updateusers') }}" tabindex="0"
                                         class="dropdown-item">{{ __('navigation.update user') }}</a>
                                     <a href="{{ route('admin.vendor.updatevendor') }}" tabindex="0"
@@ -140,4 +140,19 @@
             </div>
         </div>
     </div>
+
+    <div id="toast-container" class="toast-top-right">
+    </div>
+
+    {{-- <div id="toast-container" class="toast-top-right">
+        <div class="toast toast-error" aria-live="assertive" style="opacity: 0.3141;"><button type="button"
+                class="toast-close-button" role="button">×</button>
+            <div class="toast-message">
+                <div><input class="input-small" value="textbox">&nbsp;<a href="http://johnpapa.net" target="_blank">This
+                        is a hyperlink</a></div>
+                <div><button type="button" id="okBtn" class="btn btn-primary">Close me</button><button type="button"
+                        id="surpriseBtn" class="btn" style="margin: 0 8px 0 8px">Surprise me</button></div>
+            </div>
+        </div>
+    </div> --}}
 </div>

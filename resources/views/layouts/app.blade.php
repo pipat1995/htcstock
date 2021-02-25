@@ -12,7 +12,9 @@
 
     <!-- Scripts -->
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" defer></script> --}}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
     <script src="{{ asset('assets/js/template/app.js') }}" defer></script>
@@ -37,11 +39,16 @@
 <body>
     <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('includes.navbar.navigationbar')
+        
         <div class="app-main">
             @yield('sidebar')
             <div class="app-main__outer">
+                {{-- <div class="bs-example"> --}}
+                    
+                {{-- </div> --}}
                 @include('partials.alerts')
                 <div class="app-main__inner">
+                    
                     @yield('content')
                 </div>
                 {{-- @include('includes.footer') --}}

@@ -2,6 +2,13 @@
 @section('sidebar')
 @include('includes.sidebar.kpi');
 @stop
+@section('style')
+<style>
+    .bs-example {
+        margin: 20px;
+    }
+</style>
+@endsection
 @section('content')
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -26,71 +33,67 @@
     </div>
 </div>
 {{-- end title  --}}
-<form class="needs-validation" novalidate id="form-template" action="{{route('kpi.rule-template.store')}}" method="POST"
-    enctype="multipart/form-data">
-    <div class="col-lg-12">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Rule Management</h5>
-                <div class="position-relative form-group">
-                    @csrf
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="ruleTemplateName">Rule template name :</label>
-                            <input type="text" class="form-control form-control-sm" id="ruleTemplateName" name="name"
-                                placeholder="Rule template name" required>
-                            <div class="invalid-feedback">
-                                Please provide a valid Rule template.
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="department">Department :</label>
-                            <select id="validationDepartment" class="form-control-sm form-control" name="department_id"
-                                required>
-                                @isset($departments)
-                                @foreach ($departments as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                                @endisset
-                            </select>
-                            <div class="invalid-feedback">
-                                Please provide a valid Department.
-                            </div>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            {{-- <button class="mb-2 mr-2 btn btn-primary mt-4" type="submit">Save</button> --}}
+<div class="col-lg-12">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">Rule Management</h5>
+            <div class="position-relative form-group">
+                @csrf
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="ruleTemplateName">Rule template name :</label>
+                        <input type="text" class="form-control form-control-sm" id="validationTemplate" name="name"
+                            value="{{$template->name}}" placeholder="Rule template name" readonly>
+                        <div class="invalid-feedback">
+                            Please provide a valid Rule template.
                         </div>
                     </div>
-
+                    <div class="col-md-4 mb-3">
+                        <label for="department">Department :</label>
+                        <input type="text" class="form-control form-control-sm" id="validationDepartment"
+                            name="department" value="{{$template->department->name}}" placeholder="Rule template name"
+                            readonly>
+                        <div class="invalid-feedback">
+                            Please provide a valid Department.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{-- <button class="mb-2 mr-2 btn btn-primary mt-4" type="submit">Save</button> --}}
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
-    {{-- KPI --}}
-    {{-- <div class="col-lg-12">
+@isset($category)
+@foreach ($category as $group)
+<div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">KPI</h5>
+            <h5 class="card-title">{{$group->name}}</h5>
             <div class="card-header">
                 <label for="department" class="mb-2 mr-2">Weight :</label>
                 <div class="btn-actions-pane">
                     <div role="group" class="btn-group-sm btn-group">
-                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="">
+                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="weight-{{$group->name}}"
+                            name="weight_{{$group->name}}">
                     </div>
                 </div>
                 <div class="btn-actions-pane-right">
                     <div role="group" class="btn-group-sm btn-group">
                         <button class="mb-2 mr-2 btn btn-danger">Delete Selected Rule</button>
-                        <button class="mb-2 mr-2 btn btn-primary">Add new rule</button>
+                        <button class="mb-2 mr-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                            data-group="{{$group}}">Add new rule</button>
                     </div>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="mb-0 table table-sm">
+                <table class="mb-0 table table-sm" id="table-{{$group->name}}">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -105,7 +108,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {{-- <tr>
+                            <td colspan="9">
+                                <p>No result ..</p>
+                            </td>
+                        </tr> --}}
+                        {{-- <tr>
                             <th scope="row">
                                 <div class="custom-checkbox custom-control"><input type="checkbox"
                                         id="exampleCheckboxKpi1" class="custom-control-input"><label
@@ -123,26 +131,26 @@
                             <td><select class="mb-2 form-control-sm form-control" id="">
                                     <option value="">Field</option>
                                 </select></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="custom-checkbox custom-control"><input type="checkbox"
-                                        id="exampleCheckboxKpi2" class="custom-control-input"><label
-                                        class="custom-control-label" for="exampleCheckboxKpi2"></label></div>
-                            </th>
-                            <td>Rule 2</td>
-                            <td></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Parent rule</option>
-                                </select></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Field</option>
-                                </select></td>
-                        </tr>
+                        </tr> --}}
+                        {{-- <tr>
+                                <th scope="row">
+                                    <div class="custom-checkbox custom-control"><input type="checkbox"
+                                            id="exampleCheckboxKpi2" class="custom-control-input"><label
+                                            class="custom-control-label" for="exampleCheckboxKpi2"></label></div>
+                                </th>
+                                <td>Rule 2</td>
+                                <td></td>
+                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
+                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
+                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
+                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
+                                <td><select class="mb-2 form-control-sm form-control" id="">
+                                        <option value="">Parent rule</option>
+                                    </select></td>
+                                <td><select class="mb-2 form-control-sm form-control" id="">
+                                        <option value="">Field</option>
+                                    </select></td>
+                            </tr> --}}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -161,209 +169,217 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+@endforeach
+@endisset
+{{-- Button --}}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+        </div>
+        <div class="page-title-actions">
+            <button class="mb-2 mr-2 btn btn-success">Save</button>
+            <button class="mb-2 mr-2 btn btn-danger">Delete</button>
+            {{-- <button type="button" class="btn btn-success" id="showtoast">Show Toast</button> --}}
+        </div>
+    </div>
+</div>
 
-    {{-- Key Task --}}
-    {{-- <div class="col-lg-12">
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">Key Task</h5>
-            <div class="card-header">
-                <label for="department" class="mb-2 mr-2">Weight :</label>
-                <div class="btn-actions-pane">
-                    <div role="group" class="btn-group-sm btn-group">
-                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="">
-                    </div>
-                </div>
-                <div class="btn-actions-pane-right">
-                    <div role="group" class="btn-group-sm btn-group">
-                        <button class="mb-2 mr-2 btn btn-danger">Delete Selected Rule</button>
-                        <button class="mb-2 mr-2 btn btn-primary">Add new rule</button>
-                    </div>
-                </div>
+{{-- Modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Rule to : </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="table-responsive">
-                <table class="mb-0 table table-sm">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Rule Name</th>
-                            <th>Measurement</th>
-                            <th>Base line</th>
-                            <th>Max</th>
-                            <th>Target config</th>
-                            <th>weight</th>
-                            <th>Parent rule</th>
-                            <th>Field</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                <div class="custom-checkbox custom-control"><input type="checkbox"
-                                        id="exampleCheckboxKeyTask1" class="custom-control-input"><label
-                                        class="custom-control-label" for="exampleCheckboxKeyTask1"></label></div>
-                            </th>
-                            <td>Rule 1</td>
-                            <td></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Parent rule</option>
-                                </select></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Field</option>
-                                </select></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="custom-checkbox custom-control"><input type="checkbox"
-                                        id="exampleCheckboxKeyTask2" class="custom-control-input"><label
-                                        class="custom-control-label" for="exampleCheckboxKeyTask2"></label></div>
-                            </th>
-                            <td>Rule 2</td>
-                            <td></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Parent rule</option>
-                                </select></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Field</option>
-                                </select></td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total Weight :</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
+            <div class="modal-body">
+                <form id="form-ruletemplate">
+                    {{-- <input type="hidden" name="template_id" value="{{$template->id}}"> --}}
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="rule-name" class="">Rule Name
+                                    :</label><select id="validationRuleName" class="form-control form-control-sm"
+                                    name="rule_id" onchange="getValue(this)" required>
+                                </select></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="base-line" class="">Base line
+                                    :</label><input name="base_line" id="validationBaseLine" placeholder="BaseLine"
+                                    type="number" min="0" step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="max-result" class="">Max
+                                    :</label>
+                                <input name="max_result" id="validationMax" placeholder="Max result" type="number"
+                                    min="0" step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="target-config" class="">Target
+                                    config
+                                    :</label><input name="target_config" id="validationTargetConfig"
+                                    placeholder="Target config" type="number" min="0" step="0.1"
+                                    class="form-control form-control-sm" required></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="weight" class="">Weight
+                                    :</label>
+                                <input name="weight" id="validationWeight" placeholder="Weight" type="number" min="0"
+                                    step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="weight-category" class="">Weight
+                                    category
+                                    :</label><input name="weight_category" id="validationWeightCategory"
+                                    placeholder="Weight category" type="number" min="0" step="0.1"
+                                    class="form-control form-control-sm" readonly></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="subMitForm()">Add</button>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
-    {{-- OMG --}}
-    {{-- <div class="col-lg-12">
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">OMG</h5>
-            <div class="card-header">
-                <label for="department" class="mb-2 mr-2">Weight :</label>
-                <div class="btn-actions-pane">
-                    <div role="group" class="btn-group-sm btn-group">
-                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="">
-                    </div>
-                </div>
-                <div class="btn-actions-pane-right">
-                    <div role="group" class="btn-group-sm btn-group">
-                        <button class="mb-2 mr-2 btn btn-danger">Delete Selected Rule</button>
-                        <button class="mb-2 mr-2 btn btn-primary">Add new rule</button>
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="mb-0 table table-sm">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Rule Name</th>
-                            <th>Measurement</th>
-                            <th>Base line</th>
-                            <th>Max</th>
-                            <th>Target config</th>
-                            <th>weight</th>
-                            <th>Parent rule</th>
-                            <th>Field</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                <div class="custom-checkbox custom-control"><input type="checkbox"
-                                        id="exampleCheckboxOmg1" class="custom-control-input"><label
-                                        class="custom-control-label" for="exampleCheckboxOmg1"></label></div>
-                            </th>
-                            <td>Rule 1</td>
-                            <td></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Parent rule</option>
-                                </select></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Field</option>
-                                </select></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="custom-checkbox custom-control"><input type="checkbox"
-                                        id="exampleCheckboxOmg2" class="custom-control-input"><label
-                                        class="custom-control-label" for="exampleCheckboxOmg2"></label></div>
-                            </th>
-                            <td>Rule 2</td>
-                            <td></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Parent rule</option>
-                                </select></td>
-                            <td><select class="mb-2 form-control-sm form-control" id="">
-                                    <option value="">Field</option>
-                                </select></td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total Weight :</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
-    {{-- Button --}}
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-            </div>
-            <div class="page-title-actions">
-                <button class="mb-2 mr-2 btn btn-success" type="submit">Save</button>
-                <button class="mb-2 mr-2 btn btn-danger">Delete</button>
-            </div>
-        </div>
-    </div>
-</form>
 @endsection
-
 
 @section('second-script')
 <script src="{{asset('assets\js\kpi\ruleTemplate\create.js')}}" defer></script>
+
+<script>
+    var template = {!!json_encode($template)!!}
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var group = button.data('group') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            setOptionModal(group)
+            // console.log(recipient)
+        
+            // modal.find('.modal-title').text('New Rule to : ' + recipient)
+            modal.find('.modal-body input[name ="weight_category"]').val(document.getElementById('weight-'+group.name).value)
+        })
+    
+        $('#exampleModal').on('hide.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var group = button.data('group') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            document.getElementById('validationRuleName').innerHTML = ''
+            modal.find('.modal-body input[name ="base_line"]').val('')
+            modal.find('.modal-body input[name ="max_result"]').val('')
+            modal.find('.modal-body input[name ="target_config"]').val('')
+            modal.find('.modal-body input[name ="weight"]').val('')
+            modal.find('.modal-body input[name ="weight_category"]').val('')
+        })
+    
+        const setOptionModal = (group) => {
+                    getRuleDropdown(group).then(result => {
+                        result.forEach(element => {
+                            let option = document.createElement("option")
+                            option.text = element.name
+                            option.value = element.id
+                            document.getElementById('validationRuleName').appendChild(option)
+                        })
+                    })
+                }
+        const getValue = (sel) => console.log(sel,sel.options[sel.selectedIndex].value,sel.options[sel.selectedIndex].text)
+        
+        const subMitForm = () => {
+            let form = document.getElementById('form-ruletemplate')
+            // if (!form.checkValidity()) {
+            //     form.requestSubmit()
+            // }
+            let formData = new FormData(form)
+                formData.append('template_id',template.id)
+            // api post 
+            // get template id in html
+            postRuleTemplate(template,formData).then(res => {
+                createRow(res.data)
+               
+            }).catch(function (error) {
+                error.response.data.messages.forEach(value => {
+                    toastError(value)
+                })
+            }).finally(res => {
+                // toastClear()
+            });
+        }
+
+        const createRow = (data) => {
+            let table = document.getElementById(`table-${data.rule.category.name}`).getElementsByTagName('tbody')[0]
+            let newRow = table.insertRow()
+            let newCellCheck = newRow.insertCell()
+            let div = document.createElement('div')
+
+            div.className = 'custom-checkbox custom-control'
+
+            let checkbox = document.createElement('input')
+
+            checkbox.type = `checkbox`
+            checkbox.name = `rule-${data.rule.id}`
+            checkbox.className = `custom-control-input`
+            checkbox.id = `rule-${data.rule.id}`
+
+            let label = document.createElement('label')
+
+            label.classList.add('custom-control-label')
+            label.htmlFor = `rule-${data.rule.id}`
+            div.appendChild(checkbox)
+            div.appendChild(label)
+            newCellCheck.appendChild(div)
+
+            let newCellName = newRow.insertCell()
+            newCellName.textContent = data.rule.name
+
+            let newCellMeasurement = newRow.insertCell()
+            newCellMeasurement.textContent = data.rule.measurement
+
+            let newCellBaseLine = newRow.insertCell()
+            newCellBaseLine.textContent = data.base_line
+
+            let newCellMax = newRow.insertCell()
+            newCellMax.textContent = data.max_result
+
+            let newCellTarget = newRow.insertCell()
+            newCellTarget.textContent = data.target_config
+
+            let newCellWeight = newRow.insertCell()
+            newCellWeight.textContent = data.weight
+
+            let newCellParentRule = newRow.insertCell()
+            newCellParentRule.textContent = data.parent_rule_template_id
+
+            let newCellField = newRow.insertCell()
+            newCellField.textContent = data.field
+            console.log('create row')
+            
+        }
+
+        const makeCheckBox = () => {
+            
+            div.appendChild(checkbox)
+            return div
+        }
+</script>
 @endsection

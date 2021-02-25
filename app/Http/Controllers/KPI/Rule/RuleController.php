@@ -142,9 +142,9 @@ class RuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dropdown()
+    public function dropdown($group)
     {
-        $rule = $this->ruleService->dropdown();
+        $rule = $this->ruleService->dropdown($group);
         return response()
             ->json($rule);
     }

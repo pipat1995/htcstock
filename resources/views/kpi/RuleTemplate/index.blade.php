@@ -21,7 +21,7 @@
                 <i class="fa fa-star"></i>
             </button> --}}
             <div class="d-inline-block dropdown">
-                <a href="{{route('kpi.rule-template.create')}}" class="btn-shadow btn btn-info">
+                <a href="{{route('kpi.template.create')}}" class="btn-shadow btn btn-info">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
@@ -45,8 +45,8 @@
                             <select id="validationRuleTemplate" class="form-control-sm form-control"
                                 name="template_id[]" multiple>
                                 <option value="">-----</option>
-                                @isset($templates)
-                                @foreach ($templates as $item)
+                                @isset($dropdowntem)
+                                @foreach ($dropdowntem as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                                 @endisset
@@ -89,13 +89,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @isset($ruleTemplates)
-                        @foreach ($ruleTemplates as $key => $item)
+                        @isset($templates)
+                        @foreach ($templates as $key => $item)
                         <tr>
                             <th scope="row">{{$key+1}}</th>
-                            <td>{{$item->template->name}}</td>
-                            <td>{{$item->template->department->name}}</td>
-                            <td><a href="{{route('kpi.rule-template.edit',$item->id)}}"
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->department->name}}</td>
+                            <td><a href="{{route('kpi.rule-template.create',[$item->id])}}"
                                     class="mb-2 mr-2 border-0 btn-transition btn btn-outline-info">Edit
                                 </a></td>
                         </tr>

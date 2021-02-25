@@ -43,9 +43,11 @@
                             <label for="department">Department :</label>
                             <select id="validationDepartment" class="form-control-sm form-control" name="department_id"
                                 required>
+
                                 @isset($departments)
                                 @foreach ($departments as $item)
-                                <option value="{{$item->id}}" {{$item->id === $ruletemplate->template->department->id}}>
+                                <option value="{{$item->id}}"
+                                    {{$item->id !== $ruletemplate->template->department->id ? '' : 'selected'}}>
                                     {{$item->name}}</option>
                                 @endforeach
                                 @endisset
@@ -58,7 +60,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <button class="mb-2 mr-2 btn btn-primary mt-4">Search</button>
+                            {{-- <button class="mb-2 mr-2 btn btn-primary mt-4">Search</button> --}}
                         </div>
                     </div>
                 </form>
@@ -77,7 +79,8 @@
                 <label for="department" class="mb-2 mr-2">Weight :</label>
                 <div class="btn-actions-pane">
                     <div role="group" class="btn-group-sm btn-group">
-                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="">
+                        <input class="mb-2 mr-2 form-control-sm form-control" type="text" id="weight-{{$group->name}}"
+                            name="weight_{{$group->name}}">
                     </div>
                 </div>
                 <div class="btn-actions-pane-right">
@@ -184,7 +187,7 @@
 {{-- Modal --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">New Rule to : </h5>
@@ -193,23 +196,59 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="rule-name">Rule Name :</label>
-                        <select id="validationRuleName" class="form-control-sm form-control" name="rule_id" required>
-                        </select>
-                        {{-- <label for="rule-name" class="col-form-label">Group:</label>
-                        <input type="text" class="form-control" id="recipient-name"> --}}
+                <form id="modal-form-rule-template">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="rule-name" class="">Rule Name
+                                    :</label><select id="validationRuleName" class="form-control form-control-sm"
+                                    name="rule_id" onchange="getValue(this)" required>
+                                </select></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="base-line" class="">Base line
+                                    :</label><input name="base_line" id="validationBaseLine" placeholder="BaseLine"
+                                    type="number" min="0" step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="max-result" class="">Max
+                                    :</label>
+                                <input name="max_result" id="validationMax" placeholder="Max result" type="number"
+                                    min="0" step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="target-config" class="">Target config
+                                    :</label><input name="target_config" id="validationTargetConfig"
+                                    placeholder="Target config" type="number" min="0" step="0.1"
+                                    class="form-control form-control-sm" required></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="weight" class="">Weight
+                                    :</label>
+                                <input name="weight" id="validationWeight" placeholder="Weight" type="number" min="0"
+                                    step="0.1" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group"><label for="weight-category" class="">Weight
+                                    category
+                                    :</label><input name="weight_category" id="validationWeightCategory"
+                                    placeholder="Weight category" type="number" min="0" step="0.1"
+                                    class="form-control form-control-sm" readonly></div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-primary" onclick="subMitForm()">Add</button>
             </div>
         </div>
     </div>
@@ -226,18 +265,28 @@
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
-    setOption(group)
+    setOptionModal(group)
     // console.log(recipient)
 
     // modal.find('.modal-title').text('New Rule to : ' + recipient)
-    // modal.find('.modal-body input').val(recipient)
+    modal.find('.modal-body input[name ="weight_category"]').val(document.getElementById('weight-'+group.name).value)
     })
 
     $('#exampleModal').on('hide.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var group = button.data('group') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
         document.getElementById('validationRuleName').innerHTML = ''
+        modal.find('.modal-body input[name ="base_line"]').val('')
+        modal.find('.modal-body input[name ="max_result"]').val('')
+        modal.find('.modal-body input[name ="target_config"]').val('')
+        modal.find('.modal-body input[name ="weight"]').val('')
+        modal.find('.modal-body input[name ="weight_category"]').val('')
     })
 
-const setOption = (group) => {
+const setOptionModal = (group) => {
             getRuleDropdown().then(result => {
                 let newArray = result.filter(value => value.category_id == group.id)
                 newArray.forEach(element => {
@@ -245,9 +294,27 @@ const setOption = (group) => {
                     option.text = element.name
                     option.value = element.id
                     document.getElementById('validationRuleName').appendChild(option)
-                });
+                })
             })
         }
+const getValue = (sel) => console.log(sel,sel.options[sel.selectedIndex].value,sel.options[sel.selectedIndex].text)
 
+const subMitForm = () => {
+    
+    let form = document.getElementById('modal-form-rule-template')
+    if (!form.checkValidity()) {
+        form.requestSubmit()
+        return
+    }
+    let formData = new FormData(form)
+    for (const key in form) {
+        if (Object.hasOwnProperty.call(form, key)) {
+            if (form[key].id === 'validationRuleName') {
+                formData.append('rule_id', form[key].options[form[key].selectedIndex].value)
+            }
+        }
+    }
+    // api post 
+}
 </script>
 @endsection

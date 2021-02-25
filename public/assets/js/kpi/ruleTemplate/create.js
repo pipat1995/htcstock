@@ -3,14 +3,14 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         // Supporting Documents
-        $("#validationDepartment").select2({
-            placeholder: 'Select department',
-            allowClear: true
-        });
-        $("#validationRuleTemplate").select2({
-            placeholder: 'Select RuleTemplate',
-            allowClear: true
-        });
+        // $("#validationDepartment").select2({
+        //     placeholder: 'Select department',
+        //     allowClear: true
+        // });
+        // $("#validationRuleTemplate").select2({
+        //     placeholder: 'Select RuleTemplate',
+        //     allowClear: true
+        // });
 
     })
 

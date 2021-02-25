@@ -1,33 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\KPI\RuleTemplate;
+namespace App\Http\Controllers\KPI\Template;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\KPI\StoreRuleTemplatePost;
-use App\Models\KPI\RuleCategory;
+use App\Http\Requests\KPI\StoreTemplatePost;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\KPI\Interfaces\RuleTemplateServiceInterface;
 use App\Services\KPI\Interfaces\TemplateServiceInterface;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class RuleTemplateController extends Controller
+class TemplateController extends Controller
 {
+    protected $templateService;
     protected $ruleTemplateService;
     protected $departmentService;
-    protected $templateService;
-    protected $categoryService;
     public function __construct(
-        RuleTemplateServiceInterface $ruleTemplateServiceInterface,
-        DepartmentServiceInterface $departmentServiceInterface,
         TemplateServiceInterface $templateServiceInterface,
-        RuleCategory $categoryServiceInterface
+        RuleTemplateServiceInterface $ruleTemplateServiceInterface,
+        DepartmentServiceInterface $departmentServiceInterface
     ) {
+        $this->templateService = $templateServiceInterface;
         $this->ruleTemplateService = $ruleTemplateServiceInterface;
         $this->departmentService = $departmentServiceInterface;
-        $this->templateService = $templateServiceInterface;
-        $this->categoryService = $categoryServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -37,10 +32,10 @@ class RuleTemplateController extends Controller
     public function index(Request $request)
     {
         $departments = $this->departmentService->dropdown();
-        $templates = $this->templateService->dropdown();
-        $ruleTemplates = $this->templateService->filter($request);
+        $dropdowntem = $this->templateService->dropdown();
+        $templates = $this->templateService->filter($request);
 
-        return \view('kpi.RuleTemplate.index', \compact('departments', 'templates', 'ruleTemplates'));
+        return \view('kpi.RuleTemplate.index', \compact('departments', 'templates', 'dropdowntem'));
     }
 
     /**
@@ -48,15 +43,10 @@ class RuleTemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($template)
+    public function create()
     {
-        try {
-            $category = $this->categoryService->all();
-            $template = $this->templateService->find($template);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-        return \view('kpi.RuleTemplate.create',\compact('category','template'));
+        $departments = $this->departmentService->dropdown();
+        return \view('kpi.RuleTemplate.create', \compact('departments'));
     }
 
     /**
@@ -65,14 +55,14 @@ class RuleTemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($template,StoreRuleTemplatePost $request)
+    public function store(StoreTemplatePost $request)
     {
         DB::beginTransaction();
         $fromValue = $request->except(['_token']);
         try {
-            $ruleTemplate = $this->ruleTemplateService->create($fromValue);
-            if (!$ruleTemplate) {
-                $request->session()->flash('error', ' has been create Rule Template fail');
+            $template = $this->templateService->create($fromValue);
+            if (!$template) {
+                $request->session()->flash('error', ' has been create template fail');
                 return \back();
             }
             $request->session()->flash('success', ' has been create success');
@@ -80,10 +70,8 @@ class RuleTemplateController extends Controller
             DB::rollBack();
             throw $th;
         }
-        
-        // \dd(new JsonResponse($ruleTemplate));
         DB::commit();
-        return new JsonResponse($ruleTemplate);
+        return \redirect()->route('kpi.rule-template.create', $template->id);
     }
 
     /**
@@ -105,14 +93,7 @@ class RuleTemplateController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $category = $this->categoryService->all();
-            $departments = $this->departmentService->dropdown();
-            $ruletemplate = $this->ruleTemplateService->find($id);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-        return \view('kpi.RuleTemplate.edit',\compact('ruletemplate','departments','category'));
+        //
     }
 
     /**
@@ -124,6 +105,7 @@ class RuleTemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
     }
 
     /**

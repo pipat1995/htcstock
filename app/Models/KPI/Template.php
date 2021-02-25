@@ -2,7 +2,7 @@
 
 namespace App\Models\KPI;
 
-use App\Http\Filters\KPI\RuleTemplateFilter;
+use App\Http\Filters\KPI\TemplateFilter;
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +23,7 @@ class Template extends Model
     // service เรียกใช้ Filter
     public function scopeFilter(Builder $builder, $request)
     {
-        return (new RuleTemplateFilter($request))->filter($builder);
+        return (new TemplateFilter($request))->filter($builder);
     }
 
     public function category()

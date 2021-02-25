@@ -146,14 +146,14 @@ var uploadFileEquipment = async e => {
                 e.offsetParent.getElementsByClassName('progress-bar')[0].textContent = `${err.response.statusText}`
             }
         })
-        .finally( () => console.log(document.getElementsByName('image')[0]) )
+        .finally(() => console.log(document.getElementsByName('image')[0]))
 }
 
 var btn = $('#btnontop');
 
 $(window).scroll(function () {
     if ($(window).scrollTop() > 300) {
-        btn.addClass('show');
+        btn.addClass('show')
     } else {
         btn.removeClass('show');
     }
@@ -165,3 +165,24 @@ btn.on('click', function (e) {
         scrollTop: 0
     }, '300');
 });
+
+function toastError(text) {
+    let divToast = document.createElement("div")
+    let divMessage = document.createElement("div")
+    divToast.classList.add('toast')
+    divToast.classList.add('toast-error')
+    divMessage.classList.add('toast-message')
+    divMessage.textContent = text
+    divToast.appendChild(divMessage);
+    document.getElementById("toast-container").appendChild(divToast)
+}
+
+function toastClear() {
+    let el = document.querySelectorAll('.toast-error')
+    setTimeout(() => {
+        document.querySelector('.toast-error').remove()
+        if (el.length != 1) {
+            toastClear();
+        }
+    }, 3000)
+}
