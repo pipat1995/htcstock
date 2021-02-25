@@ -322,7 +322,7 @@
                     toastError(value)
                 })
             }).finally(res => {
-                // toastClear()
+                toastClear()
             });
         }
 
