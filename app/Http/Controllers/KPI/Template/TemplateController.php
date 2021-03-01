@@ -46,7 +46,7 @@ class TemplateController extends Controller
     public function create()
     {
         $departments = $this->departmentService->dropdown();
-        return \view('kpi.RuleTemplate.create', \compact('departments'));
+        return \view('kpi.RuleTemplate.Template.create', \compact('departments'));
     }
 
     /**

@@ -50,7 +50,7 @@ class Rule extends Model
 
     public function ruleTemplate()
     {
-        return $this->hasOne(RuleTemplate::class)->withDefault();
+        return $this->hasMany(RuleTemplate::class)->withDefault();
     }
 
     public function targetUnit()

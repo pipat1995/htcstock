@@ -17,5 +17,6 @@ interface RuleTemplateServiceInterface
     public function destroy(int $id);
 
     public function dropdown(): Collection;
+    public function byTemplate(Model $template);
     public function filter(Request $request);
 }

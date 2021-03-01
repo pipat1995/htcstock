@@ -8,6 +8,7 @@ use App\Models\KPI\RuleCategory;
 use App\Services\IT\Interfaces\DepartmentServiceInterface;
 use App\Services\KPI\Interfaces\RuleTemplateServiceInterface;
 use App\Services\KPI\Interfaces\TemplateServiceInterface;
+use App\Services\KPI\Service\RuleService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,16 +19,19 @@ class RuleTemplateController extends Controller
     protected $departmentService;
     protected $templateService;
     protected $categoryService;
+    protected $ruleService;
     public function __construct(
         RuleTemplateServiceInterface $ruleTemplateServiceInterface,
         DepartmentServiceInterface $departmentServiceInterface,
         TemplateServiceInterface $templateServiceInterface,
-        RuleCategory $categoryServiceInterface
+        RuleCategory $categoryServiceInterface,
+        RuleService $ruleServiceInterface
     ) {
         $this->ruleTemplateService = $ruleTemplateServiceInterface;
         $this->departmentService = $departmentServiceInterface;
         $this->templateService = $templateServiceInterface;
         $this->categoryService = $categoryServiceInterface;
+        $this->ruleService = $ruleServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -68,22 +72,30 @@ class RuleTemplateController extends Controller
     public function store($template,StoreRuleTemplatePost $request)
     {
         DB::beginTransaction();
-        $fromValue = $request->except(['_token']);
+        $formValue = $request->except(['_token']);
         try {
-            $ruleTemplate = $this->ruleTemplateService->create($fromValue);
+            $ruleTemplate = $this->ruleTemplateService->create($formValue);
             if (!$ruleTemplate) {
                 $request->session()->flash('error', ' has been create Rule Template fail');
                 return \back();
             }
+
+            // $rule = $this->ruleService->find($formValue['rule_id']);
+            $template = $this->templateService->find($template);
+
+            $ruleTemplates = $this->ruleTemplateService->byTemplate($template);
+            // $new = $ruleTemplates->filter(function($value) use ($rule) {
+            //     return $value->rule->category_id == $rule->category_id;
+            // });
             $request->session()->flash('success', ' has been create success');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
-        
-        // \dd(new JsonResponse($ruleTemplate));
+        // \dd();
+        // \dd(new JsonResponse($new->toArray()));
         DB::commit();
-        return new JsonResponse($ruleTemplate);
+        return new JsonResponse($ruleTemplates);
     }
 
     /**
@@ -135,5 +147,21 @@ class RuleTemplateController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function bytemplate($template)
+    {
+        try {
+            $template = $this->templateService->find($template);
+            $ruleTemplates = $this->ruleTemplateService->byTemplate($template);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return new JsonResponse($ruleTemplates);
+    }
+
+    public function switchrow(Request $request,$id)
+    {
+        \dd($request->parent_rule_template_id,$request->id);
     }
 }

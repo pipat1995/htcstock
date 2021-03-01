@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class RuleTemplate extends Model
 {
     protected $table = 'kpi_rule_templates';
+    protected $casts = [
+        'weight' => 'float',
+        'weight_category' => 'float',
+        'target_config' => 'float',
+        'base_line' => 'float',
+        'max_result' => 'float',
+    ];
     // protected $hidden = ['rules'];
     // add the rules attribute to the array
     protected $appends = array('rules');

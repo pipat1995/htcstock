@@ -12,6 +12,9 @@
         //     allowClear: true
         // });
 
+        getRuleTemplate(template).then(res => {
+            createRow(res.data)
+        })
     })
 
     window.addEventListener('load', function () {

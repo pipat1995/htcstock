@@ -2,6 +2,7 @@
 
 namespace App\Services\KPI\Service;
 
+use App\Models\KPI\Rule;
 use App\Models\KPI\RuleTemplate;
 use App\Services\BaseService;
 use App\Services\KPI\Interfaces\RuleTemplateServiceInterface;
@@ -34,6 +35,16 @@ class RuleTemplateService extends BaseService implements RuleTemplateServiceInte
     {
         try {
             return RuleTemplate::all();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function byTemplate($template)
+    {
+        try {
+            $ruleTem = RuleTemplate::where('template_id',$template->id)->get();
+            return $ruleTem;
         } catch (\Throwable $th) {
             throw $th;
         }

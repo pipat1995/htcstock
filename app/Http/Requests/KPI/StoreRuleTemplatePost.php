@@ -36,7 +36,7 @@ class StoreRuleTemplatePost extends FormRequest
     public function rules()
     {
         return [
-            'template_id' => 'required',
+            // 'template_id' => 'required',
             'rule_id' => 'required',
             'weight' => 'required',
             'weight_category' => 'required',
