@@ -103,8 +103,8 @@
                                 <th>Max</th>
                                 <th>Target config</th>
                                 <th>weight</th>
-                                <th>Parent rule</th>
-                                <th>Field</th>
+                                <th>Sort numbers</th>
+                                {{-- <th>Field</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -162,7 +162,7 @@
                                 <td>Total Weight :</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                {{-- <td></td> --}}
                             </tr>
                         </tfoot>
                     </table>
@@ -200,6 +200,7 @@
             <div class="modal-body">
                 <form id="form-ruletemplate">
                     <input type="hidden" name="parent_rule_template_id" value="">
+                    <input type="hidden" name="field" value="">
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="position-relative form-group"><label for="rule-name" class="">Rule Name
@@ -274,9 +275,11 @@
         var modal = $(this)
         setOptionModal(group)
         
+        let row = document.getElementById(`table-${group.name}`).getElementsByTagName('tbody')[0].lastChild
         // modal.find('.modal-title').text('New Rule to : ' + recipient)
-        modal.find('.modal-body input[name ="parent_rule_template_id"]').val(getLastRow(document.getElementById(`table-${group.name}`)))
-        modal.find('.modal-body input[name ="weight_category"]').val(document.getElementById('weight-'+group.name).value)
+        modal.find('.modal-body input[name ="parent_rule_template_id"]').val(getLastRowNum(row))
+        // modal.find('.modal-body input[name ="field"]').val(getLastRowNum(row))
+        modal.find('.modal-body input[name ="weight_category"]').val(document.getElementById(`weight-${group.name}`).value)
     })
 
     $('#exampleModal').on('hide.bs.modal', function (event) {
@@ -364,7 +367,7 @@
                 newCellCheck.appendChild(div)
 
                 let newCellName = newRow.insertCell()
-                newCellName.textContent = element.rule.name + ` : id = ${element.id}`
+                newCellName.textContent = element.rule.name+'  '+element.id
 
                 let newCellMeasurement = newRow.insertCell()
                 newCellMeasurement.textContent = element.rule.measurement
@@ -382,10 +385,23 @@
                 newCellWeight.textContent = element.weight
 
                 let newCellParentRule = newRow.insertCell()
-                newCellParentRule.appendChild(makeOption(element,array)) //element.parent_rule_template_id //+ ` : id = ${array[key].id}`
+                newCellParentRule.appendChild(makeOption(element,key,array)) //element.parent_rule_template_id //+ ` : id = ${array[key].id}`
                 
-                let newCellField = newRow.insertCell()
-                newCellField.textContent = element.field
+                // let newCellField = newRow.insertCell()
+                // newCellField.textContent = element.field
+
+                // array.forEach((value,key) => {
+                //     if (element.parent_rule_template_id) {
+                //         if (element.parent_rule_template_id === value.id) {
+                //             return newCellField.textContent = value.field
+                //         }
+                //     }else{
+                //         return newCellField.textContent = "first"
+                //     }
+                // })
+
+                // newCellField.textContent = array.forEach((value,key) => element.parent_rule_template_id === value.id ? value.rule.name : "null")
+                // newCellField.textContent = element.field
                 // console.log(array[key-1])
 
                 
@@ -399,41 +415,48 @@
         })
     }
 
-    const getLastRow = (table) => {
-        let lastRow = table.getElementsByTagName('tbody')[0].lastChild
-        return lastRow ? lastRow.firstChild.children[0].children[0].id : null
+    const getLastRowNum = (row) => {
+            return row ? parseInt(row.cells[7].children[0].options[row.cells[7].children[0].selectedIndex].value) + 1: null
         }
-
-    const makeOption = (obj,array) => {
+    
+    const makeOption = (obj,key,array) => {
         let select = document.createElement('select')
         select.id = `id-${obj.id}`
         select.name = `id-${obj.id}`
         select.className = `form-control form-control-sm`
-        
-        let option = document.createElement('option')
-            option.text = `first`
-            option.value = ``
-            select.appendChild(option)
+        // let option = document.createElement('option')
+            // option.text = `first`
+            // option.value = obj.field == "1" ? obj.id : ``
+            // option.defaultSelected = obj.field == "1" ? true : false
+            // option.disabled = obj.parent_rule_template_id === null && obj.field == 1 ? true : false
+            // select.appendChild(option)
         array.forEach(element => {
-            let option = document.createElement('option')
-            option.text = element.rule.name
-            option.value = element.id
-            option.defaultSelected = obj.parent_rule_template_id === element.id ? true : false
+            // if (obj.id !== element.id) {
+                let option = document.createElement('option')
+                option.text = (parseInt(element.parent_rule_template_id))
+                option.value = element.id
+                option.defaultSelected = obj.parent_rule_template_id === element.parent_rule_template_id ? true : false
+                // option.disabled = obj.parent_rule_template_id === element.id ? true : false
+                select.appendChild(option)
+            // }
             
-            select.appendChild(option)
         });
-        select.setAttribute(`onchange`, `switchRow(this)`)
+        select.setAttribute(`onchange`, `switchRow(this,${obj.rule.category_id})`)
         return select
     }
 
-    const switchRow = (sel) => {
-        let formSwitch = new FormData()
-        formSwitch.append('id',sel.offsetParent.parentNode.children[0].children[0].children[0].id)
-        formSwitch.append('parent_rule_template_id',sel.options[sel.selectedIndex].value)
-        console.log(formSwitch.getAll('parent_rule_template_id'));
+    const switchRow = (sel,group) => {
+        let formSwitch = {
+            rule_template_id : sel.offsetParent.parentNode.children[0].children[0].children[0].id,
+            rule_to_id : sel.options[sel.selectedIndex].value,
+            group_id : group
+        }
         switRuleTemplate(template,formSwitch)
         .then(res => {
-            console.log(res);
+            createRow(res.data)
+        })
+        .catch(error => {
+            console.log(error.response.data)
         })
     }
 </script>

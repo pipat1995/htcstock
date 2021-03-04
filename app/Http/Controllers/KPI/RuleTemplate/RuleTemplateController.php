@@ -60,7 +60,7 @@ class RuleTemplateController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('kpi.RuleTemplate.create',\compact('category','template'));
+        return \view('kpi.RuleTemplate.create', \compact('category', 'template'));
     }
 
     /**
@@ -69,30 +69,28 @@ class RuleTemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($template,StoreRuleTemplatePost $request)
+    public function store($template, StoreRuleTemplatePost $request)
     {
         DB::beginTransaction();
         $formValue = $request->except(['_token']);
         try {
             $ruleTemplate = $this->ruleTemplateService->create($formValue);
+            if (\is_null($ruleTemplate->parent_rule_template_id)) {
+                $ruleTemplate->parent_rule_template_id = 1;
+            }
             if (!$ruleTemplate) {
                 $request->session()->flash('error', ' has been create Rule Template fail');
                 return \back();
             }
 
-            // $rule = $this->ruleService->find($formValue['rule_id']);
             $template = $this->templateService->find($template);
 
             $ruleTemplates = $this->ruleTemplateService->byTemplate($template);
-            // $new = $ruleTemplates->filter(function($value) use ($rule) {
-            //     return $value->rule->category_id == $rule->category_id;
-            // });
             $request->session()->flash('success', ' has been create success');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
-        // \dd();
         // \dd(new JsonResponse($new->toArray()));
         DB::commit();
         return new JsonResponse($ruleTemplates);
@@ -124,7 +122,7 @@ class RuleTemplateController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        return \view('kpi.RuleTemplate.edit',\compact('ruletemplate','departments','category'));
+        return \view('kpi.RuleTemplate.edit', \compact('ruletemplate', 'departments', 'category'));
     }
 
     /**
@@ -160,8 +158,54 @@ class RuleTemplateController extends Controller
         return new JsonResponse($ruleTemplates);
     }
 
-    public function switchrow(Request $request,$id)
+    public function switchrow(Request $request, $id)
     {
-        \dd($request->parent_rule_template_id,$request->id);
+        DB::beginTransaction();
+        try {
+            $switch_id = $request->rule_template_id;
+            $switch_to = $request->rule_to_id;
+            $request->group_id;
+            $template = $this->templateService->find($id);
+            $ruleTemplates = $this->ruleTemplateService->byTemplateGroup($template, $request->group_id);
+            $s = $ruleTemplates->search(fn ($ruletem) => $ruletem->id == $switch_id);
+            $e = $ruleTemplates->search(fn ($ruletem) => $ruletem->id == $switch_to);
+
+            $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$e]->parent_rule_template_id], $ruleTemplates[$s]->id);
+            $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$s]->parent_rule_template_id], $ruleTemplates[$e]->id);
+            // foreach ($ruleTemplates as $i => $value) {
+            //     if ($s < $e) {
+            //         # จากบนลงล่าง
+            //         if ($i >= $s && $i <= $e) {
+            //             # เริ่มเมื่อถึงช่วงข้อมูล
+            //             if ($i === $s) {
+            //                 // ทำครั้งแรกครั้งเดียว
+            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$e]->parent_rule_template_id], $ruleTemplates[$i]->id);
+            //             } else {
+            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => ($ruleTemplates[$i]->parent_rule_template_id - 1)], $ruleTemplates[$i]->id);
+            //             }
+            //         }
+            //     }
+
+            //     if ($s > $e) {
+            //         # จากล่างขึ้นบน
+            //         if ($i <= $s && $i >= $e) {
+            //             # เริ่มเมื่อถึงช่วงข้อมูล
+            //             if ($i === $s) {
+            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $number + 1], $ruleTemplates[$i]->id);
+            //             }
+            //             if ($i > $e && $i != $s) {
+            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$i]->parent_rule_template_id + 1], $ruleTemplates[$i]->id);
+            //             }
+            //         }
+            //     }
+            // }
+            $responses = $this->ruleTemplateService->byTemplate($template);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return new JsonResponse($responses);
+        // \dd($ruleTemplates->all(), $request->rule_template_id, $request->parent_rule_template_id);
     }
 }

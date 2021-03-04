@@ -14,6 +14,7 @@ class RuleTemplate extends Model
         'target_config' => 'float',
         'base_line' => 'float',
         'max_result' => 'float',
+        'parent_rule_template_id' => 'int'
     ];
     // protected $hidden = ['rules'];
     // add the rules attribute to the array

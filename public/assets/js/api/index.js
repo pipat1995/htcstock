@@ -64,7 +64,7 @@ const getRuleTemplate = (template) => axios({
     url: `/kpi/template/${template.id}/edit/ruletemplate/bytemplate`
 })
 
-const switRuleTemplate = (template,form) => axios({
+const switRuleTemplate = (template, form) => axios({
     method: 'PUT',
     responseType: 'json',
     url: `/kpi/template/${template.id}/edit/ruletemplate/switch`,

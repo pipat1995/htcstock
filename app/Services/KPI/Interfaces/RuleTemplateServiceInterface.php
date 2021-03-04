@@ -18,5 +18,6 @@ interface RuleTemplateServiceInterface
 
     public function dropdown(): Collection;
     public function byTemplate(Model $template);
+    public function byTemplateGroup(Model $template, $group);
     public function filter(Request $request);
 }
