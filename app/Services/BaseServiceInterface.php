@@ -25,7 +25,13 @@ interface BaseServiceInterface
     /**
      * @param $attributes
      * @param $id
-     * @return Model
+     * @return bool
      */
     public function update(array $attributes, int $id): bool;
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    // public function destroyIn(array $id): bool;
 }

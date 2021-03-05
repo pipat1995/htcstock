@@ -92,7 +92,16 @@ class BaseService implements BaseServiceInterface
         }
     }
 
-    public function destroy(int $id)
+    public function destroy($id)
+    {
+        try {
+            return $this->model->destroy($id);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroyIn(array $id)
     {
         try {
             return $this->model->destroy($id);

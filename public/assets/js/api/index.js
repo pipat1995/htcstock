@@ -70,3 +70,10 @@ const switRuleTemplate = (template, form) => axios({
     url: `/kpi/template/${template.id}/edit/ruletemplate/switch`,
     data: form
 })
+
+const deleteRuleTemplate = (template, form) => axios({
+    method: 'DELETE',
+    responseType: 'json',
+    url: `/kpi/template/${template.id}/edit/ruletemplate/destroy`,
+    data: form
+})

@@ -164,41 +164,16 @@ class RuleTemplateController extends Controller
         try {
             $switch_id = $request->rule_template_id;
             $switch_to = $request->rule_to_id;
-            $request->group_id;
+
+            $first = $this->ruleTemplateService->find($switch_id);
+            $second = $this->ruleTemplateService->find($switch_to);
+
+            $first->parent_rule_template_id = $second->getOriginal('parent_rule_template_id');
+            $second->parent_rule_template_id = $first->getOriginal('parent_rule_template_id');
+            $first->save();
+            $second->save();
+
             $template = $this->templateService->find($id);
-            $ruleTemplates = $this->ruleTemplateService->byTemplateGroup($template, $request->group_id);
-            $s = $ruleTemplates->search(fn ($ruletem) => $ruletem->id == $switch_id);
-            $e = $ruleTemplates->search(fn ($ruletem) => $ruletem->id == $switch_to);
-
-            $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$e]->parent_rule_template_id], $ruleTemplates[$s]->id);
-            $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$s]->parent_rule_template_id], $ruleTemplates[$e]->id);
-            // foreach ($ruleTemplates as $i => $value) {
-            //     if ($s < $e) {
-            //         # จากบนลงล่าง
-            //         if ($i >= $s && $i <= $e) {
-            //             # เริ่มเมื่อถึงช่วงข้อมูล
-            //             if ($i === $s) {
-            //                 // ทำครั้งแรกครั้งเดียว
-            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$e]->parent_rule_template_id], $ruleTemplates[$i]->id);
-            //             } else {
-            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => ($ruleTemplates[$i]->parent_rule_template_id - 1)], $ruleTemplates[$i]->id);
-            //             }
-            //         }
-            //     }
-
-            //     if ($s > $e) {
-            //         # จากล่างขึ้นบน
-            //         if ($i <= $s && $i >= $e) {
-            //             # เริ่มเมื่อถึงช่วงข้อมูล
-            //             if ($i === $s) {
-            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $number + 1], $ruleTemplates[$i]->id);
-            //             }
-            //             if ($i > $e && $i != $s) {
-            //                 $this->ruleTemplateService->update(['parent_rule_template_id' => $ruleTemplates[$i]->parent_rule_template_id + 1], $ruleTemplates[$i]->id);
-            //             }
-            //         }
-            //     }
-            // }
             $responses = $this->ruleTemplateService->byTemplate($template);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -206,6 +181,25 @@ class RuleTemplateController extends Controller
         }
         DB::commit();
         return new JsonResponse($responses);
-        // \dd($ruleTemplates->all(), $request->rule_template_id, $request->parent_rule_template_id);
+    }
+
+    public function deleteRuleTemplate(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $this->ruleTemplateService->destroy($request->rule);
+            $template = $this->templateService->find($id);
+            $ruleTemplate = $this->ruleTemplateService->byTemplateGroup($template, $request->group['id']);
+            foreach ($ruleTemplate as $key => $value) {
+                $value->parent_rule_template_id = $key + 1;
+                $value->save();
+            }
+            $responses = $this->ruleTemplateService->byTemplate($template);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return new JsonResponse($responses);
     }
 }

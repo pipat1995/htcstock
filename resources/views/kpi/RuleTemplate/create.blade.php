@@ -80,13 +80,13 @@
                     <label for="department" class="mb-2 mr-2">Weight :</label>
                     <div class="btn-actions-pane">
                         <div role="group" class="btn-group-sm btn-group">
-                            <input class="mb-2 mr-2 form-control-sm form-control" type="text"
+                            <input class="mb-2 mr-2 form-control-sm form-control" type="number" min="0" step="0.01"
                                 id="weight-{{$group->name}}" name="weight_{{$group->name}}">
                         </div>
                     </div>
                     <div class="btn-actions-pane-right">
                         <div role="group" class="btn-group-sm btn-group">
-                            <button class="mb-2 mr-2 btn btn-danger">Delete Selected Rule</button>
+                            <button class="mb-2 mr-2 btn btn-danger" onclick="deleterule(this)" data-group="{{$group->name}}" data-group-id="{{$group->id}}">Delete Selected Rule</button>
                             <button class="mb-2 mr-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                                 data-group="{{$group}}">Add new rule</button>
                         </div>
@@ -104,53 +104,9 @@
                                 <th>Target config</th>
                                 <th>weight</th>
                                 <th>Sort numbers</th>
-                                {{-- <th>Field</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                                <td colspan="9">
-                                    <p>No result ..</p>
-                                </td>
-                            </tr> --}}
-                            {{-- <tr>
-                                <th scope="row">
-                                    <div class="custom-checkbox custom-control"><input type="checkbox"
-                                            id="exampleCheckboxKpi1" class="custom-control-input"><label
-                                            class="custom-control-label" for="exampleCheckboxKpi1"></label></div>
-                                </th>
-                                <td>Rule 1</td>
-                                <td></td>
-                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                <td><select class="mb-2 form-control-sm form-control" id="">
-                                        <option value="">Parent rule</option>
-                                    </select></td>
-                                <td><select class="mb-2 form-control-sm form-control" id="">
-                                        <option value="">Field</option>
-                                    </select></td>
-                            </tr> --}}
-                            {{-- <tr>
-                                    <th scope="row">
-                                        <div class="custom-checkbox custom-control"><input type="checkbox"
-                                                id="exampleCheckboxKpi2" class="custom-control-input"><label
-                                                class="custom-control-label" for="exampleCheckboxKpi2"></label></div>
-                                    </th>
-                                    <td>Rule 2</td>
-                                    <td></td>
-                                    <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                    <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                    <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                    <td><input class="mb-2 form-control-sm form-control" type="text" id=""></td>
-                                    <td><select class="mb-2 form-control-sm form-control" id="">
-                                            <option value="">Parent rule</option>
-                                        </select></td>
-                                    <td><select class="mb-2 form-control-sm form-control" id="">
-                                            <option value="">Field</option>
-                                        </select></td>
-                                </tr> --}}
                         </tbody>
                         <tfoot>
                             <tr>
@@ -162,7 +118,6 @@
                                 <td>Total Weight :</td>
                                 <td></td>
                                 <td></td>
-                                {{-- <td></td> --}}
                             </tr>
                         </tfoot>
                     </table>
@@ -179,9 +134,9 @@
         <div class="page-title-heading">
         </div>
         <div class="page-title-actions">
-            <button class="mb-2 mr-2 btn btn-success">Save</button>
-            <button class="mb-2 mr-2 btn btn-danger">Delete</button>
-            {{-- <button type="button" class="btn btn-success" id="showtoast">Show Toast</button> --}}
+            {{-- <button class="mb-2 mr-2 btn btn-success">Save</button> --}}
+            {{-- <button class="mb-2 mr-2 btn btn-danger">Delete</button> --}}
+            <a href="{{ URL::previous() }}" class="mb-2 mr-2 btn btn-warning">Go Back</a>
         </div>
     </div>
 </div>
@@ -200,7 +155,6 @@
             <div class="modal-body">
                 <form id="form-ruletemplate">
                     <input type="hidden" name="parent_rule_template_id" value="">
-                    <input type="hidden" name="field" value="">
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="position-relative form-group"><label for="rule-name" class="">Rule Name
@@ -258,8 +212,6 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 
 @section('second-script')
@@ -321,11 +273,11 @@
         // get template id in html
         postRuleTemplate(template,formData).then(res => {
             createRow(res.data)
+            // close modal
         }).catch(error => {
             error.response.data.messages.forEach(value => {
                 toastError(value)
             })
-
             toastClear()
         }).finally(res => {
             // zdfdf
@@ -367,56 +319,37 @@
                 newCellCheck.appendChild(div)
 
                 let newCellName = newRow.insertCell()
-                newCellName.textContent = element.rule.name+'  '+element.id
+                newCellName.textContent = element.id+' '+element.rule.name
 
                 let newCellMeasurement = newRow.insertCell()
                 newCellMeasurement.textContent = element.rule.measurement
 
                 let newCellBaseLine = newRow.insertCell()
-                newCellBaseLine.textContent = element.base_line
+                newCellBaseLine.textContent = element.base_line.toFixed(2)
 
                 let newCellMax = newRow.insertCell()
-                newCellMax.textContent = element.max_result
+                newCellMax.textContent = element.max_result.toFixed(2)
 
                 let newCellTarget = newRow.insertCell()
-                newCellTarget.textContent = element.target_config
+                newCellTarget.textContent = element.target_config.toFixed(2)
 
                 let newCellWeight = newRow.insertCell()
-                newCellWeight.textContent = element.weight
+                newCellWeight.textContent = element.weight.toFixed(2)
 
                 let newCellParentRule = newRow.insertCell()
-                newCellParentRule.appendChild(makeOption(element,key,array)) //element.parent_rule_template_id //+ ` : id = ${array[key].id}`
-                
-                // let newCellField = newRow.insertCell()
-                // newCellField.textContent = element.field
+                newCellParentRule.appendChild(makeOption(element,key,array))
 
-                // array.forEach((value,key) => {
-                //     if (element.parent_rule_template_id) {
-                //         if (element.parent_rule_template_id === value.id) {
-                //             return newCellField.textContent = value.field
-                //         }
-                //     }else{
-                //         return newCellField.textContent = "first"
-                //     }
-                // })
-
-                // newCellField.textContent = array.forEach((value,key) => element.parent_rule_template_id === value.id ? value.rule.name : "null")
-                // newCellField.textContent = element.field
-                // console.log(array[key-1])
-
-                
                 if (key === array.length - 1){ 
                     let footter = table.getElementsByTagName('tfoot')[0]
-                    footter.children[0].children[newCellWeight.cellIndex].textContent = sumWeight
-                    document.getElementById(`weight-${element.rule.category.name}`).value = element.weight_category
-                    // console.log("Last callback call at index " + key + " with value " + element.rule.name ); 
+                    footter.children[0].children[newCellWeight.cellIndex].textContent = sumWeight.toFixed(2)
+                    document.getElementById(`weight-${element.rule.category.name}`).value = element.weight_category.toFixed(2)
                 }
             })
         })
     }
 
     const getLastRowNum = (row) => {
-            return row ? parseInt(row.cells[7].children[0].options[row.cells[7].children[0].selectedIndex].value) + 1: null
+            return row ? row.rowIndex + 1: 1
         }
     
     const makeOption = (obj,key,array) => {
@@ -424,31 +357,21 @@
         select.id = `id-${obj.id}`
         select.name = `id-${obj.id}`
         select.className = `form-control form-control-sm`
-        // let option = document.createElement('option')
-            // option.text = `first`
-            // option.value = obj.field == "1" ? obj.id : ``
-            // option.defaultSelected = obj.field == "1" ? true : false
-            // option.disabled = obj.parent_rule_template_id === null && obj.field == 1 ? true : false
-            // select.appendChild(option)
         array.forEach(element => {
-            // if (obj.id !== element.id) {
                 let option = document.createElement('option')
                 option.text = (parseInt(element.parent_rule_template_id))
                 option.value = element.id
                 option.defaultSelected = obj.parent_rule_template_id === element.parent_rule_template_id ? true : false
-                // option.disabled = obj.parent_rule_template_id === element.id ? true : false
                 select.appendChild(option)
-            // }
-            
         });
         select.setAttribute(`onchange`, `switchRow(this,${obj.rule.category_id})`)
         return select
     }
 
-    const switchRow = (sel,group) => {
+    const switchRow = (e,group) => {
         let formSwitch = {
-            rule_template_id : sel.offsetParent.parentNode.children[0].children[0].children[0].id,
-            rule_to_id : sel.options[sel.selectedIndex].value,
+            rule_template_id : e.offsetParent.parentNode.children[0].children[0].children[0].id,
+            rule_to_id : e.options[e.selectedIndex].value,
             group_id : group
         }
         switRuleTemplate(template,formSwitch)
@@ -458,6 +381,29 @@
         .catch(error => {
             console.log(error.response.data)
         })
+    }
+
+    const deleterule = e => {
+        let table = document.getElementById(`table-${e.dataset.group}`)
+        let form = {
+            rule : [],
+            group : {
+                id:e.dataset.groupId,
+                name:e.dataset.group
+            }
+        }
+        for (const row of table.tBodies[0].rows) {
+            let element = row.firstChild.firstChild.firstChild
+            if (element.checked) {
+                form.rule.push(element.id)
+            }
+        }
+        deleteRuleTemplate(template,form)
+        .then(res => {
+            createRow(res.data)
+        }).catch(error => {
+
+        }).finally(() => {})
     }
 </script>
 @endsection
